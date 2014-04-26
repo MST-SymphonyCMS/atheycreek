@@ -1,0 +1,149 @@
+// Masthead
+// ================================================
+
+.masthead {
+  position: relative;
+  top: 0;
+  @include background-image( linear-gradient(#b591b1, #f9c1bc) );
+
+  nav {
+
+    ul {
+      @include clearfix;
+      margin: 0;
+      padding: 2rem 1rem 2rem 2rem;
+      list-style: none;
+      @include animate(fade-in-down, 1s);
+
+      @include media($tablet-plus) {
+        padding-left: 1rem;
+      }
+
+      @include media($tablet) {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      li {
+        display: block;
+        float: right;
+        margin-left: 2rem;
+        list-style-type: none;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+
+        @include media($tablet-plus) {
+          margin-left: 1.2rem;
+          font-size: 1rem;
+        }
+
+        &.brand {
+          float: left;
+          margin-left: 0;
+
+
+          a {
+            font-size: 6rem;
+
+            &:hover {
+              color: transparentize(white, .5);
+              border-color: transparent;
+            }
+          }
+
+        }
+
+        @include media($tablet) {
+          display: none;
+
+          &.brand {
+            display: block;
+            float: none;
+            text-align: center;
+          }
+
+          &.top-menu-toggle {
+            display: inline-block;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+          }
+
+        }
+
+
+        a {
+          border-color: transparent;
+          color: white;
+          letter-spacing: .2rem;
+          line-height: 8rem;
+
+          &:hover {
+            border-color: transparentize($color-brand-primary, .5);
+          }
+
+          &.top-toggle {
+            position: relative;
+            padding: 1rem;
+            font-size: 1.4rem;
+
+            span {
+              position: absolute;
+              display: block;
+              top: 1rem;
+              width: 1rem;
+              @include box-shadow(0 10px 0 1px white, 0 16px 0 1px white, 0 22px 0 1px white);
+            }
+
+            &:hover {
+              color: transparentize($color-brand-primary, .5);
+              border-color: transparent;
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  .tagline {
+    padding: 0 0 4rem 0;
+    color: white;
+    text-align: center;
+    @include animate(fade-in-down, 1s, 1s);
+
+    h1 {
+      padding: 0 10rem;
+      font-size: 3rem;
+      font-weight: 400;
+      letter-spacing: .2rem;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 2rem auto;
+      width: 50%;
+      font-size: 1.6rem;
+      line-height: 1.5;
+    }
+
+    a {
+      @include button-custom(transparent, #fff, #fff);
+    }
+
+    @include media($tablet) {
+      h1 {
+        padding: 0 2rem;
+        font-size: 1.8rem;
+      }
+      p {
+        width: 85%;
+        font-size: 1.2rem;
+      }
+    }
+
+  }
+
+
+}

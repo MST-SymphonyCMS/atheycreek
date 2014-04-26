@@ -1,0 +1,78 @@
+// Footer
+// ================================================
+
+.footer {
+  clear: both;
+  background: darken(desaturate($color-brand-primary, 10%), 10%);
+  padding: 5rem 2rem;
+
+  @include media($tablet) {
+    padding: 2rem;
+  }
+
+  a {
+    &:hover {
+      color: transparentize($body-bg, .5);
+    }
+  }
+
+  ul {
+    margin-top: 0;
+    padding-left: 0;
+    list-type: none;
+
+    @include media($tablet) {
+      text-align: center;
+    }
+
+    li {
+      display: inline;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .3rem;
+      text-transform: uppercase;
+      list-style-type: none;
+
+      a {
+        margin: 0 1rem;
+        border: none;
+        color: $body-bg;
+      }
+
+      &.social {
+        position: relative;
+        top: -.4rem;
+        float: right;
+        font-size: 2rem;
+      }
+
+      @include media($tablet) {
+        display: block;
+        margin: 1rem 0;
+
+        &.social {
+          display: inline;
+          position: inherit;
+          float: none;
+          top: 0;
+
+          &:nth-child(1) {
+          padding-top: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  p {
+    margin: 1rem 0 0 0;
+    padding-left: 1rem;
+    font-size: 1.1rem;
+    color: $body-bg;
+
+    a {
+      color: $body-bg;
+      border-bottom-color: darken(desaturate($color-brand-primary, 10%), 15%);
+    }
+  }
+}

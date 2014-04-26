@@ -1,0 +1,42 @@
+// Featured
+// ================================================
+
+// Home
+
+.section-featured {
+
+  &.home {
+    padding: 0;
+    text-align: center;
+    border-bottom: none;
+
+    .feature {
+      position: relative;
+      float: left;
+      width: 50%;
+      color: $body-bg;
+
+      @include media($tablet) {
+        width: 100%;
+      }
+
+      .overlay {
+        padding: 4rem 2rem;
+        background: transparentize(black, .70);
+      }
+
+      .icon-large {
+        font-size: 4rem;
+      }
+
+      h3 {
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        letter-spacing: .2rem;
+      }
+
+    }
+  }
+
+}

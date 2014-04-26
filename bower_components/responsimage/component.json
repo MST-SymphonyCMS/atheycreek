@@ -1,0 +1,7 @@
+{
+  "name"        : "responsimage",
+  "version"     : "0.2.3",
+  "main"        : "./responsimage.js",
+  "dependencies": {
+  }
+}

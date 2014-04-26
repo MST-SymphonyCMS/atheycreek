@@ -1,0 +1,78 @@
+// Globals
+// ================================================
+
+* {
+  text-rendering: optimizeLegibility !important;
+  -webkit-text-size-adjust: none !important;
+}
+
+html, body{
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  height: 100%;
+
+  @include media($tablet) {
+    overflow-x: hidden;
+  }
+}
+
+body {
+  @include image-rendering(optimizeSpeed);
+  background-color: $body-bg;
+  color: $body-font-color;
+  font-family: $font-body;
+  font-size: 20px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+  zoom: 1;
+}
+
+hr {
+  background: none;
+  border: none;
+  border-top: 1px solid darken(white, 5%);
+  margin: 2.5rem 0;
+
+  &.large {
+    background: none;
+    border: none;
+    border-top: 3px solid darken(white, 10%);
+    margin: 0 auto 0 auto;
+    width: 15em;
+
+    &:first-child {
+      margin-top: 4rem;
+    }
+  }
+}
+
+blockquote {
+  border-left: 3px solid lighten($color-brand-primary, 80%);
+  margin: 2rem 0;
+  padding: 0 0 0 2rem;
+  font-weight: 400;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+a {
+  color: darken($color-brand-primary, 15%);
+  text-decoration: none;
+  border-bottom: 2px solid lighten($color-brand-primary, 75%);
+
+  &:hover {
+    border-bottom: 2px solid lighten($color-brand-primary, 55%);
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+// Classes
+
+.is-visible {
+  visibility: visible;
+}

@@ -1,0 +1,10 @@
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+manifest/config.php
+manifest/cache/*
+manifest/logs/*
+manifest/tmp/*
+workspace/uploads/documents/*
+workspace/uploads/images/*
+node_modules/

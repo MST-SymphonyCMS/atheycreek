@@ -1,0 +1,23 @@
+// Custom Variables
+// ================================================
+
+// Colors
+
+$color-brand-primary: #614e8e;
+$color-brand-secondary: #614e8e;
+
+// Global
+
+$body-bg: #f1f1f2;
+$body-font-color: #000815;
+
+// Typography
+
+$font-path: '/workspace/assets/fonts/';
+$font-brandon: 'brandon-grotesque', sans-serif;
+$font-body: $font-brandon;
+
+// Bitters Overrides
+
+$base-font-family: $font-body;
+$header-font-family: $font-body;

@@ -16,20 +16,6 @@ module.exports = function (grunt) {
       ]
     },
 
-    // LESS
-    // =====================================================
-
-    // less: {
-    //   main: {
-    //     options: {
-    //       compress: true
-    //     },
-    //     files: {
-    //       'workspace/theme/css/main.css': 'workspace/assets/less/main.less'
-    //     }
-    //   }
-    // },
-
     // Recess
     // =====================================================
 

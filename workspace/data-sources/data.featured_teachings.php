@@ -5,7 +5,6 @@
 	Class datasourcefeatured_teachings extends SectionDatasource {
 
 		public $dsParamROOTELEMENT = 'featured-teachings';
-		public $dsParamConditionalizer = '(if value of ({$pt1}) is ())';
 		public $dsParamORDER = 'desc';
 		public $dsParamPAGINATERESULTS = 'yes';
 		public $dsParamLIMIT = '1';
@@ -62,8 +61,8 @@
 					'name' => 'Jonathan Simcoe',
 					'website' => 'http://atheycreek.dev',
 					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.5',
-				'release-date' => '2014-02-07T22:41:26+00:00'
+				'version' => 'Symphony 2.3.2',
+				'release-date' => '2013-08-14T14:39:49+00:00'
 			);
 		}
 
@@ -87,7 +86,7 @@
 				FrontendPageNotFoundExceptionHandler::render($e);
 			}
 			catch(Exception $e){
-				$result->appendChild(new XMLElement('error', $e->getMessage() . ' on ' . $e->getLine() . ' of file ' . $e->getFile()));
+				$result->appendChild(new XMLElement('error', $e->getMessage()));
 				return $result;
 			}
 

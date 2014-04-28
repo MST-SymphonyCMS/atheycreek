@@ -23,8 +23,6 @@
 
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title: unformatted',
-				'description',
-				'poster: caption: unformatted',
 				'poster: image'
 		);
 		
@@ -36,13 +34,13 @@
 
 		public function about() {
 			return array(
-				'name' => 'Teachings: Series: Home (filtered)',
+				'name' => 'Teachings: Series home (filtered)',
 				'author' => array(
 					'name' => 'Jonathan Simcoe',
 					'website' => 'http://atheycreek.dev',
 					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.5',
-				'release-date' => '2014-03-31T21:37:34+00:00'
+				'version' => 'Symphony 2.3.4',
+				'release-date' => '2013-11-22T18:00:04+00:00'
 			);
 		}
 

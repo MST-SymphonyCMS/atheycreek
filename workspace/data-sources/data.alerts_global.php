@@ -2,7 +2,7 @@
 
 	require_once(TOOLKIT . '/class.datasource.php');
 
-	Class datasourcealerts_global extends Datasource{
+	Class datasourcealerts_global extends SectionDatasource {
 
 		public $dsParamROOTELEMENT = 'alerts-global';
 		public $dsParamORDER = 'desc';
@@ -13,12 +13,14 @@
 		public $dsParamSORT = 'system:id';
 		public $dsParamHTMLENCODE = 'yes';
 		public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
+		
 
 		public $dsParamFILTERS = array(
+				'263' => 'later than now',
 				'227' => 'yes',
 				'221' => 'no',
-				'263' => 'later than {$today}, {$today}',
 		);
+		
 
 		public $dsParamINCLUDEDELEMENTS = array(
 				'url',
@@ -27,38 +29,38 @@
 				'can-be-closed',
 				'type'
 		);
+		
 
-
-		public function __construct(&$parent, $env=NULL, $process_params=true){
-			parent::__construct($parent, $env, $process_params);
+		public function __construct($env=NULL, $process_params=true) {
+			parent::__construct($env, $process_params);
 			$this->_dependencies = array();
 		}
 
-		public function about(){
+		public function about() {
 			return array(
 				'name' => 'Alerts: Global',
 				'author' => array(
 					'name' => 'Jonathan Simcoe',
-					'website' => 'http://atheycreek',
+					'website' => 'http://atheycreek.dev',
 					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.2.5',
-				'release-date' => '2012-10-18T21:31:32+00:00'
+				'version' => 'Symphony 2.3.5',
+				'release-date' => '2014-03-21T23:34:36+00:00'
 			);
 		}
 
-		public function getSource(){
+		public function getSource() {
 			return '26';
 		}
 
-		public function allowEditorToParse(){
+		public function allowEditorToParse() {
 			return true;
 		}
 
-		public function grab(&$param_pool=NULL){
+		public function execute(array &$param_pool = null) {
 			$result = new XMLElement($this->dsParamROOTELEMENT);
 
 			try{
-				include(TOOLKIT . '/data-sources/datasource.section.php');
+				$result = parent::execute($param_pool);
 			}
 			catch(FrontendPageNotFoundException $e){
 				// Work around. This ensures the 404 page is displayed and
@@ -66,13 +68,11 @@
 				FrontendPageNotFoundExceptionHandler::render($e);
 			}
 			catch(Exception $e){
-				$result->appendChild(new XMLElement('error', $e->getMessage()));
+				$result->appendChild(new XMLElement('error', $e->getMessage() . ' on ' . $e->getLine() . ' of file ' . $e->getFile()));
 				return $result;
 			}
 
 			if($this->_force_empty_result) $result = $this->emptyXMLSet();
-
-			
 
 			return $result;
 		}

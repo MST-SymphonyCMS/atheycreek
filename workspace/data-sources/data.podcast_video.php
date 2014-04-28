@@ -35,6 +35,7 @@
 				'video-duration',
 				'video-540-filesize',
 				'video-720-filesize',
+				'video-podcast-url',
 				'hide'
 		);
 		
@@ -51,8 +52,8 @@
 					'name' => 'Jonathan Simcoe',
 					'website' => 'http://atheycreek.dev',
 					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.2',
-				'release-date' => '2013-08-14T16:42:19+00:00'
+				'version' => 'Symphony 2.3.5',
+				'release-date' => '2014-04-08T22:08:07+00:00'
 			);
 		}
 
@@ -76,7 +77,7 @@
 				FrontendPageNotFoundExceptionHandler::render($e);
 			}
 			catch(Exception $e){
-				$result->appendChild(new XMLElement('error', $e->getMessage()));
+				$result->appendChild(new XMLElement('error', $e->getMessage() . ' on ' . $e->getLine() . ' of file ' . $e->getFile()));
 				return $result;
 			}
 

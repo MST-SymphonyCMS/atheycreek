@@ -1,69 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:template name="top-menu">
-  <a class="close-top-menu mobile" href="#"><span>×</span></a>
-  <ul class="top-menu">
-    <xsl:for-each select="/data/tags-all-entries/entry[ not(parent/item) and not(hide-from-header = 'Yes') and hide = 'No' ]">
-      <xsl:call-template name="nav-full" />
-    </xsl:for-each>
-
-    <li class="has-dropdown">
-      <a href="#">
-        <i class="fi-wrench"></i>
-        <xsl:text> Admin</xsl:text>
-      </a>
-      <ul class="dropdown">
-        <xsl:for-each select="/data/tags-all-entries/entry[ admin = 'Yes' ]">
-          <xsl:call-template name="nav-full" />
-        </xsl:for-each>
-        <xsl:if test="$cookie-username">
-          <li><a href="/symphony/" target="_blank">Symphony</a></li>
-          <li><a href="?debug" target="_blank">Debug</a></li>
-          <xsl:if test="not($pt1 = 'toolkit')">
-            <li>
-              <a>
-                <xsl:attribute name="href">
-                  <xsl:choose>
-                    <xsl:when test="$pt1">
-                      <xsl:value-of select="concat($root, '/symphony/publish/tags/edit/', $pt1, '/')" />
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:value-of select="concat($root, '/symphony/publish/tags/edit/',/data/tags-all-entries/entry[tag/@handle = 'home']/@id , '/')" />
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:attribute>
-                <xsl:text> Edit Page</xsl:text>
-              </a>
-            </li>
-          </xsl:if>
-          <li><a href="{$root}/symphony/logout/">Logout</a></li>
-        </xsl:if>
-      </ul>
-    </li>
-    <form class="navbar-form navbar-right" action="get">
-      <xsl:call-template name="form-search-action" />
-      <input name="keywords" type="text" placeholder="Search" autocomplete="off" onclick="this.select()" />
-    </form>
-  </ul>
-
-</xsl:template>
-
 
 <xsl:template name="navbar">
 
-  <nav>
-    <ul>
-      <li class="brand">
-        <a href="{$root}"><i class="icon-full-outline"></i></a>
-      </li>
-      <li class="top-menu-toggle"><a class="top-toggle" href="#">&#160;<span></span></a></li>
-      <xsl:for-each select="/data/tags-all-entries/entry[ not(parent/item) and not(hide-from-header = 'Yes') and hide = 'No' ]">
-        <xsl:sort select="order" order="descending" />
-        <xsl:call-template name="nav-parent" />
-      </xsl:for-each>
-    </ul>
-  </nav>
+  <div class="navbar main navbar-inverse visible-desktop">
+    <div class="navbar-inner">
+      <div class="container">
+        <div>
+          <form class="navbar-search pull-left" action="get">
+            <xsl:call-template name="form-search-action" />
+            <a>
+              <xsl:call-template name="url-search-home" />
+              <span class="icon">s</span>
+            </a>
+            <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
+          </form>
+          <ul class="nav pull-right">
+            <xsl:if test="data/status-all-entries/entry[name = 'ustream-status']/content = 'live'">
+              <li>
+                <a href="{$root}/live/">
+                  <xsl:attribute name="class">
+                    <xsl:text>modalLiveLink</xsl:text>
+                    <xsl:choose>
+                      <xsl:when test="data/status-all-entries/entry[name = 'ustream-status']/content = 'live'">
+                        <xsl:text> online</xsl:text>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:text> offline</xsl:text>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:attribute>
+                  <span class="icon">V</span>
+                  <xsl:text>Live</xsl:text>
+                </a>
+              </li>
+              <li class="divider-vertical"></li>
+            </xsl:if>
+            <li><a href="{$root}/meetings/">Meetings</a></li>
+            <li class="divider-vertical"></li>
+            <li><a href="{$root}/im-new-here/">New Here?</a></li>
+            <li class="divider-vertical"></li>
+            <li><a href="{$root}/give/">Give</a></li>
+            <li class="divider-vertical"></li>
+            <li>
+              <xsl:attribute name="class">
+                <xsl:choose>
+                  <xsl:when test="$cookie-username">
+                    <xsl:text>worship</xsl:text>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:text>last worship</xsl:text>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:attribute>
+              <a href="{$root}/events/12962/tuesday-sunrise-worship/">
+                <span class="icon">Z</span>
+                <span class="worship">Worship: </span>
+                <xsl:value-of select="$main-worship-sunrise" disable-output-escaping="yes" />
+              </a>
+            </li>
+            <xsl:if test="$cookie-username">
+              <li class="divider-vertical"></li>
+              <li class="admin-menu">
+                <a href="#" data-toggle="dropdown"><i class="glyphicon-wrench"></i></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/symphony/" target="_blank">Symphony</a>
+                  </li>
+                  <li>
+                    <a href="?debug" target="_blank">Debug</a>
+                  </li>
+                  <xsl:if test="not($pt1 = 'toolkit')">
+                    <li>
+                      <a target="_blank">
+                        <xsl:attribute name="href">
+                          <xsl:choose>
+                            <xsl:when test="$pt1">
+                              <xsl:value-of select="concat($root, '/symphony/publish/tags/edit/', $pt1, '/')" />
+                            </xsl:when>
+                            <xsl:otherwise>
+                              <xsl:value-of select="concat($root, '/symphony/publish/tags/edit/',/data/tags-all-entries/entry[tag/@handle = 'home']/@id , '/')" />
+                            </xsl:otherwise>
+                          </xsl:choose>
+                        </xsl:attribute>
+                        <xsl:text> Edit Page</xsl:text>
+                      </a>
+                    </li>
+                  </xsl:if>
+                  <li>
+                    <a href="{$root}/symphony/logout/">Logout</a>
+                  </li>
+                </ul>
+              </li>
+            </xsl:if>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="navbar mobile navbar-inverse hidden-desktop">
+    <div class="navbar-inner">
+      <form class="navbar-search pull-left" action="get">
+        <xsl:call-template name="form-search-action" />
+        <a>
+          <xsl:call-template name="url-search-home" />
+          <span class="icon">s</span>
+        </a>
+        <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
+      </form>
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><a href="{$root}/meetings/">Meetings</a></li>
+          <li><a href="{$root}/im-new-here/">New Here?</a></li>
+          <li><a href="{$root}/give/">Give</a></li>
+          <li>
+            <a href="{$root}/events/12962/tuesday-sunrise-worship/">
+              <span class="icon">Z</span>
+              <span class="worship">Sunrise Worship - </span>
+              <xsl:value-of select="$main-worship-sunrise" disable-output-escaping="yes" />
+            </a>
+          </li>
+          <li class="divider-vertical"></li>
+        </ul>
+        <ul class="nav">
+          <xsl:for-each select="/data/tags-all-entries/entry[ not(parent/item) and not(hide-from-header = 'Yes') ]">
+            <xsl:call-template name="subnav-entry" />
+          </xsl:for-each>
+        </ul>
+      </div>
+
+    </div>
+  </div>
 
 </xsl:template>
 
@@ -156,29 +230,41 @@
 
 </xsl:template>
 
-<xsl:template name="nav-parent">
 
-  <xsl:variable name="active-parent" select="/data/tags-all-entries/entry[ @id = $ds-tags-filtered.system-id ]/parent/item/@id" />
-  <xsl:variable name="realID" select="@id" />
-  <xsl:variable name="node" select="." />
+<xsl:template name="subnav-group">
 
-  <li>
-    <xsl:attribute name="class">
-      <xsl:if test="$ds-tags-filtered.system-id = @id or $active-parent = @id or /data/tags-all-entries/entry[ @id = $active-parent and hide = 'No' ]/parent/item/@id = @id">
-        <xsl:text>active</xsl:text>
-      </xsl:if>
-    </xsl:attribute>
+  <xsl:param name="group" />
+  <xsl:param name="mobile" />
 
-    <a>
-      <xsl:call-template name="url-tags" />
-      <xsl:value-of select="tag" disable-output-escaping="yes" />
-    </a>
-  </li>
+  <xsl:if test="count($group)">
+    <xsl:choose>
+      <xsl:when test="$mobile = 'yes'">
+        <ul class="nav nav-tabs nav-stacked">
+          <xsl:for-each select="$group">
+            <xsl:call-template name="subnav-entry" />
+          </xsl:for-each>
+        </ul>
+        <hr class="soften" />
+      </xsl:when>
+      <xsl:otherwise>
+        <div class="jumbotron masthead" id="overview">
+          <div class="subnav visible-desktop">
+            <ul class="nav nav-pills">
+              <xsl:for-each select="$group">
+                <xsl:call-template name="subnav-entry" />
+              </xsl:for-each>
+            </ul>
+          </div>
+          <div class="spacer"> </div>
+        </div>
+      </xsl:otherwise>
+    </xsl:choose>
 
+  </xsl:if>
 </xsl:template>
 
 
-<xsl:template name="nav-full">
+<xsl:template name="subnav-entry">
 
   <xsl:variable name="active-parent" select="/data/tags-all-entries/entry[ @id = $ds-tags-filtered.system-id ]/parent/item/@id" />
   <xsl:variable name="realID" select="@id" />
@@ -187,11 +273,11 @@
   <li>
     <xsl:attribute name="class">
       <xsl:text>entry</xsl:text>
-      <xsl:if test="$ds-tags-filtered.system-id = @id or $active-parent = @id or /data/tags-all-entries/entry[ @id = $active-parent and hide = 'No' ]/parent/item/@id = @id">
+      <xsl:if test="$ds-tags-filtered.system-id = @id or $active-parent = @id or /data/tags-all-entries/entry[ @id = $active-parent ]/parent/item/@id = @id">
         <xsl:text> active</xsl:text>
       </xsl:if>
       <xsl:if test="/data/tags-all-entries/entry[@id]/parent[@items != 0]/item/@id = @id">
-        <xsl:text> has-dropdown</xsl:text>
+        <xsl:text> sub</xsl:text>
       </xsl:if>
       <xsl:choose>
         <xsl:when test="position() mod 2 = 0">
@@ -225,46 +311,18 @@
         </xsl:choose>
       </xsl:if>
     </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="/data/tags-all-entries/entry[@id]/parent[@items != 0]/item/@id = @id">
-        <a href="#" class="arrow">
-          <xsl:value-of select="tag" disable-output-escaping="yes" />
-        </a>
-      </xsl:when>
-      <xsl:otherwise>
-        <a>
-          <xsl:call-template name="url-tags" />
-          <xsl:value-of select="tag" disable-output-escaping="yes" />
-        </a>
-      </xsl:otherwise>
-    </xsl:choose>
-
-    <xsl:if test="/data/tags-all-entries/entry[@id and hide = 'No']/parent[@items != 0]/item/@id = @id">
-      <ul class="dropdown">
+    <a>
+      <xsl:call-template name="url-tags" />
+      <xsl:value-of select="tag" disable-output-escaping="yes" />
+    </a>
+    <xsl:if test="/data/tags-all-entries/entry[@id]/parent[@items != 0]/item/@id = @id">
+      <ul class="dropdown-menu">
         <xsl:for-each select="/data/tags-all-entries/entry[parent/item/@id = $realID]">
           <li>
-            <xsl:if test="/data/tags-all-entries/entry[@id]/parent[@items != 0]/item/@id = @id">
-              <xsl:attribute name="class">has-dropdown</xsl:attribute>
-            </xsl:if>
             <a>
               <xsl:call-template name="url-tags" />
               <xsl:value-of select="tag" disable-output-escaping="yes" />
             </a>
-            <xsl:variable name="nestedID">
-              <xsl:value-of select="@id" />
-            </xsl:variable>
-            <xsl:if test="/data/tags-all-entries/entry[@id]/parent[@items != 0]/item/@id = @id">
-              <ul class="dropdown">
-                <xsl:for-each select="/data/tags-all-entries/entry[parent/item/@id = $nestedID and hide = 'No']">
-                  <li>
-                    <a>
-                      <xsl:call-template name="url-tags" />
-                      <xsl:value-of select="tag" disable-output-escaping="yes" />
-                    </a>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </xsl:if>
           </li>
         </xsl:for-each>
       </ul>

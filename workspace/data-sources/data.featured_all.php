@@ -5,15 +5,15 @@
 	Class datasourcefeatured_all extends SectionDatasource {
 
 		public $dsParamROOTELEMENT = 'featured-all';
-		public $dsParamConditionalizer = '(if value of ({$pt1}) is ())';
-		public $dsParamORDER = 'asc';
+		public $dsParamORDER = 'random';
 		public $dsParamPAGINATERESULTS = 'no';
 		public $dsParamLIMIT = '1000';
 		public $dsParamSTARTPAGE = '1';
 		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamSORT = 'order';
+		public $dsParamSORT = 'system:creation-date';
 		public $dsParamHTMLENCODE = 'yes';
 		public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
+		public $dsParamCACHE = '0';
 		
 
 		public $dsParamFILTERS = array(
@@ -25,8 +25,8 @@
 		public $dsParamINCLUDEDELEMENTS = array(
 				'name: unformatted',
 				'url',
-				'description: formatted',
-				'image: image'
+				'image: image',
+				'expiration'
 		);
 		
 
@@ -39,11 +39,11 @@
 			return array(
 				'name' => 'Featured: All',
 				'author' => array(
-					'name' => 'Jonathan Simcoe',
-					'website' => 'http://atheycreek.dev',
-					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.5',
-				'release-date' => '2014-04-01T18:24:19+00:00'
+					'name' => 'Brian Zerangue',
+					'website' => 'http://churchdeploy.site',
+					'email' => 'brian.zerangue@gmail.com'),
+				'version' => 'Symphony 2.3.2',
+				'release-date' => '2013-07-24T10:53:51+00:00'
 			);
 		}
 
@@ -67,7 +67,7 @@
 				FrontendPageNotFoundExceptionHandler::render($e);
 			}
 			catch(Exception $e){
-				$result->appendChild(new XMLElement('error', $e->getMessage() . ' on ' . $e->getLine() . ' of file ' . $e->getFile()));
+				$result->appendChild(new XMLElement('error', $e->getMessage()));
 				return $result;
 			}
 

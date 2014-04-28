@@ -2,69 +2,52 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 
-<xsl:template name="twitter">
-
-  <div class="twitter">
-    <div class="center">
-      <i class="icon-twitter icon-medium"></i>
-    </div>
-    <h3>On Twitter</h3>
-    <xsl:for-each select="/data/twitter-search/item[position() &lt; 2]">
-      <p class="lead">
-        <em>
-          <xsl:value-of select="text" disable-output-escaping="yes" />
-          <xsl:text>&#160;&#160;</xsl:text>
-        </em>
-      </p>
-      <h4>
-        <strong>
-          <xsl:value-of select="substring(created-at,9,2)"/>
-          <xsl:text>&#160;</xsl:text>
-          <xsl:value-of select="substring(created-at,5,4)"/>
-          <xsl:value-of select="substring-after(created-at,'+0000 ')" />
-        </strong>
-      </h4>
-    </xsl:for-each>
-  </div>
-
-</xsl:template>
-
-
 <xsl:template name="footer">
 
-  <footer class="footer">
-    <div class="container">
-      <div class="content">
-        <ul>
-          <xsl:for-each select="/data/tags-all-entries/entry[ not(parent/item) and not(hide-from-header = 'Yes') and hide = 'No' ]">
-            <xsl:sort select="order" order="descending" />
-            <xsl:call-template name="nav-parent" />
-          </xsl:for-each>
-          <li class="social">
-            <a href="/"><i class="fi-social-twitter"></i></a>
-          </li>
-          <li class="social">
-            <a href="/"><i class="fi-social-facebook"></i></a>
-          </li>
-          <li class="social">
-            <a href="/"><i class="fi-social-vimeo"></i></a>
-          </li>
-          <li class="social">
-            <a href="/"><i class="fi-social-spotify"></i></a>
-          </li>
-        </ul>
-        <p>
-          <xsl:text>© 1996—</xsl:text>
-          <xsl:value-of select="$this-year" />
-          <xsl:text>. </xsl:text>
-          <a href="{$root}"><xsl:value-of select="$website-name" /></a>
-          <xsl:text>. All&#160;rights&#160;reserved. Some photos courtesy of </xsl:text>
-          <a href="http://fiftyfootshadows.net" target="_blank">John Carey</a>
-          <xsl:text>.</xsl:text>
-        </p>
+  <div class="footer">
+    <div class="footer-nav container">
+      <div class="row">
+        <div class="span2">
+          <ul class="nav nav-list">
+            <li class="nav-header first"><a href="/meetings/">Meetings</a></li><br />
+            <li class="nav-header"><a href="/teachings/">Teachings</a></li><br />
+            <li class="nav-header"><a href="/events/">Events</a></li><br />
+            <li class="nav-header"><a href="/ministries/">Ministries</a></li><br />
+            <li class="nav-header"><a href="/home-groups/">Home Groups</a></li><br />
+            <li class="nav-header"><a href="/missions/">Missions</a></li><br />
+            <li class="nav-header"><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='footer']/content)" disable-output-escaping="yes" />
       </div>
     </div>
-  </footer>
+    <div class="baseline">
+      <div class="container">
+        <div class="row">
+          <div class="span12 center">
+            <div class="facebook">
+              <a href="https://www.facebook.com/pages/Athey-Creek-Christian-Fellowship/138279749547289">Visit us on Facebook</a>
+            </div>
+            <div class="copyright">
+              <xsl:text>© </xsl:text>
+              <a href="{$root}"><xsl:value-of select="$website-name" /></a>
+              <xsl:text>.&#160;All&#160;rights&#160;reserved.&#160;|&#160;&#160;</xsl:text>
+              <span class="dev">
+               <a href="{$root}/api/">API</a>
+               <span class="divider">|</span>
+               <a href="mailto:support@atheycreek.com?Subject=AtheyCreek.com Website Support" target="_blank">Website Support</a>
+               <span class="divider">| Some photos courtesy of <a href="http://fiftyfootshadows.net" target="_blank">John Carey</a></span>
+               <br />
+              </span>
+            </div>
+            <div class="branding">
+              <a href="{root}">&#x2014;<span class="year left">1996</span><span class="icon">0</span><span class="year right"><xsl:value-of select="$this-year" /></span>&#x2014;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </xsl:template>
 

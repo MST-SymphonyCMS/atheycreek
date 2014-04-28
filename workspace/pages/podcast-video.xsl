@@ -101,14 +101,21 @@
           </itunes:image>
           <enclosure>
             <xsl:attribute name="url">
-              <xsl:value-of select="$podcast-video-server"/>
-              <xsl:value-of select="filename"/>
-              <xsl:text>_540.mp4</xsl:text>
+              <xsl:choose>
+                <xsl:when test="video-podcast-url">
+                  <xsl:value-of select="video-podcast-url"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="$podcast-video-server"/>
+                  <xsl:value-of select="filename"/>
+                  <xsl:text>_720.mp4</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:attribute>
             <xsl:attribute name="length">
               <xsl:choose>
-                <xsl:when test="video-540-filesize">
-                  <xsl:value-of select="video-540-filesize" />
+                <xsl:when test="video-720-filesize">
+                  <xsl:value-of select="video-720-filesize" />
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:text>609456789</xsl:text>
@@ -120,11 +127,18 @@
             </xsl:attribute>
           </enclosure>
           <guid>
-            <xsl:variable name="en-lowercase-letters">abcdefghijklmnopqrstuvwxyz</xsl:variable>
-            <xsl:variable name="en-uppercase-letters">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
-            <xsl:value-of select="$podcast-video-server"/>
-            <xsl:value-of select="translate(filename,$en-uppercase-letters,$en-lowercase-letters)"/>
-            <xsl:text>_540.mp4</xsl:text>
+            <xsl:choose>
+              <xsl:when test="video-podcast-url">
+                <xsl:value-of select="video-podcast-url"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:variable name="en-lowercase-letters">abcdefghijklmnopqrstuvwxyz</xsl:variable>
+                <xsl:variable name="en-uppercase-letters">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
+                <xsl:value-of select="$podcast-video-server"/>
+                <xsl:value-of select="translate(filename,$en-uppercase-letters,$en-lowercase-letters)"/>
+                <xsl:text>_720.mp4</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
           </guid>
           <pubDate>
             <xsl:call-template name="format-date">

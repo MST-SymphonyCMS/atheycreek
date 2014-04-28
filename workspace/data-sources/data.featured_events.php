@@ -40,10 +40,10 @@
 				'name' => 'Featured: Events',
 				'author' => array(
 					'name' => 'Jonathan Simcoe',
-					'website' => 'http://atheycreek.dev',
+					'website' => 'http://atheycreek.com',
 					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.5',
-				'release-date' => '2014-02-07T22:41:46+00:00'
+				'version' => 'Symphony 2.3.5beta1',
+				'release-date' => '2013-12-30T18:43:10+00:00'
 			);
 		}
 

@@ -1,32 +1,58 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   'use strict';
 
+  // Load local NPM tasks automagically
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
+  // Custom variables
   var globalConfig = {
     client: 'atheycreek',
     password: 'Romans109'
   };
 
   grunt.initConfig({
-    globalConfig: globalConfig,
-    pkg: grunt.file.readJSON('package.json'),
+     globalConfig: globalConfig,
 
-    sass: {
+    // JS Hint
+    // =====================================================
+
+    jshint : {
+      all: [
+        'workspace/assets/js/main.js'
+      ]
+    },
+
+    // LESS
+    // =====================================================
+
+    // less: {
+    //   main: {
+    //     options: {
+    //       compress: true
+    //     },
+    //     files: {
+    //       'workspace/theme/css/main.css': 'workspace/assets/less/main.less'
+    //     }
+    //   }
+    // },
+
+    // Recess
+    // =====================================================
+
+    recess: {
       dist: {
         options: {
-          outputStyle: 'compressed',
-          includePaths: ['workspace/assets/scss/bourbon', 'workspace/assets/scss/neat']
+          compile: true,
+          compress: true
         },
         files: {
-          'workspace/assets/build/main.css': 'workspace/assets/scss/main.scss'
+          'workspace/assets/css/main.css': ['workspace/assets/less/main.less']
         }
       }
     },
 
-    jshint : {
-      all: [
-        'workspace/assets/js/app.js'
-      ]
-    },
+    // Concatenation
+    // =====================================================
 
     concat: {
       options: {
@@ -34,14 +60,17 @@ module.exports = function(grunt) {
       },
       dist: {
         src : [
-          'bower_components/jquery/jquery.js',
-          'bower_components/responsimage/responsimage.js',
-          // 'workspace/assets/js/mediaelement.js',
-          'workspace/assets/js/app.js',
-          'workspace/assets/js/reftagger.js'],
-        dest: 'workspace/assets/build/main.js'
+          'workspace/assets/js/jquery.js',
+          'workspace/assets/bootstrap/js/combined/2.2.1/bootstrap.min.js ',
+          'workspace/assets/js/responsimage.js',
+          'workspace/assets/js/mediaelement.js',
+          'workspace/assets/js/main.js'],
+        dest: 'workspace/assets/js/application.js'
       }
     },
+
+    // Uglify.js
+    // =====================================================
 
     uglify: {
       options: {
@@ -49,31 +78,43 @@ module.exports = function(grunt) {
       },
       main: {
         files: {
-          'workspace/assets/build/main.min.js': ['workspace/assets/build/main.js']
+          'workspace/assets/js/application.min.js': ['workspace/assets/js/application.js']
         }
       }
     },
+
+    // Notifications
+    // =====================================================
+
+    notify: {
+      main: {
+        options: {
+          title: '<%= globalConfig.client  %>.dev',
+          message: 'LESS and JS were compiled',
+        }
+      }
+    },
+
+    // Clean
+    // =====================================================
 
     clean: [ "manifest/cache/*.jpg" ],
 
-    watch: {
-      grunt: { files: ['Gruntfile.js'] },
+    // Watch
+    // =====================================================
 
-      sass: {
-        files: 'workspace/assets/scss/**/*.scss',
-        tasks: ['sass'],
-        options: {
-          livereload: true,
-        }
-      },
-      js: {
-        files: 'workspace/assets/js/**/*.js',
-        tasks: ['js'],
+    watch: {
+      main: {
+        files: ['**/*.less','**/*.js','!**/node_modules/**'],
+        tasks: ['core', 'notify'],
         options: {
           livereload: true,
         }
       }
     },
+
+    // Deployments
+    // =====================================================
 
     deployments: {
       options: {
@@ -99,12 +140,11 @@ module.exports = function(grunt) {
       }
     }
 
-  });
 
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+});
 
-  grunt.registerTask('js', ['jshint', 'concat', 'uglify']);
-  grunt.registerTask('core', ['sass', 'js']);
-  grunt.registerTask('build', ['core']);
-  grunt.registerTask('default', ['build','watch']);
-}
+// Main task
+grunt.registerTask('core', ['jshint', 'concat', 'uglify', 'recess']);
+grunt.registerTask('wipe', ['clean']);
+grunt.registerTask('build', ['core', 'notify']);
+grunt.registerTask('default', ['build', 'watch'])};

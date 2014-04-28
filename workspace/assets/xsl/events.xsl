@@ -67,64 +67,171 @@
 	<xsl:param name="entries" />
 
 	<xsl:if test="count(/data/events-3-latest/entry) &gt;= 1">
-
-		<div class="section section-events home">
-<!-- 			<h2>Upcoming Events</h2> -->
+		<div class="events">
 			<div class="container">
-				<xsl:for-each select="$entries">
-					<div class="event">
-						<a>
-							<xsl:call-template name="url-events" />
-							<h4 class="date">
-								<span>
-									<xsl:call-template name="format-date">
-										<xsl:with-param name="date" select="date/date/start/@iso" />
-										<xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
-									</xsl:call-template>
-								</span>
-							</h4>
-							<h3>
-								<span>
-									<xsl:value-of select="name" disable-output-escaping="yes" />
-								</span>
-							</h3>
-							<h4 class="ministry">
-								<xsl:choose>
-									<xsl:when test="tags/item/@id = '25'">
-										<span><xsl:text>Men's Ministry</xsl:text></span>
-									</xsl:when>
-									<xsl:when test="tags/item/@id = '26'">
-										<span><xsl:text>Women's Ministry</xsl:text></span>
-									</xsl:when>
-									<xsl:when test="tags/item/@id = '31'">
-										<span><xsl:text>1824 Ministry</xsl:text></span>
-									</xsl:when>
-									<xsl:when test="tags/item/@id = '30'">
-										<span><xsl:text>High School Ministry</xsl:text></span>
-									</xsl:when>
-									<xsl:when test="tags/item/@id = '29'">
-										<span><xsl:text>Jr. High Ministry</xsl:text></span>
-									</xsl:when>
-									<xsl:when test="tags/item/@id = '28'">
-										<span><xsl:text>Grade School Ministry</xsl:text></span>
-									</xsl:when>
-									<xsl:when test="tags/item/@id = '27'">
-										<span><xsl:text>Children's Ministry</xsl:text></span>
-									</xsl:when>
-									<xsl:otherwise>
-										<span><xsl:text>All Church</xsl:text></span>
-									</xsl:otherwise>
-								</xsl:choose>
-							</h4>
-							<div class="actions">
-								<span class="btn btn-brand btn-solid">View</span>
-							</div>
-						</a>
-					</div>
-				</xsl:for-each>
+				<div class="row">
+					<div class="span12">
+					  <div>
+					  	<xsl:call-template name="class-position">
+								<xsl:with-param name="component" select="$component" />
+							</xsl:call-template>
+							<h3 class="title-row">Upcoming Events <a href="/events" class="pull-right hidden-phone">See More Events</a></h3>
+							<div class="row">
+								<xsl:for-each select="$entries">
+									<div>
+										<xsl:choose>
+											<xsl:when test="count($entries) &lt;3">
+												<xsl:choose>
+													<xsl:when test="count($entries) &lt;2">
+														<xsl:attribute name="class">
+															<xsl:choose>
+																<xsl:when test="tags/item/@id = '25'">
+																	<xsl:text>span6 offset3 men</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '26'">
+																	<xsl:text>span6 offset3 women</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '31'">
+																	<xsl:text>span6 offset3 college</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '30'">
+																	<xsl:text>span6 offset3 highschool</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '29'">
+																	<xsl:text>span6 offset3 jrhigh</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '28'">
+																	<xsl:text>span6 offset3 gradeschool</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '27'">
+																	<xsl:text>span6 offset3 children</xsl:text>
+																</xsl:when>
+																<xsl:otherwise>
+																	<xsl:text>span6 offset3 allchurch</xsl:text>
+																</xsl:otherwise>
+															</xsl:choose>
+														</xsl:attribute>
+													</xsl:when>
+													<xsl:otherwise>
+														<xsl:attribute name="class">
+															<xsl:choose>
+																<xsl:when test="tags/item/@id = '25'">
+																	<xsl:text>span6 men</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '26'">
+																	<xsl:text>span6 women</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '31'">
+																	<xsl:text>span6 college</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '30'">
+																	<xsl:text>span6 highschool</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '29'">
+																	<xsl:text>span6 jrhigh</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '28'">
+																	<xsl:text>span6 gradeschool</xsl:text>
+																</xsl:when>
+																<xsl:when test="tags/item/@id = '27'">
+																	<xsl:text>span6 children</xsl:text>
+																</xsl:when>
+																<xsl:otherwise>
+																	<xsl:text>span6 allchurch</xsl:text>
+																</xsl:otherwise>
+															</xsl:choose>
+														</xsl:attribute>
+													</xsl:otherwise>
+												</xsl:choose>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:attribute name="class">
+													<xsl:choose>
+														<xsl:when test="tags/item/@id = '25'">
+															<xsl:text>span4 men</xsl:text>
+														</xsl:when>
+														<xsl:when test="tags/item/@id = '26'">
+															<xsl:text>span4 women</xsl:text>
+														</xsl:when>
+														<xsl:when test="tags/item/@id = '31'">
+															<xsl:text>span4 college</xsl:text>
+														</xsl:when>
+														<xsl:when test="tags/item/@id = '30'">
+															<xsl:text>span4 highschool</xsl:text>
+														</xsl:when>
+														<xsl:when test="tags/item/@id = '29'">
+															<xsl:text>span4 jrhigh</xsl:text>
+														</xsl:when>
+														<xsl:when test="tags/item/@id = '28'">
+															<xsl:text>span4 gradeschool</xsl:text>
+														</xsl:when>
+														<xsl:when test="tags/item/@id = '27'">
+															<xsl:text>span4 children</xsl:text>
+														</xsl:when>
+														<xsl:otherwise>
+															<xsl:text>span4 allchurch</xsl:text>
+														</xsl:otherwise>
+													</xsl:choose>
+												</xsl:attribute>
+											</xsl:otherwise>
+										</xsl:choose>
+										<a>
+											<xsl:call-template name="url-events" />
+											<h4 class="date">
+												<span>
+													<xsl:call-template name="format-date">
+														<xsl:with-param name="date" select="date/date/start/@iso" />
+														<xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
+													</xsl:call-template>
+												</span>
+											</h4>
+											<hr class="divider" />
+											<h3>
+												<span>
+													<xsl:value-of select="name" disable-output-escaping="yes" />
+												</span>
+											</h3>
+											<hr class="divider" />
+											<h4 class="ministry">
+												<xsl:choose>
+													<xsl:when test="tags/item/@id = '25'">
+														<span><xsl:text>Men's Ministry</xsl:text></span>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '26'">
+														<span><xsl:text>Women's Ministry</xsl:text></span>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '31'">
+														<span><xsl:text>1824 Ministry</xsl:text></span>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '30'">
+														<span><xsl:text>High School Ministry</xsl:text></span>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '29'">
+														<span><xsl:text>Jr. High Ministry</xsl:text></span>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '28'">
+														<span><xsl:text>Grade School Ministry</xsl:text></span>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '27'">
+														<span><xsl:text>Children's Ministry</xsl:text></span>
+													</xsl:when>
+													<xsl:otherwise>
+														<span><xsl:text>All Church</xsl:text></span>
+													</xsl:otherwise>
+												</xsl:choose>
+											</h4>
+										</a>
+									</div>
+								</xsl:for-each>
+							</div> <!-- .row -->
+							<div class="center visible-phone">
+								<a href="/events" class="link-big inline">See More Events</a>
+							</div> <!-- center -->
+					  </div> <!-- class-position -->
+					</div> <!-- .span12 -->
+				</div>
 			</div>
 		</div>
-
 	</xsl:if>
 
 </xsl:template>
@@ -454,14 +561,14 @@
 													</xsl:choose>
 												</xsl:attribute>
 												<xsl:choose>
-													<xsl:when test="$recurring = No">
+													<xsl:when test="$recurring">
+														<xsl:value-of select="frequency" disable-output-escaping="yes" />
+													</xsl:when>
+													<xsl:otherwise>
 														<xsl:call-template name="format-date">
 															<xsl:with-param name="date" select="date/date/start/@iso" />
 															<xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
 														</xsl:call-template>
-													</xsl:when>
-													<xsl:otherwise>
-														<xsl:value-of select="frequency" disable-output-escaping="yes" />
 													</xsl:otherwise>
 												</xsl:choose>
 											</span>

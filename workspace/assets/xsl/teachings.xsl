@@ -653,99 +653,139 @@
 
 <xsl:template name="teachings-home">
 
-	<div class="section section-teachings home">
-		<h2>Recent Teachings</h2>
-		<div class="container">
-			<xsl:for-each select="/data/teachings-6-latest/entry[position() &lt; 3]">
-				<div class="teaching">
-					<a>
-						<xsl:call-template name="url-teachings" />
-						<h3>
-							<span>
-								<xsl:value-of select="title" />
-							</span>
-						</h3>
-						<h4 class="date">
-							<xsl:call-template name="date-teaching">
-								<xsl:with-param name="date" select="date/date/start/@iso" />
+	<div class="component-teachings">
+		<div class="row">
+			<div class="span12">
+				<h3>Recent Teachings</h3>
+	        <div class="row">
+	          <xsl:for-each select="/data/teachings-6-latest/entry[position() &lt; 4]">
+	            <div>
+	            	<xsl:attribute name="class">
+	            		<xsl:text>span4 recent number</xsl:text>
+	            		<xsl:value-of select="position()" />
+	            	</xsl:attribute>
+	              <a>
+	                <xsl:call-template name="url-teachings" />
+	                <h4>
+	                  <xsl:choose>
+	                    <xsl:when test="position() = 1 and featured = 'Yes'">
+	                      <xsl:call-template name="truncate">
+	                        <xsl:with-param name="node" select="title" />
+	                        <xsl:with-param name="length" select="25" />
+	                      </xsl:call-template>
+	                      <span class="label accent">FEATURED</span>
+	                    </xsl:when>
+	                    <xsl:otherwise>
+	                      <xsl:call-template name="truncate">
+	                        <xsl:with-param name="node" select="title" />
+	                        <xsl:with-param name="length" select="30" />
+	                      </xsl:call-template>
+	                    </xsl:otherwise>
+	                  </xsl:choose>
+	                </h4>
+
+	                <div class="meta">
+	                  <p>
+	                    <xsl:call-template name="date-teaching">
+	                       <xsl:with-param name="date" select="date/date/start/@iso" />
+	                    </xsl:call-template>
+	                  </p>
+	                </div>
+	                <div class="description">
+	                  <p>
+	                    <span>
+	                      <xsl:call-template name="truncate">
+	                        <xsl:with-param name="node" select="description" />
+	                        <xsl:with-param name="length" select="100" />
+	                      </xsl:call-template>
+	                    </span>
+	                  </p>
+	                </div>
+	            	</a>
+	            </div>
+	          </xsl:for-each>
+	        </div>
+	        <div class="row num2">
+	          <xsl:for-each select="/data/teachings-6-latest/entry[position() &gt; 3]">
+	            <div>
+	            	<xsl:attribute name="class">
+	            		<xsl:text>span4 recent number</xsl:text>
+	            		<xsl:value-of select="position()" />
+	            	</xsl:attribute>
+	              <a>
+	              	<xsl:call-template name="url-teachings" />
+
+	                <h4>
+	                  <xsl:value-of select="title" disable-output-escaping="yes" />
+	                  <xsl:if test="featured = 'Yes'">
+	                  	<span class="label accent">FEATURED</span>
+	                  </xsl:if>
+	                </h4>
+
+	                <div class="meta">
+	                  <p>
+	                    <xsl:call-template name="date-teaching">
+	                    	<xsl:with-param name="date" select="date/date/start/@iso" />
+	                    </xsl:call-template>
+	                  </p>
+	                </div>
+	                <div class="description">
+	                  <p>
+	                    <span>
+	                      <xsl:call-template name="truncate">
+	                        <xsl:with-param name="node" select="description" />
+	                        <xsl:with-param name="length" select="100" />
+	                      </xsl:call-template>
+	                    </span>
+	                  </p>
+	                </div>
+	            	</a>
+	            </div>
+	          </xsl:for-each>
+	        </div>
+			</div>
+		</div>
+
+		<div class="component-series">
+			<h3 class="title-row">Teaching Series <a href="/teachings/series" class="pull-right hidden-phone">All Teaching Series</a></h3>
+			<div class="row">
+			  <xsl:for-each select="data/teachings-series-home-filtered/entry">
+	        <div class="span4 series">
+						<a>
+							<xsl:call-template name="url-teachings-series" />
+							<xsl:call-template name="teaching-poster-or-default">
+								<xsl:with-param name="poster" select="poster" />
 							</xsl:call-template>
-						</h4>
-						<div class="description">
-							<xsl:value-of select="description" />
-						</div>
-						<div class="action">
-							<span class="btn btn-brand">View</span>
-						</div>
-					</a>
+						</a>
+					</div>
+				</xsl:for-each>
+				<div class="center visible-phone">
+					<a href="/teachings/series" class="link-big inline">See All Teachings Series</a>
 				</div>
-			</xsl:for-each>
-		</div>
-	</div>
-
-</xsl:template>
-
-
-<xsl:template name="teachings-series-home">
-
-	<div class="section section-teachings-series home">
-		<h2>Teaching Series</h2>
-		<div class="container">
-			<xsl:for-each select="data/teachings-series-home-filtered/entry">
-				<div class="teaching-series">
-					<a>
-						<xsl:call-template name="url-teachings-series" />
-						<xsl:call-template name="teaching-poster-dynamic">
-							<xsl:with-param name="poster" select="poster" />
-							<xsl:with-param name="width" select="800" />
-							<xsl:with-param name="height" select="451" />
-						</xsl:call-template>
-						<div class="teaching-overlay">
-							<h3><xsl:value-of select="title" /></h3>
-							<hr />
-							<p>
-								<xsl:call-template name="truncate">
-									<xsl:with-param name="node" select="description" />
-									<xsl:with-param name="length" select="200" />
-								</xsl:call-template>
-							</p>
-						</div>
-					</a>
+			</div>
+			<h3 class="title-row">Special Series <a href="/teachings/series/#special" class="pull-right hidden-phone">All Special Series</a></h3>
+			<div class="row">
+				<xsl:for-each select="/data/teachings-series-special-filtered/entry[position() &lt; 4]">
+					<div class="span4 series">
+						<a>
+							<xsl:call-template name="url-teachings-series" />
+							<xsl:call-template name="teaching-poster-or-default">
+								<xsl:with-param name="poster" select="poster" />
+							</xsl:call-template>
+						</a>
+					</div>
+				</xsl:for-each>
+				<div class="center visible-phone">
+					<a href="/teachings/series/#special" class="link-big inline">See All Special Series</a>
 				</div>
-			</xsl:for-each>
+			</div>
+
+			<hr/>
+
+			<xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='main-podcast']/content)" disable-output-escaping="yes" />
+
 		</div>
-	</div>
 
-</xsl:template>
-
-
-<xsl:template name="teachings-series-special-home">
-
-	<div class="section section-teachings-series home">
-		<h2>Special Series</h2>
-		<div class="container">
-			<xsl:for-each select="/data/teachings-series-special-filtered/entry[position() &lt; 4]">
-				<div class="teaching-series">
-					<a>
-						<xsl:call-template name="url-teachings-series" />
-						<xsl:call-template name="teaching-poster-dynamic">
-							<xsl:with-param name="poster" select="poster" />
-							<xsl:with-param name="width" select="800" />
-							<xsl:with-param name="height" select="451" />
-						</xsl:call-template>
-						<div class="teaching-overlay">
-							<h3><xsl:value-of select="title" /></h3>
-							<hr />
-							<p>
-								<xsl:call-template name="truncate">
-									<xsl:with-param name="node" select="description" />
-									<xsl:with-param name="length" select="200" />
-								</xsl:call-template>
-							</p>
-						</div>
-					</a>
-				</div>
-			</xsl:for-each>
-		</div>
 	</div>
 
 </xsl:template>
@@ -761,35 +801,7 @@
 				<div class="span12">
 					<a>
 						<xsl:call-template name="url-teachings" />
-
-						<img>
-							<xsl:choose>
-								<xsl:when test="string-length(poster/item)">
-									<xsl:attribute name="data-interchange">
-										<xsl:call-template name="interchange-image">
-											<xsl:with-param name="image" select="poster/item/image/filename" />
-											<xsl:with-param name="ratio" select=".5625" />
-										</xsl:call-template>
-									</xsl:attribute>
-									<xsl:attribute name="alt">
-										<xsl:value-of select="poster/item/caption"/>
-									</xsl:attribute>
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:attribute name="data-interchange">
-										<xsl:call-template name="interchange-image">
-											<xsl:with-param name="image" select="accf-flat-4fc3e05b81747.jpg" />
-											<xsl:with-param name="ratio" select=".5625" />
-										</xsl:call-template>
-									</xsl:attribute>
-									<xsl:attribute name="alt">
-										<xsl:text>An Athey Creek teaching.</xsl:text>
-									</xsl:attribute>
-								</xsl:otherwise>
-							</xsl:choose>
-						</img>
-
-<!-- 							<img style="width:940px; height: 529px" src="/workspace/assets/img/spacer.gif">
+							<img style="width:940px; height: 529px" src="/workspace/assets/img/spacer.gif">
 								<xsl:attribute name="data-responsimage">
 									<xsl:choose>
 										<xsl:when test="string-length(poster/item)">
@@ -800,7 +812,7 @@
 										</xsl:otherwise>
 									</xsl:choose>
 								</xsl:attribute>
-							</img> -->
+							</img>
 					</a>
 				</div>
 			</div>
@@ -1211,69 +1223,6 @@
 	</img>
 
 </xsl:template>
-
-
-<xsl:template name="teaching-poster-dynamic">
-
-	<xsl:param name="poster" />
-	<xsl:param name="width">1920</xsl:param>
-	<xsl:param name="height">1080</xsl:param>
-
-	<xsl:call-template name="component-images">
-		<xsl:with-param name="component" select="'images'"/>
-		<xsl:with-param name="position" select="'column-full-width'"/>
-		<xsl:with-param name="entries" select="images/item" />
-	</xsl:call-template>
-
-	<img class="poster">
-		<xsl:attribute name="src">
-			<xsl:value-of select="$root" />
-			<xsl:text>/image/2/</xsl:text>
-			<xsl:value-of select="$width" />
-			<xsl:text>/</xsl:text>
-			<xsl:value-of select="$height" />
-			<xsl:text>/5/0/uploads/images/</xsl:text>
-			<xsl:choose>
-				<xsl:when test="string-length(poster/item)">
-					<xsl:value-of select="$poster/item/image/filename" disable-output-escaping="yes" />
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:attribute>
-	</img>
-
-</xsl:template>
-
-
-<xsl:template name="teaching-poster-dynamic-bg">
-
-	<xsl:param name="poster" />
-	<xsl:param name="width">1920</xsl:param>
-	<xsl:param name="height">1080</xsl:param>
-
-	<xsl:attribute name="style">
-		<xsl:text>background-size: cover; background: url('</xsl:text>
-		<xsl:value-of select="$root" />
-		<xsl:text>/image/2/</xsl:text>
-		<xsl:value-of select="$width" />
-		<xsl:text>/</xsl:text>
-		<xsl:value-of select="$height" />
-		<xsl:text>/5/0/uploads/images/</xsl:text>
-		<xsl:choose>
-			<xsl:when test="string-length(poster/item)">
-				<xsl:value-of select="$poster/item/image/filename" disable-output-escaping="yes" />
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-			</xsl:otherwise>
-		</xsl:choose>
-		<xsl:text>'); background-size: cover;</xsl:text>
-	</xsl:attribute>
-
-</xsl:template>
-
 
 <xsl:template name="teachings-pagination">
 

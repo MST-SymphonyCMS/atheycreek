@@ -5,7 +5,6 @@
 	Class datasourceteachings_6_latest extends SectionDatasource {
 
 		public $dsParamROOTELEMENT = 'teachings-6-latest';
-		public $dsParamConditionalizer = '(if value of ({$pt1}) is ())';
 		public $dsParamORDER = 'desc';
 		public $dsParamPAGINATERESULTS = 'yes';
 		public $dsParamLIMIT = '6';
@@ -13,6 +12,7 @@
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'date';
 		public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
+		public $dsParamCACHE = '0';
 		
 
 		public $dsParamFILTERS = array(
@@ -53,11 +53,11 @@
 			return array(
 				'name' => 'Teachings: 6 latest',
 				'author' => array(
-					'name' => 'Jonathan Simcoe',
-					'website' => 'http://atheycreek.dev',
-					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.5',
-				'release-date' => '2014-02-07T22:43:57+00:00'
+					'name' => 'Brian Zerangue',
+					'website' => 'http://churchdeploy.site',
+					'email' => 'brian.zerangue@gmail.com'),
+				'version' => 'Symphony 2.3.2',
+				'release-date' => '2013-07-24T14:22:24+00:00'
 			);
 		}
 
@@ -81,7 +81,7 @@
 				FrontendPageNotFoundExceptionHandler::render($e);
 			}
 			catch(Exception $e){
-				$result->appendChild(new XMLElement('error', $e->getMessage() . ' on ' . $e->getLine() . ' of file ' . $e->getFile()));
+				$result->appendChild(new XMLElement('error', $e->getMessage()));
 				return $result;
 			}
 

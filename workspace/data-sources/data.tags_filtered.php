@@ -11,8 +11,7 @@
 		public $dsParamSTARTPAGE = '1';
 		public $dsParamREDIRECTONEMPTY = 'yes';
 		public $dsParamPARAMOUTPUT = array(
-				'system:id',
-				'tag'
+				'system:id'
 		);
 		public $dsParamSORT = 'system:id';
 		public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
@@ -39,10 +38,10 @@
 				'name' => 'Tags: Filtered',
 				'author' => array(
 					'name' => 'Jonathan Simcoe',
-					'website' => 'http://atheycreek.dev',
+					'website' => 'http://atheycreek',
 					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.5',
-				'release-date' => '2014-02-15T00:30:20+00:00'
+				'version' => 'Symphony 2.3.2',
+				'release-date' => '2013-08-01T21:55:07+00:00'
 			);
 		}
 
@@ -66,7 +65,7 @@
 				FrontendPageNotFoundExceptionHandler::render($e);
 			}
 			catch(Exception $e){
-				$result->appendChild(new XMLElement('error', $e->getMessage() . ' on ' . $e->getLine() . ' of file ' . $e->getFile()));
+				$result->appendChild(new XMLElement('error', $e->getMessage()));
 				return $result;
 			}
 

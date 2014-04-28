@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:include href="classes.xsl" />
-<xsl:include href="components.xsl" />
-<xsl:include href="date-time-advanced.xsl" />
-<xsl:include href="date-utilities.xsl" />
-<xsl:include href="timespan-format.xsl" />
-<xsl:include href="toolkit.xsl" />
-<xsl:include href="url-encode.xsl" />
-<xsl:include href="globals.xsl"/>
-<xsl:include href="navigation.xsl"/>
-<xsl:include href="head.xsl"/>
-<xsl:include href="footer.xsl"/>
-<xsl:include href="pages.xsl"/>
-<xsl:include href="pagination.xsl" />
+
+<xsl:import href="../utilities/classes.xsl" />
+<xsl:import href="../utilities/components.xsl" />
+<xsl:import href="../utilities/date-time-advanced.xsl" />
+<xsl:import href="../utilities/date-utilities.xsl" />
+<xsl:import href="../utilities/timespan-format.xsl" />
+<xsl:import href="../utilities/toolkit.xsl" />
+<xsl:import href="../utilities/url-encode.xsl" />
+<xsl:import href="../utilities/navigation.xsl"/>
+<xsl:import href="../utilities/head.xsl"/>
+<xsl:import href="../utilities/footer.xsl"/>
+<xsl:import href="../utilities/pages.xsl"/>
+<xsl:import href="../utilities/pagination.xsl" />
+
 
 <xsl:output
 	doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -23,6 +24,7 @@
 	omit-xml-declaration="yes"
 	indent="no"
 	/>
+
 
 <xsl:param name="cookie-username" />
 <xsl:param name="url-language" />
@@ -39,14 +41,17 @@
 
 
 <xsl:template name="master">
-	<html class="no-js" lang="en">
+	<xsl:comment><![CDATA[[if lt IE 7]> <html class="no-js ie6 oldie" lang="en" /> <![endif]]]></xsl:comment>
+	<xsl:comment><![CDATA[[if IE 7]> <html class="no-js ie7 oldie" lang="en" /> <![endif]]]></xsl:comment>
+	<xsl:comment><![CDATA[[if IE 8]> <html class="no-js ie8 oldie" lang="en" /> <![endif]]]></xsl:comment>
+	<xsl:comment><![CDATA[[if gt IE 8]><!]]></xsl:comment><html class="no-js" lang="en"><xsl:comment><![CDATA[<![endif]]]></xsl:comment>
 
 	<xsl:call-template name="head"/>
 
 		<body>
 			<xsl:attribute name="class">
-				<xsl:text>page-</xsl:text>
-				<xsl:value-of select="$ds-tags-filtered.tag"/>
+				<xsl:text>pageid-</xsl:text>
+				<xsl:value-of select="$ds-tags-filtered.system-id"/>
 				<xsl:text> </xsl:text>
 				<xsl:text>layout-</xsl:text>
 				<xsl:value-of select="/data/layouts-ds-tags-entries-by-tag/entry/name/@handle" />
@@ -55,59 +60,60 @@
 				</xsl:if>
 			</xsl:attribute>
 
+		  <xsl:call-template name="alerts-home"/>
+			<xsl:call-template name="navbar"/>
+			<xsl:call-template name="mast"/>
+
+			<xsl:if test="not($pt1) or $pt1 = 'home'">
+
+				<xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='tagline']/content)" disable-output-escaping="yes" />
+
+				<xsl:call-template name="featured-home"/>
+
+				<div class="container main-container">
+
+					<xsl:call-template name="events-home">
+						<xsl:with-param name="component" select="'events'" />
+						<xsl:with-param name="entries" select="/data/events-3-latest/entry" />
+					</xsl:call-template>
+
+					<xsl:call-template name="teachings-home"/>
+
+				</div> <!-- .main-container -->
+
+			</xsl:if>
 
 
-			<div class="main-body">
-				<a class="close-top-menu" href="#">&#160;</a>
-				<xsl:call-template name="top-menu"/>
-				<xsl:call-template name="masthead"/>
+			<div class="container main-container">
 
-		    	<article>
+				<xsl:call-template name="subnavs"/>
 
-			    	<xsl:if test="not($pt1) or $pt1 = 'home'">
+				<xsl:choose>
+					<xsl:when test="$pt1 = 'toolkit' and $cookie-username">
+						<xsl:call-template name="toolkit" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:choose>
+							<xsl:when test="count(/data/layouts-ds-tags-entries-by-tag/entry)">
+								<xsl:call-template name="call-components">
+									<xsl:with-param name="xpath" select="/data/layouts-ds-tags-entries-by-tag/entry" />
+								</xsl:call-template>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:call-template name="call-components">
+									<xsl:with-param name="xpath" select="/data/layouts-default/entry" />
+								</xsl:call-template>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:otherwise>
+				</xsl:choose>
 
-		    			<xsl:call-template name="events-home">
-		    				<xsl:with-param name="component" select="'events'" />
-		    				<xsl:with-param name="entries" select="/data/events-3-latest/entry" />
-		    			</xsl:call-template>
+				<xsl:call-template name="page-live"/>
 
-			    		<xsl:call-template name="teachings-home"/>
-							<xsl:call-template name="teachings-series-home"/>
-							<xsl:call-template name="teachings-series-special-home"/>
-							<xsl:call-template name="featured-home"/>
+				<xsl:call-template name="footer"/>
+			</div> <!-- .main-container -->
 
-			    	</xsl:if>
-
-	    			<xsl:choose>
-	    				<xsl:when test="$pt1 = 'toolkit' and $cookie-username">
-	    					<xsl:call-template name="toolkit" />
-	    				</xsl:when>
-	    				<xsl:otherwise>
-	    					<xsl:choose>
-	    						<xsl:when test="count(/data/layouts-ds-tags-entries-by-tag/entry)">
-	    							<xsl:call-template name="call-components">
-	    								<xsl:with-param name="xpath" select="/data/layouts-ds-tags-entries-by-tag/entry" />
-	    							</xsl:call-template>
-	    						</xsl:when>
-	    						<xsl:otherwise>
-	    							<xsl:call-template name="call-components">
-	    								<xsl:with-param name="xpath" select="/data/layouts-default/entry" />
-	    							</xsl:call-template>
-	    						</xsl:otherwise>
-	    					</xsl:choose>
-	    				</xsl:otherwise>
-	    			</xsl:choose>
-
-				</article>
-
-			</div>
-
-			<xsl:call-template name="footer"/>
-
-			<script src="{$workspace}/assets/build/main.min.js"></script>
-			<xsl:call-template name="google-analytics"/>
-			<xsl:call-template name="livereload"/>
-
+		<xsl:call-template name="livereload"/>
 		</body>
 	</html>
 </xsl:template>

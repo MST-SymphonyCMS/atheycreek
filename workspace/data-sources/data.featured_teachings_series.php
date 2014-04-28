@@ -5,7 +5,6 @@
 	Class datasourcefeatured_teachings_series extends SectionDatasource {
 
 		public $dsParamROOTELEMENT = 'featured-teachings-series';
-		public $dsParamConditionalizer = '(if value of ({$pt1}) is ())';
 		public $dsParamORDER = 'asc';
 		public $dsParamPAGINATERESULTS = 'yes';
 		public $dsParamLIMIT = '1';
@@ -14,6 +13,7 @@
 		public $dsParamSORT = 'order';
 		public $dsParamHTMLENCODE = 'yes';
 		public $dsParamASSOCIATEDENTRYCOUNTS = 'yes';
+		public $dsParamCACHE = '0';
 		
 
 		public $dsParamFILTERS = array(
@@ -38,10 +38,10 @@
 				'name' => 'Featured: Teachings: Series',
 				'author' => array(
 					'name' => 'Jonathan Simcoe',
-					'website' => 'http://atheycreek.dev',
+					'website' => 'http://atheycreek',
 					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.5',
-				'release-date' => '2014-02-07T22:41:36+00:00'
+				'version' => 'Symphony 2.3.2',
+				'release-date' => '2013-07-04T15:31:01+00:00'
 			);
 		}
 
@@ -65,7 +65,7 @@
 				FrontendPageNotFoundExceptionHandler::render($e);
 			}
 			catch(Exception $e){
-				$result->appendChild(new XMLElement('error', $e->getMessage() . ' on ' . $e->getLine() . ' of file ' . $e->getFile()));
+				$result->appendChild(new XMLElement('error', $e->getMessage()));
 				return $result;
 			}
 

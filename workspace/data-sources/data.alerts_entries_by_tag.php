@@ -17,7 +17,7 @@
 		
 
 		public $dsParamFILTERS = array(
-				'263' => 'later than {$today}, {$today}',
+				'263' => 'later than now',
 				'205' => '{$ds-tags-filtered.system-id:43}',
 				'227' => 'no',
 				'221' => 'no',
@@ -45,8 +45,8 @@
 					'name' => 'Jonathan Simcoe',
 					'website' => 'http://atheycreek.dev',
 					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.3',
-				'release-date' => '2013-09-19T17:17:45+00:00'
+				'version' => 'Symphony 2.3.5',
+				'release-date' => '2014-03-21T23:34:44+00:00'
 			);
 		}
 

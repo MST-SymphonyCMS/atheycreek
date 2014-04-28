@@ -10,11 +10,11 @@
 		public $dsParamLIMIT = '20';
 		public $dsParamSTARTPAGE = '1';
 		public $dsParamREDIRECTONEMPTY = 'no';
+		public $dsParamREQUIREDPARAM = '$pt1:home';
 		public $dsParamPARAMOUTPUT = array(
 				'layout'
 		);
 		public $dsParamSORT = 'system:id';
-		public $dsParamHTMLENCODE = 'yes';
 		public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 		
 
@@ -23,12 +23,6 @@
 		);
 		
 
-		public $dsParamINCLUDEDELEMENTS = array(
-				'description: unformatted',
-				'content: formatted',
-				'image: caption: unformatted',
-				'image: image'
-		);
 		
 
 		public function __construct($env=NULL, $process_params=true) {
@@ -43,8 +37,8 @@
 					'name' => 'Jonathan Simcoe',
 					'website' => 'http://atheycreek.dev',
 					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.5',
-				'release-date' => '2014-02-15T01:01:15+00:00'
+				'version' => 'Symphony 2.3.2',
+				'release-date' => '2013-08-13T21:47:41+00:00'
 			);
 		}
 
@@ -68,7 +62,7 @@
 				FrontendPageNotFoundExceptionHandler::render($e);
 			}
 			catch(Exception $e){
-				$result->appendChild(new XMLElement('error', $e->getMessage() . ' on ' . $e->getLine() . ' of file ' . $e->getFile()));
+				$result->appendChild(new XMLElement('error', $e->getMessage()));
 				return $result;
 			}
 

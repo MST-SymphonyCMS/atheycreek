@@ -44,8 +44,6 @@
     <link href="{$workspace}/assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="apple-touch-icon-precomposed" href="{$workspace}/assets/img/apple-touch-icon.png" />
 
-    <xsl:variable name="version">1.9.5</xsl:variable>
-
     <link rel="stylesheet" href="{$workspace}/assets/css/main.css?v={$version}" />
     <xsl:comment><![CDATA[[if IE 7]> <link rel="stylesheet" href="/workspace/assets/css/ie7.css" type="text/css" /> <![endif]]]></xsl:comment>
     <link rel="canonical" href="{$current-url}" />
@@ -69,19 +67,7 @@
     </xsl:if>
     <script type="text/javascript" src="//use.typekit.net/tix6unz.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-    <script type="text/javascript" src="{$workspace}/assets/js/application.min.js?v={$version}"></script>
 
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-32000708-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
     </head>
 
 </xsl:template>

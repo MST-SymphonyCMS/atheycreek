@@ -404,11 +404,12 @@
           }
 
           .label {
-            .border-radius(0);
-            text-transform: uppercase;
             position: relative;
             left: @base;
             top: -5px;
+            padding: 4px 4px 2px 4px;
+            .border-radius(3px);
+            text-transform: uppercase;
           }
 
           .label-warning {
@@ -614,4 +615,11 @@
       }
     }
   }
+}
+
+.component-events .badge {
+  position: relative;
+  top: -4px;
+  margin-left: 15px;
+  .border-radius(3px);
 }

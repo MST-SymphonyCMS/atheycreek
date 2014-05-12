@@ -5,7 +5,6 @@ module.exports = function (grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
-     globalConfig: globalConfig,
 
     // JS Hint
     // =====================================================
@@ -63,18 +62,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Notifications
-    // =====================================================
-
-    notify: {
-      main: {
-        options: {
-          title: '<%= globalConfig.client  %>.dev',
-          message: 'LESS and JS were compiled',
-        }
-      }
-    },
-
     // Clean
     // =====================================================
 
@@ -86,7 +73,7 @@ module.exports = function (grunt) {
     watch: {
       main: {
         files: ['**/*.less','**/*.js','!**/node_modules/**'],
-        tasks: ['core', 'notify'],
+        tasks: ['core'],
         options: {
           livereload: true,
         }
@@ -99,5 +86,5 @@ module.exports = function (grunt) {
 // Main task
 grunt.registerTask('core', ['jshint', 'concat', 'uglify', 'recess']);
 grunt.registerTask('wipe', ['clean']);
-grunt.registerTask('build', ['core', 'notify']);
+grunt.registerTask('build', ['core']);
 grunt.registerTask('default', ['build', 'watch'])};

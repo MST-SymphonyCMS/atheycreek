@@ -92,8 +92,10 @@
 					<xsl:when test="$pt2 = 'book' or $pt2 = 'tag' or $pt2 = 'year' or $pt2 = 'series'">
 						<div class="span12 poster">
 							<xsl:if test="$pt2 = 'series'">
-								<img src="/workspace/assets/img/spacer.gif" style="height:658px;width:100%;">
-									<xsl:attribute name="data-responsimage">
+								<img class="img-responsive">
+									<xsl:attribute name="src">
+										<xsl:value-of select="$root"/>
+										<xsl:text>/workspace/uploads/images/</xsl:text>
 										<xsl:value-of select="/data/teachings-series-entries-all/entry[@id = $pt3]/poster/item/image/filename" disable-output-escaping="yes" />
 									</xsl:attribute>
 								</img>
@@ -106,7 +108,6 @@
 												</span>
 								    	</div>
 							      </div>
-							      <hr class="soften"/>
 							    </div>
 								</xsl:if>
 							</xsl:if>
@@ -151,7 +152,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="span8">
+								<div class="span8 teaching-main">
 									<h3>Latest Teaching</h3>
 									<ul class="nav nav-tabs" id="teachingTab">
 									  <xsl:choose>
@@ -163,14 +164,14 @@
 									      <li class="active"><a href="#audio" data-toggle="tab">Audio</a></li>
 									    </xsl:otherwise>
 									  </xsl:choose>
-									  <xsl:if test="$cookie-username">
-									    <li class="pull-right">
-									      <xsl:call-template name="edit-entry">
-									        <xsl:with-param name="component" select="'teachings'"/>
-									      </xsl:call-template>
-									    </li>
-									  </xsl:if>
 									</ul>
+									<xsl:if test="$cookie-username">
+										<div>
+											<xsl:call-template name="edit-entry">
+											  <xsl:with-param name="component" select="'teachings'"/>
+											</xsl:call-template>
+										</div>
+									</xsl:if>
 
 									<div class="tab-content">
 									  <xsl:choose>
@@ -855,7 +856,7 @@
 			</div>
 
 			<div class="row">
-			  <div class="span8">
+			  <div class="span8 teaching-main">
 			    <ul class="nav nav-tabs" id="teachingTab">
 			      <xsl:choose>
 			        <xsl:when test="video/item or video-podcast = 'Yes'">
@@ -866,14 +867,14 @@
 			          <li class="active"><a href="#audio" data-toggle="tab">Audio</a></li>
 			        </xsl:otherwise>
 			      </xsl:choose>
-			      <xsl:if test="$cookie-username">
-			        <li class="pull-right">
-			          <xsl:call-template name="edit-entry">
-			            <xsl:with-param name="component" select="'teachings'"/>
-			          </xsl:call-template>
-			        </li>
-			      </xsl:if>
 			    </ul>
+			    <xsl:if test="$cookie-username">
+			    	<div>
+			    		<xsl:call-template name="edit-entry">
+			    		  <xsl:with-param name="component" select="'teachings'"/>
+			    		</xsl:call-template>
+			    	</div>
+			    </xsl:if>
 			    <div class="tab-content">
 			      <xsl:choose>
 

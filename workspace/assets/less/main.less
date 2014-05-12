@@ -47,15 +47,19 @@
 
 // ministry branding
 
-@color-men: #53534b;
-@color-women: #cd7068;
-@color-college: #9ac2b9;
-@color-highschool: #aba299;
-@color-jrhigh: #3a6f8f;
-@color-gradeschool: #dcac6c;
+@color-men: #3D3A3A;
+@color-women: #DF90F0;
+@color-college: #06E3B2;
+@color-highschool: #99A2AB;
+@color-jrhigh: #48A4FF;
+@color-gradeschool: #FED666;
 @color-children: @color-gradeschool;
-// @color-children: #fedf6b;
-@color-allchurch: #f8a15c;
+@color-allchurch: #FF5656;
+
+.img-responsive {
+  height: auto;
+  max-width: 100%;
+}
 
 .men {
   background-color: @color-men;
@@ -577,20 +581,4 @@
 .layout-home .component-events .span4 a h3, .layout-home .component-events .span6 a h3 {
   width: 100%;
   padding: 0;
-}
-
-@media (max-width: 767px) {
-  .layout-home-group-landing .component-images .entry img { height: 275px !important; }
-}
-
-@media (max-width: 640px) {
-  .layout-home-group-landing .component-images .entry img { height: 250px !important; }
-}
-
-@media (max-width: 480px) {
-  .layout-home-group-landing .component-images .entry img { height: 175px !important; }
-}
-
-@media (max-width: 320px) {
-  .layout-home-group-landing .component-images .entry img { height: 100px !important; }
 }

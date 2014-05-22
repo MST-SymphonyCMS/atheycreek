@@ -166,7 +166,7 @@
 									  </xsl:choose>
 									</ul>
 									<xsl:if test="$cookie-username">
-										<div>
+										<div class="edit-wrapper">
 											<xsl:call-template name="edit-entry">
 											  <xsl:with-param name="component" select="'teachings'"/>
 											</xsl:call-template>
@@ -869,7 +869,7 @@
 			      </xsl:choose>
 			    </ul>
 			    <xsl:if test="$cookie-username">
-			    	<div>
+			    	<div class="edit-wrapper">
 			    		<xsl:call-template name="edit-entry">
 			    		  <xsl:with-param name="component" select="'teachings'"/>
 			    		</xsl:call-template>

@@ -72,10 +72,10 @@
 			if($field == 'related_field_id' && !is_array($value)){
 				$value = explode(',', $value);
 			}
-			$this->_fields[$field] = $value;
+			$this->_settings[$field] = $value;
 		}
 
-		public function findOptions(array $existing_selection=NULL){
+		public function findOptions(array $existing_selection=NULL,$entry_id=NULL){
 			$values = array();
 			$limit = $this->get('limit');
 
@@ -119,7 +119,10 @@
 							$group['values'][$value['id']] = $value['value'];
 						}
 					}
-
+					
+					if(!is_null($entry_id) && isset($group['values'][$entry_id])){
+						unset($group['values'][$entry_id]);
+					}
 					$values[] = $group;
 				}
 			}
@@ -280,7 +283,7 @@
 
 						if (is_array($field_data) === false || empty($field_data)) continue;
 
-						// The field is exportable:
+						// Get unformatted content:
 						if (
 							$field instanceof ExportableField
 							&& in_array(ExportableField::UNFORMATTED, $field->getExportModes())
@@ -290,7 +293,17 @@
 							);
 						}
 
-						// Nasty hack:
+						// Get values:
+						else if (
+							$field instanceof ExportableField
+							&& in_array(ExportableField::VALUE, $field->getExportModes())
+						) {
+							$value = $field->prepareExportValue(
+								$field_data, ExportableField::VALUE, $entry->get('id')
+							);
+						}
+
+						// Handle fields that are not exportable:
 						else {
 							$value = $field->getParameterPoolValue(
 								$field_data, $entry->get('id')
@@ -370,36 +383,20 @@
 		public function displaySettingsPanel(XMLElement &$wrapper, $errors = null){
 			parent::displaySettingsPanel($wrapper, $errors);
 
-			$sections = SectionManager::fetch(NULL, 'ASC', 'sortorder');
+			// Only append selected ids, load full section information asynchronously
 			$options = array();
 
-			if(is_array($sections) && !empty($sections)) foreach($sections as $section){
-				$section_fields = $section->fetchFields();
-				if(!is_array($section_fields)) continue;
-
-				$fields = array();
-				foreach($section_fields as $f){
-					if($f->get('id') != $this->get('id') && $f->canPrePopulate()) {
-						$fields[] = array(
-							$f->get('id'),
-							is_array($this->get('related_field_id')) ? in_array($f->get('id'), $this->get('related_field_id')) : false,
-							$f->get('label')
-						);
-					}
-				}
-
-				if(!empty($fields)) {
-					$options[] = array(
-						'label' => $section->get('name'),
-						'options' => $fields
-					);
+			if(is_array($this->get('related_field_id'))) {
+				foreach ($this->get('related_field_id') as $related_field_id) {
+					$options[] = array($related_field_id);
 				}
 			}
 
 			$label = Widget::Label(__('Values'));
 			$label->appendChild(
 				Widget::Select('fields['.$this->get('sortorder').'][related_field_id][]', $options, array(
-					'multiple' => 'multiple'
+					'multiple' => 'multiple',
+					'class' => 'js-fetch-sections'
 				))
 			);
 
@@ -407,41 +404,49 @@
 			if(isset($errors['related_field_id'])) {
 				$wrapper->appendChild(Widget::Error($label, $errors['related_field_id']));
 			}
-			else $wrapper->appendChild($label);
-
-			$div = new XMLElement('div', NULL, array('class' => 'two columns'));
+			else {
+				$wrapper->appendChild($label);
+			}
 
 			// Maximum entries
-			$label = Widget::Label();
-			$label->setAttribute('class', 'column');
+			$label = Widget::Label(__('Maximum entries'));
 			$input = Widget::Input('fields['.$this->get('sortorder').'][limit]', (string)$this->get('limit'));
-			$input->setAttribute('size', '3');
-			$label->setValue(__('Limit to %s entries', array($input->generate())));
-			$div->appendChild($label);
+			$label->appendChild($input);
+			$wrapper->appendChild($label);
 
-			// Hide when prepopulated
-			$label = Widget::Label();
-			$label->setAttribute('class', 'column');
-			$input = Widget::Input('fields['.$this->get('sortorder').'][hide_when_prepopulated]', 'yes', 'checkbox');
-			if($this->get('hide_when_prepopulated') == 'yes') $input->setAttribute('checked', 'checked');
-			$label->setValue($input->generate() . ' ' . __('Hide when prepopulated'));
-			$div->appendChild($label);
-
+			// Options
+			$div = new XMLElement('div', NULL, array('class' => 'two columns'));
 			$wrapper->appendChild($div);
 
 			// Allow selection of multiple items
 			$label = Widget::Label();
 			$label->setAttribute('class', 'column');
 			$input = Widget::Input('fields['.$this->get('sortorder').'][allow_multiple_selection]', 'yes', 'checkbox');
-			if($this->get('allow_multiple_selection') == 'yes') $input->setAttribute('checked', 'checked');
-			$label->setValue($input->generate() . ' ' . __('Allow selection of multiple options'));
 
-			$div = new XMLElement('div', NULL, array('class' => 'two columns'));
+			if($this->get('allow_multiple_selection') == 'yes') {
+				$input->setAttribute('checked', 'checked');
+			}
+
+			$label->setValue($input->generate() . ' ' . __('Allow selection of multiple options'));
 			$div->appendChild($label);
+
+			// Show associations
 			$this->appendShowAssociationCheckbox($div);
-			$this->appendRequiredCheckbox($div);
-			$this->appendShowColumnCheckbox($div);
-			$wrapper->appendChild($div);
+
+			// Hide when prepopulated
+			$label = Widget::Label();
+			$label->setAttribute('class', 'column');
+			$input = Widget::Input('fields['.$this->get('sortorder').'][hide_when_prepopulated]', 'yes', 'checkbox');
+
+			if($this->get('hide_when_prepopulated') == 'yes') {
+				$input->setAttribute('checked', 'checked');
+			}
+
+			$label->setValue($input->generate() . ' ' . __('Hide when prepopulated'));
+			$div->appendChild($label);
+
+			// Requirements and table display
+			$this->appendStatusFooter($wrapper);
 		}
 
 		public function checkFields(array &$errors, $checkForDuplicates = true) {
@@ -473,9 +478,9 @@
 
 			if(!FieldManager::saveSettings($id, $fields)) return false;
 
-			$this->removeSectionAssociation($id);
+			SectionManager::removeSectionAssociation($id);
 			foreach($this->get('related_field_id') as $field_id){
-				$this->createSectionAssociation(NULL, $id, $field_id, $this->get('show_association') == 'yes' ? true : false);
+				SectionManager::createSectionAssociation(NULL, $id, $field_id, $this->get('show_association') == 'yes' ? true : false);
 			}
 
 			return true;
@@ -500,14 +505,25 @@
 				}
 			}
 
-			$states = $this->findOptions($entry_ids);
+			$states = $this->findOptions($entry_ids,$entry_id);
 			if(!empty($states)){
 				foreach($states as $s){
 					$group = array('label' => $s['name'], 'options' => array());
-					foreach($s['values'] as $id => $v){
-						$group['options'][] = array($id, in_array($id, $entry_ids), General::sanitize($v));
+					if (count($s['values']) == 0) {
+						$group['options'][] = array(null, false, __('None found.'), null, null, array('disabled' => 'disabled'));
+					} 
+					else {
+						foreach($s['values'] as $id => $v){
+							$group['options'][] = array($id, in_array($id, $entry_ids), General::sanitize($v));
+						}
 					}
-					$options[] = $group;
+
+					if(count($states) == 1) {
+						$options = array_merge($options, $group['options']);
+					}
+					else {
+						$options[] = $group;
+					}
 				}
 			}
 
@@ -533,15 +549,10 @@
 			$result = array();
 
 			if(!is_array($data)) {
-				return array('relation_id' => (int)$data);
+				$result['relation_id'] = ((int)$data === 0) ? null : (int)$data;
 			}
-
-			if(empty($data)) {
-				return null;
-			}
-
-			foreach($data as $a => $value) {
-				$result['relation_id'][] = (int)$data[$a];
+			else foreach($data as $a => $value) {
+				$result['relation_id'][] = ((int)$data[$a] === 0) ? null : (int)$data[$a];
 			}
 
 			return $result;
@@ -749,10 +760,6 @@
 	/*-------------------------------------------------------------------------
 		Filtering:
 	-------------------------------------------------------------------------*/
-
-		public function buildDSRetrivalSQL($data, &$joins, &$where, $andOperation = false) {
-			return $this->buildDSRetrievalSQL($data, $joins, $where, $andOperation);
-		}
 
 		public function buildDSRetrievalSQL($data, &$joins, &$where, $andOperation=false){
 			$field_id = $this->get('id');

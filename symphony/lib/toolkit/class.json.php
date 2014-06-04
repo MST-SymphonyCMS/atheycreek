@@ -20,7 +20,7 @@
 		 * `$message` will be passed.
 		 *
 		 * @param string $message
-		 * @param integer $code
+		 * @param int $code
 		 * @param Exception $ex
 		 */
 		public function __construct($message, $code = null, Exception $ex = null) {

@@ -67,16 +67,6 @@
 		}
 
 		/**
-		 * Returns boolean if the current Author is the original creator
-		 * of this Symphony installation.
-		 *
-		 * @return boolean
-		 */
-		public function isPrimaryAccount(){
-			return ($this->get('primary') == 'yes');
-		}
-
-		/**
 		 * Returns boolean if the current Author is of the developer
 		 * user type.
 		 *
@@ -86,26 +76,25 @@
 			return ($this->get('user_type') == 'developer');
 		}
 
-		/**
-		 * Returns boolean if the current Author is of the manager
-		 * user type.
-		 *
-		 * @since  2.3.3
-		 * @return boolean
-		 */
-		public function isManager(){
-			return ($this->get('user_type') == 'manager');
-		}
+        /**
+         * Returns boolean if the current Author is of the manager
+         * user type.
+         *
+         * @since  2.3.3
+         * @return boolean
+         */
+        public function isManager(){
+            return ($this->get('user_type') == 'manager');
+        }
 
 		/**
-		 * Returns boolean if the current Author is of the author
-		 * user type.
+		 * Returns boolean if the current Author is the original creator
+		 * of this Symphony installation.
 		 *
-		 * @since  2.4
 		 * @return boolean
 		 */
-		public function isAuthor(){
-			return ($this->get('user_type') == 'author');
+		public function isPrimaryAccount(){
+			return ($this->get('primary') == 'yes');
 		}
 
 		/**

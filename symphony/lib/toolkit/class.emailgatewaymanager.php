@@ -179,7 +179,6 @@
 		 *
 		 * @param string $name
 		 *  The gateway to look for
-		 * @throws Exception
 		 * @return EmailGateway
 		 *  If the gateway is found, an instantiated object is returned.
 		 *  If the gateway is not found, an error is triggered.

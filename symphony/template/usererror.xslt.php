@@ -9,14 +9,15 @@
 	$Page->Html->setDTD('<!DOCTYPE html>');
 	$Page->Html->setAttribute('xml:lang', 'en');
 	$Page->addElementToHead(new XMLElement('meta', NULL, array('http-equiv' => 'Content-Type', 'content' => 'text/html; charset=UTF-8')), 0);
-	$Page->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.min.css', 'screen', null, false);
+	$Page->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.css', 'screen', 30);
+	$Page->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.frames.css', 'screen', 31);
 
 	$Page->setHttpStatus($e->getHttpStatusCode());
 	$Page->addHeaderToPage('Content-Type', 'text/html; charset=UTF-8');
 	$Page->addHeaderToPage('Symphony-Error-Type', 'xslt');
 
 	$Page->setTitle(__('%1$s &ndash; %2$s', array(__('Symphony'), __('XSLT Processing Error'))));
-	$Page->Body->setAttribute('id', 'error');
+	$Page->Body->setAttribute('id', 'fatalerror');
 
 	$div = new XMLElement('div', NULL, array('class' => 'frame'));
 	$ul = new XMLElement('ul');
@@ -54,7 +55,7 @@
 		switch($group){
 
 			case 'general':
-				$error = new XMLElement('li', '<header class="frame-header">' . __('General') . '<a class="debug" href="?debug' . $query_string .'" title="' . __('Show debug view') . '">' . __('Debug') . '</a></header>');
+				$error = new XMLElement('li', '<header>' . __('General') . '<a class="button" href="?debug' . $query_string .'" title="' . __('Show debug view') . '">' . __('Debug') . '</a></header>');
 				$content = new XMLElement('div', null, array('class' => 'content'));
 				$list = new XMLElement('ul');
 				$file = null;
@@ -136,7 +137,7 @@
 
 			case 'page':
 				foreach($data as $filename => $errors){
-					$error = new XMLElement('li', '<header class="frame-header">' . $filename . '<a class="debug" href="?debug=/workspace/pages/' .  $filename . $query_string .'" title="' . __('Show debug view') . '">' . __('Debug') . '</a></header>');
+					$error = new XMLElement('li', '<header>' . $filename . '<a class="button" href="?debug=/workspace/pages/' .  $filename . $query_string .'" title="' . __('Show debug view') . '">' . __('Debug') . '</a></header>');
 					$content = new XMLElement('div', null, array('class' => 'content'));
 					$list = new XMLElement('ul');
 
@@ -175,7 +176,7 @@
 
 			case 'utility':
 				foreach($data as $filename => $errors){
-					$error = new XMLElement('li', '<header class="frame-header">' . $filename . '<a class="debug" href="?debug=/workspace/utilities/' .  $filename . $query_string .'" title="' . __('Show debug view') . '">' . __('Debug') . '</a></header>');
+					$error = new XMLElement('li', '<header>' . $filename . '<a class="button" href="?debug=/workspace/utilities/' .  $filename . $query_string .'" title="' . __('Show debug view') . '">' . __('Debug') . '</a></header>');
 					$content = new XMLElement('div', null, array('class' => 'content'));
 					$list = new XMLElement('ul');
 
@@ -214,7 +215,7 @@
 
 			case 'xml':
 				foreach($data as $filename => $errors){
-					$error = new XMLElement('li', '<header class="frame-header">XML <a class="button" href="?debug=xml' . $query_string .'" title="' . __('Show debug view') . '">' . __('Debug') . '</a></header>');
+					$error = new XMLElement('li', '<header>XML <a class="button" href="?debug=xml' . $query_string .'" title="' . __('Show debug view') . '">' . __('Debug') . '</a></header>');
 					$content = new XMLElement('div', null, array('class' => 'content'));
 					$list = new XMLElement('ul');
 

@@ -13,10 +13,11 @@
 		 * Creates a new exception, and logs the error.
 		 *
 		 * @param string $message
-		 * @param integer $code
+		 * @param int $code
 		 * @param Exception $previous
 		 *  The previous exception, if nested. See
 		 *  http://www.php.net/manual/en/language.exceptions.extending.php
+		 * @return void
 		 */
 		public function __construct($message, $code = 0, $previous = null){
 			$trace = parent::getTrace();
@@ -25,7 +26,7 @@
 			// empty string.
 			$gateway_class = $trace[1]['class']?' (' . $trace[1]['class'] . ')':'';
 			Symphony::Log()->pushToLog(__('Email Gateway Error') . $gateway_class  . ': ' . $message, $code, true);
-
+			
 			// CDATA the $message: Do not trust input from others
 			$message = General::wrapInCDATA(trim($message));
 			parent::__construct($message);
@@ -81,14 +82,6 @@
 		}
 
 		/**
-		 * The destructor ensures that any open connections to the Email Gateway
-		 * is closed.
-		 */
-		public function __destruct(){
-			$this->closeConnection();
-		}
-
-		/**
 		 * Sends the actual email. This function should be implemented in the
 		 * Email Gateway itself and should return true or false if the email
 		 * was successfully sent.
@@ -131,14 +124,13 @@
 		 *  The email-address emails will be sent from.
 		 * @param string $name
 		 *  The name the emails will be sent from.
-		 * @throws EmailValidationException
 		 * @return void
 		 */
 		public function setFrom($email, $name){
 			$this->setSenderEmailAddress($email);
 			$this->setSenderName($name);
 		}
-
+		
 		/**
 		 * Does some basic checks to validate the
 		 * value of a header field. Currently only checks
@@ -151,7 +143,7 @@
 		protected function validateHeaderFieldValue($value) {
 			// values can't contains carriage returns or new lines
 			$carriage_returns = preg_match('%[\r\n]%', $value);
-
+			
 			return !$carriage_returns;
 		}
 
@@ -190,7 +182,6 @@
 		 *
 		 * @param string|array $email
 		 *  The email-address(es) to send the email to.
-		 * @throws EmailValidationException
 		 * @return void
 		 */
 		public function setRecipients($email){
@@ -255,17 +246,17 @@
 		public function setAttachments($files){
 			// Always erase
 			$this->_attachments = array();
-
+			
 			// check if we have an input value
 			if ($files == null) {
 				return;
 			}
-
+			
 			// make sure we are dealing with an array
 			if(!is_array($files)){
 				$files = array($files);
 			}
-
+			
 			// Append each attachment one by one in order
 			// to normalize each input
 			foreach ($files as $key => $file) {
@@ -279,7 +270,7 @@
 				}
 			}
 		}
-
+		
 		/**
 		 * Appends one file attachment to the attachments array.
 		 *
@@ -320,7 +311,7 @@
 					'charset' => null,
 				);
 			}
-
+			
 			// push properly formatted file entry
 			$this->_attachments[] = $file;
 		}
@@ -394,7 +385,7 @@
 		 * Every gateway should extend this method to add their own settings.
 		 *
 		 * @throws EmailValidationException
-		 * @param array $config
+		 * @param array $configuration
 		 * @since Symphony 2.3.1
 		 *  All configuration entries stored in a single array. The array should have the format of the $_POST array created by the preferences HTML.
 		 * @return boolean
@@ -409,7 +400,7 @@
 		 *
 		 * @throws EmailGatewayException
 		 * @param string $name
-		 *  The header field name. Examples are From, Bcc, X-Sender and Reply-to.
+		 *  The header field name. Examples are From, X-Sender and Reply-to.
 		 * @param string $body
 		 *  The header field body.
 		 * @return void
@@ -427,7 +418,6 @@
 		 *
 		 * @param array $header_array
 		 *  The header fields. Examples are From, X-Sender and Reply-to.
-		 * @throws EmailGatewayException
 		 * @return void
 		 */
 		public function appendHeaderFields(array $header_array = array()){
@@ -474,7 +464,6 @@
 		 * gateway itself.
 		 *
 		 * @throws EmailGatewayException
-		 * @throws Exception
 		 * @return boolean
 		 */
 		protected function prepareMessageBody(){
@@ -549,57 +538,32 @@
 		 * Will return a string containing the section. Can be used to send to
 		 * an email server directly.
 		 *
-		 * @throws EmailGatewayException
-		 * @throws Exception
 		 * @return string
 		 */
 		protected function getSectionAttachments() {
 			$output = '';
 			foreach ($this->_attachments as $key => $file) {
-
-				$file_content = null;
-				$tmp_file = false;
-
-				// If the attachment is a URL, download the file to a temporary location.
-				// This prevents downloading the file twice - once for info, once for data.
+				
+				$fileContent = null;
+				
+				// If the attachement is an url
 				if (filter_var($file['file'], FILTER_VALIDATE_URL)) {
 					require_once(TOOLKIT . '/class.gateway.php');
+					// use gateway for urls
 					$gateway = new Gateway();
 					$gateway->init($file['file']);
 					$gateway->setopt('TIMEOUT', 30);
-					$file_content = @$gateway->exec();
-
-					$tmp_file = tempnam(TMP, 'attachment');
-					General::writeFile($tmp_file, $file_content, Symphony::Configuration()->get('write_mode', 'file'));
-
-					$original_filename = $file['file'];
-					$file['file'] = $tmp_file;
-
-					// Without this the temporary filename will be used. Ugly!
-					if (is_null($file['filename'])) {
-						$file['filename'] = basename($original_filename);
-					}
-
+					$fileContent = @$gateway->exec();
 				} else {
-					$file_content = @file_get_contents($file['file']);
+					$fileContent = @file_get_contents($file['file']);
 				}
-
-				if ($file_content !== FALSE && !empty($file_content)) {
+				
+				if ($fileContent !== FALSE && !empty($fileContent)) {
 					$output .= $this->boundaryDelimiterLine('multipart/mixed')
 						 . $this->contentInfoString(NULL, $file['file'], $file['filename'], $file['charset'])
-						 . EmailHelper::base64ContentTransferEncode($file_content);
+						 . EmailHelper::base64ContentTransferEncode($fileContent);
 				} else {
-					if (!$tmp_file === FALSE) {
-						$filename = $original_filename;
-					}
-					else {
-						$filename = $file['file'];
-					}
-					throw new EmailGatewayException(__('The content of the file `%s` could not be loaded.', array($filename)));
-				}
-
-				if (!$tmp_file === FALSE) {
-					General::deleteFile($tmp_file);
+					throw new EmailGatewayException(__('The content of the file `%s` could not be loaded.', array($file['file'])));
 				}
 			}
 			return $output;
@@ -652,10 +616,10 @@
 		 *
 		 * Can be used to send to an email server directly.
 		 *
-		 * @param string $type optional mime-type
-		 * @param string $file optional the path of the attachment
-		 * @param string $filename optional the name of the attached file
-		 * @param string $charset optional the charset of the attached file
+		 * @param $type optional mime-type
+		 * @param $file optional the path of the attachment
+		 * @param $filename optional the name of the attached file
+		 * @param $charset optional the charset of the attached file
 		 *
 		 * @return array
 		 */
@@ -679,16 +643,16 @@
 					'Content-Transfer-Encoding' => $this->_text_encoding ? $this->_text_encoding : '8bit',
 				),
 			);
-
+			
 			// Try common
 			if (!empty($type) && !empty($description[$type])) {
 				// return it if found
 				return $description[$type];
 			}
-
+			
 			// assure we have a file name
 			$filename = !is_null($filename) ? $filename : basename($file);
-
+			
 			// Format charset for insertion in content-type, if needed
 			if (!empty($charset)) {
 				$charset = sprintf('charset=%s;', $charset);
@@ -706,9 +670,9 @@
 		/**
 		 * Creates the properly formatted InfoString based on the InfoArray.
 		 *
-		 * @see EmailGateway::contentInfoArray()
+		 * @see `EmailGateway::contentInfoArray()`
 		 *
-		 * @return string|null
+		 * @return string
 		 */
 		protected function contentInfoString($type = NULL, $file = NULL, $filename = NULL, $charset = NULL) {
 			$data = $this->contentInfoArray($type, $file, $filename, $charset);
@@ -722,7 +686,6 @@
 		 * Returns the bondary based on the $type parameter
 		 *
 		 * @param string $type the multipart type
-		 * @return string|void
 		 */
 		protected function getBoundary($type) {
 			switch ($type) {
@@ -735,20 +698,12 @@
 			}
 		}
 
-		/**
-		 * @param string $type
-		 * @return string
-		 */
 		protected function boundaryDelimiterLine($type) {
 			// As requested by RFC 2046: 'The CRLF preceding the boundary
 			// delimiter line is conceptually attached to the boundary.'
 			return $this->getBoundary($type) ? "\r\n--".$this->getBoundary($type)."\r\n" : NULL;
 		}
 
-		/**
-		 * @param string $type
-		 * @return string
-		 */
 		protected function finalBoundaryDelimiterLine($type) {
 			return $this->getBoundary($type) ? "\r\n--".$this->getBoundary($type)."--\r\n" : NULL;
 		}
@@ -765,7 +720,6 @@
 		 *  The property name.
 		 * @param string $value
 		 *  The property value;
-		 * @throws EmailGatewayException
 		 * @return void|boolean
 		 */
 		public function __set($name, $value){
@@ -840,6 +794,10 @@
 			$string[0] = strtolower($string[0]);
 			$func = create_function('$c', 'return "_" . strtolower($c[1]);');
 			return preg_replace_callback('/([A-Z])/', $func, $string);
+		}
+
+		public function __destruct(){
+			$this->closeConnection();
 		}
 
 	}

@@ -1,41 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension id="datetime" status="released" xmlns="http://getsymphony.com/schemas/extension/1.0">
+<extension id="datetime" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
 	<name>Date and Time</name>
 	<description>Date and time management for Symphony</description>
 	<repo type="github">https://github.com/hananils/datetime</repo>
-	<url type="discuss">http://symphony-cms.com/discuss/thread/83265</url>
+	<url type="discuss">http://symphony-cms.com/discuss/thread/83265/</url>
 	<types>
-		<type>Field</type>
+		<type>Field Types</type>
 		<type>Interface</type>
 	</types>
 	<authors>
 		<author>
 			<name github="hananils" symphony="hananils">Büro für Web- und Textgestaltung</name>
-			<website>http://hananils.de</website>
+			<website>http://hananils.de?symphony=datetime</website>
 		</author>
 		<author>
 			<name github="nilshoerrmann" symphony="Nils">Nils Hörrmann</name>
-			<website>http://nilshoerrmann.de</website>
+			<website>http://nilshoerrmann.de?symphony=datetime</website>
 		</author>
 	</authors>
 	<releases>
-		<release version="3.3" date="2013-11-29" min="2.4">
-			- Symphony 2.4 compatibility
-		</release>
-		<release version="3.2" date="2013-11-29" min="2.3">
-			- Add `time` elements to table indexes
-		</release>
-		<release version="3.1.2" date="2013-09-04" min="2.3">
-			- Fix date sorting
-			- Small corrections
-		</release>
 		<release version="3.1.1" date="2013-07-04" min="2.3">
 			- Improved filter error handling
 			- Add timestamps to XML output
 		</release>
 		<release version="3.1" date="2013-04-06" min="2.3">
 			- Simplify calendar opening and closing actions
-			- Remove inline help – this should be handled by developers individually
+			- Remove inline help – this should be handled by developers individually
 			- Fix issues with field settings
 		</release>
 		<release version="3.0.7" date="2013-04-06" min="2.3">

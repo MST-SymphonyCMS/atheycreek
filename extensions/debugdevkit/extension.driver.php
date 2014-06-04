@@ -7,6 +7,26 @@
 
 		public static $active = false;
 
+		public function about() {
+			return array(
+				'name'			=> 'Debug DevKit',
+				'version'		=> '1.2.4',
+				'release-date'	=> '2013-07-01',
+				'author'		=> array(
+					array(
+						'name' => 'Symphony Team',
+						'website' => 'http://getsymphony.com/',
+						'email' => 'team@getsymphony.com'
+					),
+					array(
+						'name' => 'Rowan Lewis',
+						'website' => 'http://rowanlewis.com/',
+						'email' => 'me@rowanlewis.com'
+					)
+				)
+			);
+		}
+
 		public function getSubscribedDelegates() {
 			return array(
 				array(
@@ -49,3 +69,5 @@
 			}
 		}
 	}
+
+?>

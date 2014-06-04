@@ -152,8 +152,7 @@
 		 * to the `$_pool` array with the key being the handle.
 		 *
 		 * @param string $handle
-		 *    The handle of the Text Formatter to create
-		 * @throws Exception
+		 *	The handle of the Text Formatter to create
 		 * @return TextFormatter
 		 */
 		public static function create($handle){

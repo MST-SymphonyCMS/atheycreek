@@ -21,8 +21,7 @@
 
 		/**
 		 * The XML to be transformed
-		 * @since Symphony 2.4 this variable may be a string or an XMLElement
-		 * @var string|XMLElement
+		 * @var string
 		 */
 		protected $_xml;
 
@@ -63,7 +62,7 @@
 		/**
 		 * Setter for `$this->_xml`, can optionally load the XML from a file.
 		 *
-		 * @param string|XMLElement $xml
+		 * @param string $xml
 		 *  The XML for this XSLT page
 		 * @param boolean $isFile
 		 *  If set to true, the XML will be loaded from a file. It is false by default
@@ -75,7 +74,7 @@
 		/**
 		 * Accessor for the XML of this page
 		 *
-		 * @return string|XMLElement
+		 * @return string
 		 */
 		public function getXML(){
 			return $this->_xml;
@@ -150,10 +149,10 @@
 		 * the page headers and a string containing the transformed result
 		 * is result.
 		 *
-		 * @param null $page
 		 * @return string
 		 */
 		public function generate($page = null){
+
 			$result = $this->Proc->process($this->_xml, $this->_xsl, $this->_param, $this->_registered_php_functions);
 
 			if($this->Proc->isErrors()) return false;

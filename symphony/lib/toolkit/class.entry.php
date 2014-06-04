@@ -28,8 +28,7 @@
 		/**
 		 * An ISO 8601 representation of when this Entry was created
 		 * eg. `2004-02-12T15:19:21+00:00`
-		 * @deprecated Since Symphony 2.3.1, use $entry->get('creation_date') instead. This
-		 *  variable will be removed in Symphony 2.5
+		 * @deprecated Since Symphony 2.3.1, use $entry->get('creation_date') instead
 		 * @var string
 		 */
 		public $creationDate = null;
@@ -73,7 +72,6 @@
 		 * Entry ID using `getInsertID()`.
 		 *
 		 * @see toolkit.MySQL#getInsertID()
-		 * @throws DatabaseException
 		 * @return integer
 		 */
 		public function assignEntryId() {
@@ -125,8 +123,6 @@
 		 *  useful if the input form only contains a couple of the fields for this Entry.
 		 *  Defaults to false, which will set Fields to their default values if they are not
 		 *  provided in the $data
-		 * @throws DatabaseException
-		 * @throws Exception
 		 * @return integer
 		 *  Either `__ENTRY_OK__` or `__ENTRY_FIELD_ERROR__`
 		 */
@@ -188,10 +184,12 @@
 		 *  returned.
 		 */
 		public function getData($field_id=null, $asObject=false){
-			$fieldData = isset($this->_data[$field_id]) 
-				? $this->_data[$field_id] 
-				: array();
-
+			$fieldData = isset($this->_data[$field_id]) ? 
+				$this->_data[$field_id] :
+				array(
+					'entry_id' => $this->get('id')
+				);
+			
 			if(!$field_id) return $this->_data;
 			return ($asObject == true ? (object)$fieldData : $fieldData);
 		}
@@ -203,15 +201,13 @@
 		 * @param array $data
 		 *  An associative array of the data for this entry where they key is the
 		 *  Field's handle for this Section and the value is the data from the form
-		 * @param null|array $errors
-		 *  An array of errors, by reference. Defaults to empty*  An array of errors, by reference.
-		 *  Defaults to empty
+		 * @param array $error
+		 *  An array of errors, by reference. Defaults to empty
 		 * @param boolean $ignore_missing_fields
 		 *  This parameter allows Entries to be updated, rather than replaced. This is
 		 *  useful if the input form only contains a couple of the fields for this Entry.
 		 *  Defaults to false, which will check all Fields even if they are not
 		 *  provided in the $data
-		 * @throws Exception
 		 * @return integer
 		 *  Either `__ENTRY_OK__` or `__ENTRY_FIELD_ERROR__`
 		 */
@@ -268,7 +264,6 @@
 		 * is used.
 		 *
 		 * @see toolkit.Entry#findDefaultData()
-		 * @throws Exception
 		 * @return boolean
 		 *  true if the commit was successful, false otherwise.
 		 */
@@ -285,7 +280,6 @@
 		 * @param array $associated_sections
 		 *  An associative array of sections to return the Entry counts from. Defaults to
 		 *  null, which will fetch all the associations of this Entry.
-		 * @throws Exception
 		 * @return array
 		 *  An associative array with the key being the associated Section's ID and the
 		 *  value being the number of entries associated with this Entry.

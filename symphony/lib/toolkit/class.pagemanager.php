@@ -21,7 +21,6 @@
 		 *
 		 * @param array $fields
 		 *  Associative array of field names => values for the Page
-		 * @throws DatabaseException
 		 * @return integer|boolean
 		 *  Returns the Page ID of the created Page on success, false otherwise.
 		 */
@@ -81,7 +80,6 @@
 		 *  The Page ID to add the Types to
 		 * @param array $types
 		 *  An array of page types
-		 * @throws DatabaseException
 		 * @return boolean
 		 */
 		public static function addPageTypesToPage($page_id = null, array $types) {
@@ -147,7 +145,6 @@
 		 * @param string $old_handle (optional)
 		 *  This parameter is only required when renaming a Page. It should be the 'old
 		 *  handle' before the Page was renamed.
-		 * @throws Exception
 		 * @return boolean
 		 *  True when the page files have been created successfully, false otherwise.
 		 */
@@ -267,7 +264,6 @@
 		 *  The path of the Page, which is the handles of the Page parents. If the
 		 *  page has multiple parents, they will be separated by a forward slash.
 		 *  eg. article/read. If a page has no parents, this parameter should be null.
-		 * @throws Exception
 		 * @return boolean
 		 */
 		public static function editPageChildren($page_id = null, $page_path = null) {
@@ -308,8 +304,6 @@
 		 * @param boolean $delete_files
 		 *  If true, this parameter will remove the Page's templates from the
 		 *  the filesystem. By default this is true.
-		 * @throws DatabaseException
-		 * @throws Exception
 		 * @return boolean
 		 */
 		public static function delete($page_id = null, $delete_files = true) {
@@ -350,7 +344,6 @@
 		 *
 		 * @param integer $page_id
 		 *  The ID of the Page that should be deleted.
-		 * @throws DatabaseException
 		 * @return boolean
 		 */
 		public static function deletePageTypes($page_id = null) {
@@ -370,7 +363,6 @@
 		 *  eg. article/read. If a page has no parents, this parameter should be null.
 		 * @param string $handle
 		 *  A Page handle, generated using `PageManager::createHandle`.
-		 * @throws Exception
 		 * @return boolean
 		 */
 		public static function deletePageFiles($page_path, $handle) {
@@ -622,7 +614,6 @@
 		/**
 		 * Fetch an associated array with Page ID's and the types they're using.
 		 *
-		 * @throws DatabaseException
 		 * @return array
 		 *  A 2-dimensional associated array where the key is the page ID.
 		 */
@@ -658,7 +649,7 @@
 		 * This function takes a `$path` and `$handle` and generates a flattened
 		 * string for use as a filename for a Page's template.
 		 *
-		 * @param string $path
+		 * @param string $page_path
 		 *  The path of the Page, which is the handles of the Page parents. If the
 		 *  page has multiple parents, they will be separated by a forward slash.
 		 *  eg. article/read. If a page has no parents, this parameter should be null.
@@ -773,7 +764,6 @@
 		 * @param mixed $page_id
 		 *  The ID of the Page that currently being viewed, or the handle of the
 		 *  current Page
-		 * @param string $column
 		 * @return array
 		 *  An array of the current Page, containing the `$column`
 		 *  requested. The current page will be the last item the array, as all
@@ -867,7 +857,7 @@
 		 *
 		 * @param $handle
 		 *  The handle of the page
-		 * @param boolean $path
+		 * @param bool $path
 		 *  The path to the page
 		 * @return mixed
 		 *  Array if found, false if not

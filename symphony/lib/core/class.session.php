@@ -46,7 +46,6 @@
 		 * @param boolean $secure
 		 *  Whether this cookie should only be sent on secure servers. By default this is
 		 *  false, which means the cookie can be sent over HTTP and HTTPS
-		 * @throws Exception
 		 * @return string|boolean
 		 *  Returns the Session ID on success, or false on error.
 		 */
@@ -143,7 +142,6 @@
 		 * @param string $data
 		 *  The Session information, usually a serialized object of
 		 * `$_SESSION[Cookie->_index]`
-		 * @throws DatabaseException
 		 * @return boolean
 		 *  True if the Session information was saved successfully, false otherwise
 		 */
@@ -222,7 +220,6 @@
 		 *
 		 * @param string $id
 		 *  The identifier for the Session to destroy
-		 * @throws DatabaseException
 		 * @return boolean
 		 *  True if the Session was deleted successfully, false otherwise
 		 */
@@ -242,7 +239,6 @@
 		 *
 		 * @param integer $max
 		 *  The max session lifetime.
-		 * @throws DatabaseException
 		 * @return boolean
 		 *  True on Session deletion, false if an error occurs
 		 */

@@ -83,8 +83,6 @@
 		 * @see boot.getCurrentPage()
 		 * @param string $page
 		 *  The result of getCurrentPage, which returns the `$_GET['symphony-page']`
-		 * @throws FrontendPageNotFoundException
-		 * @throws SymphonyErrorPage
 		 * @return string
 		 *  The HTML of the page to return
 		 */
@@ -150,8 +148,6 @@
 		 *
 		 * @param Exception $e
 		 *  The Exception object
-		 * @throws FrontendPageNotFoundException
-		 * @throws SymphonyErrorPage
 		 * @return string
 		 *  An HTML string
 		 */

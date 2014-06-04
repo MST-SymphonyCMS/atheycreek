@@ -147,9 +147,6 @@
 		 * @see __buildPage()
 		 * @param string $page
 		 * The URL of the current page that is being Rendered as returned by getCurrentPage
-		 * @throws Exception
-		 * @throws FrontendPageNotFoundException
-		 * @throws SymphonyErrorPage
 		 * @return string
 		 * The page source after the XSLT has transformed this page's XML. This would be
 		 * exactly the same as the 'view-source' from your browser
@@ -195,9 +192,8 @@
 				 * '/frontend/'
 				 * @param FrontendPage $page
 				 *  This FrontendPage object, by reference
-				 * @param XMLElement $xml
-				 *  This pages XML, including the Parameters, Datasource and Event XML, by reference as
-				 *  an XMLElement
+				 * @param string $xml
+				 *  This pages XML, including the Parameters, Datasource and Event XML, by reference
 				 * @param string $xsl
 				 *  This pages XSLT, by reference
 				 */
@@ -234,23 +230,8 @@
 				 */
 				Symphony::ExtensionManager()->notifyMembers('FrontendPreRenderHeaders', '/frontend/');
 
-				// If not set by another extension, lock down the frontend
-				if(!array_key_exists('x-frame-options', $this->headers())) {
-					$this->addHeaderToPage('X-Frame-Options', 'SAMEORIGIN');
-				}
-				if(!array_key_exists('access-control-allow-origin', $this->headers())) {
-					$this->addHeaderToPage('Access-Control-Allow-Origin', URL);
-				}
-
 				$backup_param = $this->_param;
 				$this->_param['current-query-string'] = General::wrapInCDATA($this->_param['current-query-string']);
-
-				// In Symphony 2.4, the XML structure stays as an object until
-				// the very last moment.
-				if($this->_xml instanceof XMLElement) {
-					$this->setXML($this->_xml->generate(true, 0));
-				}
-
 				$output = parent::generate();
 				$this->_param = $backup_param;
 
@@ -346,7 +327,7 @@
 			$current_path = '/' . ltrim(end($current_path), '/');
 			$split_path = explode('?', $current_path, 3);
 			$current_path = rtrim(current($split_path), '/');
-			$querystring = next($split_path);
+			$querystring = '?' . next($split_path);
 
 			// Get max upload size from php and symphony config then choose the smallest
 			$upload_size_php = ini_size_to_bytes(ini_get('upload_max_filesize'));
@@ -407,11 +388,7 @@
 			}
 
 			if(is_array($_COOKIE[__SYM_COOKIE_PREFIX__]) && !empty($_COOKIE[__SYM_COOKIE_PREFIX__])){
-				foreach($_COOKIE[__SYM_COOKIE_PREFIX__] as $key => $val) {
-					if($key === 'xsrf-token') {
-						$val = key($val);
-					}
-
+				foreach($_COOKIE[__SYM_COOKIE_PREFIX__] as $key => $val){
 					$this->_param['cookie-' . $key] = $val;
 				}
 			}
@@ -510,7 +487,7 @@
 				else if(is_array($value)) {
 					$param->setValue(General::sanitize($value[0]));
 				}
-				else if(in_array($key, array('xsrf-token','current-query-string'))) {
+				else if($key == 'current-query-string') {
 					$param->setValue(General::wrapInCDATA($value));
 				}
 				else {
@@ -522,7 +499,7 @@
 			$xml->prependChild($params);
 
 			Symphony::Profiler()->seed();
-			$this->setXML($xml);
+			$this->setXML($xml->generate(true, 0));
 			Symphony::Profiler()->sample('XML Generation', PROFILE_LAP);
 
 			$xsl = '<?xml version="1.0" encoding="UTF-8"?>
@@ -553,7 +530,6 @@
 		 * The URL of the current page that is being Rendered as returned by `getCurrentPage()`.
 		 * If no URL is provided, Symphony assumes the Page with the type 'index' is being
 		 * requested.
-		 * @throws SymphonyErrorPage
 		 * @return array
 		 *  An associative array of page details
 		 */
@@ -692,7 +668,6 @@
 		 *  The XMLElement to append the Events results to. Event results are
 		 *  contained in a root XMLElement that is the handlised version of
 		 *  their name.
-		 * @throws Exception
 		 */
 		private function processEvents($events, XMLElement &$wrapper){
 			/**
@@ -803,7 +778,6 @@
 		 *  Any params to automatically add to the `$env` pool, by default this
 		 *  is an empty array. It looks like Symphony does not utilise this parameter
 		 *  at all
-		 * @throws Exception
 		 */
 		public function processDatasources($datasources, XMLElement &$wrapper, array $params = array()) {
 			if (trim($datasources) == '') return;
@@ -999,6 +973,40 @@
 		 */
 		public static function sanitizeParameter($parameter) {
 			return XMLElement::stripInvalidXMLCharacters($parameter);
+		}
+
+		/**
+		 * Given a page ID, return it's type from `tbl_pages`
+		 *
+		 * @deprecated This function will be removed in Symphony 2.4. Use
+		 * `PageManager::fetchPageTypes` instead.
+		 * @param integer $page_id
+		 *  The page ID to find it's type
+		 * @return array
+		 *  An array of types that this page is set as
+		 */
+		public static function fetchPageTypes($page_id) {
+			return PageManager::fetchPageTypes($page_id);
+		}
+
+		/**
+		 * Resolves the path to this page's XSLT file. The Symphony convention
+		 * is that they are stored in the `PAGES` folder. If this page has a parent
+		 * it will be as if all the / in the URL have been replaced with _. ie.
+		 * /articles/read/ will produce a file `articles_read.xsl`
+		 *
+		 * @deprecated This function will be removed in Symphony 2.4. Use
+		 *  `PageManager::resolvePageFileLocation`
+		 * @param string $path
+		 *  The URL path to this page, excluding the current page. ie, /articles/read
+		 *  would make `$path` become articles/
+		 * @param string $handle
+		 *  The handle of the resolved page.
+		 * @return string
+		 *  The path to the XSLT of this page
+		 */
+		public static function resolvePageFileLocation($path, $handle) {
+			return PageManager::resolvePageFileLocation($path, $handle);
 		}
 
 	}

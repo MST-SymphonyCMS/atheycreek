@@ -2,6 +2,11 @@
 
 A simple way to manipulate images "just in time" via the URL. Supports caching, image quality settings and loading of offsite images.
 
+- Version: 1.19
+- Author: Symphony Team
+- Release Date: 1 July 2013
+- Requirements: Symphony 2.3.2 or greater
+
 ## Installation
 
 Information about [installing and updating extensions](http://getsymphony.com/learn/tasks/view/install-an-extension/) can be found in the [Symphony documentation](http://getsymphony.com/learn/).
@@ -29,7 +34,7 @@ It is not absolutely necessary to do this, but may prevent problems with future 
 
 The image manipulation is controlled via the URL, eg.:
 
-	<img src="{$root}/image/2/80/80/5/fff{image/@path}/{image/filename}" />
+	<img src="{$root}/image/2/80/80/5/fff/{image/@path}/{image/filename}" />
 
 The extension accepts four numeric settings and one text setting for the manipulation.
 
@@ -64,7 +69,7 @@ If you're using mode `2` or `3` for image cropping, there is an optional fifth p
 
 The extra fifth parameter makes the URL look like this:
 
-	<img src="{$root}/image/2/80/80/5/fff{image/@path}/{image/filename}" />
+	<img src="{$root}/image/2/80/80/5/fff/{image/@path}/{image/filename}" />
 
 - *If you wish to crop and maintain the aspect ratio of an image but only have one fixed dimension (that is, width or height), simply set the other dimension to 0*
 

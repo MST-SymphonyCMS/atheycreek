@@ -156,7 +156,7 @@
 		 *
 		 * @since Symphony 2.3.2
 		 *
-		 * @param integer $status_code
+		 * @param integer $res_code
 		 *  The HTTP Status code to get the value for
 		 * @return string
 		 *  The formatted HTTP Status string

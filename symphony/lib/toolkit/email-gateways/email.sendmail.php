@@ -27,7 +27,7 @@
 		/**
 		 * Constructor. Sets basic default values based on preferences.
 		 *
-		 * @throws EmailValidationException
+		 * @return void
 		 */
 		public function __construct(){
 			parent::__construct();
@@ -46,8 +46,6 @@
 		 * or base64) to make non-US-ASCII text work with the widest range
 		 * of email transports and clients.
 		 *
-		 * @throws EmailGatewayException
-		 * @throws EmailValidationException
 		 * @return bool
 		 */
 		public function send() {
@@ -57,9 +55,6 @@
 			try {
 				// Encode recipient names (but not any numeric array indexes)
 				foreach($this->_recipients as $name => $email) {
-					// Support Bcc header
-					if(isset($this->_header_fields['Bcc']) && $this->_header_fields['Bcc'] == $email) continue;
-
 					$name = empty($name) ? $name : EmailHelper::qEncode($name);
 					$recipients[$name] = $email;
 				}
@@ -131,7 +126,7 @@
 		 * Sets all configuration entries from an array.
 		 *
 		 * @throws EmailValidationException
-		 * @param array $config
+		 * @param array $configuration
 		 * @since 2.3.1
 		 *  All configuration entries stored in a single array. The array should have the format of the $_POST array created by the preferences HTML.
 		 * @return void
@@ -143,7 +138,6 @@
 		/**
 		 * Builds the preferences pane, shown in the symphony backend.
 		 *
-		 * @throws InvalidArgumentException
 		 * @return XMLElement
 		 */
 		public function getPreferencesPane() {

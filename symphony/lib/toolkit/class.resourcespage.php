@@ -35,8 +35,6 @@
 		 * @param array $params
 		 *  An associative array of params (usually populated from the URL) that this
 		 *  function uses. The current implementation will use `type` and `unsort` keys
-		 * @throws Exception
-		 * @throws SymphonyErrorPage
 		 * @return array
 		 *  An associative of the resource as determined by `ResourceManager::fetch`
 		 */
@@ -97,11 +95,9 @@
 		 *
 		 * @param integer $resource_type
 		 *  Either `RESOURCE_TYPE_EVENT` or `RESOURCE_TYPE_DATASOURCE`
-		 * @throws InvalidArgumentException
 		 */
 		public function __viewIndex($resource_type){
 			$manager = ResourceManager::getManagerFromType($resource_type);
-			$friendly_resource = ($resource_type === RESOURCE_TYPE_EVENT) ? __('Event') : __('DataSource');
 
 			$this->setPageType('table');
 
@@ -125,6 +121,11 @@
 					'sortable' => false,
 				),
 				array(
+					'label' => __('Release Date'),
+					'sortable' => true,
+					'handle' => 'release-date'
+				),
+				array(
 					'label' => __('Author'),
 					'sortable' => true,
 					'handle' => 'author'
@@ -143,42 +144,16 @@
 				);
 			}
 			else {
-				$context = Administration::instance()->getPageCallback();
-
 				foreach($resources as $r) {
-					$action = 'edit';
-					$status = null;
-					$locked = null;
-
-					// Locked resources
-					if(isset($r['can_parse']) && $r['can_parse'] !== true) {
-						$action = 'info';
-						$status = 'status-notice';
-						$locked = array(
-							'data-status' => ' — ' . __('read only')
-						);
-					}
-
 					// Resource name
 					$action = isset($r['can_parse']) && $r['can_parse'] === true ? 'edit' : 'info';
-
 					$name = Widget::TableData(
 						Widget::Anchor(
 							$r['name'],
-							SYMPHONY_URL . $context['pageroot'] .  $action . '/' . $r['handle'] . '/',
-							$r['handle'],
-							'resource-' . $action,
-							null,
-							$locked
+							SYMPHONY_URL . $_REQUEST['symphony-page'] .  $action . '/' . $r['handle'] . '/',
+							$r['handle']
 						)
 					);
-
-					$name->appendChild(Widget::Label(__('Select ' . $friendly_resource . ' %s', array($r['name'])), null, 'accessible', null, array(
-						'for' => 'resource-' . $r['handle']
-					)));
-					$name->appendChild(Widget::Input('items['.$r['handle'].']', 'on', 'checkbox', array(
-						'id' => 'resource-' . $r['handle']
-					)));
 
 					// Resource type/source
 					if(isset($r['source'], $r['source']['id'])) {
@@ -224,6 +199,11 @@
 						$pagelinks = Widget::TableData($pages, 'pages');
 					}
 
+					// Release date
+					$releasedate = Widget::TableData(Lang::localizeDate(
+						DateTimeObj::format($r['release-date'], __SYM_DATETIME_FORMAT__)
+					));
+
 					// Authors
 					$author = $r['author']['name'];
 					if($author) {
@@ -236,8 +216,9 @@
 					}
 
 					$author = Widget::TableData($author);
+					$author->appendChild(Widget::Input('items[' . $r['handle'] . ']', null, 'checkbox'));
 
-					$aTableBody[] = Widget::TableRow(array($name, $section, $pagelinks, $author), $status);
+					$aTableBody[] = Widget::TableRow(array($name, $section, $pagelinks, $releasedate, $author));
 				}
 			}
 
@@ -245,17 +226,10 @@
 				Widget::TableHead($aTableHead),
 				NULL,
 				Widget::TableBody($aTableBody),
-				'selectable',
-				null,
-				array('role' => 'directory', 'aria-labelledby' => 'symphony-subheading', 'data-interactive' => 'data-interactive')
+				'selectable'
 			);
 
 			$this->Form->appendChild($table);
-			
-			$version = new XMLElement('p', 'Symphony ' . Symphony::Configuration()->get('version', 'symphony'), array(
-				'id' => 'version'
-			));
-			$this->Form->appendChild($version);
 
 			$tableActions = new XMLElement('div');
 			$tableActions->setAttribute('class', 'actions');
@@ -295,7 +269,7 @@
 			 *  in the With Selected menu. Options should follow the same format
 			 *  expected by `Widget::__SelectBuildOption`. Passed by reference.
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AddCustomActions', $context['pageroot'], array(
+			Symphony::ExtensionManager()->notifyMembers('AddCustomActions', $_REQUEST['symphony-page'], array(
 				'options' => &$options
 			));
 
@@ -316,12 +290,10 @@
 		 *
 		 * @param integer $resource_type
 		 *  Either `RESOURCE_TYPE_EVENT` or `RESOURCE_TYPE_DATASOURCE`
-		 * @throws Exception
 		 */
 		public function __actionIndex($resource_type){
 			$manager = ResourceManager::getManagerFromType($resource_type);
 			$checked = (is_array($_POST['items'])) ? array_keys($_POST['items']) : NULL;
-			$context = Administration::instance()->getPageCallback();
 
 			if (isset($_POST['action']) && is_array($_POST['action'])) {
 				/**
@@ -337,7 +309,7 @@
 				 *  An array of the selected rows. The value is usually the ID of the
 				 *  the associated object.
 				 */
-				Symphony::ExtensionManager()->notifyMembers('CustomActions', $context['pageroot'], array(
+				Symphony::ExtensionManager()->notifyMembers('CustomActions', $_REQUEST['symphony-page'], array(
 					'checked' => $checked
 				));
 
@@ -348,11 +320,7 @@
 						foreach($checked as $handle) {
 							$path = call_user_func(array($manager, '__getDriverPath'), $handle);
 
-							// Don't allow Extension resources to be deleted. RE: #2027
-							if(stripos($path, EXTENSIONS) === 0) {
-								continue;
-							}
-							else if (!General::deleteFile($path)) {
+							if (!General::deleteFile($path)) {
 								$folder = str_replace(DOCROOT, '', $path);
 								$folder = str_replace('/' . basename($path), '', $folder);
 

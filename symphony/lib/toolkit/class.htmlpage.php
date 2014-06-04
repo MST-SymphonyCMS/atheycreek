@@ -95,7 +95,6 @@
 		 * generate function which generates a HTML DOM from all the
 		 * XMLElement children.
 		 *
-		 * @param null $page
 		 * @return string
 		 */
 		public function generate($page = null){
@@ -196,9 +195,10 @@
 		}
 
 		/**
-		 * Determines if two elements are duplicates based on an attribute and value
+		 * Determines if two elements are duplicates based on an attribute
+		 * and value
 		 *
-		 * @param string $path
+		 * @param string $value
 		 *  The value of the attribute
 		 * @param string $attribute
 		 *  The attribute to check

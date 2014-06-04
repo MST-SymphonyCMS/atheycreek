@@ -39,6 +39,8 @@
 		 *  The XML for the transformation to be applied to
 		 * @param string $xsl
 		 *  The XSL for the transformation
+		 * @return boolean
+		 *  True if there is an existing `XsltProcessor` class, false otherwise
 		 */
 		public function __construct($xml=null, $xsl=null){
 
@@ -130,21 +132,14 @@
 
 			// Load the xml document
 			set_error_handler(array($this, 'trapXMLError'));
-			// Prevent remote entities from being loaded, RE: #1939
-			$elOLD = libxml_disable_entity_loader(true);
-			$xmlDoc->loadXML($xml, LIBXML_NONET | LIBXML_DTDLOAD | LIBXML_DTDATTR | defined('LIBXML_COMPACT') ? LIBXML_COMPACT : 0);
-			libxml_disable_entity_loader($elOLD);
+			$xmlDoc->loadXML($xml);
 
 			// Must restore the error handler to avoid problems
 			restore_error_handler();
 
-			// Load the xsl document
+			// Load the xml document
 			set_error_handler(array($this, 'trapXSLError'));
-			// Ensure that the XSLT can be loaded with `false`. RE: #1939
-			// Note that `true` will cause `<xsl:import />` to fail.
-			$elOLD = libxml_disable_entity_loader(false);
-			$xslDoc->loadXML($xsl, LIBXML_NONET | LIBXML_DTDLOAD | LIBXML_DTDATTR | defined('LIBXML_COMPACT') ? LIBXML_COMPACT : 0);
-			libxml_disable_entity_loader($elOLD);
+			$xslDoc->loadXML($xsl);
 
 			// Load the xsl template
 			$XSLProc->importStyleSheet($xslDoc);
@@ -156,7 +151,6 @@
 				$XSLProc->setParameter('', $parameters);
 			}
 
-			// Must restore the error handler to avoid problems
 			restore_error_handler();
 
 			// Start the transformation
@@ -168,7 +162,6 @@
 				ini_set('html_errors', $ehOLD);
 			}
 
-			// Must restore the error handler to avoid problems
 			restore_error_handler();
 
 			return $processed;
@@ -206,9 +199,7 @@
 
 			// Load the xml document
 			set_error_handler(array($this, 'trapXMLError'));
-			$elOLD = libxml_disable_entity_loader(true);
-			$xmlDoc->loadXML($xml, LIBXML_NONET | LIBXML_DTDLOAD | LIBXML_DTDATTR | defined('LIBXML_COMPACT') ? LIBXML_COMPACT : 0);
-			libxml_disable_entity_loader($elOLD);
+			$xmlDoc->loadXML($xml);
 
 			// Must restore the error handler to avoid problems
 			restore_error_handler();

@@ -6,10 +6,12 @@
 	 * The AjaxLog page accepts $_POST requests to write information to the
 	 * Symphony Log.
 	 */
-	
-	require_once(TOOLKIT . '/class.textpage.php');
-	
-	Class contentAjaxLog extends TextPage{
+	Class contentAjaxLog extends AjaxPage{
+
+		public function handleFailedAuthorisation(){
+			$this->setHttpStatus(self::HTTP_STATUS_UNAUTHORIZED);
+			$this->_Result = json_encode(array('status' => __('You are not authorised to access this page.')));
+		}
 
 		public function view(){
 			if($_REQUEST['error'] && Symphony::Log()) {

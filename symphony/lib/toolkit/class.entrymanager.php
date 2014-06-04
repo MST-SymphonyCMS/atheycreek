@@ -91,7 +91,6 @@
 		 *
 		 * @param Entry $entry
 		 *  An Entry object to insert into the database
-		 * @throws DatabaseException
 		 * @return boolean
 		 */
 		public static function add(Entry $entry) {
@@ -138,7 +137,6 @@
 		 *
 		 * @param Entry $entry
 		 *  An Entry object
-		 * @throws DatabaseException
 		 * @return boolean
 		 */
 		public static function edit(Entry $entry) {
@@ -204,8 +202,6 @@
 		 *  If possible, the `$section_id` of the the `$entries`. This parameter
 		 *  should be left as null if the `$entries` array contains entry_id's for
 		 *  multiple sections.
-		 * @throws DatabaseException
-		 * @throws Exception
 		 * @return boolean
 		 */
 		public static function delete($entries, $section_id = null){
@@ -310,6 +306,9 @@
 		 *  Any custom JOIN's
 		 * @param boolean $group
 		 *  Whether the entries need to be grouped by Entry ID or not
+		 * @param boolean $records_only
+		 *  If this is set to true, an array of Entry objects will be returned
+		 *  without any basic pagination information. Defaults to false
 		 * @param boolean $buildentries
 		 *  Whether to return an array of entry ID's or Entry objects. Defaults to
 		 *  true, which will return Entry objects
@@ -319,7 +318,6 @@
 		 *  from all fields in a section.
 		 * @param boolean $enable_sort
 		 *  Defaults to true, if false this function will not apply any sorting
-		 * @throws Exception
 		 * @return array
 		 *  If `$buildentries` is true, this function will return an array of Entry objects,
 		 *  otherwise it will return an associative array of Entry data from `tbl_entries`
@@ -406,7 +404,6 @@
 		 *  Choose whether to get data from a subset of fields or all fields in a section,
 		 *  by providing an array of field names. Defaults to null, which will load data
 		 *  from all fields in a section.
-		 * @throws DatabaseException
 		 * @return array
 		 *  An array of Entry objects
 		 */
@@ -583,7 +580,6 @@
 		 *  Choose whether to get data from a subset of fields or all fields in a section,
 		 *  by providing an array of field names. Defaults to null, which will load data
 		 *  from all fields in a section.
-		 * @throws Exception
 		 * @return array
 		 *  Either an array of Entry objects, or an associative array containing
 		 *  the total entries, the start position, the entries per page and the

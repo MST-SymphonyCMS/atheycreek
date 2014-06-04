@@ -83,6 +83,10 @@
 			}
 			else{
 				foreach($authors as $a){
+
+					if(Administration::instance()->Author->isManager() && $a->isDeveloper()) {
+						continue;
+					}
 					// Setup each cell
 					if(
 						(Administration::instance()->Author->isDeveloper() || (Administration::instance()->Author->isManager() && !$a->isDeveloper()))
@@ -93,18 +97,6 @@
 						);
 					} else {
 						$td1 = Widget::TableData($a->getFullName(), 'inactive');
-					}
-
-					// Can this Author be edited by the current Author?
-					if (Administration::instance()->Author->isDeveloper() || Administration::instance()->Author->isManager()) {
-						if ($a->get('id') != Administration::instance()->Author->get('id')) {
-							$td1->appendChild(Widget::Label(__('Select Author %s', array($a->getFullName())), null, 'accessible', null, array(
-								'for' => 'author-' . $a->get('id')
-							)));
-							$td1->appendChild(Widget::Input('items['.$name.']', 'on', 'checkbox', array(
-								'id' => 'author-' . $a->get('id')
-							)));
-						}
 					}
 
 					$td2 = Widget::TableData(Widget::Anchor($a->get('email'), 'mailto:'.$a->get('email'), __('Email this author')));
@@ -132,6 +124,12 @@
 
 					$td5 = Widget::TableData($a->get("language") == NULL ? __("System Default") : $languages[$a->get("language")]);
 
+					if (Administration::instance()->Author->isDeveloper() || Administration::instance()->Author->isManager()) {
+						if ($a->get('id') != Administration::instance()->Author->get('id')) {
+							$td3->appendChild(Widget::Input('items['.$a->get('id').']', NULL, 'checkbox'));
+						}
+					}
+
 					// Add a row to the body array, assigning each cell to the row
 					if(Administration::instance()->Author->isDeveloper() || Administration::instance()->Author->isManager()) {
 						$aTableBody[] = Widget::TableRow(array($td1, $td2, $td3, $td4, $td5));
@@ -146,17 +144,10 @@
 				Widget::TableHead($aTableHead),
 				NULL,
 				Widget::TableBody($aTableBody),
-				'selectable',
-				null,
-				array('role' => 'directory', 'aria-labelledby' => 'symphony-subheading', 'data-interactive' => 'data-interactive')
+				'selectable'
 			);
 
 			$this->Form->appendChild($table);
-			
-			$version = new XMLElement('p', 'Symphony ' . Symphony::Configuration()->get('version', 'symphony'), array(
-				'id' => 'version'
-			));
-			$this->Form->appendChild($version);
 
 			if(Administration::instance()->Author->isDeveloper() || Administration::instance()->Author->isManager()) {
 				$tableActions = new XMLElement('div');
@@ -266,12 +257,10 @@
 			}
 
 			if(isset($this->_context[2])){
-				$time = Widget::Time();
-
 				switch($this->_context[2]){
 					case 'saved':
 						$this->pageAlert(
-							__('Author updated at %s.', array($time->generate()))
+							__('Author updated at %s.', array(DateTimeObj::getTimeAgo()))
 							. ' <a href="' . SYMPHONY_URL . '/system/authors/new/" accesskey="c">'
 							. __('Create another?')
 							. '</a> <a href="' . SYMPHONY_URL . '/system/authors/" accesskey="a">'
@@ -282,7 +271,7 @@
 
 					case 'created':
 						$this->pageAlert(
-							__('Author created at %s.', array($time->generate()))
+							__('Author created at %s.', array(DateTimeObj::getTimeAgo()))
 							. ' <a href="' . SYMPHONY_URL . '/system/authors/new/" accesskey="c">'
 							. __('Create another?')
 							. '</a> <a href="' . SYMPHONY_URL . '/system/authors/" accesskey="a">'
@@ -294,8 +283,8 @@
 			}
 
 			$this->setPageType('form');
+
 			$isOwner = false;
-			$isEditing = ($this->_context[0] == 'edit');
 
 			if(isset($_POST['fields'])) {
 				$author = $this->_Author;
@@ -311,15 +300,11 @@
 					);
 				}
 			}
-			else {
-				$author = new Author;
-			}
+			else $author = new Author;
 
-			if($isEditing && $author->get('id') == Administration::instance()->Author->get('id')) {
-				$isOwner = true;
-			}
+			if($this->_context[0] == 'edit' && $author->get('id') == Administration::instance()->Author->get('id')) $isOwner = true;
 
-			if($isEditing && !$isOwner && !Administration::instance()->Author->isDeveloper() && !Administration::instance()->Author->isManager()) {
+			if ($this->_context[0] == 'edit' && !$isOwner && !Administration::instance()->Author->isDeveloper() && !Administration::instance()->Author->isManager()) {
 				Administration::instance()->throwCustomError(
 					__('You are not authorised to edit other authors.'),
 					__('Access Denied'),
@@ -401,23 +386,8 @@
 			$fieldset->appendChild($legend);
 			$fieldset->appendChild($help);
 
-			/*
-				Password reset rules:
-				- Primary account can edit all accounts.
-				- Developers can edit all developers, managers and authors, and their own.
-				- Managers can edit all Authors, and their own.
-				- Authors can edit their own.
-			*/
-			if($isEditing && !(
-				// All accounts can edit their own
-				$isOwner
-				// Managers can edit all Authors, and their own.
-				|| (Administration::instance()->Author->isManager() && $author->isAuthor())
-				// Primary account can edit all accounts.
-				|| Administration::instance()->Author->isPrimaryAccount()
-				// Developers can edit all developers, managers and authors, and their own.
-				|| Administration::instance()->Author->isDeveloper() && $author->isPrimaryAccount() === false
-			)) {
+			// Password reset
+			if($this->_context[0] == 'edit' && (!Administration::instance()->Author->isDeveloper() || !Administration::instance()->Author->isManager() || $isOwner === true)) {
 				$fieldset->setAttribute('class', 'three columns');
 
 				$label = Widget::Label(NULL, NULL, 'column');
@@ -427,7 +397,7 @@
 
 			// New password
 			$callback = Administration::instance()->getPageCallback();
-			$placeholder = ($isEditing ? __('New Password') : __('Password'));
+			$placeholder = ($callback['context'][0] == 'edit' ? __('New Password') : __('Password'));
 			$label = Widget::Label(NULL, NULL, 'column');
 			$label->appendChild(Widget::Input('fields[password]', NULL, 'password', array('placeholder' => $placeholder, 'autocomplete' => 'off')));
 			$fieldset->appendChild((isset($this->_errors['password']) ? Widget::Error($label, $this->_errors['password']) : $label));
@@ -528,34 +498,12 @@
 				$this->Form->appendChild($group);
 			}
 
-			// Administration password double check
-			if($isEditing && !$isOwner) {
-				$group = new XMLElement('fieldset');
-				$group->setAttribute('class', 'settings highlight');
-				$group->appendChild(new XMLElement('legend', __('Confirmation')));
-				$group->appendChild(new XMLELement('p', __('Please confirm changes to this author with your password.'), array('class' => 'help')));
-
-				$label = Widget::Label(__('Password'));
-				$label->appendChild(Widget::Input('fields[confirm-change-password]', NULL, 'password', array(
-					'autocomplete' => 'off',
-					'placeholder' => __('Your Password')
-				)));
-				$group->appendChild(
-					isset($this->_errors['confirm-change-password'])
-						? Widget::Error($label, $this->_errors['confirm-change-password'])
-						: $label
-				);
-
-				$this->Form->appendChild($group);
-			}
-
-			// Actions
 			$div = new XMLElement('div');
 			$div->setAttribute('class', 'actions');
 
 			$div->appendChild(Widget::Input('action[save]', ($this->_context[0] == 'edit' ? __('Save Changes') : __('Create Author')), 'submit', array('accesskey' => 's')));
 
-			if($isEditing && !$isOwner && !$author->isPrimaryAccount()){
+			if($this->_context[0] == 'edit' && !$isOwner && !$author->isPrimaryAccount()){
 				$button = new XMLElement('button', __('Delete'));
 				$button->setAttributeArray(array('name' => 'action[delete]', 'class' => 'button confirm delete', 'title' => __('Delete this author'), 'type' => 'submit', 'accesskey' => 'd', 'data-message' => __('Are you sure you want to delete this author?')));
 				$div->appendChild($button);
@@ -658,16 +606,7 @@
 					$authenticated = true;
 				}
 				// Developers don't need to specify the old password, unless it's their own account
-				else if(
-					// All accounts can edit their own
-					$isOwner
-						// Managers can edit all Authors, and their own.
-					|| (Administration::instance()->Author->isManager() && $this->_Author->isAuthor())
-						// Primary account can edit all accounts.
-					|| Administration::instance()->Author->isPrimaryAccount()
-						// Developers can edit all developers, managers and authors, and their own.
-					|| Administration::instance()->Author->isDeveloper() && $this->_Author->isPrimaryAccount() === false
-				) {
+				else if(Administration::instance()->Author->isDeveloper()){
 					$authenticated = true;
 				}
 
@@ -707,36 +646,19 @@
 				$this->_Author->set('auth_token_active', ($fields['auth_token_active'] ? $fields['auth_token_active'] : 'no'));
 
 				if($this->_Author->validate($this->_errors)) {
-					// Admin changing another profile
-					if(!$isOwner) {
-						$entered_password = Symphony::Database()->cleanValue($fields['confirm-change-password']);
-
-						if(!isset($fields['confirm-change-password']) || empty($fields['confirm-change-password'])) {
-							$this->_errors['confirm-change-password'] = __('Please provide your own password to make changes to this author.');
-						}
-						else if (Cryptography::compare($entered_password, Administration::instance()->Author->get('password')) !== true) {
-							$this->_errors['confirm-change-password'] = __('Wrong password, please enter your own password to make changes to this author.');
-						}
-					}
-
-					// Author is changing their password
 					if(!$authenticated && ($changing_password || $changing_email)){
 						if($changing_password) $this->_errors['old-password'] = __('Wrong password. Enter old password to change it.');
 						elseif($changing_email) $this->_errors['old-password'] = __('Wrong password. Enter old one to change email address.');
 					}
 
-					// Passwords provided, but doesn't match.
-					else if(($fields['password'] != '' || $fields['password-confirmation'] != '') && $fields['password'] != $fields['password-confirmation']){
+					elseif(($fields['password'] != '' || $fields['password-confirmation'] != '') && $fields['password'] != $fields['password-confirmation']){
 						$this->_errors['password'] = $this->_errors['password-confirmation'] = __('Passwords did not match');
 					}
+					elseif($this->_Author->commit()){
 
-					// All good, let's save the Author
-					if(is_array($this->_errors) && empty($this->_errors) && $this->_Author->commit()) {
 						Symphony::Database()->delete('tbl_forgotpass', " `expiry` < '".DateTimeObj::getGMT('c')."' OR `author_id` = '".$author_id."' ");
 
-						if($isOwner) {
-							Administration::instance()->login($this->_Author->get('username'), $this->_Author->get('password'), true);
-						}
+						if($isOwner) Administration::instance()->login($this->_Author->get('username'), $this->_Author->get('password'), true);
 
 						/**
 						 * After editing an author, provided with the Author object
@@ -752,7 +674,7 @@
 
 						redirect(SYMPHONY_URL . '/system/authors/edit/' . $author_id . '/saved/');
 					}
-					// Problems.
+
 					else {
 						$this->pageAlert(
 							__('Unknown errors occurred while attempting to save.')
@@ -762,9 +684,7 @@
 							, Alert::ERROR);
 					}
 				}
-
-				// Author doesn't have valid data, throw back.
-				if(is_array($this->_errors) && !empty($this->_errors)) {
+				else if(is_array($this->_errors) && !empty($this->_errors)) {
 					$this->pageAlert(__('There were some problems while attempting to save. Please check below for problem fields.'), Alert::ERROR);
 				}
 			}

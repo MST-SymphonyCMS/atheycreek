@@ -45,8 +45,7 @@
 		// Check for matching recipes
 		if(file_exists(WORKSPACE . '/jit-image-manipulation/recipes.php')) include(WORKSPACE . '/jit-image-manipulation/recipes.php');
 
-		// check to see if $recipes is even available before even checking if it is an array
-		if (!empty($recipes) && is_array($recipes)) {
+		if (is_array($recipes) && !empty($recipes)) {
 			foreach($recipes as $recipe) {
 				// Is the mode regex? If so, bail early and let not JIT process it.
 				if($recipe['mode'] === 'regex' && preg_match($recipe['url-parameter'], $string)) {
@@ -246,18 +245,9 @@
 	if($last_modified) {
 		$last_modified_gmt = gmdate('D, d M Y H:i:s', $last_modified) . ' GMT';
 		$etag = md5($last_modified . $image_path);
-		$cacheControl = 'public';
-		
-		// Add no-transform in order to prevent ISPs to
-		// serve image over http through a compressing proxy
-		// See #79
-		if ($settings['image']['disable_proxy_transform'] == 'yes') {
-			$cacheControl .= ', no-transform';
-		}
-		
 		header('Last-Modified: ' . $last_modified_gmt);
 		header(sprintf('ETag: "%s"', $etag));
-		header('Cache-Control: '. $cacheControl);
+		header('Cache-Control: public');
 	}
 	else {
 		$last_modified_gmt = NULL;
@@ -297,7 +287,7 @@
 	if($param->mode == MODE_NONE){
 		if(
 			// If the external file still exists
-			($param->external && Image::getHttpResponseCode($original_file) != 200)
+			($param->external && Image::getHttpResponseCode($original_file) !== 200)
 			// If the file is local, does it exist and can we read it?
 			|| ($param->external === FALSE && (!file_exists($original_file) || !is_readable($original_file)))
 		) {

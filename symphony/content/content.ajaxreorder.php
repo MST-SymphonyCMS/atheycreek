@@ -9,9 +9,8 @@
 	 */
 	require_once(TOOLKIT . '/class.pagemanager.php');
 	require_once(TOOLKIT . '/class.sectionmanager.php');
-	require_once(TOOLKIT . '/class.xmlpage.php');
 
-	Class contentAjaxReorder extends XMLPage{
+	Class contentAjaxReorder extends AjaxPage{
 
 		const kREORDER_PAGES = 0;
 		const kREORDER_SECTIONS = 1;

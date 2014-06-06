@@ -7,20 +7,20 @@
 		public $dsParamROOTELEMENT = 'events-all-entries-filtered';
 		public $dsParamConditionalizer = '(if value of ({$pt1}) is (events))';
 		public $dsParamORDER = 'asc';
-		public $dsParamPAGINATERESULTS = 'no';
-		public $dsParamLIMIT = '{$pt3:5}';
+		public $dsParamPAGINATERESULTS = 'yes';
+		public $dsParamLIMIT = '{$pt3:9999999}';
 		public $dsParamSTARTPAGE = '{$pt2:1}';
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'date';
 		public $dsParamHTMLENCODE = 'yes';
 		public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
-		
+
 
 		public $dsParamFILTERS = array(
 				'35' => 'later than now',
 				'213' => 'no',
 		);
-		
+
 
 		public $dsParamINCLUDEDELEMENTS = array(
 				'system:pagination',
@@ -29,7 +29,7 @@
 				'description: unformatted',
 				'tags: tag: unformatted'
 		);
-		
+
 
 		public function __construct($env=NULL, $process_params=true) {
 			parent::__construct($env, $process_params);

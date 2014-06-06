@@ -15,12 +15,10 @@
 		public $dsParamHTMLENCODE = 'yes';
 		public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
-
 		public $dsParamFILTERS = array(
 				'35' => 'later than now',
 				'213' => 'no',
 		);
-
 
 		public $dsParamINCLUDEDELEMENTS = array(
 				'system:pagination',
@@ -29,7 +27,6 @@
 				'description: unformatted',
 				'tags: tag: unformatted'
 		);
-
 
 		public function __construct($env=NULL, $process_params=true) {
 			parent::__construct($env, $process_params);

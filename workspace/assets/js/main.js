@@ -42,6 +42,15 @@
         videoVolume: 'horizontal'
       });
 
+      // Joey Special
+      // --------------------------------------------------
+
+      $('#joey-meador .content').append('<audio id="joey-special" src="/workspace/assets/img/my-beloved.mp3"></audio>');
+
+      $('#joey-meador img').click(function(){
+        $('#joey-special').trigger("play");
+      });
+
     });
 
   });

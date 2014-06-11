@@ -60,7 +60,7 @@
 					<xsl:variable name="phone">
 						<xsl:call-template name="members-roles-phone-number-anonymize" />
 					</xsl:variable>
-					<div>
+					<div id="{member/item/first-name/@handle}-{member/item/last-name/@handle}">
 						<xsl:choose>
 							<xsl:when test="count($entries) = 1">
 								<xsl:call-template name="class-rows">

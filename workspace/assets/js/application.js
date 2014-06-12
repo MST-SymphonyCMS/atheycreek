@@ -14039,9 +14039,10 @@ $.extend(mejs.MepDefaults,
       // Joey Special
       // --------------------------------------------------
 
+      $('#joey-meador').prepend('<div class="center"><a href="#joey-meador" id="joey-click">&nbsp;</a></div>');
       $('#joey-meador .content').append('<audio id="joey-special" src="/workspace/assets/img/my-beloved.mp3"></audio>');
 
-      $('#joey-meador img').click(function(){
+      $('#joey-click').click(function(){
         $('#joey-special').trigger("play");
       });
 

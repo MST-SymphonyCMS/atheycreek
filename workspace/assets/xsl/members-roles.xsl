@@ -103,7 +103,6 @@
 								</span>
 
 								<span class="email">
-
 									<a title="Email {$name}">
 										<xsl:attribute name="href">
 											<xsl:text disable-output-escaping="yes">mailto:</xsl:text>
@@ -154,10 +153,21 @@
 				<li>
 					<xsl:call-template name="class-rows" />
 					<a title="Email {$name}" class="mailto">
-						<xsl:attribute name="href">
-							<xsl:text disable-output-escaping="yes">mailto:</xsl:text>
-							<xsl:value-of select="$email" />
-						</xsl:attribute>
+						<xsl:choose>
+							<xsl:when test="member/item/anonymize = 'No' or string-length(member/item/email)">
+	<!-- 							<xsl:attribute name="href">
+									<xsl:text disable-output-escaping="yes">mailto:</xsl:text>
+									<xsl:value-of select="$email" />
+								</xsl:attribute> -->
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:attribute name="href">
+									<xsl:text disable-output-escaping="yes">mailto:</xsl:text>
+									<xsl:value-of select="$email" />
+								</xsl:attribute>
+							</xsl:otherwise>
+						</xsl:choose>
+
 						<div class="pull-left">
 							<xsl:call-template name="members-roles-avatar">
 								<xsl:with-param name="filename" select="member/item/photo/filename" />

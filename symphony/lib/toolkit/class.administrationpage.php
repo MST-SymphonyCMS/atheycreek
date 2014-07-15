@@ -355,19 +355,7 @@
 			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.notices.css', 'screen', 39);
 			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/admin.css', 'screen', 40);
 
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/jquery.js', 50);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.js', 60);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.collapsible.js', 61);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.orderable.js', 62);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.selectable.js', 63);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.duplicator.js', 64);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.tags.js', 65);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.suggestions.js', 66);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.pickable.js', 67);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.timeago.js', 68);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.notify.js', 69);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/symphony.drawer.js', 70);
-			$this->addScriptToHead(APPLICATION_URL . '/assets/js/admin.js', 80);
+			$this->addScriptToHead(APPLICATION_URL . '/assets/js/_min/symphony.min.js', 50);
 
 			$this->addElementToHead(
 				new XMLElement(

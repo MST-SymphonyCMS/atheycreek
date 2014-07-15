@@ -9,90 +9,38 @@
 	Notifier
 -----------------------------------------------------------------------------*/
 
-div.notifier {
+.notifier {
 	overflow: hidden;
-	background: #383838;
-	border-bottom: 1px solid #575757;
+	background: #3a3333;
+	border-bottom: 0.1rem solid #575757;
 }
 
-div.notifier nav {
+.notifier nav {
 	position: absolute;
 	top: 0;
-	right: 18px;
+	right: 1.8rem;
 	display: block;
-	padding: 4px 0;
+	padding: 0.4rem 0;
 	cursor: pointer;
 }
 
-div.notifier nav:before {
+.notifier nav:before {
 	content: "\2193";
-	padding-right: 3px;
+	padding-right: 0.3rem;
 	opacity: 0.2;
 }
 
-div.notifier p.notice:last-child nav:before {
+.notifier .notice:last-child nav:before {
 	content: "\2191";
 }
 
-div.notifier nav:hover:before {
+.notifier nav:hover:before {
 	opacity: 0.5;
 }
 
-/* Webkit */
-
-@-webkit-keyframes success {
-	to {
-		background-color: #383838;
-		border-color: #575757;
-		color: #9b9b9b;
-	}
-}
-@-webkit-keyframes successlink {
-	to {
-		color: #bdc3c3;
-		border-color: #7c7c7c;
-	}
-}
-
-/* Internet Explorer */
-
-@-ms-keyframes success {
-	to {
-		background-color: #383838;
-		border-color: #575757;
-		color: #9b9b9b;
-	}
-}
-
-@-ms-keyframes successlink {
-	to {
-		color: #bdc3c3;
-		border-color: #7c7c7c;
-	}
-}
-
-/* Opera */
-
-@-o-keyframes success {
-	to {
-		background-color: #383838;
-		border-color: #575757;
-		color: #9b9b9b;
-	}
-}
-
-@-o-keyframes successlink {
-	to {
-		color: #bdc3c3;
-		border-color: #7c7c7c;
-	}
-}
-
-/* W3C */
-
 @keyframes success {
 	to {
-		background-color: #383838;
+		background-color: #3a3333;
 		border-color: #575757;
 		color: #9b9b9b;
 	}
@@ -112,20 +60,18 @@ div.notifier nav:hover:before {
 .notice {
 	position: relative;
 	margin: 0;
-	padding: 4px 90px 3px 18px;
-	border-bottom: 1px solid #575757;
+	padding: 0.4rem 9rem 0.3rem 1.8rem;
+	border-bottom: 0.1rem solid #514747;
 	color: #9b9b9b;
-	background: #383838;
+	background: #3d3535;
 	width: 100%;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 .notice a {
-	color: #bdc3c3;
-	border-bottom: 1px solid rgba(189, 195, 195, 0.2);
-	margin: 0 3px;
+	color: #c4c0c0;
+	border-bottom: 0.1rem solid rgba(189, 195, 195, 0.2);
+	margin: 0 0.3rem;
 }
 
 .notice a:hover,
@@ -141,18 +87,12 @@ div.notifier nav:hover:before {
 	background-color: #bfdc96;
 	border-color: #90c349;
 	color: #6d7841;
-	-webkit-animation: success 0.5s ease-out 10s 1 forwards;
-	-ms-animation: success 0.5s ease-out 10s 1 forwards;
-	-o-animation: success 0.5s ease-out 10s 1 forwards;
 	animation: success 0.5s ease-out 10s 1 forwards;
 }
 
 .notice.success a {
 	color: #4e5b39;
 	border-color: #a1bf7e;
-	-webkit-animation: successlink 0.5s ease-out 10s 1 forwards;
-	-ms-animation: successlink 0.5s ease-out 10s 1 forwards;
-	-o-animation: successlink 0.5s ease-out 10s 1 forwards;
 	animation: successlink 0.5s ease-out 10s 1 forwards;
 }
 
@@ -171,10 +111,10 @@ div.notifier nav:hover:before {
 
 .notice.error a {
 	color: #b02d3c;
-	border-bottom: 1px solid #eed08a;
+	border-bottom: 0.1rem solid #eed08a;
 }
 
 .notice.error a:hover {
 	color: #87232e;
-	border-bottom: 1px solid #b02d3c;
+	border-bottom: 0.1rem solid #b02d3c;
 }

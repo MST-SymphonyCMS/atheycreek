@@ -1,0 +1,67 @@
+/* start Symphony-esque look for editor */
+
+.editor-toolbar {
+    margin-top: 4px; /* slightly bigger margin as component is massive */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-top-right-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-topright: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    opacity: 1 !important;
+    font-size: 14px;
+    padding: 4px;
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
+.editor-toolbar:hover > * {
+    opacity: 0.8;
+}
+
+.editor-toolbar > * {
+    opacity: 0.6;
+}
+
+.editor-toolbar:before, .editor-toolbar:after {
+    display: none;
+}
+
+.editor-preview {
+    z-index: 4;
+}
+
+.CodeMirror {
+    outline: none;
+    padding: 6px 6px 2px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-width: 0px 1px 1px 1px;
+    -webkit-border-bottom-right-radius: 2px;
+    -webkit-border-bottom-left-radius: 2px;
+    -moz-border-radius-bottomright: 2px;
+    -moz-border-radius-bottomleft: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 109.09%;
+    background: #fff;
+}
+
+.invalid .CodeMirror {
+	color: #000;
+}
+
+.editor-statusbar {
+    font-size: 1em;
+}
+
+.editor-preview {
+    background: #fbfbfb;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* end Symphony-esque look for editor */

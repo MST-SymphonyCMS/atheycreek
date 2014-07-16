@@ -343,17 +343,17 @@
 			$this->addElementToHead(new XMLElement('meta', NULL, array('http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge,chrome=1')), 1);
 			$this->addElementToHead(new XMLElement('meta', NULL, array('name' => 'viewport', 'content' => 'width=device-width, initial-scale=1')), 2);
 
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.css', 'screen', 30);
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.legacy.css', 'screen', 31);
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.grids.css', 'screen', 32);
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.forms.css', 'screen', 33);
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.tables.css', 'screen', 34);
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.frames.css', 'screen', 35);
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.tabs.css', 'screen', 36);
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.drawers.css', 'screen', 37);
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.associations.css', 'screen', 38);
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.notices.css', 'screen', 39);
-			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/admin.css', 'screen', 40);
+			$this->addStylesheetToHead(APPLICATION_URL . '/assets/css/_min/symphony.min.css', 'screen', 30);
+			// $this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.legacy.min.css', 'screen', 31);
+			// $this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.grids.min.css', 'screen', 32);
+			// $this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.forms.min.css', 'screen', 33);
+			// $this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.tables.min.css', 'screen', 34);
+			// $this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.frames.min.css', 'screen', 35);
+			// $this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.tabs.min.css', 'screen', 36);
+			// $this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.drawers.min.css', 'screen', 37);
+			// $this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.associations.min.css', 'screen', 38);
+			// $this->addStylesheetToHead(APPLICATION_URL . '/assets/css/symphony.notices.min.css', 'screen', 39);
+			// $this->addStylesheetToHead(APPLICATION_URL . '/assets/css/admin.min.css', 'screen', 40);
 
 			$this->addScriptToHead(APPLICATION_URL . '/assets/js/_min/symphony.min.js', 50);
 

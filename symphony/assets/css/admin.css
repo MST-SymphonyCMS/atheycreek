@@ -27,7 +27,7 @@
 #header h1 {
 	background: #342e2e;
 	padding: 18px;
-	text-shadow: 0 0.1rem 0.2rem #151313;
+	text-shadow: -0.1rem 0.2rem 0.3rem #151313;
 	font-weight: normal;
 	line-height: 1;
 	z-index: 10;
@@ -122,7 +122,8 @@
 
 #nav > ul > li.active {
 	color: #fff;
-	background-color: #888;
+	background-color: #4d78b4;
+	background-image: linear-gradient(to bottom, #6f92c2 0%, #6f92c2 35%, #4d78b4 65%, #4d78b4 100%);
 	height: 31px;
 	text-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.2);
 	z-index: 2;

@@ -415,37 +415,7 @@
                   	</div>
                 	</xsl:for-each>
               	</div>
-              	<h3>Radio</h3>
-              	<div class="row podcast last">
-              		<div class="span8">
-										<p>Our “Day-by-Day” radio show with Pastor Brett Meador plays on the follow stations:</p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="span3">
-										<h4>Portland</h4>
-										<p>
-											<em>Monday through Friday</em><br />
-											KPDQ <a href="http://www.truetalk800.com" target="_blank">800 AM</a> at 8:30 am<br />
-											KPDQ <a href="http://www.kpdq.com" target="_blank">93.9 FM</a> at 10:00 pm<br />
-										</p>
-									</div>
-									<div class="span3">
-										<h4>Southern Oregon</h4>
-										<p>
-											<em>Monday through Friday</em><br />
-											KAPL <a href="http://www.kaplradio.org" target="_blank">1300 AM</a> at 1:30 pm<br />
-											KAPL <a href="http://www.kaplradio.org" target="_blank">1300 AM</a> at 11:30 pm<br />
-										</p>
-									</div>
-									<div class="span2">
-										<h4>Vanuatu</h4>
-										<p>
-											<em>Everyday</em><br />
-											NAMBAWAN 98 FM at 5:00 pm
-										</p>
-									</div>
-								</div>
+              	<xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='radio']/content)" disable-output-escaping="yes" />
 						</div>
 					</xsl:otherwise>
 				</xsl:choose>

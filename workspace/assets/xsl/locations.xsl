@@ -177,30 +177,29 @@
 					  	<div class="component component-members-roles">
 					  		<div class="row">
 					  			<xsl:for-each select="leaders/item">
+					  				<xsl:variable name="leader-id" select="member/item/@id" />
 					  				<xsl:variable name="name">
-											<xsl:value-of select="member/item/first-name" disable-output-escaping="yes" />
-											<xsl:text> </xsl:text>
-											<xsl:value-of select="member/item/last-name" disable-output-escaping="yes" />
+											<xsl:value-of select="/data/members-by-id/entry[@id = $leader-id]/display" />
 										</xsl:variable>
 										<xsl:variable name="email">
-											<xsl:call-template name="members-roles-email-anonymize" />
+											<xsl:value-of select="/data/members-by-id/entry[@id = $leader-id]/email" />
 										</xsl:variable>
 										<xsl:variable name="phone">
-											<xsl:call-template name="members-roles-phone-number-anonymize" />
+											<xsl:value-of select="/data/members-by-id/entry[@id = $leader-id]/phone-number" />
 										</xsl:variable>
 					  				<div class="entry clearfix odd first span4">
 						  				<xsl:call-template name="members-roles-avatar">
-													<xsl:with-param name="filename" select="member/item/photo/filename" />
+													<xsl:with-param name="filename" select="/data/members-by-id/entry[@id = $leader-id]/photo/filename" />
 													<xsl:with-param name="height" select="180" />
 													<xsl:with-param name="width" select="180" />
 												</xsl:call-template>
-						  				<h4><xsl:value-of select="role/item/role"/></h4>
+						  				<h4><xsl:value-of select="role/item"/></h4>
 						  				<h3><xsl:value-of select="$name" disable-output-escaping="yes" /></h3>
 						  				<div class="content">
 						  					<div class="contact-info">
 						  						<span class="phone"><xsl:value-of select="$phone" /></span>
 						  						<span class="email">
-						  							<a title="Email {$name}" class="mailto">
+						  							<a title="Email {/data/members-by-id/entry[@id = $leader-id]/display}" class="mailto">
 															<xsl:attribute name="href">
 																<xsl:text disable-output-escaping="yes">mailto:</xsl:text>
 																<xsl:value-of select="$email" />

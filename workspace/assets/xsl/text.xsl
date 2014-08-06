@@ -18,9 +18,6 @@
 				<div>
 					<xsl:call-template name="class-rows" />
 					<xsl:value-of select="normalize-space(content)" disable-output-escaping="yes" />
-					<xsl:call-template name="edit-entry">
-						<xsl:with-param name="component" select="$component"/>
-					</xsl:call-template>
 				</div>
 			</xsl:for-each>
 		</div>

@@ -415,7 +415,7 @@ All URL helpers can now be replaced with "url-prefix"
 		<xsl:text>tag/</xsl:text>
 		<xsl:value-of select="$node/@id" />
 		<xsl:text>/</xsl:text>
-		<xsl:value-of select="$node/tag/@handle" />
+		<xsl:value-of select="$node/@handle" />
 		<xsl:text>/</xsl:text>
 	</xsl:attribute>
 </xsl:template>

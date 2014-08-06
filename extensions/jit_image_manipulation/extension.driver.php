@@ -33,7 +33,7 @@
 
 				$rule = "
 	### IMAGE RULES
-	RewriteRule ^image\/(.+\.(jpg|gif|jpeg|png|bmp))\$ extensions/jit_image_manipulation/lib/image.php?param={$token} [B,L,NC]" . PHP_EOL . PHP_EOL;
+	RewriteRule ^image\/(.+)$ extensions/jit_image_manipulation/lib/image.php?param={$token} [B,L,NC]" . PHP_EOL . PHP_EOL;
 
 				// Remove existing the rules
 				$htaccess = self::__removeImageRules($htaccess);
@@ -47,6 +47,7 @@
 
 				// Replace the token with the real value
 				$htaccess = str_replace($token, '$1', $htaccess);
+				$htaccess = preg_replace("/(" . PHP_EOL . "(\t)?){3,}/", PHP_EOL . PHP_EOL . "\t", $htaccess);
 
 				if(file_put_contents(DOCROOT . '/.htaccess', $htaccess)) {
 					// Now add Configuration values
@@ -71,6 +72,23 @@
 		}
 
 		public function update($previousVersion = false) {
+			if(version_compare($previousVersion, '1.21', '<')) {
+				// Simplify JIT htaccess rule [#75]
+				try {
+					$htaccess = file_get_contents(DOCROOT . '/.htaccess');
+					$htaccess = str_replace(
+						'RewriteRule ^image\/(.+\.(jpg|gif|jpeg|png|bmp))$',
+						'RewriteRule ^image\/(.+)$',
+						$htaccess
+					);
+				} catch (Exception $ex) {
+					if(!file_put_contents(DOCROOT . '/.htaccess', $htaccess)) {
+						Administration::instance()->Page->pageAlert(__('An error occurred while updating %s. %s', array(__('JIT Image Manipulation'), $ex->getMessage())), Alert::ERROR);
+						return false;
+					}
+				}
+			}
+
 			if(version_compare($previousVersion, '1.17', '<')) {
 				// Add [B] flag to the .htaccess rule [#37]
 				try {
@@ -106,6 +124,7 @@
 				$htaccess = file_get_contents(DOCROOT . '/.htaccess');
 				$htaccess = self::__removeImageRules($htaccess);
 				$htaccess = preg_replace('/### IMAGE RULES/', NULL, $htaccess);
+				$htaccess = preg_replace("/(" . PHP_EOL . "(\t)?){3,}/", PHP_EOL . PHP_EOL . "\t", $htaccess);
 
 				return file_put_contents(DOCROOT . '/.htaccess', $htaccess);
 			}
@@ -366,9 +385,8 @@
 
 			// recipes duplicator
 			$group->appendChild(new XMLElement('p', __('Recipes'), array('class' => 'label')));
-			$div = new XMLElement('div', null, array('class' => 'frame'));
+			$div = new XMLElement('div', null, array('class' => 'frame jit-duplicator'));
 			$duplicator = new XMLElement('ol');
-			$duplicator->setAttribute('class', 'jit-duplicator');
 			$duplicator->setAttribute('data-add', __('Add recipe'));
 			$duplicator->setAttribute('data-remove', __('Remove recipe'));
 
@@ -418,6 +436,13 @@
 			if (Symphony::Configuration()->get('disable_upscaling', 'image') == 'yes') $input->setAttribute('checked', 'checked');
 			$label->setValue($input->generate() . ' ' . __('Disable upscaling of images beyond the original size'));
 			$group->appendChild($label);
+			
+			// checkbox to diable proxy transformation of images
+			$label = Widget::Label();
+			$input = Widget::Input('settings[image][disable_proxy_transform]', 'yes', 'checkbox');
+			if (Symphony::Configuration()->get('disable_proxy_transform', 'image') == 'yes') $input->setAttribute('checked', 'checked');
+			$label->setValue($input->generate() . ' ' . __('Prevent ISP proxy transformation'));
+			$group->appendChild($label);
 
 			// textarea for trusted sites
 			$label = Widget::Label(__('Trusted Sites'));
@@ -439,6 +464,10 @@
 			if (!isset($context['settings']['image']['disable_upscaling'])) {
 				$context['settings']['image']['disable_upscaling'] = 'no';
 			}
+			
+			if (!isset($context['settings']['image']['disable_proxy_transform'])) {
+				$context['settings']['image']['disable_proxy_transform'] = 'no';
+			}
 
 			// save trusted sites
 			$trusted_saved = $this->saveTrusted(stripslashes($_POST['jit_image_manipulation']['trusted_external_sites']));
@@ -447,17 +476,23 @@
 				$context['errors']['jit-trusted-sites'] = __('An error occurred while saving the JIT trusted sites. Make sure the trusted sites file, %s, exists and is writable.', array('<code>/workspace/jit-image-manipulation/trusted-sites</code>'));
 			};
 
-			// save recipes
+			// save recipes (if they exist)
 			if(isset($_POST['jit_image_manipulation']['recipes'])) {
 				$recipes_saved = $this->saveRecipes($_POST['jit_image_manipulation']['recipes']);
 			}
+			// nothing posted, so clear recipes
+			else {
+				$recipes_saved = $this->saveRecipes(array());
+			}
+
 			// there were errors saving the recipes
 			if ($recipes_saved == self::__ERROR_SAVING_RECIPES__) {
 				$context['errors']['jit-recipes'] = __('An error occurred while saving the JIT recipes. Make sure the recipes file, %s, exists and is writable.', array('<code>/workspace/jit-image-manipulation/recipes.php</code>'));
-			};
+			}
+
 			// there were duplicate recipes handles
 			if ($recipes_saved == self::__INVALID_RECIPES__) {
 				$context['errors']['jit-recipes'] = __('An error occurred while saving the JIT recipes.');
-			};
+			}
 		}
 	}

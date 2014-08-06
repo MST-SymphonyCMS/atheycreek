@@ -44,36 +44,8 @@
 		</xsl:call-template>
 
 		<xsl:for-each select="$entries">
-			<img class="img-respsonsive" src="{$root}/workspace/uploads/images/{image/filename}">
-<!-- 							<xsl:attribute name="style">
-					<xsl:text>height:</xsl:text>
-					<xsl:value-of select="height" />
-					<xsl:text>px; width:100%;</xsl:text>
-				</xsl:attribute> -->
-<!-- 				<xsl:attribute name="data-responsimage">
-					<xsl:value-of select="image/filename" />
-				</xsl:attribute>
-				<xsl:attribute name="data-responsimage-anchor">
-					<xsl:choose>
-						<xsl:when test="position = 'Top left'"     >1</xsl:when>
-						<xsl:when test="position = 'Top center'"   >2</xsl:when>
-						<xsl:when test="position = 'Top right'"    >3</xsl:when>
-						<xsl:when test="position = 'Middle left'"  >4</xsl:when>
-						<xsl:when test="position = 'Middle center'">5</xsl:when>
-						<xsl:when test="position = 'Middle right'" >6</xsl:when>
-						<xsl:when test="position = 'Bottom left'"  >7</xsl:when>
-						<xsl:when test="position = 'Bottom center'">8</xsl:when>
-						<xsl:when test="position = 'Bottom right'" >9</xsl:when>
-						<xsl:otherwise>5</xsl:otherwise>
-					</xsl:choose>
-				</xsl:attribute> -->
-			</img>
-			<xsl:call-template name="edit-entry">
-				<xsl:with-param name="component" select="$component"/>
-			</xsl:call-template>
-
+			<img class="img-respsonsive" src="{$root}/workspace/uploads/images/{image/filename}" />
 		</xsl:for-each>
-
 	</div>
 
 </xsl:template>

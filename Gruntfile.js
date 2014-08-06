@@ -45,40 +45,6 @@ module.exports = function (grunt) {
           'workspace/assets/js/mediaelement.js',
           'workspace/assets/js/main.js'],
         dest: 'workspace/assets/js/application.js'
-      },
-      symphony: {
-        src : [
-          'symphony/assets/js/jquery.js',
-          'symphony/assets/js/symphony.js',
-          'symphony/assets/js/symphony.collapsible.js',
-          'symphony/assets/js/symphony.orderable.js',
-          'symphony/assets/js/symphony.selectable.js',
-          'symphony/assets/js/symphony.duplicator.js',
-          'symphony/assets/js/symphony.tags.js',
-          'symphony/assets/js/symphony.suggestions.js',
-          'symphony/assets/js/symphony.pickable.js',
-          'symphony/assets/js/symphony.timeago.js',
-          'symphony/assets/js/symphony.notify.js',
-          'symphony/assets/js/symphony.drawer.js',
-          'symphony/assets/js/admin.js'
-        ],
-        dest: 'symphony/assets/js/_min/symphony.js'
-      },
-      css: {
-        src : [
-          'symphony/assets/css/symphony.css',
-          'symphony/assets/css/symphony.legacy.css',
-          'symphony/assets/css/symphony.grids.css',
-          'symphony/assets/css/symphony.forms.css',
-          'symphony/assets/css/symphony.tables.css',
-          'symphony/assets/css/symphony.frames.css',
-          'symphony/assets/css/symphony.tabs.css',
-          'symphony/assets/css/symphony.drawers.css',
-          'symphony/assets/css/symphony.associations.css',
-          'symphony/assets/css/symphony.notices.css',
-          'symphony/assets/css/admin.css'
-        ],
-        dest: 'symphony/assets/css/_min/symphony.min.css'
       }
     },
 
@@ -92,11 +58,6 @@ module.exports = function (grunt) {
       main: {
         files: {
           'workspace/assets/js/application.min.js': ['workspace/assets/js/application.js']
-        }
-      },
-      symphony: {
-        files: {
-          'symphony/assets/js/_min/symphony.min.js': ['symphony/assets/js/_min/symphony.js']
         }
       }
     },

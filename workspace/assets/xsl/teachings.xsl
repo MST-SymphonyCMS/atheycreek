@@ -137,21 +137,6 @@
 					<xsl:otherwise>
 						<xsl:for-each select="/data/featured-teachings/entry">
 							<div class="latest">
-								<div class="row">
-									<div class="span8 offset2">
-										<div class="search visible-desktop">
-											<form method="get">
-												<xsl:call-template name="form-search-action"/>
-												<a>
-													<xsl:call-template name="url-search-home" />
-													<span class="icon">s</span>
-												</a>
-												<input type="hidden" name="sections" value="teachings,teachings-tags,teachings-series" />
-												<input class="keywords" name="keywords" onclick="this.select()" placeholder="Search" autocomplete="off" />
-											</form>
-										</div>
-									</div>
-								</div>
 								<div class="span8 teaching-main">
 									<h3>Latest Teaching</h3>
 									<ul class="nav nav-tabs" id="teachingTab">
@@ -369,7 +354,7 @@
 							</div>
 							<h3>Recent Teachings</h3>
 								<div class="row">
-								  <xsl:for-each select="/data/teachings-4-latest/entry">
+								  <xsl:for-each select="/data/teachings-latest/entry[position() &lt; 5]">
                     <div>
                     	<xsl:attribute name="class">
                     		<xsl:text>span4 recent number</xsl:text>
@@ -629,7 +614,7 @@
 			<div class="span12">
 				<h3>Recent Teachings</h3>
 	        <div class="row">
-	          <xsl:for-each select="/data/teachings-6-latest/entry[position() &lt; 4]">
+	          <xsl:for-each select="/data/teachings-latest/entry[position() &lt; 4]">
 	            <div>
 	            	<xsl:attribute name="class">
 	            		<xsl:text>span4 recent number</xsl:text>
@@ -677,7 +662,7 @@
 	          </xsl:for-each>
 	        </div>
 	        <div class="row num2">
-	          <xsl:for-each select="/data/teachings-6-latest/entry[position() &gt; 3]">
+	          <xsl:for-each select="/data/teachings-latest/entry[position() &gt; 3]">
 	            <div>
 	            	<xsl:attribute name="class">
 	            		<xsl:text>span4 recent number</xsl:text>
@@ -1028,9 +1013,7 @@
 							</xsl:if>
 							<span class="teacher">
 								<em>by </em>
-								<xsl:value-of select="speaker/item/first-name" disable-output-escaping="yes" />
-								<xsl:text disable-output-escaping="yes"> </xsl:text>
-								<xsl:value-of select="speaker/item/last-name" disable-output-escaping="yes" />
+								<xsl:value-of select="speaker/item" disable-output-escaping="yes" />
 							</span>
 							<span class="verse">
 								<span class="icon">u</span>
@@ -1113,7 +1096,7 @@
 		<xsl:for-each select="tags/item">
 			<a>
 				<xsl:call-template name="url-teachings-tags" />
-				<xsl:value-of select="tag" disable-output-escaping="yes" />
+				<xsl:value-of select="." disable-output-escaping="yes" />
 			</a>
 			<xsl:if test="position() &lt; last()">,</xsl:if>
 			<xsl:text> </xsl:text>

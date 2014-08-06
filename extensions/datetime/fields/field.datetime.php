@@ -157,7 +157,7 @@
 			}
 
 			// Generate field
-			return '<input type="text" name="fields[' . $element . '][' . $type . '][]" value="' . $parsed['date'] . '" data-timestamp="' . $parsed['timestamp'] . '" class="' . $type . ' ' . $class . '" /><em class="' . $type . ' label"></em>';
+			return '<input type="text" name="fields[' . $element . '][' . $type . '][]" value="' . $parsed['date'] . '" data-timestamp="' . $parsed['timestamp'] . '" class="' . $type . ' ' . $class . '" autocomplete="off" /><em class="' . $type . ' label"></em>';
 		}
 
 		private static function __createCalendar() {
@@ -517,7 +517,7 @@
 			// Append Duplicator
 			$duplicator->appendChild($list);
 			if(!is_null($flagWithError)) {
-				$wrapper->appendChild(Widget::wrapFormElementWithError($duplicator, $flagWithError));
+				$wrapper->appendChild(Widget::Error($duplicator, $flagWithError));
 			}
 			else {
 				$wrapper->appendChild($duplicator);
@@ -527,7 +527,7 @@
 
 		public function checkPostFieldData($data, &$message, $entry_id = null) {
 			if($this->get('required') === 'yes' && empty($data['start'][0])) {
-				$message = __("'%s' is a required field.", array($this->get('label')));
+				$message = __("‘%s’ is a required field.", array($this->get('label')));
 				return self::__MISSING_FIELDS__;
 			}
 
@@ -681,12 +681,12 @@
 				$separator = ' &#8211; ';
 
 				// Date range
-				if($data['end'][$i] != $data['start'][$i]) {
+				if($data['end'][$i] !== $data['start'][$i]) {
 					$end = new DateTime($data['end'][$i]);
 
 					// Different start and end days
-					if($start->format('D-M-Y') != $end->format('D-M-Y')) {
-						$value[] = LANG::localizeDate($start->format($scheme) . $separator . $end->format($scheme));
+					if($start->format('d-m-Y') !== $end->format('d-m-Y')) {
+						$value[] = $this->getDatetime($start, $scheme) . $separator . $this->getDatetime($end, $scheme);
 					}
 
 					// Same day
@@ -701,20 +701,20 @@
 							}
 
 							$value[] = LANG::localizeDate(
-								$start->format($scheme) . $separator . $end->format(Symphony::Configuration()->get('time_format', 'region'))
+								$this->getDatetime($start, $scheme) . $separator . $this->getDatetime($end, Symphony::Configuration()->get('time_format', 'region'))
 							);
 						}
 
 						// Hide time
 						else {
-							$value[] = LANG::localizeDate($start->format($scheme));
+							$value[] = $this->getDatetime($start, $scheme);
 						}
 					}
 				}
 
 				// Single date
 				else {
-					$value[] = LANG::localizeDate($start->format($scheme));
+					$value[] = $this->getDatetime($start, $scheme);
 				}
 			}
 
@@ -728,6 +728,10 @@
 			}
 		}
 
+		public function getDatetime($date, $scheme) {
+			return '<time datetime="' . $date->format('Y-m-d\TH:i:s\Z') . '">' . LANG::localizeDate($date->format($scheme)) . '</time>';
+		}
+
 		public function getParameterPoolValue(array $data, $entry_id=NULL) {
 			return $this->prepareExportValue($data, ExportableField::LIST_OF + ExportableField::VALUE, $entry_id);
 		}
@@ -736,7 +740,7 @@
 		Filtering:
 	-------------------------------------------------------------------------*/
 
-		function buildDSRetrivalSQL($data, &$joins, &$where, $andOperation = false) {
+		function buildDSRetrievalSQL($data, &$joins, &$where, $andOperation = false) {
 
 			// Parse dates
 			$dates = array();
@@ -762,18 +766,39 @@
 		Sorting:
 	-------------------------------------------------------------------------*/
 
-		function buildSortingSQL(&$joins, &$where, &$sort, $order='ASC') {
-			$field_id = $this->get('id');
-
+		function buildSortingSQL(&$joins, &$where, &$sort, $order = 'ASC'){
+			$field_id = $this->get( 'id' );
+			$order    = strtolower( $order );
+			
 			// If we already have a JOIN to the entry table, don't create another one,
 			// this prevents issues where an entry with multiple dates is returned multiple
 			// times in the SQL, but is actually the same entry.
-			if(!preg_match('/`t' . $field_id . '`/', $joins)) {
-				$joins .= "LEFT OUTER JOIN `tbl_entries_data_" . $field_id . "` AS `ed` ON (`e`.`id` = `ed`.`entry_id`) ";
-				$sort = 'ORDER BY ' . (in_array(strtolower($order), array('random', 'rand')) ? 'RAND()' : "`ed`.`start` $order");
+			if( !preg_match( '/`t'.$field_id.'`/', $joins ) ){
+				$joins .= "LEFT OUTER JOIN `tbl_entries_data_".$field_id."` AS `ed` ON (`e`.`id` = `ed`.`entry_id`) ";
+				$sort = 'ORDER BY ';
+				
+				if( in_array( $order, array('random', 'rand') ) ){
+				    $sort .= 'RAND()';
+				}
+				elseif( $order === 'asc' ){
+				    $sort .= "`ed`.`start`, `ed`.`end` $order";
+				}
+				else{
+				    $sort .= "`ed`.`start` $order";
+				}
 			}
-			else {
-				$sort = 'ORDER BY ' . (in_array(strtolower($order), array('random', 'rand')) ? 'RAND()' : "`t" . $field_id . "`.`start` $order");
+			else{
+				$sort = 'ORDER BY ';
+				
+				if( in_array( $order, array('random', 'rand') ) ){
+				    $sort .= 'RAND()';
+				}
+				elseif( $order === 'asc' ){
+				    $sort .= "`t$field_id`.`start`, `t$field_id`.`end` $order";
+				}
+				else{
+				    $sort .= "`t$field_id`.`start` $order";
+				}
 			}
 		}
 

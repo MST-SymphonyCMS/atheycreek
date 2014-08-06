@@ -8,14 +8,25 @@
     <div class="navbar-inner">
       <div class="container">
         <div>
-          <form class="navbar-search pull-left" action="get">
-            <xsl:call-template name="form-search-action" />
-            <a>
-              <xsl:call-template name="url-search-home" />
-              <span class="icon">s</span>
-            </a>
-            <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
-          </form>
+          <span class="icon search-icon">s</span>
+          <div id='cse'></div>
+          <script src='//www.google.com/jsapi' type='text/javascript'></script>
+          <script type='text/javascript'>
+          google.load('search', '1', {language: 'en', style: google.loader.themes.MINIMALIST});
+          google.setOnLoadCallback(function() {
+            var customSearchOptions = {};
+            var orderByOptions = {};
+            orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
+            customSearchOptions['enableOrderBy'] = true;
+            customSearchOptions['orderByOptions'] = orderByOptions;
+            customSearchOptions['overlayResults'] = true;
+            var customSearchControl =   new google.search.CustomSearchControl('012556383070130579930:brqn3chfjxy', customSearchOptions);
+            customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+            var options = new google.search.DrawOptions();
+            options.setAutoComplete(true);
+            customSearchControl.draw('cse', options);
+          }, true);
+          </script>
           <ul class="nav pull-right">
             <xsl:if test="data/status-all-entries/entry[name = 'ustream-status']/content = 'live'">
               <li>
@@ -102,14 +113,6 @@
 
   <div class="navbar mobile navbar-inverse hidden-desktop">
     <div class="navbar-inner">
-      <form class="navbar-search pull-left" action="get">
-        <xsl:call-template name="form-search-action" />
-        <a>
-          <xsl:call-template name="url-search-home" />
-          <span class="icon">s</span>
-        </a>
-        <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
-      </form>
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -276,7 +279,7 @@
       <xsl:if test="$ds-tags-filtered.system-id = @id or $active-parent = @id or /data/tags-all-entries/entry[ @id = $active-parent ]/parent/item/@id = @id">
         <xsl:text> active</xsl:text>
       </xsl:if>
-      <xsl:if test="/data/tags-all-entries/entry[@id]/parent[@items != 0]/item/@id = @id">
+      <xsl:if test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id">
         <xsl:text> sub</xsl:text>
       </xsl:if>
       <xsl:choose>
@@ -315,7 +318,7 @@
       <xsl:call-template name="url-tags" />
       <xsl:value-of select="tag" disable-output-escaping="yes" />
     </a>
-    <xsl:if test="/data/tags-all-entries/entry[@id]/parent[@items != 0]/item/@id = @id">
+    <xsl:if test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id">
       <ul class="dropdown-menu">
         <xsl:for-each select="/data/tags-all-entries/entry[parent/item/@id = $realID]">
           <li>

@@ -68,7 +68,7 @@ class datasourceteachings_entry_by_tag_filtered extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-06T03:00:17+00:00'
+            'release-date' => '2014-08-11T17:33:02+00:00'
         );
     }
 

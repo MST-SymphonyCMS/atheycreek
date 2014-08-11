@@ -2,18 +2,18 @@
 
 	require_once(TOOLKIT . '/class.datasource.php');
 
-	Class datasourcexml_apibibliacom extends DynamicXMLDatasource {
+	Class datasourcexml_api_biblia_com extends DynamicXMLDatasource {
 
-		public $dsParamROOTELEMENT = 'xml-apibibliacom';
+		public $dsParamROOTELEMENT = 'xml-api-biblia-com';
 		public $dsParamURL = 'http://api.biblia.com/v1/bible/content/kjv.xml?key=75a4b16582635a69f1194f670abfa9f0&passage={$ds-verses-entry-by-tag:encoded}{$ds-verses-entry-by-id:encoded}{$ds-verses-entry-by-id-preview:encoded}';
 		public $dsParamXPATH = '/response/text';
 		public $dsParamCACHE = '999999';
 		public $dsParamTIMEOUT = '6';
-		
 
-		
 
-		
+
+
+
 
 		public function __construct($env=NULL, $process_params=true) {
 			parent::__construct($env, $process_params);

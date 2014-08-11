@@ -253,9 +253,7 @@
 
 						if ($type == 'author') {
 							if ($field->get('allow_multiple_selection') == 'no') {
-								if(is_array($value)){
-								        $value = array(implode('', $value));
-								}
+								$value = array(implode('', $value));
 							}
 						}
 
@@ -304,7 +302,7 @@
 					$data = $entry->getData($options['unique-field']);
 					$where = $joins = $group = null;
 
-					$field->buildDSRetrivalSQL($data, $joins, $where);
+					$field->buildDSRetrievalSQL($data, $joins, $where);
 
 					$group = $field->requiresSQLGrouping();
 					$entries = EntryManager::fetch(null, $options['section'], 1, null, $where, $joins, $group, false, null, false);

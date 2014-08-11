@@ -88,8 +88,5 @@
   box-shadow: none;
   border-bottom: 0.1rem solid #e0e0e0; }
 
-#nav > ul > li.active {
-  background: #888888; }
-
 #context {
   background-color: #fafafa; }

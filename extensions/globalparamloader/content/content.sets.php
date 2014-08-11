@@ -17,7 +17,7 @@
 		public function __construct(){
 			parent::__construct();
 
-			$this->_uri = URL . '/symphony/extension/globalparamloader';
+			$this->_uri = SYMPHONY_URL . '/extension/globalparamloader';
 			$this->_driver = Symphony::ExtensionManager()->create('globalparamloader');
 		}
 
@@ -72,9 +72,12 @@
 				$this->_errors['params'] = __('Parameters must not be empty.');
 			}
 
-			foreach ($this->_params as $sortorder => $param) {
+			foreach ($this->_params as $sortorder => &$param) {
 				if (empty($param['param'])) {
 					$this->_errors["{$sortorder}:param"] = __('Parameter must not be empty.');
+				}
+				else {
+					$param['sortorder'] = $sortorder;
 				}
 			}
 
@@ -127,6 +130,8 @@
 		}
 
 		public function __viewEdit() {
+			Administration::instance()->Page->addScriptToHead(URL . '/extensions/globalparamloader/assets/globalparamloader.content.js', 100, false);
+
 		// Status: -----------------------------------------------------------
 
 			if (!$this->_valid) $this->pageAlert(
@@ -147,9 +152,9 @@
 					__(
 						$action, array(
 							__('Parameter Set'),
-							DateTimeObj::get(__SYM_TIME_FORMAT__),
-							URL . '/symphony/extension/globalparamloader/sets/new/',
-							URL . '/symphony/extension/globalparamloader/sets/',
+							Widget::Time()->generate(),
+							SYMPHONY_URL . '/extension/globalparamloader/sets/new/',
+							SYMPHONY_URL . '/extension/globalparamloader/sets/',
 							__('Parameter Sets')
 						)
 					),
@@ -220,11 +225,22 @@
 			$fieldset->appendChild(new XMLElement('legend', __('Parameters')));
 
 			$div = new XMLElement('div');
-			
+			$div->setAttribute('class', 'frame gpl-duplicator');
+
 			$ol = new XMLElement('ol');
-			$ol->setAttribute('class', 'filters-duplicator');
 			$ol->setAttribute('data-add', __('Add parameter'));
 			$ol->setAttribute('data-remove', __('Remove parameter'));
+
+			// Add parameter set:
+			$wrapper = new XMLElement('li');
+			$wrapper->setAttribute('class', 'template');
+
+			$this->displayParameter($wrapper, '-1', array(
+				'name' => __('Parameter definition'),
+				'type' => 'definition'
+			));
+
+			$ol->appendChild($wrapper);
 
 			// Add existing parameters:
 			if(isset($this->_params)) {
@@ -236,17 +252,6 @@
 					$ol->appendChild($wrapper);
 				}
 			}
-
-			// Add parameter set:
-			$wrapper = new XMLElement('li');
-			$wrapper->setAttribute('class', 'template');
-			$wrapper->setAttribute('data-type', 'definiton');
-			
-			$this->displayParameter($wrapper, '-1', array(
-				'type' => __('Parameter definition')
-			));
-
-			$ol->appendChild($wrapper);
 
 			$div->appendChild($ol);
 			$fieldset->appendChild($div);
@@ -296,7 +301,8 @@
 
 		protected function displayParameter(&$wrapper, $sortorder, $param) {
 			$header = new XMLElement('header');
-			$header->appendChild(new XMLElement('h4', ucwords($param['type'])));
+			$header->setAttribute('data-name', $param['type']);
+			$header->appendChild(new XMLElement('h4', __('Parameter')));
 			$wrapper->appendChild($header);
 			$wrapper->appendChild(Widget::Input("params[{$sortorder}][type]", $param['type'], 'hidden'));
 
@@ -307,9 +313,10 @@
 		// Parameter name ------------------------------------------------------------
 
 			$div = new XMLElement('div');
-			$div->setAttribute('class', 'group');
+			$div->setAttribute('class', 'two columns');
 
-			$label = Widget::Label(__('Parameter name'));
+			$label = Widget::Label(__('Name'));
+			$label->setAttribute('class', 'column');
 			$label->appendChild(Widget::Input(
 				"params[{$sortorder}][param]",
 				General::sanitize($param['param'])
@@ -323,7 +330,8 @@
 
 		// Parameter Value --------------------------------------------------------
 
-			$label = Widget::Label(__('Parameter value'));
+			$label = Widget::Label(__('Value'));
+			$label->setAttribute('class', 'column');
 			$label->appendChild(Widget::Input(
 				"params[{$sortorder}][value]",
 				General::sanitize($param['value'])
@@ -344,7 +352,7 @@
 			foreach ($pages as $page) {
 				$selected = $this->_driver->isPageSelected($page['id'], $set_id);
 				$options[] = array(
-					$page['id'], $selected, '/' . PageManager::resolvePagePath($page['id'])
+					$page['id'], $selected, PageManager::resolvePageTitle($page['id'])
 				);
 			}
 
@@ -439,10 +447,13 @@
 			}
 
 			$table = Widget::Table(
-				Widget::TableHead($tableHead), null,
-				Widget::TableBody($tableBody)
+				Widget::TableHead($tableHead),
+				null,
+				Widget::TableBody($tableBody),
+				'selectable',
+				null,
+				array('role' => 'directory', 'aria-labelledby' => 'symphony-subheading', 'data-interactive' => 'data-interactive')
 			);
-			$table->setAttribute('class', 'selectable');
 
 			$this->Form->appendChild($table);
 			
@@ -459,5 +470,3 @@
 			$this->Form->appendChild($actions);
 		}
 	}
-
-?>

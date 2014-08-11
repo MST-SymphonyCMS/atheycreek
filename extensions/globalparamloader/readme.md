@@ -5,7 +5,7 @@ Allows you to add sets of parameters to Symphony's parameter pool while excludin
 Warning: safe evaluation has not been added yet. Do not enable this extension if you are not absolutely sure that your Symphony installation is secure.
 
 ## Installation
-1. Upload the 'globalparamloader' folder in this archive to your Symphony 'extensions' folder.
+1. Upload the `/globalparamloader` folder to your Symphony `/extensions` folder.
 2. Enable it by selecting the "Global Parameter Loader", choose Enable from the with-selected menu, then click Apply.
 
 ## Usage
@@ -13,7 +13,7 @@ Warning: safe evaluation has not been added yet. Do not enable this extension if
 2. Click the create new button to create your first Parameter Set. Give the Parameter Set a name.
 3. Click Add item to add a parameter. At least one parameter must be defined for each set, and each parameter must have a name.
 4. Choose any pages you wish to exclude from this Parameter Set.
-5. Click the Create Set button. Now, go see your newly added parameters at your pages in Parameter debug mode (add ?debug=params to the page URL).
+5. Click the Create Set button. Now, go see your newly added parameters at your pages in Parameter debug mode (add `?debug=params` to the page URL).
 6. (optional) If you want your parameters to be evaluated as PHP code you need to enable it in the global preferences section.
 
 ## Examples

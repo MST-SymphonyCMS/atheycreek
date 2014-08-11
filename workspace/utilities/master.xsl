@@ -74,7 +74,7 @@
 
 					<xsl:call-template name="events-home">
 						<xsl:with-param name="component" select="'events'" />
-						<xsl:with-param name="entries" select="/data/events-3-latest/entry" />
+						<xsl:with-param name="entries" select="/data/events-latest/entry" />
 					</xsl:call-template>
 
 					<xsl:call-template name="teachings-home"/>

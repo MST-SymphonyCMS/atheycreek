@@ -1,91 +1,108 @@
 <?php
 
-	require_once(TOOLKIT . '/class.datasource.php');
+require_once TOOLKIT . '/class.datasource.php';
 
-	Class datasourceteachings_series_entries_filtered extends SectionDatasource {
-
-		public $dsParamROOTELEMENT = 'teachings-series-entries-filtered';
+class datasourceteachings_series_entries_filtered extends SectionDatasource
+{
+    public $dsParamROOTELEMENT = 'teachings-series-entries-filtered';
 		public $dsParamConditionalizer = '(if any of ((if value of ({$pt1}) is ()), (if value of ({$pt1}) is (teachings))) is (yes))';
-		public $dsParamORDER = 'asc';
-		public $dsParamPAGINATERESULTS = 'yes';
-		public $dsParamLIMIT = '4';
-		public $dsParamSTARTPAGE = '1';
-		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamSORT = 'order';
-		public $dsParamHTMLENCODE = 'yes';
-		public $dsParamASSOCIATEDENTRYCOUNTS = 'yes';
-		
+    public $dsParamORDER = 'asc';
+    public $dsParamPAGINATERESULTS = 'yes';
+    public $dsParamLIMIT = '4';
+    public $dsParamSTARTPAGE = '1';
+    public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamSORT = 'order';
+    public $dsParamHTMLENCODE = 'yes';
+    public $dsParamASSOCIATEDENTRYCOUNTS = 'yes';
 
-		public $dsParamFILTERS = array(
-				'268' => 'no',
-				'233' => 'no',
-		);
-		
+    public $dsParamFILTERS = array(
+        '268' => 'no',
+        '233' => 'no',
+    );
 
-		public $dsParamINCLUDEDELEMENTS = array(
-				'title: unformatted',
-				'poster: image',
-				'teachings: slug',
-				'teachings: filename',
-				'teachings: current-id',
-				'teachings: book',
-				'teachings: chapter',
-				'teachings: speaker: first-name',
-				'teachings: speaker: last-name',
-				'teachings: date',
-				'teachings: video: title',
-				'teachings: video: description',
-				'teachings: video: date',
-				'teachings: video: url',
-				'teachings: video: player',
-				'teachings: day'
-		);
-		
+    public $dsParamINCLUDEDELEMENTS = array(
+        'title: unformatted',
+        'poster',
+        'teachings'
+    );
+    
+    public $dsParamINCLUDEDASSOCIATIONS = array(
+        'poster' => array(
+            'section_id' => '8',
+            'field_id' => '59',
+            'elements' => array(
+                'image'
+            )
+        ),
+        'teachings' => array(
+            'section_id' => '13',
+            'field_id' => '316',
+            'elements' => array(
+                'slug',
+                'filename',
+                'current-id',
+                'book',
+                'chapter',
+                'speaker',
+                'date',
+                'video',
+                'day'
+            )
+        )
+    );
 
-		public function __construct($env=NULL, $process_params=true) {
-			parent::__construct($env, $process_params);
-			$this->_dependencies = array();
-		}
+    public function __construct($env = null, $process_params = true)
+    {
+        parent::__construct($env, $process_params);
+        $this->_dependencies = array();
+    }
 
-		public function about() {
-			return array(
-				'name' => 'Teachings: Series: Entries (filtered)',
-				'author' => array(
-					'name' => 'Jonathan Simcoe',
-					'website' => 'http://atheycreek',
-					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.2',
-				'release-date' => '2013-08-01T20:01:31+00:00'
-			);
-		}
+    public function about()
+    {
+        return array(
+            'name' => 'Teachings: Series: Entries (filtered)',
+            'author' => array(
+                'name' => 'Jonathan Simcoe',
+                'website' => 'http://atheycreek.dev',
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.0beta2',
+            'release-date' => '2014-08-11T17:46:26+00:00'
+        );
+    }
 
-		public function getSource() {
-			return '27';
-		}
+    public function getSource()
+    {
+        return '27';
+    }
 
-		public function allowEditorToParse() {
-			return true;
-		}
+    public function allowEditorToParse()
+    {
+        return true;
+    }
 
-		public function execute(array &$param_pool = null) {
-			$result = new XMLElement($this->dsParamROOTELEMENT);
+    public function execute(array &$param_pool = null)
+    {
+        $result = new XMLElement($this->dsParamROOTELEMENT);
 
-			try{
-				$result = parent::execute($param_pool);
-			}
-			catch(FrontendPageNotFoundException $e){
-				// Work around. This ensures the 404 page is displayed and
-				// is not picked up by the default catch() statement below
-				FrontendPageNotFoundExceptionHandler::render($e);
-			}
-			catch(Exception $e){
-				$result->appendChild(new XMLElement('error', $e->getMessage()));
-				return $result;
-			}
+        try{
+            $result = parent::execute($param_pool);
+        } catch (FrontendPageNotFoundException $e) {
+            // Work around. This ensures the 404 page is displayed and
+            // is not picked up by the default catch() statement below
+            FrontendPageNotFoundExceptionHandler::render($e);
+        } catch (Exception $e) {
+            $result->appendChild(new XMLElement('error', $e->getMessage() . ' on ' . $e->getLine() . ' of file ' . $e->getFile()));
+            return $result;
+        }
 
-			if($this->_force_empty_result) $result = $this->emptyXMLSet();
+        if ($this->_force_empty_result) {
+            $result = $this->emptyXMLSet();
+        }
 
-			return $result;
-		}
+        if ($this->_negate_result) {
+            $result = $this->negateXMLSet();
+        }
 
-	}
+        return $result;
+    }
+}

@@ -33,8 +33,6 @@
               <a href="{$root}"><xsl:value-of select="$website-name" /></a>
               <xsl:text>.&#160;All&#160;rights&#160;reserved.&#160;|&#160;&#160;</xsl:text>
               <span class="dev">
-               <a href="{$root}/api/">API</a>
-               <span class="divider">|</span>
                <a href="https://github.com/atheycreek/atheycreek/issues/" target="_blank">Website Support</a>
                <span class="divider">| Some photos courtesy of <a href="http://fiftyfootshadows.net" target="_blank">John Carey</a></span>
                <br />

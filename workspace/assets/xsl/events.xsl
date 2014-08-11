@@ -66,7 +66,7 @@
 	<xsl:param name="component" />
 	<xsl:param name="entries" />
 
-	<xsl:if test="count(/data/events-3-latest/entry) &gt;= 1">
+	<xsl:if test="count(/data/events-latest/entry) &gt;= 1">
 		<div class="events">
 			<div class="container">
 				<div class="row">
@@ -326,9 +326,6 @@
 																				</span>
 									</xsl:otherwise>
 								</xsl:choose>
-								<xsl:call-template name="edit-entry">
-									<xsl:with-param name="component" select="$component"/>
-								</xsl:call-template>
 							</h2> <!-- .header -->
 							<div class="date clearfix">
 								<xsl:for-each select="date/date">
@@ -614,9 +611,6 @@
 						<div class="events-header">
 							<h2 class="header">
 								<xsl:value-of select="name" disable-output-escaping="yes" />
-								<xsl:call-template name="edit-entry">
-									<xsl:with-param name="component" select="$component"/>
-								</xsl:call-template>
 								<span>
 									<xsl:attribute name="class">
 										<xsl:choose>
@@ -709,11 +703,12 @@
 							<xsl:with-param name="position" select="'column-right'" />
 							<xsl:with-param name="entries" select="locations/item" />
 						</xsl:call-template>
-						<xsl:call-template name="component-members-roles">
-							<xsl:with-param name="component" select="'members-roles'" />
-							<xsl:with-param name="position" select="'column-right'" />
-							<xsl:with-param name="entries" select="member-role/item" />
-						</xsl:call-template>
+						<xsl:if test="string-length(/data/members-by-id/entry)">
+							<xsl:call-template name="members-roles-events-column-right">
+								<xsl:with-param name="component" select="'members-roles'" />
+								<xsl:with-param name="entries" select="/data/members-by-id/entry" />
+							</xsl:call-template>
+						</xsl:if>
 						<xsl:call-template name="component-downloads">
 							<xsl:with-param name="component" select="'downloads'" />
 							<xsl:with-param name="position" select="'column-right'" />
@@ -839,9 +834,6 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</a>
-		<xsl:call-template name="edit-entry">
-			<xsl:with-param name="component" select="$component"/>
-		</xsl:call-template>
 	</li>
 
 </xsl:template>

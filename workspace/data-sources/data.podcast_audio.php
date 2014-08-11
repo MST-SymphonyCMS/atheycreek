@@ -1,86 +1,100 @@
 <?php
 
-	require_once(TOOLKIT . '/class.datasource.php');
+require_once TOOLKIT . '/class.datasource.php';
 
-	Class datasourcepodcast_audio extends SectionDatasource {
+class datasourcepodcast_audio extends SectionDatasource
+{
+    public $dsParamROOTELEMENT = 'podcast-audio';
+    public $dsParamORDER = 'desc';
+    public $dsParamPAGINATERESULTS = 'no';
+    public $dsParamLIMIT = '1000';
+    public $dsParamSTARTPAGE = '1';
+    public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamSORT = 'date';
+    public $dsParamHTMLENCODE = 'yes';
+    public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
-		public $dsParamROOTELEMENT = 'podcast-audio';
-		public $dsParamORDER = 'desc';
-		public $dsParamPAGINATERESULTS = 'no';
-		public $dsParamLIMIT = '1000';
-		public $dsParamSTARTPAGE = '1';
-		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamSORT = 'date';
-		public $dsParamHTMLENCODE = 'yes';
-		public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
-		public $dsParamCACHE = '0';
-		
+    public $dsParamFILTERS = array(
+        '216' => 'no',
+        '280' => 'no',
+    );
 
-		public $dsParamFILTERS = array(
-				'216' => 'no',
-				'280' => 'no',
-		);
-		
+    public $dsParamINCLUDEDELEMENTS = array(
+        'title: unformatted',
+        'filename',
+        'book',
+        'chapter',
+        'description: unformatted',
+        'speaker',
+        'date',
+        'audio-duration',
+        'audio-filesize',
+        'hide'
+    );
+    
+    public $dsParamINCLUDEDASSOCIATIONS = array(
+        'speaker' => array(
+            'section_id' => '1',
+            'field_id' => '318',
+            'elements' => array(
+                'first-name',
+                'last-name'
+            )
+        )
+    );
 
-		public $dsParamINCLUDEDELEMENTS = array(
-				'title: unformatted',
-				'filename',
-				'book',
-				'chapter',
-				'description: unformatted',
-				'speaker: first-name',
-				'speaker: last-name',
-				'date',
-				'audio-duration',
-				'audio-filesize',
-				'hide'
-		);
-		
+    public function __construct($env = null, $process_params = true)
+    {
+        parent::__construct($env, $process_params);
+        $this->_dependencies = array();
+    }
 
-		public function __construct($env=NULL, $process_params=true) {
-			parent::__construct($env, $process_params);
-			$this->_dependencies = array();
-		}
+    public function about()
+    {
+        return array(
+            'name' => 'Podcast: Audio',
+            'author' => array(
+                'name' => 'Jonathan Simcoe',
+                'website' => 'http://atheycreek.dev',
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.0beta2',
+            'release-date' => '2014-08-05T20:46:41+00:00'
+        );
+    }
 
-		public function about() {
-			return array(
-				'name' => 'Podcast: Audio',
-				'author' => array(
-					'name' => 'Jonathan Simcoe',
-					'website' => 'http://atheycreek',
-					'email' => 'jdsimcoe@gmail.com'),
-				'version' => 'Symphony 2.3.2',
-				'release-date' => '2013-06-28T22:39:34+00:00'
-			);
-		}
+    public function getSource()
+    {
+        return '13';
+    }
 
-		public function getSource() {
-			return '13';
-		}
+    public function allowEditorToParse()
+    {
+        return true;
+    }
 
-		public function allowEditorToParse() {
-			return true;
-		}
+    public function execute(array &$param_pool = null)
+    {
+        $result = new XMLElement($this->dsParamROOTELEMENT);
 
-		public function execute(array &$param_pool = null) {
-			$result = new XMLElement($this->dsParamROOTELEMENT);
+        try{
+            $result = parent::execute($param_pool);
+        } catch (FrontendPageNotFoundException $e) {
+            // Work around. This ensures the 404 page is displayed and
+            // is not picked up by the default catch() statement below
+            FrontendPageNotFoundExceptionHandler::render($e);
+        } catch (Exception $e) {
+            $result->appendChild(new XMLElement('error', $e->getMessage() . ' on ' . $e->getLine() . ' of file ' . $e->getFile()));
+            return $result;
+        }
 
-			try{
-				$result = parent::execute($param_pool);
-			}
-			catch(FrontendPageNotFoundException $e){
-				// Work around. This ensures the 404 page is displayed and
-				// is not picked up by the default catch() statement below
-				FrontendPageNotFoundExceptionHandler::render($e);
-			}
-			catch(Exception $e){
-				$result->appendChild(new XMLElement('error', $e->getMessage()));
-				return $result;
-			}
+        if ($this->_force_empty_result) {
+            $result = $this->emptyXMLSet();
+        }
 
-			if($this->_force_empty_result) $result = $this->emptyXMLSet();
+        if ($this->_negate_result) {
+            $result = $this->negateXMLSet();
+        }
 
-			return $result;
-		}
-
-	}
+        return $result;
+    }
+}

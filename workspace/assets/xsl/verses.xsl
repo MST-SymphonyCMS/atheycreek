@@ -21,16 +21,13 @@
 							<blockquote>
 								<span>
 									<xsl:text>&#8220;</xsl:text>
-									<xsl:value-of select="//xml-apibibliacom/text" />
+									<xsl:value-of select="//xml-api-biblia-com/text" />
 									<xsl:text>&#8221;</xsl:text>
 								</span>
-								<cite>
-									<xsl:value-of select="passage" />
-									<xsl:call-template name="edit-entry">
-										<xsl:with-param name="component" select="$component"/>
-									</xsl:call-template>
-								</cite>
 							</blockquote>
+							<cite>
+								<xsl:value-of select="passage" />
+							</cite>
 						</div>
 					</div>
 				</xsl:for-each>

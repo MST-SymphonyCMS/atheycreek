@@ -151,7 +151,7 @@
 					// Gather statistics:
 					$failed = array();
 
-					foreach ($entries as $index => $current) if (!is_null($current['errors'])) {
+					foreach ($entries as $index => $current) if (!empty($current['errors'])) {
 						$current['position'] = $index + 1;
 						$failed[] = $current;
 					}
@@ -176,6 +176,17 @@
 						}
 
 						$fieldset->appendChild($list);
+
+						###
+						# Delegate: XMLImporterImportPostRunErrors
+						# Description: Notify Delegate for Errors
+						Symphony::ExtensionManager()->notifyMembers(
+							'XMLImporterImportPostRunErrors', '/xmlimporter/importers/run/',
+							array(
+								$current['errors']
+							)
+						);
+
 
 					// Source -------------------------------------------------
 
@@ -237,6 +248,18 @@
 				}
 
 				$this->Form->appendChild($fieldset);
+
+				###
+				# Delegate: XMLImporterImportPostRun
+				# Description: All Importers run successfully
+				Symphony::ExtensionManager()->notifyMembers(
+					'XMLImporterImportPostRun', '/xmlimporter/importers/run/',
+					array(
+						$importer_result['created'],
+						$importer_result['updated'],
+						$importer_result['skipped']
+					)
+				);
 			}
 		}
 
@@ -587,6 +610,8 @@
 
 		// Namespaces ---------------------------------------------------------
 
+			$nsFrame = new XMLElement('div');
+			$nsFrame->setAttribute('class', 'frame namespaces');
 			$namespaces = new XMLElement('ol');
 			$namespaces->setAttribute('class', 'namespaces-duplicator');
 			$namespaces->setAttribute('data-add', __('Add namespace'));
@@ -659,8 +684,9 @@
 
 			$li->appendChild($group);
 			$namespaces->appendChild($li);
+			$nsFrame->appendChild($namespaces);
 
-			$fieldset->appendChild($namespaces);
+			$fieldset->appendChild($nsFrame);
 
 		// Discover Namespaces ------------------------------------------------
 

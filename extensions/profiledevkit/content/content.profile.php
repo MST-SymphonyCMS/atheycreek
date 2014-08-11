@@ -33,7 +33,7 @@
 
 			if (is_array($this->_dbstats['slow-queries']) && !empty($this->_dbstats['slow-queries'])) {
 				foreach ($this->_dbstats['slow-queries'] as $q) {
-					$this->_records['slow-queries'][] = array($q['time'], $q['query'], null, null, false);
+					$this->_records['slow-queries'][] = array($q['execution_time'], $q['query'], null, null, false);
 				}
 			}
 
@@ -108,7 +108,6 @@
 
 		public function buildContent(XMLElement $wrapper) {
 			$this->addStylesheetToHead(URL . '/extensions/profiledevkit/assets/devkit.css', 'screen', 9126343);
-			$this->addStylesheetToHead(URL . '/workspace/assets/css/devkit_css_override.css', 'screen', 11);
 
 			$table = new XMLElement('table');
 			$table->setAttribute('id', $this->_view);
@@ -184,7 +183,7 @@
 					foreach($debug as $query){
 						$row = new XMLElement('tr');
 						$row->appendChild(new XMLElement('th', $i));
-						$row->appendChild(new XMLElement('td', number_format($query['time'], 4)));
+						$row->appendChild(new XMLElement('td', number_format($query['execution_time'], 4)));
 						$row->appendChild(new XMLElement('td', $query['query']));
 						$table->appendChild($row);
 						$i++;

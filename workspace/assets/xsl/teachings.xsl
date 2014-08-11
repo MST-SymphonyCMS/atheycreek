@@ -137,21 +137,6 @@
 					<xsl:otherwise>
 						<xsl:for-each select="/data/featured-teachings/entry">
 							<div class="latest">
-								<div class="row">
-									<div class="span8 offset2">
-										<div class="search visible-desktop">
-											<form method="get">
-												<xsl:call-template name="form-search-action"/>
-												<a>
-													<xsl:call-template name="url-search-home" />
-													<span class="icon">s</span>
-												</a>
-												<input type="hidden" name="sections" value="teachings,teachings-tags,teachings-series" />
-												<input class="keywords" name="keywords" onclick="this.select()" placeholder="Search" autocomplete="off" />
-											</form>
-										</div>
-									</div>
-								</div>
 								<div class="span8 teaching-main">
 									<h3>Latest Teaching</h3>
 									<ul class="nav nav-tabs" id="teachingTab">
@@ -177,7 +162,7 @@
 									  <xsl:choose>
 									    <xsl:when test="video/item">
 									      <div class="tab-pane fade active in" id="video">
-									        <iframe src="http://player.vimeo.com/video/{video/item/id}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" frameborder="0" class="video" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen" style="width: 100%; height: 348px; "></iframe>
+									        <iframe src="http://player.vimeo.com/video/{video/item/uid}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" frameborder="0" class="video" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen" style="width: 100%; height: 348px; "></iframe>
 									      </div>
 									      <div class="tab-pane fade in" id="audio">
 									        <div class="audio-poster">
@@ -313,19 +298,6 @@
 												<xsl:with-param name="poster" select="poster" />
 											</xsl:call-template>
 										</a>
-										<div class="info">
-											<a>
-												<xsl:call-template name="url-teachings-series" />
-												<h4>
-													<xsl:value-of select="title" disable-output-escaping="yes" />
-													<span class="meta">
-														<xsl:text> (</xsl:text>
-														<xsl:value-of select="teachings/@items" />
-														<xsl:text>&#160;teachings)</xsl:text>
-													</span>
-												</h4>
-											</a>
-										</div>
 									</div>
 								</xsl:for-each>
 								</div>
@@ -345,19 +317,6 @@
 													<xsl:with-param name="poster" select="poster" />
 												</xsl:call-template>
 											</a>
-											<div class="info">
-												<a>
-													<xsl:call-template name="url-teachings-series" />
-													<h4>
-														<xsl:value-of select="title" disable-output-escaping="yes" />
-														<span class="meta">
-															<xsl:text> (</xsl:text>
-															<xsl:value-of select="teachings/@items" />
-															<xsl:text>&#160;teachings)</xsl:text>
-														</span>
-													</h4>
-												</a>
-											</div>
 										</div>
 									</xsl:for-each>
 								</div>
@@ -369,7 +328,7 @@
 							</div>
 							<h3>Recent Teachings</h3>
 								<div class="row">
-								  <xsl:for-each select="/data/teachings-4-latest/entry">
+								  <xsl:for-each select="/data/teachings-latest/entry[position() &lt; 5]">
                     <div>
                     	<xsl:attribute name="class">
                     		<xsl:text>span4 recent number</xsl:text>
@@ -494,18 +453,6 @@
 		</div>
 		<div class="widget filter">
 			<h4>Teachings by Tags</h4>
-			<div class="inline-search">
-				<form>
-					<xsl:attribute name="action">
-						<xsl:call-template name="url-search-home">
-							<xsl:with-param name="url-only" select="true()" />
-						</xsl:call-template>
-					</xsl:attribute>
-					<label for="keywords"><span class="icon">s</span></label>
-					<input type="hidden" name="sections" value="teachings-tags" />
-					<input name="keywords" class="keywords" placeholder="Search" autocomplete="off" onclick="this.select()" />
-				</form>
-			</div>
 			<div class="collection">
 				<xsl:for-each select="/data/teachings-tags-random-filtered/entry">
 					<a>
@@ -515,14 +462,13 @@
 					<xsl:if test="position() &lt; last()">, </xsl:if>
 				</xsl:for-each>
 			</div>
-			<!-- <a href="" class="more"><span class="icon">z</span> See all tags</a> -->
 		</div>
 		<h3>Podcasts</h3>
   	<div class="podcast">
   		<div>
 				<p>One of the best ways to connect to our Bible teachings is through podcasts. Our podcasts stream all of our latest teachings to your device.</p>
 				<p class="center">
-					<a class="link link-small inline center" style="display:block !important;width:100%;">
+					<a class="link link-small inline center">
 						<xsl:attribute name="href">
 							<xsl:value-of select="$main-podcast-audio" disable-output-escaping="yes" />
 						</xsl:attribute>
@@ -530,7 +476,7 @@
 					</a>
 				</p>
 				<p class="center">
-					<a class="link link-small inline center" style="display:block !important;width:100%;">
+					<a class="link link-small inline center">
 						<xsl:attribute name="href">
 							<xsl:value-of select="$main-podcast-video" disable-output-escaping="yes" />
 						</xsl:attribute>
@@ -538,7 +484,7 @@
 					</a>
 				</p>
 				<p class="center">
-					<a class="link link-small inline center" style="display:block !important;width:100%;">
+					<a class="link link-small inline center">
 						<xsl:attribute name="href">
 							<xsl:value-of select="$main-podcast-video-hd" disable-output-escaping="yes" />
 						</xsl:attribute>
@@ -629,7 +575,7 @@
 			<div class="span12">
 				<h3>Recent Teachings</h3>
 	        <div class="row">
-	          <xsl:for-each select="/data/teachings-6-latest/entry[position() &lt; 4]">
+	          <xsl:for-each select="/data/teachings-latest/entry[position() &lt; 4]">
 	            <div>
 	            	<xsl:attribute name="class">
 	            		<xsl:text>span4 recent number</xsl:text>
@@ -677,7 +623,7 @@
 	          </xsl:for-each>
 	        </div>
 	        <div class="row num2">
-	          <xsl:for-each select="/data/teachings-6-latest/entry[position() &gt; 3]">
+	          <xsl:for-each select="/data/teachings-latest/entry[position() &gt; 3]">
 	            <div>
 	            	<xsl:attribute name="class">
 	            		<xsl:text>span4 recent number</xsl:text>
@@ -720,8 +666,8 @@
 		<div class="component-series">
 			<h3 class="title-row">Teaching Series <a href="/teachings/series" class="pull-right hidden-phone">All Teaching Series</a></h3>
 			<div class="row">
-			  <xsl:for-each select="data/teachings-series-home-filtered/entry">
-	        <div class="span4 series">
+				<xsl:for-each select="/data/teachings-series-entries-filtered/entry[position() &lt; 4]">
+					<div class="span4 series">
 						<a>
 							<xsl:call-template name="url-teachings-series" />
 							<xsl:call-template name="teaching-poster-or-default">
@@ -847,10 +793,9 @@
 			    </xsl:if>
 			    <div class="tab-content">
 			      <xsl:choose>
-
 			        <xsl:when test="video/item">
 			          <div class="tab-pane fade active in" id="video">
-			            <iframe src="http://player.vimeo.com/video/{video/item/id}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" frameborder="0" class="video" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen" style="width: 100%; height: 348px; "></iframe>
+			            <iframe src="http://player.vimeo.com/video/{video/item/uid}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" frameborder="0" class="video" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen" style="width: 100%; height: 348px; "></iframe>
 			          </div>
 			          <div class="tab-pane fade in" id="audio">
 			            <div class="audio-poster">
@@ -1113,7 +1058,7 @@
 		<xsl:for-each select="tags/item">
 			<a>
 				<xsl:call-template name="url-teachings-tags" />
-				<xsl:value-of select="tag" disable-output-escaping="yes" />
+				<xsl:value-of select="." disable-output-escaping="yes" />
 			</a>
 			<xsl:if test="position() &lt; last()">,</xsl:if>
 			<xsl:text> </xsl:text>

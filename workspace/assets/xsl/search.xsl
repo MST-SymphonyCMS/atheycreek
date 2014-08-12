@@ -60,9 +60,14 @@
 							<xsl:call-template name="url-search-home" />
 							<span class="icon">s</span>
 						</a>
-						<xsl:if test="$url-sections">
-							<input type="hidden" name="sections" value="{$url-sections}" />
-						</xsl:if>
+						<xsl:choose>
+							<xsl:when test="$url-sections">
+								<input type="hidden" name="sections" value="{$url-sections}" />
+							</xsl:when>
+							<xsl:otherwise>
+								<input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads" />
+							</xsl:otherwise>
+						</xsl:choose>
 						<input name="keywords" class="keywords" value="{$url-keywords}" onclick="this.select()" autocomplete="off" />
 					</form>
 					<p>Type and hit enter. You can search our entire site. Try <span onclick="$('.search input.keywords').val('Jesus');">Jesus</span>, <span onclick="$('.search input.keywords').val('Baptism');">Baptism</span> or <span onclick="$('.search input.keywords').val('Wilsonville');">Wilsonville</span>&#160;..</p>
@@ -76,7 +81,7 @@
 						<p><strong>Sorry about that!</strong><br />Please, try another search or head to the <a href="{$root}">homepage</a></p>
 						<xsl:if test="$url-sections">
 							<br />
-							<p>Try <a href="{$root}/{$pt1}/{$pt2}/?keywords={$url-keywords}">searching everywhere</a></p>
+							<p>Try <a href="{$root}/search/?keywords={$url-keywords}">searching everywhere</a></p>
 						</xsl:if>
 					</xsl:if>
 					<xsl:for-each select="$entries">
@@ -154,7 +159,7 @@
 											<xsl:text>/</xsl:text>
 											<xsl:value-of select="//data/events-search/entry[@id = $id]/name/@handle" />
 											<xsl:text>/</xsl:text>
-										</xsl:attribute>	
+										</xsl:attribute>
 										<h3>
 											<xsl:value-of select="//data/events-search/entry[@id = $id]/name" disable-output-escaping="yes" />
 											<span>
@@ -290,7 +295,7 @@
 											<xsl:text>/</xsl:text>
 											<xsl:value-of select="//data/teachings-entries-search/entry[@id = $id]/title/@handle" />
 											<xsl:text>/</xsl:text>
-										</xsl:attribute>		
+										</xsl:attribute>
 										<h3>
 												<xsl:value-of select="//data/teachings-entries-search/entry[@id = $id]/title" disable-output-escaping="yes" />
 												<span class="hyphen">—</span>
@@ -438,9 +443,9 @@
 								</xsl:if>
 							</div>
 						</xsl:if>
-						<xsl:if test="$url-sections">
+						<xsl:if test="$url-sections and $url-sections != 'teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads'">
 							<div class="sections">
-								<p><a href="{$root}/search/?keywords={$url-keywords}">Turn off</a> section filtering to see all results</p>
+								<p><a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings%2Cteachings-series%2Cteachings-tags%2Ctext%2Cevents-recurring%2Cevents%2Cdownloads">Turn off</a> section filtering to see all results</p>
 							</div>
 						</xsl:if>
 						<div class="filter">
@@ -448,12 +453,12 @@
 							<div class="collection">
 								<ul>
 									<li>
-										<xsl:if test="$url-sections = ''">
+										<xsl:if test="$url-sections = 'teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads'">
 											<xsl:attribute name="class">
 												<xsl:text>active</xsl:text>
 											</xsl:attribute>
 										</xsl:if>
-										<a href="{$root}/search/?keywords={$url-keywords}">
+										<a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings%2Cteachings-series%2Cteachings-tags%2Ctext%2Cevents-recurring%2Cevents%2Cdownloads">
 											<span class="icon">J</span>
 											<xsl:text> Show all</xsl:text>
 										</a>

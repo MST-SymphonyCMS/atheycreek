@@ -453,6 +453,18 @@
 		</div>
 		<div class="widget filter">
 			<h4>Teachings by Tags</h4>
+			<div class="inline-search">
+				<form>
+					<xsl:attribute name="action">
+						<xsl:call-template name="url-search-home">
+							<xsl:with-param name="url-only" select="true()" />
+						</xsl:call-template>
+					</xsl:attribute>
+					<label for="keywords"><span class="icon">s</span></label>
+					<input type="hidden" name="sections" value="teachings-tags" />
+					<input name="keywords" class="keywords" placeholder="Search" autocomplete="off" onclick="this.select()" />
+				</form>
+			</div>
 			<div class="collection">
 				<xsl:for-each select="/data/teachings-tags-random-filtered/entry">
 					<a>

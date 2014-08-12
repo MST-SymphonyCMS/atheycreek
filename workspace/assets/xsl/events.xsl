@@ -269,63 +269,66 @@
 											<xsl:value-of select="name" disable-output-escaping="yes" />
 										</a>
 										<span>
-																					<xsl:attribute name="class">
-																						<xsl:choose>
-																							<xsl:when test="tags/item/@id = '25'">
-																								<xsl:text>label men nohover color-only</xsl:text>
-																							</xsl:when>
-																							<xsl:when test="tags/item/@id = '26'">
-																								<xsl:text>label women nohover color-only</xsl:text>
-																							</xsl:when>
-																							<xsl:when test="tags/item/@id = '31'">
-																								<xsl:text>label college nohover color-only</xsl:text>
-																							</xsl:when>
-																							<xsl:when test="tags/item/@id = '30'">
-																								<xsl:text>label highschool nohover color-only</xsl:text>
-																							</xsl:when>
-																							<xsl:when test="tags/item/@id = '29'">
-																								<xsl:text>label jrhigh nohover color-only</xsl:text>
-																							</xsl:when>
-																							<xsl:when test="tags/item/@id = '28'">
-																								<xsl:text>label gradeschool nohover color-only</xsl:text>
-																							</xsl:when>
-																							<xsl:when test="tags/item/@id = '27'">
-																								<xsl:text>label children nohover color-only</xsl:text>
-																							</xsl:when>
-																							<xsl:otherwise>
-																								<xsl:text>label allchurch color-only</xsl:text>
-																							</xsl:otherwise>
-																						</xsl:choose>
-																					</xsl:attribute>
-																					<xsl:choose>
-																						<xsl:when test="tags/item/@id = '25'">
-																							<span><xsl:text>Men</xsl:text><span class="hidden-phone">'s Ministry</span></span>
-																						</xsl:when>
-																						<xsl:when test="tags/item/@id = '26'">
-																							<span><xsl:text>Women</xsl:text><span class="hidden-phone">'s Ministry</span></span>
-																						</xsl:when>
-																						<xsl:when test="tags/item/@id = '31'">
-																							<span><xsl:text>1824</xsl:text><span class="hidden-phone"> Ministry</span></span>
-																						</xsl:when>
-																						<xsl:when test="tags/item/@id = '30'">
-																							<span><xsl:text>High School</xsl:text><span class="hidden-phone"> Ministry</span></span>
-																						</xsl:when>
-																						<xsl:when test="tags/item/@id = '29'">
-																							<span><xsl:text>Jr. High</xsl:text><span class="hidden-phone"> Ministry</span></span>
-																						</xsl:when>
-																						<xsl:when test="tags/item/@id = '28'">
-																							<span><xsl:text>Grade School</xsl:text><span class="hidden-phone"> Ministry</span></span>
-																						</xsl:when>
-																						<xsl:when test="tags/item/@id = '27'">
-																							<span><xsl:text>Children's</xsl:text><span class="hidden-phone"> Ministry</span></span>
-																						</xsl:when>
-																						<xsl:otherwise>
-																							<span><xsl:text>All Church</xsl:text></span>
-																						</xsl:otherwise>
-																					</xsl:choose>
-																				</span>
+											<xsl:attribute name="class">
+												<xsl:choose>
+													<xsl:when test="tags/item/@id = '25'">
+														<xsl:text>label men nohover color-only</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '26'">
+														<xsl:text>label women nohover color-only</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '31'">
+														<xsl:text>label college nohover color-only</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '30'">
+														<xsl:text>label highschool nohover color-only</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '29'">
+														<xsl:text>label jrhigh nohover color-only</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '28'">
+														<xsl:text>label gradeschool nohover color-only</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '27'">
+														<xsl:text>label children nohover color-only</xsl:text>
+													</xsl:when>
+													<xsl:otherwise>
+														<xsl:text>label allchurch color-only</xsl:text>
+													</xsl:otherwise>
+												</xsl:choose>
+											</xsl:attribute>
+											<xsl:choose>
+												<xsl:when test="tags/item/@id = '25'">
+													<span><xsl:text>Men</xsl:text><span class="hidden-phone">'s Ministry</span></span>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '26'">
+													<span><xsl:text>Women</xsl:text><span class="hidden-phone">'s Ministry</span></span>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '31'">
+													<span><xsl:text>1824</xsl:text><span class="hidden-phone"> Ministry</span></span>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '30'">
+													<span><xsl:text>High School</xsl:text><span class="hidden-phone"> Ministry</span></span>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '29'">
+													<span><xsl:text>Jr. High</xsl:text><span class="hidden-phone"> Ministry</span></span>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '28'">
+													<span><xsl:text>Grade School</xsl:text><span class="hidden-phone"> Ministry</span></span>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '27'">
+													<span><xsl:text>Children's</xsl:text><span class="hidden-phone"> Ministry</span></span>
+												</xsl:when>
+												<xsl:otherwise>
+													<span><xsl:text>All Church</xsl:text></span>
+												</xsl:otherwise>
+											</xsl:choose>
+										</span>
 									</xsl:otherwise>
 								</xsl:choose>
+								<xsl:call-template name="edit-entry">
+									<xsl:with-param name="component" select="$component"/>
+								</xsl:call-template>
 							</h2> <!-- .header -->
 							<div class="date clearfix">
 								<xsl:for-each select="date/date">
@@ -611,6 +614,9 @@
 						<div class="events-header">
 							<h2 class="header">
 								<xsl:value-of select="name" disable-output-escaping="yes" />
+								<xsl:call-template name="edit-entry">
+									<xsl:with-param name="component" select="$component"/>
+								</xsl:call-template>
 								<span>
 									<xsl:attribute name="class">
 										<xsl:choose>
@@ -755,7 +761,6 @@
 			</xsl:otherwise>
 		</xsl:choose>
 
-
 		<ul class="entries">
 			<xsl:choose>
 				<xsl:when test="$recurring = 'yes'">
@@ -834,6 +839,9 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</a>
+		<xsl:call-template name="edit-entry">
+			<xsl:with-param name="component" select="$component"/>
+		</xsl:call-template>
 	</li>
 
 </xsl:template>

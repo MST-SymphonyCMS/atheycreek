@@ -577,21 +577,6 @@
 									</div> <!-- .row -->
 								</div> <!-- .flier -->
 							</div>
-							<div class="padder static">
-								<xsl:choose>
-									<xsl:when test="string-length(name) &lt;= '20'">
-										<xsl:attribute name="class">
-											<xsl:text>padder static small</xsl:text>
-										</xsl:attribute>
-									</xsl:when>
-									<xsl:otherwise>
-										<xsl:attribute name="class">
-											<xsl:text>padder static</xsl:text>
-										</xsl:attribute>
-									</xsl:otherwise>
-								</xsl:choose>
-								<xsl:text>&#160;</xsl:text>
-							</div> <!-- .padder -->
 						</xsl:otherwise>
 					</xsl:choose>
 

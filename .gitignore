@@ -8,4 +8,4 @@ manifest/tmp/*
 workspace/uploads/documents/*
 workspace/uploads/images/*
 node_modules/
-sql/
+_sql/

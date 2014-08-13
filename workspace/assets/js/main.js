@@ -52,6 +52,15 @@
         $('#joey-special').trigger("play");
       });
 
+      // Home Group Hashing
+      // --------------------------------------------------
+
+      if (window.location.hash.length > 0) {
+          $('.hg-box ul.nav-tabs > li > a[href="' + window.location.hash + '"]').tab('show');
+      } else {
+          $('.hg-box ul.nav-tabs > li > a:first').tab('show');
+      }
+
     });
 
   });

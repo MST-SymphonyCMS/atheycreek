@@ -111,6 +111,9 @@
 								<xsl:when test="@section = 'text'">
 									<xsl:text>text</xsl:text>
 								</xsl:when>
+								<xsl:when test="@section = 'locations'">
+									<xsl:text>locations</xsl:text>
+								</xsl:when>
 							</xsl:choose>
 						</xsl:variable>
 						<xsl:variable name="id">
@@ -410,6 +413,54 @@
 									</a>
 								</div>
 							</xsl:when>
+							<xsl:when test="@section = 'locations'">
+								<div>
+									<xsl:call-template name="search-entry-class" />
+									<xsl:call-template name="edit-entry">
+										<xsl:with-param name="component" select="$component"/>
+									</xsl:call-template>
+									<a target="_blank">
+										<xsl:attribute name="href">
+											<xsl:value-of select="$root"/>
+											<xsl:text>/home-groups/#</xsl:text>
+											<xsl:value-of select="//data/locations-groups-search/entry[@id = $id]/name-group/@handle"/>
+										</xsl:attribute>
+										<h3>
+											<span class="icon">H</span>
+											<xsl:value-of select="//data/locations-groups-search/entry[@id = $id]/name-group" disable-output-escaping="yes" />
+											<span class="label">Home Group</span>
+										</h3>
+										<div class="description">
+											<address>
+												<strong>
+													<xsl:value-of select="//data/locations-groups-search/entry[@id = $id]/name-formal"/>
+													<xsl:text> (Host)</xsl:text>
+												</strong>
+												<br/>
+												<xsl:if test="string-length(//data/locations-groups-search/entry[@id = $id]/address)">
+													<xsl:value-of select="//data/locations-groups-search/entry[@id = $id]/address"/>
+													<br/>
+												</xsl:if>
+												<xsl:value-of select="//data/locations-groups-search/entry[@id = $id]/city"/>
+												<xsl:text>, </xsl:text>
+												<xsl:value-of select="//data/locations-groups-search/entry[@id = $id]/state"/>
+												<xsl:text> </xsl:text>
+												<xsl:value-of select="//data/locations-groups-search/entry[@id = $id]/zip"/>
+											</address>
+											<xsl:call-template name="truncate">
+												<xsl:with-param name="node">
+													<xsl:call-template name="remove-html">
+														<xsl:with-param name="text" select="//data/locations-groups-search/entry[@id = $id]/description" />
+													</xsl:call-template>
+												</xsl:with-param>
+											</xsl:call-template>
+										</div>
+										<div class="excerpt">
+											<xsl:copy-of select="excerpt" disable-output-escaping="yes" />
+										</div>
+									</a>
+								</div>
+							</xsl:when>
 						</xsl:choose>
 					</xsl:for-each>
 				</div>
@@ -445,7 +496,7 @@
 						</xsl:if>
 						<xsl:if test="$url-sections and $url-sections != 'teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads'">
 							<div class="sections">
-								<p><a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings%2Cteachings-series%2Cteachings-tags%2Ctext%2Cevents-recurring%2Cevents%2Cdownloads">Turn off</a> section filtering to see all results</p>
+								<p><a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings%2Cteachings-series%2Cteachings-tags%2Ctext%2Cevents-recurring%2Cevents%2Cdownloads%2Clocations">Turn off</a> section filtering to see all results</p>
 							</div>
 						</xsl:if>
 						<div class="filter">
@@ -453,12 +504,12 @@
 							<div class="collection">
 								<ul>
 									<li>
-										<xsl:if test="$url-sections = 'teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads'">
+										<xsl:if test="$url-sections = 'teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads,locations'">
 											<xsl:attribute name="class">
 												<xsl:text>active</xsl:text>
 											</xsl:attribute>
 										</xsl:if>
-										<a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings%2Cteachings-series%2Cteachings-tags%2Ctext%2Cevents-recurring%2Cevents%2Cdownloads">
+										<a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings%2Cteachings-series%2Cteachings-tags%2Ctext%2Cevents-recurring%2Cevents%2Cdownloads%2Clocations">
 											<span class="icon">J</span>
 											<xsl:text> Show all</xsl:text>
 										</a>
@@ -538,6 +589,17 @@
 										<a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings-tags">
 											<span class="icon">J</span>
 											<xsl:text> Teaching Tags</xsl:text>
+										</a>
+									</li>
+									<li>
+										<xsl:if test="$url-sections = 'locations'">
+											<xsl:attribute name="class">
+												<xsl:text>active</xsl:text>
+											</xsl:attribute>
+										</xsl:if>
+										<a href="{$root}/search/?keywords={$url-keywords}&amp;sections=locations">
+											<span class="icon">J</span>
+											<xsl:text> Home Groups</xsl:text>
 										</a>
 									</li>
 								</ul>

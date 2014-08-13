@@ -15,7 +15,7 @@
               <span class="icon">s</span>
             </a>
             <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
-            <input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads" />
+            <input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads,locations" />
           </form>
           <ul class="nav pull-right">
             <xsl:if test="data/status-all-entries/entry[name = 'ustream-status']/content = 'live'">
@@ -110,7 +110,7 @@
           <span class="icon">s</span>
         </a>
         <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
-        <input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads" />
+        <input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads,locations" />
       </form>
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>

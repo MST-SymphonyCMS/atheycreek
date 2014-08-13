@@ -5,6 +5,7 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourceteachings_latest extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'teachings-latest';
+		public $dsParamConditionalizer = '(if any of ((if value of ({$pt1}) is ()), (if value of ({$pt1}) is (teachings))) is (yes))';
     public $dsParamORDER = 'desc';
     public $dsParamPAGINATERESULTS = 'yes';
     public $dsParamLIMIT = '6';
@@ -41,7 +42,7 @@ class datasourceteachings_latest extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-05T17:16:44+00:00'
+            'release-date' => '2014-08-13T18:27:18+00:00'
         );
     }
 

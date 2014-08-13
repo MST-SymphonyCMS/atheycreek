@@ -5,6 +5,7 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourcefeatured_teachings_series extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'featured-teachings-series';
+		public $dsParamConditionalizer = '(if value of ({$pt1}) is ())';
     public $dsParamORDER = 'asc';
     public $dsParamPAGINATERESULTS = 'yes';
     public $dsParamLIMIT = '1';
@@ -27,7 +28,7 @@ class datasourcefeatured_teachings_series extends SectionDatasource
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'poster' => array(
             'section_id' => '8',
-            'field_id' => '59',
+            'field_id' => '313',
             'elements' => array(
                 'image'
             )
@@ -49,7 +50,7 @@ class datasourcefeatured_teachings_series extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-05T19:36:17+00:00'
+            'release-date' => '2014-08-13T18:23:06+00:00'
         );
     }
 

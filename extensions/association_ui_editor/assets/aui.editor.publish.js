@@ -8,7 +8,9 @@
 		'Reopen to save?': false,
 		'Or dismiss?': false,
 		'You just edited “{$title}”.': false,
-		'Reopen?': false
+		'Reopen?': false,
+		'Create New': false,
+		'Close': false
 	});
 
 	Symphony.Extensions.AssociationUIEditor = function() {
@@ -36,7 +38,7 @@
 		};
 
 		var createNewTemplate = function() {
-			return $('<div class="aui-editor-create"><button class="aui-editor-button">' + Symphony.Language.get('Create New') + '</button></div>');
+			return $('<div class="aui-editor-create"><a class="aui-editor-button button">' + Symphony.Language.get('Create New') + '</a></div>');
 		};
 
 		var createNew = function() {
@@ -52,25 +54,37 @@
 				handle = getSectionHandle(field.data('parent-section-id'));
 				link = Symphony.Context.get('symphony') + '/publish/' + handle + '/new/';
 
-				button.on('click.aui-editor', function(event) {
+				button.appendTo(field).find('.aui-editor-button').on('click.aui-editor', function(event) {
 					event.stopPropagation();
 					event.preventDefault();
 
 					loadEditor(link, field);
-				}).appendTo(field);
+				});
 			}
 		};
 
 		var attachEditor = function() {
-			fields.each(attachTrigger);
+			fields.each(attachTriggers);
+
+			fields.find('.selectized').each(function() {
+				this.selectize.on('item_add', function(value, item) {
+					item.each(attachTrigger);
+				});
+			});
+		};
+
+		var attachTriggers = function() {
+			var items = $(this).find('.item');
+
+			items.each(attachTrigger);
 		};
 
 		var attachTrigger = function() {
-			var item = $(this).find('.item'),
+			var item = $(this),
 				trigger = templateTrigger.clone();
 
 			trigger.on('mousedown.aui-editor', triggerPage);
-			item.not('.aui-editor-trigger').prepend(trigger);
+			item.not(':has(.aui-editor-trigger)').prepend(trigger);			
 		};
 
 		var triggerPage = function(event) {
@@ -312,8 +326,8 @@
 				height = editor.data('height');
 
 			Symphony.Elements.contents.css({
-				minHeight: height,
-				maxHeight: height,
+				minHeight: window.innerHeight - Symphony.Elements.contents.offset().top,
+				height: height,
 				overflow: 'hidden'
 			});
 		};

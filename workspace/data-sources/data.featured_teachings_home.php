@@ -2,20 +2,16 @@
 
 require_once TOOLKIT . '/class.datasource.php';
 
-class datasourcefeatured_teachings extends SectionDatasource
+class datasourcefeatured_teachings_home extends SectionDatasource
 {
-    public $dsParamROOTELEMENT = 'featured-teachings';
-		public $dsParamConditionalizer = '(if value of ({$pt1}) is (teachings))';
+    public $dsParamROOTELEMENT = 'featured-teachings-home';
+		public $dsParamConditionalizer = '(if value of ({$pt1}) is ())';
     public $dsParamORDER = 'desc';
     public $dsParamPAGINATERESULTS = 'yes';
     public $dsParamLIMIT = '1';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
-    public $dsParamPARAMOUTPUT = array(
-        'video-podcast'
-        );
-    public $dsParamSORT = 'system:id';
-    public $dsParamHTMLENCODE = 'yes';
+    public $dsParamSORT = 'date';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
     public $dsParamFILTERS = array(
@@ -24,19 +20,9 @@ class datasourcefeatured_teachings extends SectionDatasource
     );
 
     public $dsParamINCLUDEDELEMENTS = array(
-        'title: unformatted',
-        'slug',
-        'filename',
         'book',
         'chapter',
-        'description: unformatted',
-        'speaker',
-        'date',
-        'poster',
-        'video',
-        'day',
-        'tags',
-        'video-podcast'
+        'poster'
     );
     
     public $dsParamINCLUDEDASSOCIATIONS = array(
@@ -45,34 +31,6 @@ class datasourcefeatured_teachings extends SectionDatasource
             'field_id' => '313',
             'elements' => array(
                 'image'
-            )
-        ),
-        'video' => array(
-            'section_id' => '22',
-            'field_id' => '183',
-            'elements' => array(
-                'title',
-                'description',
-                'date',
-                'url',
-                'player',
-                'thumbnail',
-                'uid'
-            )
-        ),
-        'tags' => array(
-            'section_id' => '15',
-            'field_id' => '127',
-            'elements' => array(
-                'tag: formatted'
-            )
-        ),
-        'speaker' => array(
-            'section_id' => '1',
-            'field_id' => '318',
-            'elements' => array(
-                'first-name',
-                'last-name'
             )
         )
     );
@@ -86,13 +44,13 @@ class datasourcefeatured_teachings extends SectionDatasource
     public function about()
     {
         return array(
-            'name' => 'Featured: Teachings',
+            'name' => 'Featured: Teachings: Home',
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-13T17:44:47+00:00'
+            'release-date' => '2014-08-13T17:44:56+00:00'
         );
     }
 

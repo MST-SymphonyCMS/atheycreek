@@ -5,6 +5,7 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourcefeatured_events_recurring extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'featured-events-recurring';
+		public $dsParamConditionalizer = '(if value of ({$pt1}) is ())';
     public $dsParamORDER = 'desc';
     public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '20';
@@ -20,8 +21,6 @@ class datasourcefeatured_events_recurring extends SectionDatasource
 
     public $dsParamINCLUDEDELEMENTS = array(
         'name: unformatted',
-        'frequency: unformatted',
-        'description: unformatted',
         'images'
     );
     
@@ -50,7 +49,7 @@ class datasourcefeatured_events_recurring extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-05T19:31:39+00:00'
+            'release-date' => '2014-08-13T18:22:52+00:00'
         );
     }
 

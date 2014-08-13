@@ -24,23 +24,23 @@ class datasourceevents_latest extends SectionDatasource
         'system:pagination',
         'name: unformatted',
         'date',
-        'tags',
-        'images'
+        'tags'
     );
     
     public $dsParamINCLUDEDASSOCIATIONS = array(
-        'tags' => array(
-            'section_id' => '3',
-            'field_id' => '19',
-            'elements' => array(
-                'tag: unformatted'
-            )
-        ),
         'images' => array(
             'section_id' => '8',
             'field_id' => '313',
             'elements' => array(
                 'image'
+            )
+        ),
+        'tags' => array(
+            'section_id' => '3',
+            'field_id' => '19',
+            'elements' => array(
+                'tag: unformatted',
+                'tag: unformatted'
             )
         )
     );
@@ -60,7 +60,7 @@ class datasourceevents_latest extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-04T23:02:17+00:00'
+            'release-date' => '2014-08-13T17:05:05+00:00'
         );
     }
 

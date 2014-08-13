@@ -78,7 +78,7 @@
 	<div id="frontCarousel" class="carousel slide">
     <div class="carousel-inner">
       <div class="item active">
-				<xsl:for-each select="/data/featured-teachings/entry">
+				<xsl:for-each select="/data/featured-teachings-home/entry">
 					<xsl:call-template name="teaching-entry" />
 				</xsl:for-each>
       </div>

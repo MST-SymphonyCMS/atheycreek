@@ -22,31 +22,15 @@ class datasourceteachings_series_entries_filtered extends SectionDatasource
 
     public $dsParamINCLUDEDELEMENTS = array(
         'title: unformatted',
-        'poster',
-        'teachings'
+        'poster'
     );
     
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'poster' => array(
             'section_id' => '8',
-            'field_id' => '59',
+            'field_id' => '313',
             'elements' => array(
                 'image'
-            )
-        ),
-        'teachings' => array(
-            'section_id' => '13',
-            'field_id' => '316',
-            'elements' => array(
-                'slug',
-                'filename',
-                'current-id',
-                'book',
-                'chapter',
-                'speaker',
-                'date',
-                'video',
-                'day'
             )
         )
     );
@@ -66,7 +50,7 @@ class datasourceteachings_series_entries_filtered extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-11T17:46:26+00:00'
+            'release-date' => '2014-08-13T18:18:11+00:00'
         );
     }
 

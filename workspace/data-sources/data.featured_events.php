@@ -22,7 +22,6 @@ class datasourcefeatured_events extends SectionDatasource
 
     public $dsParamINCLUDEDELEMENTS = array(
         'name: unformatted',
-        'description: unformatted',
         'images'
     );
     
@@ -51,7 +50,7 @@ class datasourcefeatured_events extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-05T19:31:11+00:00'
+            'release-date' => '2014-08-13T17:06:25+00:00'
         );
     }
 

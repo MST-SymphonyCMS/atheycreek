@@ -79,14 +79,16 @@ class datasourceevents_entry_by_id_preview extends SectionDatasource
         ),
         'verses' => array(
             'section_id' => '4',
-            'field_id' => '24',
+            'field_id' => '333',
             'elements' => array(
-                'passage'
+                'passage',
+                'content',
+                'version'
             )
         ),
         'member-role' => array(
             'section_id' => '18',
-            'field_id' => '320',
+            'field_id' => '326',
             'elements' => array(
                 'member',
                 'role',
@@ -110,7 +112,7 @@ class datasourceevents_entry_by_id_preview extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-05T17:08:41+00:00'
+            'release-date' => '2014-08-13T16:32:04+00:00'
         );
     }
 

@@ -12,8 +12,8 @@ class datasourceevents_recurring_entry_by_id_preview extends SectionDatasource
     public $dsParamREDIRECTONEMPTY = 'no';
     public $dsParamREQUIREDPARAM = '$pt2';
     public $dsParamPARAMOUTPUT = array(
-        'verses',
-        'member-role'
+        'member-role',
+        'verses'
         );
     public $dsParamSORT = 'system:id';
     public $dsParamHTMLENCODE = 'yes';
@@ -27,7 +27,20 @@ class datasourceevents_recurring_entry_by_id_preview extends SectionDatasource
     public $dsParamINCLUDEDELEMENTS = array(
         'name: formatted',
         'frequency: unformatted',
-        'description: formatted'
+        'description: formatted',
+        'verses'
+    );
+    
+    public $dsParamINCLUDEDASSOCIATIONS = array(
+        'verses' => array(
+            'section_id' => '4',
+            'field_id' => '333',
+            'elements' => array(
+                'passage',
+                'content',
+                'version'
+            )
+        )
     );
 
     public function __construct($env = null, $process_params = true)
@@ -45,7 +58,7 @@ class datasourceevents_recurring_entry_by_id_preview extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-05T19:26:53+00:00'
+            'release-date' => '2014-08-13T16:31:26+00:00'
         );
     }
 

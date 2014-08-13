@@ -24,7 +24,9 @@ class datasourceverses_entry_by_tag extends SectionDatasource
     );
 
     public $dsParamINCLUDEDELEMENTS = array(
-        'passage'
+        'passage',
+        'content',
+        'version'
     );
 
     public function __construct($env = null, $process_params = true)
@@ -42,7 +44,7 @@ class datasourceverses_entry_by_tag extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-11T18:16:03+00:00'
+            'release-date' => '2014-08-13T16:15:12+00:00'
         );
     }
 

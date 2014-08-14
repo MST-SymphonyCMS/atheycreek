@@ -43,6 +43,7 @@ module.exports = function (grunt) {
           'workspace/assets/bootstrap/js/combined/2.2.1/bootstrap.min.js ',
           'workspace/assets/js/responsimage.js',
           'workspace/assets/js/mediaelement.js',
+          'workspace/assets/js/fitvids.js',
           'workspace/assets/js/main.js'],
         dest: 'workspace/assets/js/application.js'
       }

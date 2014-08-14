@@ -162,7 +162,7 @@
 									  <xsl:choose>
 									    <xsl:when test="video/item">
 									      <div class="tab-pane fade active in" id="video">
-									        <iframe src="http://player.vimeo.com/video/{video/item/uid}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" frameborder="0" class="video" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen" style="width: 100%; height: 348px; "></iframe>
+									        <iframe src="http://player.vimeo.com/video/{video/item/uid}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"></iframe>
 									      </div>
 									      <div class="tab-pane fade in" id="audio">
 									        <div class="audio-poster">
@@ -807,7 +807,7 @@
 			      <xsl:choose>
 			        <xsl:when test="video/item">
 			          <div class="tab-pane fade active in" id="video">
-			            <iframe src="http://player.vimeo.com/video/{video/item/uid}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" frameborder="0" class="video" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen" style="width: 100%; height: 348px; "></iframe>
+			          	<iframe src="http://player.vimeo.com/video/{video/item/uid}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"></iframe>
 			          </div>
 			          <div class="tab-pane fade in" id="audio">
 			            <div class="audio-poster">

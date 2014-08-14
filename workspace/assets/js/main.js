@@ -42,6 +42,11 @@
         videoVolume: 'horizontal'
       });
 
+      // FitVids
+      // --------------------------------------------------
+
+      $("#video, #ustream").fitVids({ customSelector: "iframe[src^='http://www.ustream.tv']"});
+
       // Joey Special
       // --------------------------------------------------
 

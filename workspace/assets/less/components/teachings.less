@@ -113,10 +113,12 @@
     }
   }
 
+  .series {
+    margin-bottom: 15px;
+  }
+
   .series,
   .recent {
-
-    margin-bottom: 15px;
 
     img {
       margin-top: @base;
@@ -636,11 +638,6 @@
 
     .latest {
 
-      .video {
-        width: 476px !important;
-        height: 268px !important;
-      }
-
       h2 {
         font-size: 24px;
       }
@@ -663,32 +660,9 @@
   }
 }
 
-@media (max-width: 767px) { // phones only
-
-  .component-teachings {
-
-    .latest {
-
-      .video {
-        width: 450px !important;
-        height: 253px !important;
-      }
-    }
-  }
-}
-
 @media (max-width: 568px) { // iphone 5 landscape
 
   .component-teachings {
-
-    .latest,
-    .individual {
-
-      .video {
-        width: 528px !important;
-        height: 298px !important;
-      }
-    }
 
     .latest {
 
@@ -716,15 +690,6 @@
           display: inline;
           left: 0;
         }
-      }
-    }
-
-    .latest,
-    .individual {
-
-      .video {
-        width: 440px !important;
-        height: 248px !important;
       }
     }
 
@@ -787,15 +752,6 @@
 
   .component-teachings,
   .component-series {
-
-    .latest,
-    .individual {
-
-      .video {
-        width: 280px !important;
-        height: 158px !important;
-      }
-    }
 
     .search {
       display: none;

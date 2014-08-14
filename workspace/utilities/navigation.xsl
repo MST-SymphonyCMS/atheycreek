@@ -246,7 +246,6 @@
             <xsl:call-template name="subnav-entry" />
           </xsl:for-each>
         </ul>
-        <hr class="soften" />
       </xsl:when>
       <xsl:otherwise>
         <div class="jumbotron masthead" id="overview">

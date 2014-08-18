@@ -418,4 +418,3 @@ Options +FollowSymlinks -Indexes
   RewriteRule ^.* - [F,L]
 
 </IfModule>
-

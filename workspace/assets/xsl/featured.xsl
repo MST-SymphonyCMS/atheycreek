@@ -41,6 +41,7 @@
         </entry>
       </xsl:for-each>
 
+
       <xsl:for-each select="data/featured-events-recurring/entry">
         <entry>
           <title>

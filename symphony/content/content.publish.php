@@ -307,7 +307,7 @@ class contentPublish extends AdministrationPage
         );
 
         // Only show the Edit Section button if the Author is a developer. #938 ^BA
-        if (Administration::instance()->Author->isDeveloper()) {
+        if (Symphony::Author()->isDeveloper()) {
             array_unshift($subheading_buttons, Widget::Anchor(__('Edit Section'), SYMPHONY_URL . '/blueprints/sections/edit/' . $section_id . '/', __('Edit Section Configuration'), 'button'));
         }
 
@@ -805,7 +805,7 @@ class contentPublish extends AdministrationPage
         }
 
         // Only show the Edit Section button if the Author is a developer. #938 ^BA
-        if (Administration::instance()->Author->isDeveloper()) {
+        if (Symphony::Author()->isDeveloper()) {
             $this->appendSubheading(__('Untitled'),
                 Widget::Anchor(__('Edit Section'), SYMPHONY_URL . '/blueprints/sections/edit/' . $section_id . '/', __('Edit Section Configuration'), 'button')
             );
@@ -869,7 +869,7 @@ class contentPublish extends AdministrationPage
         if ((!is_array($main_fields) || empty($main_fields)) && (!is_array($sidebar_fields) || empty($sidebar_fields))) {
             $message = __('Fields must be added to this section before an entry can be created.');
 
-            if (Administration::instance()->Author->isDeveloper()) {
+            if (Symphony::Author()->isDeveloper()) {
                 $message .= ' <a href="' . SYMPHONY_URL . '/blueprints/sections/edit/' . $section->get('id') . '/" accesskey="c">'
                 . __('Add fields')
                 . '</a>';
@@ -921,7 +921,7 @@ class contentPublish extends AdministrationPage
             }
 
             $entry = EntryManager::create();
-            $entry->set('author_id', Administration::instance()->Author->get('id'));
+            $entry->set('author_id', Symphony::Author()->get('id'));
             $entry->set('section_id', $section_id);
             $entry->set('creation_date', DateTimeObj::get('c'));
             $entry->set('modification_date', DateTimeObj::get('c'));
@@ -1168,7 +1168,7 @@ class contentPublish extends AdministrationPage
         }
 
         // Only show the Edit Section button if the Author is a developer. #938 ^BA
-        if (Administration::instance()->Author->isDeveloper()) {
+        if (Symphony::Author()->isDeveloper()) {
             $this->appendSubheading($title, Widget::Anchor(__('Edit Section'), SYMPHONY_URL . '/blueprints/sections/edit/' . $section_id . '/', __('Edit Section Configuration'), 'button'));
         } else {
             $this->appendSubheading($title);
@@ -1186,7 +1186,7 @@ class contentPublish extends AdministrationPage
         if ((!is_array($main_fields) || empty($main_fields)) && (!is_array($sidebar_fields) || empty($sidebar_fields))) {
             $message = __('Fields must be added to this section before an entry can be created.');
 
-            if (Administration::instance()->Author->isDeveloper()) {
+            if (Symphony::Author()->isDeveloper()) {
                 $message .= ' <a href="' . SYMPHONY_URL . '/blueprints/sections/edit/' . $section->get('id') . '/" accesskey="c">'
                 . __('Add fields')
                 . '</a>';
@@ -1364,6 +1364,28 @@ class contentPublish extends AdministrationPage
             (isset($this->_errors[$field->get('id')]) ? $this->_errors[$field->get('id')] : null),
             null, null, (is_numeric($entry->get('id')) ? $entry->get('id') : null)
         );
+
+        /**
+         * Allows developers modify the field before it is rendered in the publish
+         * form. Passes the `Field` object, `Entry` object, the `XMLElement` div and
+         * any errors for the entire `Entry`. Only the `$div` element
+         * will be altered before appending to the page, the rest are read only.
+         *
+         * @since Symphony 2.5.0
+         * @delegate ModifyFieldPublishWidget
+         * @param string $context
+         * '/backend/'
+         * @param Field $field
+         * @param Entry $entry
+         * @param array $errors
+         * @param Widget $widget
+         */
+        Symphony::ExtensionManager()->notifyMembers('ModifyFieldPublishWidget', '/backend/', array(
+            'field' => $field,
+            'entry' => $entry,
+            'errors' => $this->_errors,
+            'widget' => &$div
+        ));
 
         return $div;
     }
@@ -1554,8 +1576,15 @@ class contentPublish extends AdministrationPage
                         ));
 
                         foreach ($entries['records'] as $key => $e) {
-                            // let the field create the mark up
-                            $li = $visible_field->prepareAssociationsDrawerXMLElement($e, $as, $prepopulate);
+                            // let the first visible field create the mark up
+                            if ($visible_field) {
+                                $li = $visible_field->prepareAssociationsDrawerXMLElement($e, $as, $prepopulate);
+                            }
+                            // or use the system:id if no visible field exists.
+                            else {
+                                $li = Field::createAssociationsDrawerXMLElement($e->get('id'), $e, $as, $prepopulate);
+                            }
+
                             // add it to the unordered list
                             $ul->appendChild($li);
                         }

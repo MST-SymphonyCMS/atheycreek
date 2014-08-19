@@ -10,6 +10,8 @@ class datasourcetags_all_entries extends SectionDatasource
     public $dsParamLIMIT = '20';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamSORT = 'order';
     public $dsParamHTMLENCODE = 'yes';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
@@ -19,19 +21,18 @@ class datasourcetags_all_entries extends SectionDatasource
     );
 
     public $dsParamINCLUDEDELEMENTS = array(
-        'tag: unformatted',
+        'title',
         'slug',
         'parent',
-        'hide-from-header',
-        'hide-from-footer'
+        'hide-nav'
     );
     
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'parent' => array(
             'section_id' => '3',
-            'field_id' => '19',
+            'field_id' => '336',
             'elements' => array(
-                'tag: unformatted',
+                'title',
                 'slug',
                 'parent'
             )
@@ -52,8 +53,8 @@ class datasourcetags_all_entries extends SectionDatasource
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-04T19:20:01+00:00'
+            'version' => 'Symphony 2.5.0RC1',
+            'release-date' => '2014-08-19T20:43:08+00:00'
         );
     }
 

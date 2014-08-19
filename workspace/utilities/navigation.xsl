@@ -81,7 +81,7 @@
                               <xsl:value-of select="concat($root, '/symphony/publish/tags/edit/', $pt1, '/')" />
                             </xsl:when>
                             <xsl:otherwise>
-                              <xsl:value-of select="concat($root, '/symphony/publish/tags/edit/',/data/tags-all-entries/entry[tag/@handle = 'home']/@id , '/')" />
+                              <xsl:value-of select="concat($root, '/symphony/publish/tags/edit/',/data/tags-all-entries/entry[title/@handle = 'home']/@id , '/')" />
                             </xsl:otherwise>
                           </xsl:choose>
                         </xsl:attribute>
@@ -132,7 +132,7 @@
           <li class="divider-vertical"></li>
         </ul>
         <ul class="nav">
-          <xsl:for-each select="/data/tags-all-entries/entry[ not(parent/item) and not(hide-from-header = 'Yes') ]">
+          <xsl:for-each select="/data/tags-all-entries/entry[ not(parent/item) and not(hide-nav = 'Yes') ]">
             <xsl:call-template name="subnav-entry" />
           </xsl:for-each>
         </ul>
@@ -154,7 +154,7 @@
             <span class="icon">2</span>
           </a>
           <ul class="main visible-desktop">
-            <xsl:for-each select="/data/tags-all-entries/entry[ not(parent/item) and not(hide-from-header = 'Yes') ]">
+            <xsl:for-each select="/data/tags-all-entries/entry[ not(parent/item) and not(hide-nav = 'Yes') ]">
               <xsl:call-template name="subnav-entry" />
             </xsl:for-each>
           </ul>
@@ -170,13 +170,13 @@
 
   <xsl:variable name="parent" select="/data/tags-all-entries/entry[@id = $ds-tags-filtered.system-id]/parent/item/@id" />
 
-  <xsl:if test="$pt1 and not($ds-tags-filtered.system-id = /data/tags-all-entries/entry[tag/@handle = 'home']/@id)">
+  <xsl:if test="$pt1 and not($ds-tags-filtered.system-id = /data/tags-all-entries/entry[title/@handle = 'home']/@id)">
     <div class="subnavs">
       <xsl:for-each select="/data/tags-all-entries/entry[@id = $ds-tags-filtered.system-id]/parent/item/@id">
         <xsl:call-template name="nav-tier" />
       </xsl:for-each>
       <xsl:call-template name="subnav-group">
-        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = $ds-tags-filtered.system-id and not(hide-from-header = 'Yes')]" />
+        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = $ds-tags-filtered.system-id and not(hide-nav = 'Yes')]" />
       </xsl:call-template>
     </div>
 
@@ -219,13 +219,13 @@
   <xsl:choose>
     <xsl:when test="$mobile = 'yes'">
       <xsl:call-template name="subnav-group">
-        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = $node and not(hide-from-header = 'Yes')]" />
+        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = $node and not(hide-nav = 'Yes')]" />
         <xsl:with-param name="mobile" select="'yes'" />
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="subnav-group">
-        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = $node and not(hide-from-header = 'Yes')]" />
+        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = $node and not(hide-nav = 'Yes')]" />
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
@@ -314,7 +314,7 @@
     </xsl:attribute>
     <a>
       <xsl:call-template name="url-tags" />
-      <xsl:value-of select="tag" disable-output-escaping="yes" />
+      <xsl:value-of select="title" />
     </a>
     <xsl:if test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id">
       <ul class="dropdown-menu">
@@ -322,7 +322,7 @@
           <li>
             <a>
               <xsl:call-template name="url-tags" />
-              <xsl:value-of select="tag" disable-output-escaping="yes" />
+              <xsl:value-of select="title" />
             </a>
           </li>
         </xsl:for-each>

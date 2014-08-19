@@ -276,10 +276,8 @@ All URL helpers can now be replaced with "url-prefix"
 		<xsl:call-template name="url-prefix">
 			<xsl:with-param name="handle" select="'events'" />
 		</xsl:call-template>
-
 		<xsl:value-of select="$node/@id" />
 		<xsl:text>/</xsl:text>
-
 		<xsl:value-of select="$node/name/@handle" />
 		<xsl:text>/</xsl:text>
 	</xsl:attribute>
@@ -355,7 +353,7 @@ All URL helpers can now be replaced with "url-prefix"
 				<xsl:value-of select="$node/slug/@handle" disable-output-escaping="yes" />
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:value-of select="$node/tag/@handle" disable-output-escaping="yes" />
+				<xsl:value-of select="$node/title/@handle" disable-output-escaping="yes" />
 			</xsl:otherwise>
 		</xsl:choose>
 		<xsl:text>/</xsl:text>
@@ -371,7 +369,7 @@ All URL helpers can now be replaced with "url-prefix"
 		<xsl:text>/</xsl:text>
 		<xsl:value-of select="$tag" />
 		<xsl:text>/</xsl:text>
-		<xsl:value-of select="/data/tags-all-entries/entry[@id = $tag]/tag/@handle" />
+		<xsl:value-of select="/data/tags-all-entries/entry[@id = $tag]/title/@handle" />
 		<xsl:text>/</xsl:text>
 	</xsl:attribute>
 </xsl:template>

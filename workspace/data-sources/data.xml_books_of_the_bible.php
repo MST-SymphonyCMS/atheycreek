@@ -6,9 +6,9 @@
 
 		public $dsParamROOTELEMENT = 'xml-books-of-the-bible';
 
-		
 
-		
+
+
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
@@ -305,7 +305,6 @@
     <testament handle=\"new-testament\" abbreviation=\"NT\">New Testament</testament>
   </entry>
 </books-of-the-bible>';
-include(TOOLKIT . '/data-sources/datasource.static.php');
 			}
 			catch(FrontendPageNotFoundException $e){
 				// Work around. This ensures the 404 page is displayed and
@@ -319,7 +318,7 @@ include(TOOLKIT . '/data-sources/datasource.static.php');
 
 			if($this->_force_empty_result) $result = $this->emptyXMLSet();
 
-			
+
 
 			return $result;
 		}

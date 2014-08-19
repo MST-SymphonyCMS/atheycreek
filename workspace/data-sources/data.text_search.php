@@ -10,6 +10,8 @@ class datasourcetext_search extends SectionDatasource
     public $dsParamLIMIT = '20';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamSORT = 'system:id';
     public $dsParamHTMLENCODE = 'yes';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
@@ -27,9 +29,9 @@ class datasourcetext_search extends SectionDatasource
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'tags' => array(
             'section_id' => '3',
-            'field_id' => '19',
+            'field_id' => '337',
             'elements' => array(
-                'tag: formatted'
+                'title'
             )
         )
     );
@@ -48,8 +50,8 @@ class datasourcetext_search extends SectionDatasource
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-12T14:49:28+00:00'
+            'version' => 'Symphony 2.5.0RC1',
+            'release-date' => '2014-08-19T20:35:22+00:00'
         );
     }
 

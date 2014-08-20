@@ -12,6 +12,7 @@ class datasourcetags_filtered extends SectionDatasource
     public $dsParamREDIRECTONEMPTY = 'yes';
     public $dsParamREDIRECTONFORBIDDEN = 'no';
     public $dsParamREDIRECTONREQUIRED = 'no';
+    public $dsParamREQUIREDPARAM = '$pt1:home';
     public $dsParamPARAMOUTPUT = array(
         'system:id'
         );
@@ -19,7 +20,7 @@ class datasourcetags_filtered extends SectionDatasource
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
     public $dsParamFILTERS = array(
-        '19' => '{$pt1:home}',
+        '337' => '{$pt1:home}',
     );
 
     public $dsParamINCLUDEDELEMENTS = array(
@@ -65,7 +66,7 @@ class datasourcetags_filtered extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-08-19T20:30:08+00:00'
+            'release-date' => '2014-08-20T15:28:15+00:00'
         );
     }
 

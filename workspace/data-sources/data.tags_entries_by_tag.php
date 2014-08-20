@@ -10,6 +10,8 @@ class datasourcetags_entries_by_tag extends SectionDatasource
     public $dsParamLIMIT = '20';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamREQUIREDPARAM = '$pt1:home';
     public $dsParamPARAMOUTPUT = array(
         'layout'
@@ -18,7 +20,7 @@ class datasourcetags_entries_by_tag extends SectionDatasource
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
     public $dsParamFILTERS = array(
-        '19' => '{$pt1:home}',
+        '337' => '{$pt1:home}',
     );
 
     public function __construct($env = null, $process_params = true)
@@ -35,8 +37,8 @@ class datasourcetags_entries_by_tag extends SectionDatasource
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-04T23:32:34+00:00'
+            'version' => 'Symphony 2.5.0RC1',
+            'release-date' => '2014-08-20T15:32:11+00:00'
         );
     }
 

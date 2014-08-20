@@ -27,7 +27,7 @@
     </head>
     <body>
       <div class="logo">
-        <img src="http://atheycreek.com/workspace/assets/img/apple-touch-icon.png" />
+        <img src="/workspace/assets/img/apple-touch-icon.png" />
       </div>
       <h1><span>404 ERROR!</span><br/>The page you are looking for is no longer available.<br />Here are some suggestions:</h1>
       <ul>

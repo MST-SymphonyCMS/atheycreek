@@ -187,7 +187,7 @@
         </xsl:call-template>
       </xsl:for-each>
       <xsl:call-template name="subnav-group">
-        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = $ds-tags-filtered.system-id and not(hide-from-header = 'Yes')]" />
+        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = $ds-tags-filtered.system-id and not(hide-nav = 'Yes')]" />
         <xsl:with-param name="mobile" select="'yes'" />
       </xsl:call-template>
     </div>

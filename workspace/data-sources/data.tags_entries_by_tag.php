@@ -20,7 +20,7 @@ class datasourcetags_entries_by_tag extends SectionDatasource
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
     public $dsParamFILTERS = array(
-        '337' => '{$pt1:home}',
+        '56' => '{$pt1:home}',
     );
 
     public function __construct($env = null, $process_params = true)
@@ -38,7 +38,7 @@ class datasourcetags_entries_by_tag extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-08-20T15:32:11+00:00'
+            'release-date' => '2014-08-20T23:28:21+00:00'
         );
     }
 

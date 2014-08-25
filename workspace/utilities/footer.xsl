@@ -47,7 +47,7 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="{$workspace}/assets/js/application.min.js?v={$main-asset-version}"></script>
+  <script type="text/javascript" src="{$workspace}/assets/js/application.min.js"></script>
 
   <script type="text/javascript">
     var _gaq = _gaq || [];

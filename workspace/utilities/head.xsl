@@ -44,7 +44,7 @@
     <link href="{$workspace}/assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="apple-touch-icon-precomposed" href="{$workspace}/assets/img/apple-touch-icon.png" />
 
-    <link rel="stylesheet" href="{$workspace}/assets/css/main.css?v={$main-asset-version}" />
+    <link rel="stylesheet" href="{$workspace}/assets/css/main.css" />
     <xsl:comment><![CDATA[[if IE 7]> <link rel="stylesheet" href="/workspace/assets/css/ie7.css" type="text/css" /> <![endif]]]></xsl:comment>
     <link rel="canonical" href="{$current-url}" />
     <xsl:choose>

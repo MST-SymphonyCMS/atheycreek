@@ -18,34 +18,18 @@
             <input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads,locations" />
           </form>
           <ul class="nav pull-right">
-            <xsl:if test="data/xml-ustream/status = 'live'">
+            <xsl:if test="data/xml-ustream/status = 'offline'">
               <li>
-                <a href="{$root}/live/">
-                  <xsl:attribute name="class">
-                    <xsl:text>modalLiveLink</xsl:text>
-                    <xsl:choose>
-                      <xsl:when test="data/xml-ustream/status = 'live'">
-                        <xsl:text> online</xsl:text>
-                      </xsl:when>
-                      <xsl:otherwise>
-                        <xsl:text> offline</xsl:text>
-                      </xsl:otherwise>
-                    </xsl:choose>
-                  </xsl:attribute>
+                <a href="{$root}/live/" class="live">
                   <span class="icon">V</span>
                   <xsl:text>Live</xsl:text>
                 </a>
               </li>
-              <li class="divider-vertical"></li>
             </xsl:if>
             <li><a href="{$root}/building/">Building</a></li>
-            <li class="divider-vertical"></li>
             <li><a href="{$root}/meetings/">Meetings</a></li>
-            <li class="divider-vertical"></li>
             <li><a href="{$root}/im-new-here/">New Here?</a></li>
-            <li class="divider-vertical"></li>
             <li><a href="{$root}/give/">Give</a></li>
-            <li class="divider-vertical"></li>
             <li>
               <xsl:attribute name="class">
                 <xsl:choose>
@@ -64,7 +48,6 @@
               </a>
             </li>
             <xsl:if test="$cookie-username">
-              <li class="divider-vertical"></li>
               <li class="admin-menu">
                 <a href="#" data-toggle="dropdown"><i class="glyphicon-wrench"></i></a>
                 <ul class="dropdown-menu">

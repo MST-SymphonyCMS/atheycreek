@@ -1023,9 +1023,13 @@ hr.soften {
             color: darken(@color-gray-light, 10%);
             text-shadow: none;
 
-            &.modalLiveLink {
+            &.live{
               position: relative;
-              top: -3px;
+              top: -4px;
+
+              .icon {
+                top: 2px;
+              }
             }
 
             &:hover {

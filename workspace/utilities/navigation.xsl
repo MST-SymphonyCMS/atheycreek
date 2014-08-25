@@ -18,7 +18,7 @@
             <input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads,locations" />
           </form>
           <ul class="nav pull-right">
-            <xsl:if test="data/xml-ustream/status = 'offline'">
+            <xsl:if test="data/xml-ustream/status = 'live'">
               <li>
                 <a href="{$root}/live/" class="live">
                   <span class="icon">V</span>

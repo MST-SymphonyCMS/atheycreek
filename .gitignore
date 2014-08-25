@@ -8,5 +8,5 @@ manifest/tmp/*
 workspace/uploads/documents/*
 workspace/uploads/images/*
 node_modules/
-utilities/
+utilities/*.sh
 _sql/

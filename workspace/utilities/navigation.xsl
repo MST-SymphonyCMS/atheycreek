@@ -18,13 +18,13 @@
             <input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads,locations" />
           </form>
           <ul class="nav pull-right">
-            <xsl:if test="data/status-all-entries/entry[name = 'ustream-status']/content = 'live'">
+            <xsl:if test="data/xml-ustream/status = 'live'">
               <li>
                 <a href="{$root}/live/">
                   <xsl:attribute name="class">
                     <xsl:text>modalLiveLink</xsl:text>
                     <xsl:choose>
-                      <xsl:when test="data/status-all-entries/entry[name = 'ustream-status']/content = 'live'">
+                      <xsl:when test="data/xml-ustream/status = 'live'">
                         <xsl:text> online</xsl:text>
                       </xsl:when>
                       <xsl:otherwise>
@@ -121,6 +121,15 @@
       </a>
       <div class="nav-collapse">
         <ul class="nav">
+          <xsl:if test="data/xml-ustream/status = 'live'">
+            <li>
+              <a href="{$root}/live/">
+                <span class="icon">V</span>
+                <xsl:text>Live</xsl:text>
+              </a>
+            </li>
+            <li class="divider-vertical"></li>
+          </xsl:if>
           <li><a href="{$root}/building/">Building Project</a></li>
           <li><a href="{$root}/meetings/">Meetings</a></li>
           <li><a href="{$root}/im-new-here/">New Here?</a></li>

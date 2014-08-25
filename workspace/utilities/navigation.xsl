@@ -38,6 +38,7 @@
               </li>
               <li class="divider-vertical"></li>
             </xsl:if>
+            <li><a href="{$root}/building/">Building Project</a></li>
             <li><a href="{$root}/meetings/">Meetings</a></li>
             <li class="divider-vertical"></li>
             <li><a href="{$root}/im-new-here/">New Here?</a></li>
@@ -119,6 +120,7 @@
       </a>
       <div class="nav-collapse">
         <ul class="nav">
+          <li><a href="{$root}/building/">Building Project</a></li>
           <li><a href="{$root}/meetings/">Meetings</a></li>
           <li><a href="{$root}/im-new-here/">New Here?</a></li>
           <li><a href="{$root}/give/">Give</a></li>

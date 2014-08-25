@@ -96,7 +96,7 @@
 									<xsl:attribute name="src">
 										<xsl:value-of select="$root"/>
 										<xsl:text>/workspace/uploads/images/</xsl:text>
-										<xsl:value-of select="/data/teachings-series-entries-all/entry[@id = $pt3]/poster/item/image/filename" disable-output-escaping="yes" />
+										<xsl:value-of select="/data/teachings-series-entries-all/entry[@id = $pt3]/poster/item/image/file/filename" disable-output-escaping="yes" />
 									</xsl:attribute>
 								</img>
 								<xsl:if test="/data/teachings-series-entries-all/entry[@id = $pt3]/description != ''">
@@ -170,49 +170,7 @@
 									            <xsl:attribute name="data-responsimage">
 									              <xsl:choose>
 									                <xsl:when test="string-length(poster/item)">
-									                  <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
-									                </xsl:when>
-									                <xsl:otherwise>
-									                  <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-									                </xsl:otherwise>
-									              </xsl:choose>
-									            </xsl:attribute>
-									          </img>
-									        </div>
-									        <xsl:call-template name="teaching-actions" />
-									      </div>
-									    </xsl:when>
-									    <xsl:when test="video-podcast = 'Yes'">
-									      <div class="tab-pane fade active in" id="video">
-									        <video id="{@id}" class="sublime" width="620" height="348" title="{title}: {book/item} {chapter}" data-uid="{@id}" data-autoresize="fit" preload="none">
-									          <xsl:attribute name="poster">
-									            <xsl:value-of select="$root"/>
-									            <xsl:text>/image/2/1920/1080/5/0/uploads/images/</xsl:text>
-									            <xsl:value-of select="poster/item/image/filename"/>
-									          </xsl:attribute>
-									          <source>
-									            <xsl:attribute name="src">
-									              <xsl:text>http://66.147.244.244/~atheycre/teachings/video/</xsl:text>
-									              <xsl:value-of select="filename"/>
-									              <xsl:text>_540.mp4</xsl:text>
-									            </xsl:attribute>
-									          </source>
-									          <source data-quality="hd">
-									            <xsl:attribute name="src">
-									              <xsl:text>http://66.147.244.244/~atheycre/teachings/video/</xsl:text>
-									              <xsl:value-of select="filename"/>
-									              <xsl:text>_720.mp4</xsl:text>
-									            </xsl:attribute>
-									          </source>
-									        </video>
-									      </div>
-									      <div class="tab-pane fade in" id="audio">
-									        <div class="audio-poster">
-									          <img style="width:620px; height:348px" src="/workspace/assets/img/spacer.gif">
-									            <xsl:attribute name="data-responsimage">
-									              <xsl:choose>
-									                <xsl:when test="string-length(poster/item)">
-									                  <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
+									                  <xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
 									                </xsl:when>
 									                <xsl:otherwise>
 									                  <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
@@ -231,7 +189,7 @@
 									            <xsl:attribute name="data-responsimage">
 									              <xsl:choose>
 									                <xsl:when test="string-length(poster/item)">
-									                  <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
+									                  <xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
 									                </xsl:when>
 									                <xsl:otherwise>
 									                  <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
@@ -734,7 +692,7 @@
 								<xsl:attribute name="data-responsimage">
 									<xsl:choose>
 										<xsl:when test="string-length(poster/item)">
-											<xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
+											<xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
 										</xsl:when>
 										<xsl:otherwise>
 											<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
@@ -815,56 +773,7 @@
 			                <xsl:attribute name="data-responsimage">
 			                  <xsl:choose>
 			                    <xsl:when test="string-length(poster/item)">
-			                      <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
-			                    </xsl:when>
-			                    <xsl:otherwise>
-			                      <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-			                    </xsl:otherwise>
-			                  </xsl:choose>
-			                </xsl:attribute>
-			              </img>
-			            </div>
-			            <xsl:call-template name="teaching-actions" />
-			          </div>
-			        </xsl:when>
-			        <xsl:when test="video-podcast = 'Yes'">
-			          <div class="tab-pane fade active in" id="video">
-			            <video id="{@id}" class="sublime" width="620" height="348" title="{title}: {book/item} {chapter}" data-uid="{@id}" data-autoresize="fit" preload="none">
-			              <xsl:attribute name="poster">
-			                <xsl:value-of select="$root"/>
-			                <xsl:text>/image/2/1920/1080/5/0/uploads/images/</xsl:text>
-			                <xsl:value-of select="poster/item/image/filename"/>
-			              </xsl:attribute>
-			              <source>
-			                <xsl:attribute name="src">
-			                  <xsl:text>http://66.147.244.244/~atheycre/teachings/video/</xsl:text>
-			                  <xsl:value-of select="filename"/>
-			                  <xsl:text>_720.mp4</xsl:text>
-			                </xsl:attribute>
-			              </source>
-			              <source data-quality="hd">
-			                <xsl:attribute name="src">
-			                  <xsl:text>http://66.147.244.244/~atheycre/teachings/video/</xsl:text>
-			                  <xsl:value-of select="filename"/>
-			                  <xsl:text>_1080.mp4</xsl:text>
-			                </xsl:attribute>
-			              </source>
-			              <source>
-			                <xsl:attribute name="src">
-			                  <xsl:text>http://66.147.244.244/~atheycre/teachings/video/</xsl:text>
-			                  <xsl:value-of select="filename"/>
-			                  <xsl:text>_540.mp4</xsl:text>
-			                </xsl:attribute>
-			              </source>
-			            </video>
-			          </div>
-			          <div class="tab-pane fade in" id="audio">
-			            <div class="audio-poster">
-			              <img style="width:620px; height:348px" src="/workspace/assets/img/spacer.gif">
-			                <xsl:attribute name="data-responsimage">
-			                  <xsl:choose>
-			                    <xsl:when test="string-length(poster/item)">
-			                      <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
+			                      <xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
 			                    </xsl:when>
 			                    <xsl:otherwise>
 			                      <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
@@ -883,7 +792,7 @@
 			                <xsl:attribute name="data-responsimage">
 			                  <xsl:choose>
 			                    <xsl:when test="string-length(poster/item)">
-			                      <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
+			                      <xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
 			                    </xsl:when>
 			                    <xsl:otherwise>
 			                      <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
@@ -910,7 +819,7 @@
 			    </div>
 			    <div class="avatar">
 			      <xsl:call-template name="speaker-avatar">
-			        <xsl:with-param name="photo" select="speaker/item/photo/filename" />
+			        <xsl:with-param name="photo" select="speaker/item/photo/file/filename" />
 			        <xsl:with-param name="height" select="140" />
 			        <xsl:with-param name="width" select="140" />
 			      </xsl:call-template>
@@ -1141,7 +1050,7 @@
 		<xsl:attribute name="data-responsimage">
 			<xsl:choose>
 				<xsl:when test="string-length(poster/item)">
-					<xsl:value-of select="$poster/item/image/filename" disable-output-escaping="yes" />
+					<xsl:value-of select="$poster/item/image/file/filename" disable-output-escaping="yes" />
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>

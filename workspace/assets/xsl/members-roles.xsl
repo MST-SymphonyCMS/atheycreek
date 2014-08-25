@@ -81,7 +81,7 @@
 
 
 						<xsl:call-template name="members-roles-avatar">
-							<xsl:with-param name="filename" select="member/item/photo/filename" />
+							<xsl:with-param name="filename" select="member/item/photo/file/filename" />
 							<xsl:with-param name="height" select="180" />
 							<xsl:with-param name="width" select="180" />
 						</xsl:call-template>
@@ -158,7 +158,7 @@
 						</xsl:if>
 						<div class="pull-left">
 							<xsl:call-template name="members-roles-avatar">
-								<xsl:with-param name="filename" select="member/item/photo/filename" />
+								<xsl:with-param name="filename" select="member/item/photo/file/filename" />
 								<xsl:with-param name="height" select="72" />
 								<xsl:with-param name="width" select="72" />
 							</xsl:call-template>

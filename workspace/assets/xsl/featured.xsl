@@ -18,7 +18,7 @@
 						<xsl:value-of select="url"/>
           </uri>
 					<image>
-						<xsl:value-of select="image/item/image/filename"/>
+						<xsl:value-of select="image/item/image/file/filename"/>
 					</image>
         </entry>
       </xsl:for-each>
@@ -36,7 +36,7 @@
 						<xsl:value-of select="name/@handle"/>
           </uri>
 					<image>
-						<xsl:value-of select="images/item/image/filename"/>
+						<xsl:value-of select="images/item/image/file/filename"/>
 					</image>
         </entry>
       </xsl:for-each>
@@ -55,7 +55,7 @@
 						<xsl:value-of select="name/@handle"/>
           </uri>
 					<image>
-						<xsl:value-of select="images/item/image/filename"/>
+						<xsl:value-of select="images/item/image/file/filename"/>
 					</image>
         </entry>
       </xsl:for-each>

@@ -44,7 +44,7 @@
 		</xsl:call-template>
 
 		<xsl:for-each select="$entries">
-			<img class="img-respsonsive" src="{$root}/workspace/uploads/images/{image/filename}" />
+			<img class="img-respsonsive" src="{$root}/workspace/uploads/images/{image/file/filename}" />
 		</xsl:for-each>
 	</div>
 
@@ -80,7 +80,7 @@
 
 		            <img style="width:100%" class="inline" data-responsimage-anchor="5" src="/workspace/assets/img/spacer.gif">
 		              <xsl:attribute name="data-responsimage">
-		                <xsl:value-of select="image/filename" />
+		                <xsl:value-of select="image/file/filename" />
 		              </xsl:attribute>
 		            </img>
 		          </a>

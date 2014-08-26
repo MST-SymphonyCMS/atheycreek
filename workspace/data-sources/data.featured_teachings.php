@@ -11,6 +11,8 @@ class datasourcefeatured_teachings extends SectionDatasource
     public $dsParamLIMIT = '1';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamPARAMOUTPUT = array(
         'video-podcast'
         );
@@ -33,31 +35,18 @@ class datasourcefeatured_teachings extends SectionDatasource
         'speaker',
         'date',
         'poster',
-        'video',
+        'video-id',
         'day',
         'tags',
         'video-podcast'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'poster' => array(
             'section_id' => '8',
             'field_id' => '313',
             'elements' => array(
                 'image'
-            )
-        ),
-        'video' => array(
-            'section_id' => '22',
-            'field_id' => '183',
-            'elements' => array(
-                'title',
-                'description',
-                'date',
-                'url',
-                'player',
-                'thumbnail',
-                'uid'
             )
         ),
         'tags' => array(
@@ -90,9 +79,9 @@ class datasourcefeatured_teachings extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-13T17:44:47+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.0RC1',
+            'release-date' => '2014-08-26T15:45:11+00:00'
         );
     }
 

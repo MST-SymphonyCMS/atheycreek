@@ -7,7 +7,7 @@
 		public $dsParamROOTELEMENT = 'xml-ustream';
 		public $dsParamURL = 'http://api.ustream.tv/xml/channel/atheycreek/getInfo/?key=4E23272206B10532FEC6335E3D79977E';
 		public $dsParamXPATH = '/xml/results/status';
-		public $dsParamCACHE = '999999';
+		public $dsParamCACHE = '0';
 		public $dsParamTIMEOUT = '6';
 
 

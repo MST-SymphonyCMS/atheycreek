@@ -36,7 +36,7 @@ class datasourcetags_entries_by_tag extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0RC1',
             'release-date' => '2014-08-20T23:28:21+00:00'
         );

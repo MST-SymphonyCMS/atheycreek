@@ -25,7 +25,7 @@ class datasourcelayouts_default extends SectionDatasource
         'column-center',
         'column-right'
     );
-    
+
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'column-full-width' => array(
             'section_id' => '9',
@@ -63,7 +63,7 @@ class datasourcelayouts_default extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0beta2',
             'release-date' => '2014-08-04T23:12:18+00:00'
         );

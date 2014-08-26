@@ -34,7 +34,7 @@ class datasourcemembers_roles_by_id extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0beta2',
             'release-date' => '2014-08-05T20:06:56+00:00'
         );

@@ -31,7 +31,7 @@ class datasourcepodcast_audio extends SectionDatasource
         'audio-filesize',
         'hide'
     );
-    
+
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'speaker' => array(
             'section_id' => '1',
@@ -56,7 +56,7 @@ class datasourcepodcast_audio extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0beta2',
             'release-date' => '2014-08-05T20:46:41+00:00'
         );

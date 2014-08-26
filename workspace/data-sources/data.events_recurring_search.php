@@ -26,7 +26,7 @@ class datasourceevents_recurring_search extends SectionDatasource
         'description: formatted',
         'tags'
     );
-    
+
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'tags' => array(
             'section_id' => '3',
@@ -50,7 +50,7 @@ class datasourceevents_recurring_search extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0RC1',
             'release-date' => '2014-08-19T20:23:12+00:00'
         );

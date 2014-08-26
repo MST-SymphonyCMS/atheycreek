@@ -42,7 +42,7 @@ class datasourcelocations_groups extends SectionDatasource
         'full',
         'childcare'
     );
-    
+
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'leaders' => array(
             'section_id' => '18',
@@ -68,7 +68,7 @@ class datasourcelocations_groups extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0beta2',
             'release-date' => '2014-08-05T20:10:26+00:00'
         );

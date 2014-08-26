@@ -13,14 +13,14 @@
 		public $dsParamSORT = 'system:id';
 		public $dsParamHTMLENCODE = 'yes';
 		public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
-		
+
 
 		public $dsParamFILTERS = array(
 				'263' => 'later than now',
 				'227' => 'yes',
 				'221' => 'no',
 		);
-		
+
 
 		public $dsParamINCLUDEDELEMENTS = array(
 				'url',
@@ -29,7 +29,7 @@
 				'can-be-closed',
 				'type'
 		);
-		
+
 
 		public function __construct($env=NULL, $process_params=true) {
 			parent::__construct($env, $process_params);
@@ -42,7 +42,7 @@
 				'author' => array(
 					'name' => 'Jonathan Simcoe',
 					'website' => 'http://atheycreek.dev',
-					'email' => 'jdsimcoe@gmail.com'),
+					'email' => 'jonathan@simko.io'),
 				'version' => 'Symphony 2.3.5',
 				'release-date' => '2014-03-21T23:34:36+00:00'
 			);

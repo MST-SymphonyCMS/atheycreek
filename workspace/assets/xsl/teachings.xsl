@@ -141,7 +141,7 @@
 									<h3>Latest Teaching</h3>
 									<ul class="nav nav-tabs" id="teachingTab">
 									  <xsl:choose>
-									    <xsl:when test="video/item or video-podcast = 'Yes'">
+									    <xsl:when test="string-length(video-id) or video-podcast = 'Yes'">
 									      <li class="active"><a href="#video" data-toggle="tab">Video</a></li>
 									      <li><a href="#audio" data-toggle="tab">Audio</a></li>
 									    </xsl:when>
@@ -160,9 +160,9 @@
 
 									<div class="tab-content">
 									  <xsl:choose>
-									    <xsl:when test="video/item">
+									    <xsl:when test="string-length(video-id)">
 									      <div class="tab-pane fade active in" id="video">
-									        <iframe src="http://player.vimeo.com/video/{video/item/uid}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"></iframe>
+									        <iframe src="http://player.vimeo.com/video/{video-id}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"></iframe>
 									      </div>
 									      <div class="tab-pane fade in" id="audio">
 									        <div class="audio-poster">
@@ -745,7 +745,7 @@
 			  <div class="span8 teaching-main">
 			    <ul class="nav nav-tabs" id="teachingTab">
 			      <xsl:choose>
-			        <xsl:when test="video/item or video-podcast = 'Yes'">
+			        <xsl:when test="string-length(video-id) or video-podcast = 'Yes'">
 			          <li class="active"><a href="#video" data-toggle="tab">Video</a></li>
 			          <li><a href="#audio" data-toggle="tab">Audio</a></li>
 			        </xsl:when>
@@ -763,9 +763,9 @@
 			    </xsl:if>
 			    <div class="tab-content">
 			      <xsl:choose>
-			        <xsl:when test="video/item">
+			        <xsl:when test="string-length(video-id)">
 			          <div class="tab-pane fade active in" id="video">
-			          	<iframe src="http://player.vimeo.com/video/{video/item/uid}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"></iframe>
+			          	<iframe src="http://player.vimeo.com/video/{video-id}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"></iframe>
 			          </div>
 			          <div class="tab-pane fade in" id="audio">
 			            <div class="audio-poster">

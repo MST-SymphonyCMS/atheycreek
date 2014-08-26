@@ -25,7 +25,7 @@ class datasourcetext_search extends SectionDatasource
         'content: formatted',
         'tags'
     );
-    
+
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'tags' => array(
             'section_id' => '3',
@@ -49,7 +49,7 @@ class datasourcetext_search extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0RC1',
             'release-date' => '2014-08-19T20:35:22+00:00'
         );

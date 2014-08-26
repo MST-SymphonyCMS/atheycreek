@@ -29,7 +29,7 @@ class datasourcetags_filtered extends SectionDatasource
         'parent',
         'layout'
     );
-    
+
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'parent' => array(
             'section_id' => '3',
@@ -64,7 +64,7 @@ class datasourcetags_filtered extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0RC1',
             'release-date' => '2014-08-20T23:26:11+00:00'
         );

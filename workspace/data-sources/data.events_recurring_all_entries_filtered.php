@@ -28,7 +28,7 @@ class datasourceevents_recurring_all_entries_filtered extends SectionDatasource
         'verses',
         'type'
     );
-    
+
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'downloads' => array(
             'section_id' => '10',
@@ -76,7 +76,7 @@ class datasourceevents_recurring_all_entries_filtered extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0beta2',
             'release-date' => '2014-08-05T17:47:08+00:00'
         );

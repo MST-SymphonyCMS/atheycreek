@@ -11,6 +11,8 @@ class datasourceteachings_entry_by_id extends SectionDatasource
     public $dsParamLIMIT = '1';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamPARAMOUTPUT = array(
         'video-podcast'
         );
@@ -27,20 +29,33 @@ class datasourceteachings_entry_by_id extends SectionDatasource
         'title: unformatted',
         'slug',
         'filename',
-        'current-id',
         'book',
         'chapter',
         'description: formatted',
         'speaker',
         'date',
         'poster',
-        'video',
+        'video-id',
         'day',
         'tags',
         'video-podcast'
     );
     
     public $dsParamINCLUDEDASSOCIATIONS = array(
+        'poster' => array(
+            'section_id' => '8',
+            'field_id' => '313',
+            'elements' => array(
+                'image'
+            )
+        ),
+        'tags' => array(
+            'section_id' => '15',
+            'field_id' => '127',
+            'elements' => array(
+                'tag: unformatted'
+            )
+        ),
         'speaker' => array(
             'section_id' => '1',
             'field_id' => '318',
@@ -49,33 +64,6 @@ class datasourceteachings_entry_by_id extends SectionDatasource
                 'last-name',
                 'photo',
                 'about: formatted'
-            )
-        ),
-        'poster' => array(
-            'section_id' => '8',
-            'field_id' => '313',
-            'elements' => array(
-                'image'
-            )
-        ),
-        'video' => array(
-            'section_id' => '22',
-            'field_id' => '183',
-            'elements' => array(
-                'title',
-                'description',
-                'date',
-                'url',
-                'player',
-                'thumbnail',
-                'uid'
-            )
-        ),
-        'tags' => array(
-            'section_id' => '15',
-            'field_id' => '127',
-            'elements' => array(
-                'tag: unformatted'
             )
         )
     );
@@ -94,8 +82,8 @@ class datasourceteachings_entry_by_id extends SectionDatasource
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-06T02:08:19+00:00'
+            'version' => 'Symphony 2.5.0RC1',
+            'release-date' => '2014-08-26T14:49:36+00:00'
         );
     }
 

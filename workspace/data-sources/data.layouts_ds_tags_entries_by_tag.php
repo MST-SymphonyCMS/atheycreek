@@ -29,7 +29,7 @@ class datasourcelayouts_ds_tags_entries_by_tag extends SectionDatasource
         'column-center',
         'column-right'
     );
-    
+
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'column-full-width' => array(
             'section_id' => '9',
@@ -67,7 +67,7 @@ class datasourcelayouts_ds_tags_entries_by_tag extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0beta2',
             'release-date' => '2014-08-04T23:33:58+00:00'
         );

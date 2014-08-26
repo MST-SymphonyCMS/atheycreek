@@ -18,11 +18,11 @@
 		public function about(){
 			return array(
 				'name' => 'XML: Books of the Bible',
-				'author' => array(
-					'name' => 'Kirk Strobeck',
-					'website' => 'http://72.10.33.203',
-					'email' => 'kirk@strobeck.com'),
-				'version' => 'Symphony 2.2.5',
+        'author' => array(
+          'name' => 'Jonathan Simcoe',
+          'website' => 'http://atheycreek.dev/',
+          'email' => 'jonathan@simko.io'),
+        'version' => 'Symphony 2.5.0beta2',
 				'release-date' => '2012-03-14T03:49:19+00:00'
 			);
 		}

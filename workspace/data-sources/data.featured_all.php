@@ -25,7 +25,7 @@ class datasourcefeatured_all extends SectionDatasource
         'image',
         'expiration'
     );
-    
+
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'image' => array(
             'section_id' => '8',
@@ -49,7 +49,7 @@ class datasourcefeatured_all extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0beta2',
             'release-date' => '2014-08-05T19:30:56+00:00'
         );

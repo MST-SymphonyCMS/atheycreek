@@ -15,9 +15,9 @@
 			return array(
 				'name' => 'XML: Ustream',
 				'author' => array(
-					'name' => 'Jonathan Simcoe',
-					'website' => 'http://simko.io/',
-					'email' => 'jonathan@simko.io'),
+				  'name' => 'Jonathan Simcoe',
+				  'website' => 'http://atheycreek.dev/',
+				  'email' => 'jonathan@simko.io'),
 				'version' => 'Symphony 2.5.0beta2',
 				'release-date' => '2013-07-21T15:19:44+00:00'
 			);

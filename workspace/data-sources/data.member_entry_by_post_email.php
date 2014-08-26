@@ -13,12 +13,12 @@
 		public $dsParamSORT = 'system:id';
 		public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 		public $dsParamCACHE = '0';
-		
+
 
 		public $dsParamFILTERS = array(
 				'id' => '{$etm-entry-id}',
 		);
-		
+
 
 		public $dsParamINCLUDEDELEMENTS = array(
 				'first-name',
@@ -27,7 +27,7 @@
 				'password',
 				'activation'
 		);
-		
+
 
 		public function __construct($env=NULL, $process_params=true) {
 			parent::__construct($env, $process_params);
@@ -40,7 +40,7 @@
 				'author' => array(
 					'name' => 'Jonathan Simcoe',
 					'website' => 'http://atheycreek',
-					'email' => 'jdsimcoe@gmail.com'),
+					'email' => 'jonathan@simko.io'),
 				'version' => 'Symphony 2.3.2',
 				'release-date' => '2013-07-01T20:12:15+00:00'
 			);

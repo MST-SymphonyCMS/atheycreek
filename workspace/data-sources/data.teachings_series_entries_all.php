@@ -26,7 +26,7 @@ class datasourceteachings_series_entries_all extends SectionDatasource
         'special',
         'featured'
     );
-    
+
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'poster' => array(
             'section_id' => '8',
@@ -50,7 +50,7 @@ class datasourceteachings_series_entries_all extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jdsimcoe@gmail.com'),
+                'email' => 'jonathan@simko.io'),
             'version' => 'Symphony 2.5.0beta2',
             'release-date' => '2014-08-11T17:43:37+00:00'
         );

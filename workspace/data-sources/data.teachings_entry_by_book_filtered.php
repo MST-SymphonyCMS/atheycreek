@@ -11,6 +11,8 @@ class datasourceteachings_entry_by_book_filtered extends SectionDatasource
     public $dsParamLIMIT = '{$pt5:10}';
     public $dsParamSTARTPAGE = '{$pt4:1}';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamREQUIREDPARAM = '$pt3';
     public $dsParamSORT = 'date';
     public $dsParamHTMLENCODE = 'yes';
@@ -25,29 +27,16 @@ class datasourceteachings_entry_by_book_filtered extends SectionDatasource
         'system:pagination',
         'slug',
         'filename',
-        'current-id',
         'book',
         'chapter',
         'speaker',
         'date',
         'poster',
-        'video',
+        'video2',
         'day'
     );
     
     public $dsParamINCLUDEDASSOCIATIONS = array(
-        'speaker' => array(
-            'section_id' => '1',
-            'field_id' => '318',
-            'elements' => array(
-                'first-name',
-                'last-name',
-                'first-name',
-                'last-name',
-                'first-name',
-                'last-name'
-            )
-        ),
         'poster' => array(
             'section_id' => '8',
             'field_id' => '313',
@@ -55,13 +44,12 @@ class datasourceteachings_entry_by_book_filtered extends SectionDatasource
                 'image'
             )
         ),
-        'video' => array(
-            'section_id' => '22',
-            'field_id' => '183',
+        'speaker' => array(
+            'section_id' => '1',
+            'field_id' => '318',
             'elements' => array(
-                'url',
-                'player',
-                'uid'
+                'first-name',
+                'last-name'
             )
         )
     );
@@ -80,8 +68,8 @@ class datasourceteachings_entry_by_book_filtered extends SectionDatasource
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-06T02:05:56+00:00'
+            'version' => 'Symphony 2.5.0RC1',
+            'release-date' => '2014-08-26T14:34:55+00:00'
         );
     }
 

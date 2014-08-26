@@ -220,7 +220,7 @@
 
 						<div class="pull-left">
 							<xsl:call-template name="members-roles-avatar">
-								<xsl:with-param name="filename" select="photo/filename" />
+								<xsl:with-param name="filename" select="photo/file/filename" />
 								<xsl:with-param name="height" select="72" />
 								<xsl:with-param name="width" select="72" />
 							</xsl:call-template>

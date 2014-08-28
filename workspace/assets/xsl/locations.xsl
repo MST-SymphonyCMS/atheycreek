@@ -189,7 +189,7 @@
 										</xsl:variable>
 					  				<div class="entry clearfix odd first span4">
 						  				<xsl:call-template name="members-roles-avatar">
-													<xsl:with-param name="filename" select="/data/members-by-id/entry[@id = $leader-id]/photo/filename" />
+													<xsl:with-param name="filename" select="/data/members-by-id/entry[@id = $leader-id]/photo/file/filename" />
 													<xsl:with-param name="height" select="180" />
 													<xsl:with-param name="width" select="180" />
 												</xsl:call-template>

@@ -3,7 +3,7 @@
 
 <xsl:template name="alerts">
 
-	<xsl:if test="/data/status-all-entries/entry[name = 'ustream-status']/content = 'live'">
+	<xsl:if test="data/xml-ustream/status = 'live'">
     <div id="14097" class="alert alertLive">
       <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
       <div class="container">

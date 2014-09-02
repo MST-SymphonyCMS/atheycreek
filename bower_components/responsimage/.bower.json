@@ -1,0 +1,16 @@
+{
+  "name": "responsimage",
+  "main": "./responsimage.js",
+  "dependencies": {},
+  "homepage": "https://github.com/responsimage/component",
+  "_release": "19d57681cd",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "19d57681cdb26849c676a32784b3bc542e3d6a9b"
+  },
+  "_source": "git://github.com/responsimage/component.git",
+  "_target": "*",
+  "_originalSource": "responsimage",
+  "_direct": true
+}

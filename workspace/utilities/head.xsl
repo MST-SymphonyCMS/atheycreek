@@ -41,34 +41,29 @@
     <meta property="og:image" content="{$workspace}/assets/img/apple-touch-icon.png" />
     <meta property="og:title" content="{$page-title}" />
     <meta property="og:description" content="{$main-meta-description}" />
-    <link href="{$workspace}/assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <link rel="canonical" href="{$current-url}" />
+
+    <link rel="dns-prefetch" href="{$root}" />
+    <link rel="dns-prefetch" href="//www.google-analytics.com"/>
+    <link rel="dns-prefetch" href="//use.typekit.com" />
+
+    <link rel="shortcut icon" href="{$workspace}/assets/img/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon-precomposed" href="{$workspace}/assets/img/apple-touch-icon.png" />
 
-    <link rel="stylesheet" href="{$workspace}/assets/css/main.css" />
-    <xsl:comment><![CDATA[[if IE 7]> <link rel="stylesheet" href="/workspace/assets/css/ie7.css" type="text/css" /> <![endif]]]></xsl:comment>
-    <link rel="canonical" href="{$current-url}" />
     <xsl:choose>
-      <xsl:when test="number($pt1) and $pt1 = 20 and $pt3 or number($pt1) and $pt1 = 20 and $pt3">
-        <link rel="shorturl" href="http://accf.co/{$pt3}" />
-        <link rel="shortlink" href="http://accf.co/{$pt3}" />
+      <xsl:when test="contains($root, '.dev')">
+        <link rel="stylesheet" href="{$workspace}/assets/build/styles/main.css" />
       </xsl:when>
       <xsl:otherwise>
-        <link rel="shorturl" href="http://accf.co/{$pt1}" />
-        <link rel="shortlink" href="http://accf.co/{$pt1}" />
+        <link rel="stylesheet" href="{$workspace}/assets/build/styles/main.min.css" />
       </xsl:otherwise>
     </xsl:choose>
 
-    <link rel="dns-prefetch" href="{$root}" />
-    <link rel="dns-prefetch" href="http://use.typekit.com" />
-    <link rel="dns-prefetch" href="http://cdn.sublimevideo.net" />
-
-    <xsl:if test="$pt1 = 'teachings'">
-      <script type="text/javascript" src="//cdn.sublimevideo.net/js/gblul6wk-beta.js"></script>
-    </xsl:if>
     <script type="text/javascript" src="//use.typekit.net/tix6unz.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-    </head>
+  </head>
 
 </xsl:template>
 

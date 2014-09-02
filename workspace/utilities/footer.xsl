@@ -4,7 +4,7 @@
 
 <xsl:template name="footer">
 
-  <div class="footer">
+  <footer class="footer">
     <div class="footer-nav container">
       <div class="row">
         <div class="span2">
@@ -45,9 +45,16 @@
         </div>
       </div>
     </div>
-  </div>
+  </footer>
 
-  <script type="text/javascript" src="{$workspace}/assets/js/application.min.js"></script>
+  <xsl:choose>
+    <xsl:when test="contains($root, '.dev')">
+      <script src="{$workspace}/assets/dist/scripts/main.js"></script>
+    </xsl:when>
+    <xsl:otherwise>
+      <script src="{$workspace}/assets/dist/scripts/main.min.js"></script>
+    </xsl:otherwise>
+  </xsl:choose>
 
   <script type="text/javascript">
     var _gaq = _gaq || [];

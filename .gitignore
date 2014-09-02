@@ -1,12 +1,13 @@
 .DS_Store
 *.sublime-project
 *.sublime-workspace
+bowser_components/
 manifest/config.php
 manifest/cache/*
 manifest/logs/*
 manifest/tmp/*
+node_modules/
 workspace/uploads/documents/*
 workspace/uploads/images/*
-node_modules/
 utilities/*.sh
 _sql/

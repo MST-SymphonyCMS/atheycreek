@@ -2,19 +2,19 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 
-<xsl:import href="../assets/xsl/alerts.xsl" />
-<xsl:import href="../assets/xsl/blog.xsl" />
-<xsl:import href="../assets/xsl/downloads.xsl" />
-<xsl:import href="../assets/xsl/events.xsl" />
-<xsl:import href="../assets/xsl/featured.xsl" />
-<xsl:import href="../assets/xsl/images.xsl" />
-<xsl:import href="../assets/xsl/locations.xsl" />
-<xsl:import href="../assets/xsl/members-roles.xsl" />
-<xsl:import href="../assets/xsl/search.xsl" />
-<xsl:import href="../assets/xsl/teachings.xsl" />
-<xsl:import href="../assets/xsl/text.xsl" />
-<xsl:import href="../assets/xsl/verses.xsl" />
-<xsl:import href="../assets/xsl/videos.xsl" />
+<xsl:import href="../xsl/alerts.xsl" />
+<xsl:import href="../xsl/blog.xsl" />
+<xsl:import href="../xsl/downloads.xsl" />
+<xsl:import href="../xsl/events.xsl" />
+<xsl:import href="../xsl/featured.xsl" />
+<xsl:import href="../xsl/images.xsl" />
+<xsl:import href="../xsl/locations.xsl" />
+<xsl:import href="../xsl/members-roles.xsl" />
+<xsl:import href="../xsl/search.xsl" />
+<xsl:import href="../xsl/teachings.xsl" />
+<xsl:import href="../xsl/text.xsl" />
+<xsl:import href="../xsl/verses.xsl" />
+<xsl:import href="../xsl/videos.xsl" />
 
 
 <xsl:template name="component">

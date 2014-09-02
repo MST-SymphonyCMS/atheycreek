@@ -24,7 +24,6 @@ class datasourceevents_recurring_entry_by_id extends SectionDatasource
 
     public $dsParamFILTERS = array(
         'system:id' => '{$pt2}',
-        '214' => 'no',
     );
 
     public $dsParamINCLUDEDELEMENTS = array(
@@ -39,7 +38,7 @@ class datasourceevents_recurring_entry_by_id extends SectionDatasource
         'images',
         'verses'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'tags' => array(
             'section_id' => '3',
@@ -110,9 +109,9 @@ class datasourceevents_recurring_entry_by_id extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
+                'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-08-19T20:22:05+00:00'
+            'release-date' => '2014-09-02T14:32:58+00:00'
         );
     }
 

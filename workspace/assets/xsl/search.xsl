@@ -60,14 +60,10 @@
 							<xsl:call-template name="url-search-home" />
 							<span class="icon">s</span>
 						</a>
-						<xsl:choose>
-							<xsl:when test="$url-sections">
-								<input type="hidden" name="sections" value="{$url-sections}" />
-							</xsl:when>
-							<xsl:otherwise>
-								<input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads" />
-							</xsl:otherwise>
-						</xsl:choose>
+						<xsl:if test="$url-sections">
+							<input type="hidden" name="sections" value="{$url-sections}" />
+						</xsl:if>
+
 						<input name="keywords" class="keywords" value="{$url-keywords}" onclick="this.select()" autocomplete="off" />
 					</form>
 					<p>Type and hit enter. You can search our entire site. Try <span onclick="$('.search input.keywords').val('Jesus');">Jesus</span>, <span onclick="$('.search input.keywords').val('Baptism');">Baptism</span> or <span onclick="$('.search input.keywords').val('Wilsonville');">Wilsonville</span>&#160;..</p>
@@ -466,13 +462,13 @@
 				</div>
 				<xsl:if test="$url-keywords">
 					<div class="span4 filters">
-						<xsl:if test="not(//search-suggestions/word = $url-keywords) and count(//search-suggestions/word) &gt; 0 or not(//alternative-keywords/keyword = $url-keywords) and count(//alternative-keywords/keyword) &gt; 0 and string-length(//alternative-keywords/keyword/@alternative)">
+						<xsl:if test="not(/data/search-suggestions/word = $url-keywords) and count(/data/search-suggestions/word) &gt; 0 or not(/data/alternative-keywords/keyword = $url-keywords) and count(//alternative-keywords/keyword) &gt; 0 and string-length(/data/alternative-keywords/keyword/@alternative)">
 							<div class="suggestions">
-								<xsl:if test="not(//search-suggestions/word = $url-keywords) and count(//search-suggestions/word) &gt; 0">
+								<xsl:if test="not(/data/search-suggestions/word = $url-keywords) and count(/data/search-suggestions/word) &gt; 0">
 									<div class="suggest">
 										<h4>Did you mean</h4>
 										<span class="hyphen">—</span>
-										<xsl:for-each select="//search-suggestions/word">
+										<xsl:for-each select="/data/search-suggestions/word">
 											<a href="{$root}/search/?sections={$url-sections}&amp;keywords={.}">
 												<xsl:value-of select="." disable-output-escaping="yes" />
 											</a>
@@ -480,11 +476,11 @@
 										</xsl:for-each>
 									</div>
 								</xsl:if>
-								<xsl:if test="not(//alternative-keywords/keyword = $url-keywords) and count(//alternative-keywords/keyword) &gt; 0 and string-length(//alternative-keywords/keyword/@alternative)">
+								<xsl:if test="not(/data/alternative-keywords/keyword = $url-keywords) and count(/data/alternative-keywords/keyword) &gt; 0 and string-length(//alternative-keywords/keyword/@alternative)">
 									<div class="suggest">
 										<h4>Alt keywords</h4>
 										<span class="hyphen">—</span>
-										<xsl:for-each select="//alternative-keywords/keyword">
+										<xsl:for-each select="/data/alternative-keywords/keyword">
 											<a href="{$root}/search/?sections={$url-sections}&amp;keywords={@alternative}">
 												<xsl:value-of select="@alternative" disable-output-escaping="yes" />
 											</a>
@@ -496,7 +492,7 @@
 						</xsl:if>
 						<xsl:if test="$url-sections and $url-sections != 'teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads'">
 							<div class="sections">
-								<p><a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings%2Cteachings-series%2Cteachings-tags%2Ctext%2Cevents-recurring%2Cevents%2Cdownloads%2Clocations">Turn off</a> section filtering to see all results</p>
+								<p><a href="{$root}/search/?keywords={$url-keywords}">Turn off</a> section filtering to see all results</p>
 							</div>
 						</xsl:if>
 						<div class="filter">
@@ -504,7 +500,7 @@
 							<div class="collection">
 								<ul>
 									<li>
-										<xsl:if test="$url-sections = 'teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads,locations'">
+										<xsl:if test="$url-sections = ''">
 											<xsl:attribute name="class">
 												<xsl:text>active</xsl:text>
 											</xsl:attribute>

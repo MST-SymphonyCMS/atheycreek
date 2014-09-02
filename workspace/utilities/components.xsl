@@ -10,7 +10,7 @@
 <xsl:import href="../assets/xsl/images.xsl" />
 <xsl:import href="../assets/xsl/locations.xsl" />
 <xsl:import href="../assets/xsl/members-roles.xsl" />
-<xsl:import href="../assets/xsl/spacer.xsl" />
+<xsl:import href="../assets/xsl/search.xsl" />
 <xsl:import href="../assets/xsl/teachings.xsl" />
 <xsl:import href="../assets/xsl/text.xsl" />
 <xsl:import href="../assets/xsl/verses.xsl" />
@@ -59,13 +59,6 @@
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test=". = 'events'">
-			<!-- Single ID (Preview) -->
-			<xsl:call-template name="component-events">
-				<xsl:with-param name="component" select="." />
-				<xsl:with-param name="position" select="name($xpath)" />
-				<xsl:with-param name="entries" select="/data/events-entry-by-id-preview/entry" />
-				<xsl:with-param name="mode" select="'single'" />
-			</xsl:call-template>
 			<xsl:choose>
 				<!-- Single ID -->
 				<xsl:when test="count(/data/events-entry-by-id/entry)">
@@ -88,13 +81,6 @@
 						<xsl:with-param name="component" select="." />
 						<xsl:with-param name="position" select="name($xpath)" />
 						<xsl:with-param name="entries" select="/data/events-recurring-entry-by-id/entry" />
-						<xsl:with-param name="recurring" select="'yes'" />
-						<xsl:with-param name="mode" select="'single'" />
-					</xsl:call-template>
-					<xsl:call-template name="component-events">
-						<xsl:with-param name="component" select="." />
-						<xsl:with-param name="position" select="name($xpath)" />
-						<xsl:with-param name="entries" select="/data/events-recurring-entry-by-id-preview/entry" />
 						<xsl:with-param name="recurring" select="'yes'" />
 						<xsl:with-param name="mode" select="'single'" />
 					</xsl:call-template>
@@ -347,7 +333,8 @@ All URL helpers can now be replaced with "url-prefix"
 	<xsl:param name="node" select="." />
 	<xsl:attribute name="href">
 		<xsl:value-of select="$root" />
-		<xsl:text>/</xsl:text>
+		<xsl:value-of select="path"/>
+		<!-- <xsl:text>/</xsl:text>
 		<xsl:choose>
 			<xsl:when test="string-length($node/slug)">
 				<xsl:value-of select="$node/slug/@handle" disable-output-escaping="yes" />
@@ -355,7 +342,7 @@ All URL helpers can now be replaced with "url-prefix"
 			<xsl:otherwise>
 				<xsl:value-of select="$node/title/@handle" disable-output-escaping="yes" />
 			</xsl:otherwise>
-		</xsl:choose>
+		</xsl:choose> -->
 		<xsl:text>/</xsl:text>
 	</xsl:attribute>
 </xsl:template>

@@ -5,11 +5,14 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourceteachings_entries_search extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'teachings-entries-search';
+		public $dsParamConditionalizer = '(if value of ({$pt1}) is (search))';
     public $dsParamORDER = 'desc';
     public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '20';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamSORT = 'system:id';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
@@ -39,9 +42,9 @@ class datasourceteachings_entries_search extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-12T14:47:58+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.0RC1',
+            'release-date' => '2014-09-02T14:31:19+00:00'
         );
     }
 

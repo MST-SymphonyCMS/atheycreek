@@ -5,11 +5,14 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourcelocations_groups_search extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'locations-groups-search';
+		public $dsParamConditionalizer = '(if value of ({$pt1}) is (search))';
     public $dsParamORDER = 'desc';
     public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '20';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamSORT = 'system:id';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
@@ -36,14 +39,12 @@ class datasourcelocations_groups_search extends SectionDatasource
         'full',
         'childcare'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'leaders' => array(
             'section_id' => '18',
             'field_id' => '320',
             'elements' => array(
-                'role',
-                'display-events',
                 'role',
                 'display-events'
             )
@@ -63,9 +64,9 @@ class datasourcelocations_groups_search extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-13T00:07:55+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.0RC1',
+            'release-date' => '2014-09-02T14:30:57+00:00'
         );
     }
 

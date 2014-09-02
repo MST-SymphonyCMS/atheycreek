@@ -15,7 +15,6 @@
               <span class="icon">s</span>
             </a>
             <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
-            <input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads,locations" />
           </form>
           <ul class="nav pull-right">
             <xsl:if test="data/xml-ustream/status = 'live'">
@@ -95,7 +94,6 @@
           <span class="icon">s</span>
         </a>
         <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
-        <input type="hidden" name="sections" value="teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads,locations" />
       </form>
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
@@ -163,26 +161,26 @@
 
 <xsl:template name="subnavs">
 
-  <xsl:variable name="parent" select="/data/tags-all-entries/entry[@id = $ds-tags-filtered.system-id]/parent/item/@id" />
+  <xsl:variable name="parent" select="/data/tags-all-entries/entry[@id = /data/tags-entries-by-tag/entry/@id]/parent/item/@id" />
 
-  <xsl:if test="$pt1 and not($ds-tags-filtered.system-id = /data/tags-all-entries/entry[title/@handle = 'home']/@id)">
+  <xsl:if test="$pt1 and not(/data/tags-entries-by-tag/entry/@id = /data/tags-all-entries/entry[title/@handle = 'home']/@id)">
     <div class="subnavs">
-      <xsl:for-each select="/data/tags-all-entries/entry[@id = $ds-tags-filtered.system-id]/parent/item/@id">
+      <xsl:for-each select="/data/tags-all-entries/entry[@id = /data/tags-entries-by-tag/entry/@id]/parent/item/@id">
         <xsl:call-template name="nav-tier" />
       </xsl:for-each>
       <xsl:call-template name="subnav-group">
-        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = $ds-tags-filtered.system-id and not(hide-nav = 'Yes')]" />
+        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = /data/tags-entries-by-tag/entry/@id and not(hide-nav = 'Yes')]" />
       </xsl:call-template>
     </div>
 
     <div class="subnav-mobile hidden-desktop">
-      <xsl:for-each select="/data/tags-all-entries/entry[@id = $ds-tags-filtered.system-id]/parent/item/@id">
+      <xsl:for-each select="/data/tags-all-entries/entry[@id = /data/tags-entries-by-tag/entry/@id]/parent/item/@id">
         <xsl:call-template name="nav-tier">
           <xsl:with-param name="mobile" select="'yes'" />
         </xsl:call-template>
       </xsl:for-each>
       <xsl:call-template name="subnav-group">
-        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = $ds-tags-filtered.system-id and not(hide-nav = 'Yes')]" />
+        <xsl:with-param name="group" select="/data/tags-all-entries/entry[parent/item/@id = /data/tags-entries-by-tag/entry/@id and not(hide-nav = 'Yes')]" />
         <xsl:with-param name="mobile" select="'yes'" />
       </xsl:call-template>
     </div>
@@ -262,14 +260,24 @@
 
 <xsl:template name="subnav-entry">
 
-  <xsl:variable name="active-parent" select="/data/tags-all-entries/entry[ @id = $ds-tags-filtered.system-id ]/parent/item/@id" />
+<!--   <xsl:choose>
+    <xsl:when test="not($pt1) or $pt1 = 'home'">
+      <xsl:variable name="active-parent" select="/data/tags-all-entries/entry[ @id = $ds-tags-filtered.system-id ]/parent/item/@id" />
+    </xsl:when>
+    <xsl:otherwise>
+
+    </xsl:otherwise>
+  </xsl:choose> -->
+
+  <xsl:variable name="active-parent" select="/data/tags-all-entries/entry[ @id = /data/tags-entries-by-tag/entry/@id ]/parent/item/@id" />
+
   <xsl:variable name="realID" select="@id" />
   <xsl:variable name="node" select="." />
 
   <li>
     <xsl:attribute name="class">
       <xsl:text>entry</xsl:text>
-      <xsl:if test="$ds-tags-filtered.system-id = @id or $active-parent = @id or /data/tags-all-entries/entry[ @id = $active-parent ]/parent/item/@id = @id">
+      <xsl:if test="/data/tags-entries-by-tag/entry/@id = @id or $active-parent = @id or /data/tags-all-entries/entry[ @id = $active-parent ]/parent/item/@id = @id">
         <xsl:text> active</xsl:text>
       </xsl:if>
       <xsl:if test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id">

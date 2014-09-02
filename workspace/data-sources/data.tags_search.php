@@ -5,6 +5,7 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourcetags_search extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'tags-search';
+		public $dsParamConditionalizer = '(if value of ({$pt1}) is (search))';
     public $dsParamORDER = 'desc';
     public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '20';
@@ -37,9 +38,9 @@ class datasourcetags_search extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
+                'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-08-19T20:30:30+00:00'
+            'release-date' => '2014-09-02T14:31:14+00:00'
         );
     }
 

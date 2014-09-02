@@ -5,11 +5,14 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourceevents_search extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'events-search';
+		public $dsParamConditionalizer = '(if value of ({$pt1}) is (search))';
     public $dsParamORDER = 'desc';
     public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '20';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamSORT = 'system:id';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
@@ -24,11 +27,11 @@ class datasourceevents_search extends SectionDatasource
         'description: formatted',
         'tags'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'tags' => array(
             'section_id' => '3',
-            'field_id' => '19',
+            'field_id' => '337',
             'elements' => array(
                 'slug'
             )
@@ -48,9 +51,9 @@ class datasourceevents_search extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-12T14:45:47+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.0RC1',
+            'release-date' => '2014-09-02T14:30:19+00:00'
         );
     }
 

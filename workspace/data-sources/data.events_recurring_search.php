@@ -5,6 +5,7 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourceevents_recurring_search extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'events-recurring-search';
+		public $dsParamConditionalizer = '(if value of ({$pt1}) is (search))';
     public $dsParamORDER = 'desc';
     public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '20';
@@ -26,7 +27,7 @@ class datasourceevents_recurring_search extends SectionDatasource
         'description: formatted',
         'tags'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'tags' => array(
             'section_id' => '3',
@@ -50,9 +51,9 @@ class datasourceevents_recurring_search extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
+                'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-08-19T20:23:12+00:00'
+            'release-date' => '2014-09-02T14:30:11+00:00'
         );
     }
 

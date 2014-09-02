@@ -12,6 +12,7 @@
 <xsl:import href="../utilities/navigation.xsl"/>
 <xsl:import href="../utilities/head.xsl"/>
 <xsl:import href="../utilities/footer.xsl"/>
+<xsl:import href="../utilities/error.xsl"/>
 <xsl:import href="../utilities/pages.xsl"/>
 <xsl:import href="../utilities/pagination.xsl" />
 
@@ -51,11 +52,28 @@
 		<body>
 			<xsl:attribute name="class">
 				<xsl:text>pageid-</xsl:text>
-				<xsl:value-of select="$ds-tags-filtered.system-id"/>
+				<xsl:choose>
+					<xsl:when test="not($pt1) or $pt1 = 'home'">
+						<xsl:value-of select="$ds-tags-filtered.system-id"/>
+					</xsl:when>
+					<xsl:when test="not(/data/tags-entries-by-tag/entry)">
+						<xsl:text>error</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$ds-tags-entries-by-tag"/>
+					</xsl:otherwise>
+				</xsl:choose>
 				<xsl:text> </xsl:text>
 				<xsl:text>layout-</xsl:text>
-				<xsl:value-of select="/data/layouts-ds-tags-entries-by-tag/entry/name/@handle" />
-				<xsl:if test="/data/events-entry-by-id-preview/entry or /data/events-entry-by-id/entry or /data/events-recurring-entry-by-id/entry or /data/events-recurring-entry-by-id-preview/entry">
+				<xsl:choose>
+					<xsl:when test="not($pt1) or $pt1 = 'home'">
+						<xsl:value-of select="/data/tags-filtered/entry/layout/item/name/@handle" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="/data/layouts-ds-tags-entries-by-tag/entry/name/@handle" />
+					</xsl:otherwise>
+				</xsl:choose>
+				<xsl:if test="/data/events-entry-by-id/entry or /data/events-recurring-entry-by-id/entry">
 					<xsl:text> profile</xsl:text>
 				</xsl:if>
 			</xsl:attribute>
@@ -91,6 +109,15 @@
 				<xsl:choose>
 					<xsl:when test="$pt1 = 'toolkit' and $cookie-username">
 						<xsl:call-template name="toolkit" />
+					</xsl:when>
+					<xsl:when test="$pt1 = 'search'">
+						<xsl:call-template name="component-search">
+						  <xsl:with-param name="position" select="column-full-width" />
+						  <xsl:with-param name="entries" select="data/search/entry" />
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:when test="not(/data/tags-entries-by-tag/entry)">
+						<xsl:call-template name="error"/>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:choose>

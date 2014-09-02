@@ -27,7 +27,7 @@
             </xsl:if>
             <li><a href="{$root}/building/">Building</a></li>
             <li><a href="{$root}/meetings/">Meetings</a></li>
-            <li><a href="{$root}/im-new-here/">New Here?</a></li>
+            <li><a href="{$root}/about/im-new-here/">New Here?</a></li>
             <li><a href="{$root}/give/">Give</a></li>
             <li>
               <xsl:attribute name="class">
@@ -113,7 +113,7 @@
           </xsl:if>
           <li><a href="{$root}/building/">Building</a></li>
           <li><a href="{$root}/meetings/">Meetings</a></li>
-          <li><a href="{$root}/im-new-here/">New Here?</a></li>
+          <li><a href="{$root}/about/im-new-here/">New Here?</a></li>
           <li><a href="{$root}/give/">Give</a></li>
           <li>
             <a href="{$root}/events/12962/tuesday-sunrise-worship/">

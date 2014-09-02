@@ -175,7 +175,7 @@
 					</a>
 				</li>
 			</xsl:for-each>
-			<a href="/staff/" class="more">
+			<a href="/about/staff/" class="more">
 				<span class="icon">g</span>
 				<xsl:text>Meet our staff</xsl:text>
 			</a>
@@ -237,7 +237,7 @@
 					</a>
 				</li>
 			</xsl:for-each>
-			<a href="/staff/" class="more">
+			<a href="/about/staff/" class="more">
 				<span class="icon">g</span>
 				<xsl:text>Meet our staff</xsl:text>
 			</a>

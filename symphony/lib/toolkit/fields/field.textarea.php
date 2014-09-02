@@ -203,6 +203,10 @@ class fieldTextarea extends Field implements ExportableField, ImportableField
     {
         $status = self::__OK__;
 
+        if (strlen(trim($data)) == 0) {
+            return array();
+        }
+
         $result = array(
             'value' => $data
         );
@@ -258,12 +262,12 @@ class fieldTextarea extends Field implements ExportableField, ImportableField
                 )
             );
         } elseif ($mode == null || $mode == 'unformatted') {
+            $value = !empty($data['value'])
+                ? sprintf('<![CDATA[%s]]>', str_replace(']]>', ']]]]><![CDATA[>', $data['value']))
+                : $data['value'];
+
             $wrapper->appendChild(
-                new XMLElement(
-                    $this->get('element_name'),
-                    sprintf('<![CDATA[%s]]>', str_replace(']]>', ']]]]><![CDATA[>', $data['value'])),
-                    $attributes
-                )
+                new XMLElement($this->get('element_name'), $value, $attributes)
             );
         }
     }

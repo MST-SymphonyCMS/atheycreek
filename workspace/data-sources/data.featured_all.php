@@ -5,11 +5,14 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourcefeatured_all extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'featured-all';
+		public $dsParamConditionalizer = '(if value of ({$pt1}) is ())';
     public $dsParamORDER = 'random';
     public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '20';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamSORT = 'system:creation-date';
     public $dsParamHTMLENCODE = 'yes';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
@@ -25,7 +28,7 @@ class datasourcefeatured_all extends SectionDatasource
         'image',
         'expiration'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'image' => array(
             'section_id' => '8',
@@ -49,9 +52,9 @@ class datasourcefeatured_all extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-05T19:30:56+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.0-rc.2',
+            'release-date' => '2014-09-02T15:48:27+00:00'
         );
     }
 

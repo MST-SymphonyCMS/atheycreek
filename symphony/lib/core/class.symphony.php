@@ -111,7 +111,6 @@ abstract class Symphony implements Singleton
     protected function __construct()
     {
         self::$Profiler = Profiler::instance();
-        self::$Profiler->sample('Engine Initialisation');
 
         if (get_magic_quotes_gpc()) {
             General::cleanArray($_SERVER);
@@ -120,21 +119,20 @@ abstract class Symphony implements Singleton
             General::cleanArray($_POST);
         }
 
-        self::initialiseConfiguration();
-
+        // Set date format throughout the system
         define_safe('__SYM_DATE_FORMAT__', self::Configuration()->get('date_format', 'region'));
         define_safe('__SYM_TIME_FORMAT__', self::Configuration()->get('time_format', 'region'));
         define_safe('__SYM_DATETIME_FORMAT__', __SYM_DATE_FORMAT__ . self::Configuration()->get('datetime_separator', 'region') . __SYM_TIME_FORMAT__);
-
         DateTimeObj::setSettings(self::Configuration()->get('region'));
+
+        // Initialise logging
+        self::initialiseLog();
+        GenericExceptionHandler::initialise(self::Log());
+        GenericErrorHandler::initialise(self::Log());
 
         // Initialize language management
         Lang::initialize();
-
-        self::initialiseLog();
-
-        GenericExceptionHandler::initialise(self::Log());
-        GenericErrorHandler::initialise(self::Log());
+        Lang::set(self::$Configuration->get('lang', 'symphony'));
 
         self::initialiseCookie();
 
@@ -143,8 +141,8 @@ abstract class Symphony implements Singleton
             GenericExceptionHandler::$enabled = false;
         }
 
-        // Set system language
-        Lang::set(self::$Configuration->get('lang', 'symphony'));
+        // Engine is ready.
+        self::$Profiler->sample('Engine Initialisation');
     }
 
     /**
@@ -274,7 +272,7 @@ abstract class Symphony implements Singleton
      * @deprecated Prior to Symphony 2.3.2, the constant `__SYM_COOKIE_PREFIX_`
      *  had a typo where it was missing the second underscore. Symphony will
      *  support both constants, `__SYM_COOKIE_PREFIX_` and `__SYM_COOKIE_PREFIX__`
-     *  until Symphony 2.5
+     *  until Symphony 2.6.0.
      */
     public static function initialiseCookie()
     {
@@ -286,6 +284,16 @@ abstract class Symphony implements Singleton
         define_safe('__SYM_COOKIE_PREFIX__', self::Configuration()->get('cookie_prefix', 'symphony'));
 
         self::$Cookie = new Cookie(__SYM_COOKIE_PREFIX__, TWO_WEEKS, __SYM_COOKIE_PATH__);
+    }
+
+    /**
+     * Accessor for the current `$Cookie` instance.
+     *
+     * @since Symphony 2.5.0
+     * @return Cookie
+     */
+    public static function Cookie() {
+        return self::$Cookie;
     }
 
     /**
@@ -415,14 +423,14 @@ abstract class Symphony implements Singleton
     }
 
     /**
-	 * Accessor for the current `$Author` instance.
-	 *
+     * Accessor for the current `$Author` instance.
+     *
      * @since Symphony 2.5.0
-	 * @return Author
-	 */
-	public static function Author() {
-		return self::$Author;
-	}
+     * @return Author
+     */
+    public static function Author() {
+        return self::$Author;
+    }
 
     /**
      * Attempts to log an Author in given a username and password.

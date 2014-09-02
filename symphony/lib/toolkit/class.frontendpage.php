@@ -190,7 +190,7 @@ class FrontendPage extends XSLTPage
             ));
         }
 
-        Symphony::Profiler()->sample('Page creation process started');
+        Symphony::Profiler()->sample('Page creation started');
         $this->_page = $page;
         $this->__buildPage();
 
@@ -254,9 +254,11 @@ class FrontendPage extends XSLTPage
 
             // In Symphony 2.4, the XML structure stays as an object until
             // the very last moment.
+            Symphony::Profiler()->seed(precision_timer());
             if($this->_xml instanceof XMLElement) {
                 $this->setXML($this->_xml->generate(true, 0));
             }
+            Symphony::Profiler()->sample('XML Generation', PROFILE_LAP);
 
             $output = parent::generate();
             $this->_param = $backup_param;
@@ -435,6 +437,9 @@ class FrontendPage extends XSLTPage
         // Add Page Types to parameters so they are not flattened too early
         $this->_param['page-types'] = $page['type'];
 
+        // Add Page events the same way
+        $this->_param['page-events'] = explode(',', trim(str_replace('_', '-', $page['events']), ','));
+
         /**
          * Just after having resolved the page params, but prior to any commencement of output creation
          * @delegate FrontendParamsResolve
@@ -531,10 +536,7 @@ class FrontendPage extends XSLTPage
         }
         $xml->prependChild($params);
 
-        Symphony::Profiler()->seed();
         $this->setXML($xml);
-        Symphony::Profiler()->sample('XML Generation', PROFILE_LAP);
-
         $xsl = '<?xml version="1.0" encoding="UTF-8"?>
         <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
             <xsl:import href="./workspace/pages/' . basename($page['filelocation']).'"/>

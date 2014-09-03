@@ -10,7 +10,9 @@ class datasourcelayouts_ds_tags_entries_by_tag extends SectionDatasource
     public $dsParamLIMIT = '20';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
-    public $dsParamREQUIREDPARAM = '$ds-tags-entries-by-tag';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
+    public $dsParamREQUIREDPARAM = '$ds-tags-entries-by-tag.layout';
     public $dsParamPARAMOUTPUT = array(
         'name'
         );
@@ -19,7 +21,7 @@ class datasourcelayouts_ds_tags_entries_by_tag extends SectionDatasource
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
     public $dsParamFILTERS = array(
-        'system:id' => '{$ds-tags-entries-by-tag}',
+        'system:id' => '{$ds-tags-entries-by-tag.layout}',
         '222' => 'no',
     );
 
@@ -29,7 +31,7 @@ class datasourcelayouts_ds_tags_entries_by_tag extends SectionDatasource
         'column-center',
         'column-right'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'column-full-width' => array(
             'section_id' => '9',
@@ -57,7 +59,7 @@ class datasourcelayouts_ds_tags_entries_by_tag extends SectionDatasource
     public function __construct($env = null, $process_params = true)
     {
         parent::__construct($env, $process_params);
-        $this->_dependencies = array('$ds-tags-entries-by-tag');
+        $this->_dependencies = array('$ds-tags-entries-by-tag.layout');
     }
 
     public function about()
@@ -67,9 +69,9 @@ class datasourcelayouts_ds_tags_entries_by_tag extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-04T23:33:58+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.0-rc.2',
+            'release-date' => '2014-09-03T21:16:01+00:00'
         );
     }
 

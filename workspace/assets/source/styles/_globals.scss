@@ -1,7 +1,19 @@
+
 // ================================================
 // GLOBALS
 // - these are styles that are applied globally to HTML elements, etc.
 // ================================================
+
+
+// Animations
+// ------------------------------------------------
+
+@include animation(fade-in-down);
+@include animation(fade-in);
+
+
+// HTML Elements
+// ------------------------------------------------
 
 * {
   text-rendering: optimizeLegibility !important;
@@ -16,31 +28,15 @@ body {
 }
 
 body {
-  font-family: $font-body;
-  font-size: 20px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: none;
-  color: lighten(black, 20%);
   zoom: 1;
 }
 
-a {
-  color: $color-brand;
+a:hover {
   text-decoration: none;
-
-  &:hover {
-    @include animate-simple();
-    @include animate-simple(border-color);
-  }
+  @include animate-simple();
+  @include animate-simple(all);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-// Animations
-
-@include animation(fade-in-down);
-@include animation(fade-in);

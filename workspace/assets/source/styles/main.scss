@@ -1,21 +1,33 @@
 
+// ================================================
+// MAIN
+// - this bad boy does it all
+// ================================================
+
+
+// Bootstrap
+// ------------------------------------------------
+
 @import
+  "variables",
   "bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+
 
 // Global Setup
 // ------------------------------------------------
 
 @import
-  "variables",
   "mixins",
   "animated",
   "globals";
+
 
 // Core
 // ------------------------------------------------
 
 @import
   "core/icons";
+
 
 // Modules
 // ------------------------------------------------

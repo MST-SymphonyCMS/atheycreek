@@ -49,10 +49,10 @@
 
   <xsl:choose>
     <xsl:when test="contains($root, '.dev')">
-      <script src="{$workspace}/assets/dist/scripts/main.js"></script>
+      <script src="{$workspace}/assets/build/scripts/main.js"></script>
     </xsl:when>
     <xsl:otherwise>
-      <script src="{$workspace}/assets/dist/scripts/main.min.js"></script>
+      <script src="{$workspace}/assets/build/scripts/main.min.js"></script>
     </xsl:otherwise>
   </xsl:choose>
 

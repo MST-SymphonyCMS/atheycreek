@@ -5,13 +5,14 @@
 // ================================================
 
 
-// Colors
+// Bootstrap Overrides
 // ------------------------------------------------
 
-$color-brand: #df9a2f;
+$gray-darker: #373839;
+$brand-primary: #3aa2dd;
+$text-color: $gray-darker;
 
-// Typography
-// ------------------------------------------------
+$font-family-sans-serif: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-size-base: 20px;
 
-$font-sans: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-body: $font-sans;
+$nav-pills-border-radius: 0;

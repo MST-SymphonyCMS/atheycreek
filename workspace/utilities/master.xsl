@@ -80,23 +80,6 @@
 
 		  <xsl:call-template name="alerts-home"/>
 		  <header class="header">
-		  	<xsl:choose>
-		  		<xsl:when test="$pt1 = 'home'">
-
-		  		</xsl:when>
-		  		<xsl:when test="string-length(/data/tags-entries-by-tag/entry/image/item/image)">
-		  			<xsl:attribute name="style">
-		  				<xsl:text>background-image:url('</xsl:text>
-		  				<xsl:value-of select="$root"/>
-		  				<xsl:text>/workspace/uploads/images/</xsl:text>
-		  				<xsl:value-of select="/data/tags-entries-by-tag/entry/image/item/image/file/filename"/>
-		  				<xsl:text>');</xsl:text>
-		  			</xsl:attribute>
-		  		</xsl:when>
-		  		<xsl:otherwise>
-
-		  		</xsl:otherwise>
-		  	</xsl:choose>
 		  	<xsl:call-template name="masthead"/>
 		  </header>
 
@@ -123,7 +106,7 @@
 
 			<div class="main-container">
 
-				<xsl:call-template name="subnavs"/>
+<!-- 				<xsl:call-template name="subnavs"/> -->
 
 				<xsl:choose>
 					<xsl:when test="$pt1 = 'toolkit' and $cookie-username">

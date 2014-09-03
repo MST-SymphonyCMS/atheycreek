@@ -13548,75 +13548,30 @@ if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) 
   };
 })(jQuery, window, document);
 
-(function($, document, window) {
-  "use strict";
+$(function() {
 
-  return $(function() {
+  // Dropdowns
+  // --------------------------------------------------
 
-    $.fn.exists = function() {
-      return $(this).length > 0;
-    };
+  $('.masthead > ul > li.dropdown').hover().toggleClass('open');
 
-    return $(document).ready(function() {
+  // Joey Special
+  // --------------------------------------------------
 
-      // Alerts
-      // --------------------------------------------------
+  $('#joey-meador').prepend('<div class="center"><a href="#joey-meador" id="joey-click">&nbsp;</a></div>');
+  $('#joey-meador .content').append('<audio id="joey-special" src="/workspace/assets/img/my-beloved.mp3"></audio>');
 
-      $(".alert").alert();
-
-      // Carousel
-      // --------------------------------------------------
-
-      $(".carousel").carousel({
-        interval: 6000
-      });
-
-      // Teaching Tabs
-      // --------------------------------------------------
-
-      $('#teachingTab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-      });
-
-      $('#teachingTab a[href="#video"]').tab('show');
-
-      // Media Element
-      // --------------------------------------------------
-
-      $('audio').mediaelementplayer({
-        videoWidth: '100%',
-        videoHeight: '100%',
-        audioWidth: '100%',
-        features: ['playpause', 'progress', 'tracks', 'volume'],
-        videoVolume: 'horizontal'
-      });
-
-      // FitVids
-      // --------------------------------------------------
-
-      $("#video, #ustream").fitVids({ customSelector: "iframe[src^='http://www.ustream.tv']"});
-
-      // Joey Special
-      // --------------------------------------------------
-
-      $('#joey-meador').prepend('<div class="center"><a href="#joey-meador" id="joey-click">&nbsp;</a></div>');
-      $('#joey-meador .content').append('<audio id="joey-special" src="/workspace/assets/img/my-beloved.mp3"></audio>');
-
-      $('#joey-click').click(function(){
-        $('#joey-special').trigger("play");
-      });
-
-      // Home Group Hashing
-      // --------------------------------------------------
-
-      if (window.location.hash.length > 0) {
-          $('.hg-box ul.nav-tabs > li > a[href="' + window.location.hash + '"]').tab('show');
-      } else {
-          $('.hg-box ul.nav-tabs > li > a:first').tab('show');
-      }
-
-    });
-
+  $('#joey-click').click(function(){
+    $('#joey-special').trigger("play");
   });
-})(jQuery, document, window);
+
+  // Home Group Hashing
+  // --------------------------------------------------
+
+  if (window.location.hash.length > 0) {
+    $('.hg-box ul.nav-tabs > li > a[href="' + window.location.hash + '"]').tab('show');
+  } else {
+    $('.hg-box ul.nav-tabs > li > a:first').tab('show');
+  }
+
+});

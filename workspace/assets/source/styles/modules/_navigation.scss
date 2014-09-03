@@ -1,3 +1,4 @@
+
 // ================================================
 // NAVIGATION
 // - everything used to create the main navigation
@@ -15,17 +16,15 @@
   @include accf-menu;
 }
 
+
 // Header
 // ------------------------------------------------
 
 .header {
-  min-height: 600px;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: $gray-darker;
 }
 
-
-// Main Masthead
+// Masthead
 // ------------------------------------------------
 
 .masthead {
@@ -35,38 +34,97 @@
   // Show the Masthead on desktop and up
   @media (min-width: $screen-md-min) {
     display: block;
+    padding: 2rem 0;
   }
 }
 
-.masthead ul {
+.masthead .navigation {
+  margin-bottom: 0;
   list-style: none;
-  font-size: 1.5rem;
-  font-weight: bold;
   text-transform: uppercase;
 }
 
-.masthead ul li {
+.masthead .navigation > li {
+  position: relative;
+  top: -3rem;
   display: inline-block;
   margin: 0 1.75rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   letter-spacing: .25rem;
 }
 
-.masthead ul li.logo {
+// Active state
+.masthead .navigation > li.active > a {
+  color: $brand-primary;
+}
+
+// Dropdown toggle
+.masthead .navigation > li.dropdown:hover {
+  .dropdown-menu {
+    display: block;
+  }
+}
+
+.masthead .navigation > li.logo {
   position: relative;
-  top: 2.5rem;
-  padding-top: 0;
+  top: 0;
   font-size: 10rem;
   line-height: 1rem;
+}
+
+.masthead .navigation > li > a {
+  color: white;
+  padding: 1rem 0;
+
+  &:hover {
+    color: $brand-primary;
+  }
+}
+
+// Dropdown Menu styles
+
+.masthead .navigation .dropdown-menu {
+  padding: 0;
+  border-radius: 0;
+}
+
+.masthead .navigation .dropdown-menu > li > a {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: .25rem;
+}
+
+// Special animations just for the Homepage
+
+.layout-home .masthead .navigation > li {
+  @include animate(fade-in, 2s);
+}
+
+.layout-home .masthead .navigation  > li.logo {
+  @include animate(fade-in-down, 1.5s);
 }
 
 // Sub-Navigation
 // ------------------------------------------------
 
 .subnav {
-  padding: 1rem 0;
   background: darken(white, 10%);
 }
 
+.subnav .nav {
+  margin-bottom: 0;
+}
+
+.subnav .nav > li > a {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.subnav .nav > li.active > a {
+  background: darken(white, 15%);
+}
 
 // Offcanvas Slide Menu
 // ------------------------------------------------
@@ -137,12 +195,12 @@
     background: #2c2c2c;
 
     &:hover {
-      color: $color-brand;
+      color: $brand-primary;
       background: #212121;
 
       .count {
         color: white;
-        background: transparentize($color-brand, 0.25);
+        background: transparentize($brand-primary, 0.25);
       }
     }
   }
@@ -159,11 +217,11 @@
   ul li.register a {
     color: white;
     font-weight: 600;
-    background: $color-brand;
+    background: $brand-primary;
 
     &:hover {
       color: white;
-      background: transparentize($color-brand, 0.25);
+      background: transparentize($brand-primary, 0.25);
     }
   }
 
@@ -177,7 +235,7 @@
     right: 0;
     padding: 10px 15px;
     float: right;
-    background: $color-brand;
+    background: $brand-primary;
     height: 100%;
   }
 }

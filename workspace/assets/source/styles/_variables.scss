@@ -1,17 +1,17 @@
-// Variables
+
+// ================================================
+// + VARIABLES
+// - all site variables go here
 // ================================================
 
-// colors
+
+// Colors
+// ------------------------------------------------
+
 $color-brand: #df9a2f;
 
-// visual grid
-$visual-grid: false;
+// Typography
+// ------------------------------------------------
 
-// type
-$font-path: '/assets/fonts/';
-$font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-heading: 'futura-pt', 'Proxima Nova', Helvetica, Arial, sans-serif;
-$font-body: 'abril-text', Georgia, Times, serif;
-
-// screen sizes
-$large-screen: 1025px;
+$font-sans: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-body: $font-sans;

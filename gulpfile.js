@@ -46,10 +46,10 @@ var paths = {
   scripts: [
     bower_path + '/jquery/dist/jquery.js',
     bower_path + '/bootstrap*/assets/javascripts/bootstrap.js',
+    bower_path + '/responsimage/responsimage.js',
     bower_path + '/fastclick/lib/fastclick.js',
     bower_path + '/snapjs/snap.js',
     bower_path + '/unslider/src/unslider.js',
-    bower_path + '/fitvids/*fitvids.js',
     bower_path + '/sharrre/*sharrre.js',
     source_path + '/scripts/main.js'
   ],
@@ -111,16 +111,6 @@ gulp.task('images', function() {
 });
 
 // ------------------------------------------------
-// + AUDIO
-// + - moves audio assets to the build folder
-// ------------------------------------------------
-
-gulp.task('audio', function() {
-  return gulp.src(paths.audio)
-    .pipe(gulp.dest(build_path + '/media/audio'))
-});
-
-// ------------------------------------------------
 // + CLEAN
 // + - Cleans out the build folder
 // ------------------------------------------------
@@ -172,7 +162,7 @@ gulp.task('sprites', function () {
 // ------------------------------------------------
 
 gulp.task('default', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images', 'audio', 'watch');
+  gulp.start('styles', 'scripts', 'images', 'watch');
 });
 
 // ------------------------------------------------
@@ -184,7 +174,6 @@ gulp.task('watch', function() {
   gulp.watch(source_path + '/styles/**/*.scss', ['styles']);
   gulp.watch(source_path + '/scripts/**/*.js', ['scripts']);
   gulp.watch(source_path + '/images/**/*', ['images']);
-  gulp.watch(source_path + '/media/audio/**/*', ['audio']);
   var server = livereload();
 
   gulp.watch([build_path + '/**', template_path + '/**/*.xsl', utility_path + '/**/*.xsl']).on('change', function(file) {

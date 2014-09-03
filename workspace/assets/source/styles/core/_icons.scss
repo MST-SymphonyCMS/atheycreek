@@ -37,54 +37,70 @@
 
 /** Sass variables **/
 
-$tgc-bullseye: '\f100';
+$accf-badge: '\f106';
 
-$tgc-facebook: '\f101';
+$accf-facebook: '\f101';
 
-$tgc-ghijk: '\f102';
+$accf-logo: '\f107';
 
-$tgc-menu: '\f103';
+$accf-logo-outline: '\f108';
 
-$tgc-rocket: '\f104';
+$accf-logo-short: '\f109';
 
-$tgc-twitter: '\f105';
+$accf-logo-short-outline: '\f10a';
+
+$accf-menu: '\f103';
+
+$accf-twitter: '\f105';
 
 
 /** Sass mixins **/
 
-@mixin tgc-bullseye() {
+@mixin accf-badge() {
   &:before {
-    content: $tgc-bullseye;
+    content: $accf-badge;
   }
 }
 
-@mixin tgc-facebook() {
+@mixin accf-facebook() {
   &:before {
-    content: $tgc-facebook;
+    content: $accf-facebook;
   }
 }
 
-@mixin tgc-ghijk() {
+@mixin accf-logo() {
   &:before {
-    content: $tgc-ghijk;
+    content: $accf-logo;
   }
 }
 
-@mixin tgc-menu() {
+@mixin accf-logo-outline() {
   &:before {
-    content: $tgc-menu;
+    content: $accf-logo-outline;
   }
 }
 
-@mixin tgc-rocket() {
+@mixin accf-logo-short() {
   &:before {
-    content: $tgc-rocket;
+    content: $accf-logo-short;
   }
 }
 
-@mixin tgc-twitter() {
+@mixin accf-logo-short-outline() {
   &:before {
-    content: $tgc-twitter;
+    content: $accf-logo-short-outline;
+  }
+}
+
+@mixin accf-menu() {
+  &:before {
+    content: $accf-menu;
+  }
+}
+
+@mixin accf-twitter() {
+  &:before {
+    content: $accf-twitter;
   }
 }
 

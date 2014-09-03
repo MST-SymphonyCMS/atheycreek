@@ -60,7 +60,7 @@
 						<xsl:text>error</xsl:text>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:value-of select="$ds-tags-entries-by-tag"/>
+						<xsl:value-of select="$ds-tags-entries-by-tag.system-id"/>
 					</xsl:otherwise>
 				</xsl:choose>
 				<xsl:text> </xsl:text>
@@ -79,8 +79,27 @@
 			</xsl:attribute>
 
 		  <xsl:call-template name="alerts-home"/>
-			<xsl:call-template name="navbar"/>
-			<xsl:call-template name="mast"/>
+		  <header class="header">
+		  	<xsl:choose>
+		  		<xsl:when test="$pt1 = 'home'">
+
+		  		</xsl:when>
+		  		<xsl:when test="string-length(/data/tags-entries-by-tag/entry/image/item/image)">
+		  			<xsl:attribute name="style">
+		  				<xsl:text>background-image:url('</xsl:text>
+		  				<xsl:value-of select="$root"/>
+		  				<xsl:text>/workspace/uploads/images/</xsl:text>
+		  				<xsl:value-of select="/data/tags-entries-by-tag/entry/image/item/image/file/filename"/>
+		  				<xsl:text>');</xsl:text>
+		  			</xsl:attribute>
+		  		</xsl:when>
+		  		<xsl:otherwise>
+
+		  		</xsl:otherwise>
+		  	</xsl:choose>
+		  	<xsl:call-template name="masthead"/>
+		  </header>
+
 
 			<xsl:if test="not($pt1) or $pt1 = 'home'">
 
@@ -88,7 +107,7 @@
 
 				<xsl:call-template name="featured-home"/>
 
-				<div class="container main-container">
+				<div class="main-container">
 
 					<xsl:call-template name="events-home">
 						<xsl:with-param name="component" select="'events'" />
@@ -102,7 +121,7 @@
 			</xsl:if>
 
 
-			<div class="container main-container">
+			<div class="main-container">
 
 				<xsl:call-template name="subnavs"/>
 
@@ -153,7 +172,7 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="span12">
+			<div class="col-md-12">
 				<xsl:call-template name="component">
 					<xsl:with-param name="xpath" select="$xpath/column-full-width" />
 				</xsl:call-template>

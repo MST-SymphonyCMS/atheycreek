@@ -120,24 +120,32 @@
 
       /** Sass placeholder **/
       
-        @mixin tgc-bullseye:before {
-        content: '\f100';
+        @mixin tgc-badge:before {
+        content: '\f106';
         }
       
         @mixin tgc-facebook:before {
         content: '\f101';
         }
       
-        @mixin tgc-ghijk:before {
-        content: '\f102';
+        @mixin tgc-logo:before {
+        content: '\f107';
+        }
+      
+        @mixin tgc-logo-outline:before {
+        content: '\f108';
+        }
+      
+        @mixin tgc-logo-short:before {
+        content: '\f109';
+        }
+      
+        @mixin tgc-logo-short-outline:before {
+        content: '\f10a';
         }
       
         @mixin tgc-menu:before {
         content: '\f103';
-        }
-      
-        @mixin tgc-rocket:before {
-        content: '\f104';
         }
       
         @mixin tgc-twitter:before {
@@ -187,11 +195,13 @@
       [data-icon]:before { content: attr(data-icon); }
 
       [data-icon]:before,
-      .icon-bullseye:before,
+      .icon-badge:before,
 .icon-facebook:before,
-.icon-ghijk:before,
+.icon-logo:before,
+.icon-logo-outline:before,
+.icon-logo-short:before,
+.icon-logo-short-outline:before,
 .icon-menu:before,
-.icon-rocket:before,
 .icon-twitter:before {
         display: inline-block;
   font-family: "icons";
@@ -207,11 +217,13 @@
   font-smoothing: antialiased;
       }
 
-      .icon-bullseye:before { content: "\f100"; }
+      .icon-badge:before { content: "\f106"; }
 .icon-facebook:before { content: "\f101"; }
-.icon-ghijk:before { content: "\f102"; }
+.icon-logo:before { content: "\f107"; }
+.icon-logo-outline:before { content: "\f108"; }
+.icon-logo-short:before { content: "\f109"; }
+.icon-logo-short-outline:before { content: "\f10a"; }
 .icon-menu:before { content: "\f103"; }
-.icon-rocket:before { content: "\f104"; }
 .icon-twitter:before { content: "\f105"; }
     </style>
 
@@ -228,23 +240,23 @@
   <body class="characters-off">
     <div id="page" class="container">
       <header>
-        <h1>icons contains 6 glyphs:</h1>
+        <h1>icons contains 8 glyphs:</h1>
         <a onclick="toggleCharacters(); return false;" href="#">Toggle Preview Characters</a>
       </header>
 
       
       <div class="glyph">
         <div class="preview-glyphs">
-          <span class="step size-12"><span class="letters">Pp</span><i id="icon-bullseye" class="icon-bullseye"></i></span><span class="step size-14"><span class="letters">Pp</span><i id="icon-bullseye" class="icon-bullseye"></i></span><span class="step size-16"><span class="letters">Pp</span><i id="icon-bullseye" class="icon-bullseye"></i></span><span class="step size-18"><span class="letters">Pp</span><i id="icon-bullseye" class="icon-bullseye"></i></span><span class="step size-21"><span class="letters">Pp</span><i id="icon-bullseye" class="icon-bullseye"></i></span><span class="step size-24"><span class="letters">Pp</span><i id="icon-bullseye" class="icon-bullseye"></i></span><span class="step size-36"><span class="letters">Pp</span><i id="icon-bullseye" class="icon-bullseye"></i></span><span class="step size-48"><span class="letters">Pp</span><i id="icon-bullseye" class="icon-bullseye"></i></span><span class="step size-60"><span class="letters">Pp</span><i id="icon-bullseye" class="icon-bullseye"></i></span><span class="step size-72"><span class="letters">Pp</span><i id="icon-bullseye" class="icon-bullseye"></i></span>
+          <span class="step size-12"><span class="letters">Pp</span><i id="icon-badge" class="icon-badge"></i></span><span class="step size-14"><span class="letters">Pp</span><i id="icon-badge" class="icon-badge"></i></span><span class="step size-16"><span class="letters">Pp</span><i id="icon-badge" class="icon-badge"></i></span><span class="step size-18"><span class="letters">Pp</span><i id="icon-badge" class="icon-badge"></i></span><span class="step size-21"><span class="letters">Pp</span><i id="icon-badge" class="icon-badge"></i></span><span class="step size-24"><span class="letters">Pp</span><i id="icon-badge" class="icon-badge"></i></span><span class="step size-36"><span class="letters">Pp</span><i id="icon-badge" class="icon-badge"></i></span><span class="step size-48"><span class="letters">Pp</span><i id="icon-badge" class="icon-badge"></i></span><span class="step size-60"><span class="letters">Pp</span><i id="icon-badge" class="icon-badge"></i></span><span class="step size-72"><span class="letters">Pp</span><i id="icon-badge" class="icon-badge"></i></span>
         </div>
         <div class="preview-scale">
           <span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">36</span><span class="step">48</span><span class="step">60</span><span class="step">72</span>
         </div>
         <div class="usage">
-          <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".icon-bullseye" />
-          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf100;" />
-          <input type="text" class="variable" value="$tgc-bullseye"/>
-          <input type="text" class="mixin" value="@include tgc-bullseye"/>
+          <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".icon-badge" />
+          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf106;" />
+          <input type="text" class="variable" value="$tgc-badge"/>
+          <input type="text" class="mixin" value="@include tgc-badge"/>
         </div>
       </div>
       
@@ -265,16 +277,61 @@
       
       <div class="glyph">
         <div class="preview-glyphs">
-          <span class="step size-12"><span class="letters">Pp</span><i id="icon-ghijk" class="icon-ghijk"></i></span><span class="step size-14"><span class="letters">Pp</span><i id="icon-ghijk" class="icon-ghijk"></i></span><span class="step size-16"><span class="letters">Pp</span><i id="icon-ghijk" class="icon-ghijk"></i></span><span class="step size-18"><span class="letters">Pp</span><i id="icon-ghijk" class="icon-ghijk"></i></span><span class="step size-21"><span class="letters">Pp</span><i id="icon-ghijk" class="icon-ghijk"></i></span><span class="step size-24"><span class="letters">Pp</span><i id="icon-ghijk" class="icon-ghijk"></i></span><span class="step size-36"><span class="letters">Pp</span><i id="icon-ghijk" class="icon-ghijk"></i></span><span class="step size-48"><span class="letters">Pp</span><i id="icon-ghijk" class="icon-ghijk"></i></span><span class="step size-60"><span class="letters">Pp</span><i id="icon-ghijk" class="icon-ghijk"></i></span><span class="step size-72"><span class="letters">Pp</span><i id="icon-ghijk" class="icon-ghijk"></i></span>
+          <span class="step size-12"><span class="letters">Pp</span><i id="icon-logo" class="icon-logo"></i></span><span class="step size-14"><span class="letters">Pp</span><i id="icon-logo" class="icon-logo"></i></span><span class="step size-16"><span class="letters">Pp</span><i id="icon-logo" class="icon-logo"></i></span><span class="step size-18"><span class="letters">Pp</span><i id="icon-logo" class="icon-logo"></i></span><span class="step size-21"><span class="letters">Pp</span><i id="icon-logo" class="icon-logo"></i></span><span class="step size-24"><span class="letters">Pp</span><i id="icon-logo" class="icon-logo"></i></span><span class="step size-36"><span class="letters">Pp</span><i id="icon-logo" class="icon-logo"></i></span><span class="step size-48"><span class="letters">Pp</span><i id="icon-logo" class="icon-logo"></i></span><span class="step size-60"><span class="letters">Pp</span><i id="icon-logo" class="icon-logo"></i></span><span class="step size-72"><span class="letters">Pp</span><i id="icon-logo" class="icon-logo"></i></span>
         </div>
         <div class="preview-scale">
           <span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">36</span><span class="step">48</span><span class="step">60</span><span class="step">72</span>
         </div>
         <div class="usage">
-          <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".icon-ghijk" />
-          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf102;" />
-          <input type="text" class="variable" value="$tgc-ghijk"/>
-          <input type="text" class="mixin" value="@include tgc-ghijk"/>
+          <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".icon-logo" />
+          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf107;" />
+          <input type="text" class="variable" value="$tgc-logo"/>
+          <input type="text" class="mixin" value="@include tgc-logo"/>
+        </div>
+      </div>
+      
+      <div class="glyph">
+        <div class="preview-glyphs">
+          <span class="step size-12"><span class="letters">Pp</span><i id="icon-logo-outline" class="icon-logo-outline"></i></span><span class="step size-14"><span class="letters">Pp</span><i id="icon-logo-outline" class="icon-logo-outline"></i></span><span class="step size-16"><span class="letters">Pp</span><i id="icon-logo-outline" class="icon-logo-outline"></i></span><span class="step size-18"><span class="letters">Pp</span><i id="icon-logo-outline" class="icon-logo-outline"></i></span><span class="step size-21"><span class="letters">Pp</span><i id="icon-logo-outline" class="icon-logo-outline"></i></span><span class="step size-24"><span class="letters">Pp</span><i id="icon-logo-outline" class="icon-logo-outline"></i></span><span class="step size-36"><span class="letters">Pp</span><i id="icon-logo-outline" class="icon-logo-outline"></i></span><span class="step size-48"><span class="letters">Pp</span><i id="icon-logo-outline" class="icon-logo-outline"></i></span><span class="step size-60"><span class="letters">Pp</span><i id="icon-logo-outline" class="icon-logo-outline"></i></span><span class="step size-72"><span class="letters">Pp</span><i id="icon-logo-outline" class="icon-logo-outline"></i></span>
+        </div>
+        <div class="preview-scale">
+          <span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">36</span><span class="step">48</span><span class="step">60</span><span class="step">72</span>
+        </div>
+        <div class="usage">
+          <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".icon-logo-outline" />
+          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf108;" />
+          <input type="text" class="variable" value="$tgc-logo-outline"/>
+          <input type="text" class="mixin" value="@include tgc-logo-outline"/>
+        </div>
+      </div>
+      
+      <div class="glyph">
+        <div class="preview-glyphs">
+          <span class="step size-12"><span class="letters">Pp</span><i id="icon-logo-short" class="icon-logo-short"></i></span><span class="step size-14"><span class="letters">Pp</span><i id="icon-logo-short" class="icon-logo-short"></i></span><span class="step size-16"><span class="letters">Pp</span><i id="icon-logo-short" class="icon-logo-short"></i></span><span class="step size-18"><span class="letters">Pp</span><i id="icon-logo-short" class="icon-logo-short"></i></span><span class="step size-21"><span class="letters">Pp</span><i id="icon-logo-short" class="icon-logo-short"></i></span><span class="step size-24"><span class="letters">Pp</span><i id="icon-logo-short" class="icon-logo-short"></i></span><span class="step size-36"><span class="letters">Pp</span><i id="icon-logo-short" class="icon-logo-short"></i></span><span class="step size-48"><span class="letters">Pp</span><i id="icon-logo-short" class="icon-logo-short"></i></span><span class="step size-60"><span class="letters">Pp</span><i id="icon-logo-short" class="icon-logo-short"></i></span><span class="step size-72"><span class="letters">Pp</span><i id="icon-logo-short" class="icon-logo-short"></i></span>
+        </div>
+        <div class="preview-scale">
+          <span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">36</span><span class="step">48</span><span class="step">60</span><span class="step">72</span>
+        </div>
+        <div class="usage">
+          <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".icon-logo-short" />
+          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf109;" />
+          <input type="text" class="variable" value="$tgc-logo-short"/>
+          <input type="text" class="mixin" value="@include tgc-logo-short"/>
+        </div>
+      </div>
+      
+      <div class="glyph">
+        <div class="preview-glyphs">
+          <span class="step size-12"><span class="letters">Pp</span><i id="icon-logo-short-outline" class="icon-logo-short-outline"></i></span><span class="step size-14"><span class="letters">Pp</span><i id="icon-logo-short-outline" class="icon-logo-short-outline"></i></span><span class="step size-16"><span class="letters">Pp</span><i id="icon-logo-short-outline" class="icon-logo-short-outline"></i></span><span class="step size-18"><span class="letters">Pp</span><i id="icon-logo-short-outline" class="icon-logo-short-outline"></i></span><span class="step size-21"><span class="letters">Pp</span><i id="icon-logo-short-outline" class="icon-logo-short-outline"></i></span><span class="step size-24"><span class="letters">Pp</span><i id="icon-logo-short-outline" class="icon-logo-short-outline"></i></span><span class="step size-36"><span class="letters">Pp</span><i id="icon-logo-short-outline" class="icon-logo-short-outline"></i></span><span class="step size-48"><span class="letters">Pp</span><i id="icon-logo-short-outline" class="icon-logo-short-outline"></i></span><span class="step size-60"><span class="letters">Pp</span><i id="icon-logo-short-outline" class="icon-logo-short-outline"></i></span><span class="step size-72"><span class="letters">Pp</span><i id="icon-logo-short-outline" class="icon-logo-short-outline"></i></span>
+        </div>
+        <div class="preview-scale">
+          <span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">36</span><span class="step">48</span><span class="step">60</span><span class="step">72</span>
+        </div>
+        <div class="usage">
+          <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".icon-logo-short-outline" />
+          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf10a;" />
+          <input type="text" class="variable" value="$tgc-logo-short-outline"/>
+          <input type="text" class="mixin" value="@include tgc-logo-short-outline"/>
         </div>
       </div>
       
@@ -290,21 +347,6 @@
           <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf103;" />
           <input type="text" class="variable" value="$tgc-menu"/>
           <input type="text" class="mixin" value="@include tgc-menu"/>
-        </div>
-      </div>
-      
-      <div class="glyph">
-        <div class="preview-glyphs">
-          <span class="step size-12"><span class="letters">Pp</span><i id="icon-rocket" class="icon-rocket"></i></span><span class="step size-14"><span class="letters">Pp</span><i id="icon-rocket" class="icon-rocket"></i></span><span class="step size-16"><span class="letters">Pp</span><i id="icon-rocket" class="icon-rocket"></i></span><span class="step size-18"><span class="letters">Pp</span><i id="icon-rocket" class="icon-rocket"></i></span><span class="step size-21"><span class="letters">Pp</span><i id="icon-rocket" class="icon-rocket"></i></span><span class="step size-24"><span class="letters">Pp</span><i id="icon-rocket" class="icon-rocket"></i></span><span class="step size-36"><span class="letters">Pp</span><i id="icon-rocket" class="icon-rocket"></i></span><span class="step size-48"><span class="letters">Pp</span><i id="icon-rocket" class="icon-rocket"></i></span><span class="step size-60"><span class="letters">Pp</span><i id="icon-rocket" class="icon-rocket"></i></span><span class="step size-72"><span class="letters">Pp</span><i id="icon-rocket" class="icon-rocket"></i></span>
-        </div>
-        <div class="preview-scale">
-          <span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">36</span><span class="step">48</span><span class="step">60</span><span class="step">72</span>
-        </div>
-        <div class="usage">
-          <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".icon-rocket" />
-          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf104;" />
-          <input type="text" class="variable" value="$tgc-rocket"/>
-          <input type="text" class="mixin" value="@include tgc-rocket"/>
         </div>
       </div>
       

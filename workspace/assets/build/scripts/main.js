@@ -11297,6 +11297,62 @@ return jQuery;
 }(jQuery);
 
 
+/* responsimage.com v0.2.3 */
+(function ($, window, Date) {
+
+	'use strict';
+
+	$(function() {
+
+		var rPrefs = $('meta[name="responsimage"]'),
+			rServer = rPrefs.data('server'),
+			rStatic = rPrefs.data('static') || 'http://f.cl.ly/items/0M3H0q3n1Z1S1y362d09/spacer.gif',
+			rLoading = rPrefs.data('loading') || 'http://f.cl.ly/items/2w2G3N2p0B400Z380J1u/loading.gif',
+			rLimit = rPrefs.data('limit') || 100,
+			rTimestamp = new Date(),
+			rTags = $('[data-responsimage]');
+
+		function responsimage(rInit) {
+			rTags.each(function() {
+				var rThis = $(this),
+					filename = rThis.data('responsimage'),
+					rWidth = rThis.width(),
+					rHeight = rThis.height(),
+					rAnchor = rThis.data('responsimage-anchor') || 5,
+					rImage;
+
+				if(rInit) {
+					rThis.attr('src', rStatic).css('background', '#fff url(' + rLoading + ') no-repeat center');
+				}
+
+				if(rThis.css('font-family') === 'pixel-ratio-2') {
+					rWidth *= 2;
+					rHeight *= 2;
+				}
+
+				rImage = rServer.replace('width', rWidth).replace('height', rHeight).replace('anchor', rAnchor).replace('filename', filename);
+
+				if(filename !== 'disabled') {
+					rThis.attr('src', rImage);
+				}
+			});
+		}
+
+		responsimage(1);
+
+		$(window).resize(function () {
+			var rNow = new Date();
+
+			if (rNow - rTimestamp >= rLimit) {
+				responsimage(false);
+			}
+		});
+
+		window.onorientationchange = function() {      
+			setTimeout(responsimage, 0); 
+		};
+	});
+}(jQuery, window, Date));
 /**
  * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
  *
@@ -12905,74 +12961,6 @@ if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) 
 
 	Unslider.version = "1.0.0";
 })(jQuery, false);
-
-/*global jQuery */
-/*jshint browser:true */
-/*!
-* FitVids 1.1
-*
-* Copyright 2013, Chris Coyier - http://css-tricks.com + Dave Rupert - http://daverupert.com
-* Credit to Thierry Koblentz - http://www.alistapart.com/articles/creating-intrinsic-ratios-for-video/
-* Released under the WTFPL license - http://sam.zoy.org/wtfpl/
-*
-*/
-
-(function( $ ){
-
-  "use strict";
-
-  $.fn.fitVids = function( options ) {
-    var settings = {
-      customSelector: null
-    };
-
-    if(!document.getElementById('fit-vids-style')) {
-      // appendStyles: https://github.com/toddmotto/fluidvids/blob/master/dist/fluidvids.js
-      var head = document.head || document.getElementsByTagName('head')[0];
-      var css = '.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}';
-      var div = document.createElement('div');
-      div.innerHTML = '<p>x</p><style id="fit-vids-style">' + css + '</style>';
-      head.appendChild(div.childNodes[1]);
-    }
-
-    if ( options ) {
-      $.extend( settings, options );
-    }
-
-    return this.each(function(){
-      var selectors = [
-        "iframe[src*='player.vimeo.com']",
-        "iframe[src*='youtube.com']",
-        "iframe[src*='youtube-nocookie.com']",
-        "iframe[src*='kickstarter.com'][src*='video.html']",
-        "object",
-        "embed"
-      ];
-
-      if (settings.customSelector) {
-        selectors.push(settings.customSelector);
-      }
-
-      var $allVideos = $(this).find(selectors.join(','));
-      $allVideos = $allVideos.not("object object"); // SwfObj conflict patch
-
-      $allVideos.each(function(){
-        var $this = $(this);
-        if (this.tagName.toLowerCase() === 'embed' && $this.parent('object').length || $this.parent('.fluid-width-video-wrapper').length) { return; }
-        var height = ( this.tagName.toLowerCase() === 'object' || ($this.attr('height') && !isNaN(parseInt($this.attr('height'), 10))) ) ? parseInt($this.attr('height'), 10) : $this.height(),
-            width = !isNaN(parseInt($this.attr('width'), 10)) ? parseInt($this.attr('width'), 10) : $this.width(),
-            aspectRatio = height / width;
-        if(!$this.attr('id')){
-          var videoID = 'fitvid' + Math.floor(Math.random()*999999);
-          $this.attr('id', videoID);
-        }
-        $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width-video-wrapper').css('padding-top', (aspectRatio * 100)+"%");
-        $this.removeAttr('height').removeAttr('width');
-      });
-    });
-  };
-// Works with either jQuery or Zepto
-})( window.jQuery || window.Zepto );
 
 /*!
  *  Sharrre.com - Make your sharing widget!

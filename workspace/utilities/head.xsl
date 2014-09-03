@@ -60,7 +60,7 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <script type="text/javascript" src="//use.typekit.net/tix6unz.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/xht8sty.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
   </head>

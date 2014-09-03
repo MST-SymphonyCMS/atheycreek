@@ -1,7 +1,7 @@
 .DS_Store
 *.sublime-project
 *.sublime-workspace
-bowser_components/
+bower_components/
 manifest/config.php
 manifest/cache/*
 manifest/logs/*
@@ -11,3 +11,4 @@ workspace/uploads/documents/*
 workspace/uploads/images/*
 utilities/*.sh
 _sql/
+.fontcustom-manifest.json

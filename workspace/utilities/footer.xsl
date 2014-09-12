@@ -47,6 +47,10 @@
     </div>
   </footer>
 
+</xsl:template>
+
+
+<xsl:template name="scripts">
   <xsl:choose>
     <xsl:when test="contains($root, '.dev')">
       <script src="{$workspace}/assets/build/scripts/main.js"></script>
@@ -67,6 +71,8 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+
+  <xsl:call-template name="livereload" />
 
 </xsl:template>
 

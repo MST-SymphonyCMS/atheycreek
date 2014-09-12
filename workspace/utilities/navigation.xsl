@@ -4,86 +4,51 @@
 
 <xsl:template name="navbar">
 
-<!--   <div class="navbar main navbar-inverse visible-desktop">
-    <div class="navbar-inner">
-      <div class="container">
-        <div>
-          <form class="navbar-search pull-left" action="get">
-            <xsl:call-template name="form-search-action" />
-            <a>
-              <xsl:call-template name="url-search-home" />
-              <span class="icon">s</span>
-            </a>
-            <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
-          </form>
-          <ul class="nav pull-right">
-            <xsl:if test="data/xml-ustream/status = 'live'">
-              <li>
-                <a href="{$root}/live/" class="live">
-                  <span class="icon">V</span>
-                  <xsl:text>Live</xsl:text>
-                </a>
-              </li>
-            </xsl:if>
-            <li><a href="{$root}/building/">Building</a></li>
-            <li><a href="{$root}/meetings/">Meetings</a></li>
-            <li><a href="{$root}/about/im-new-here/">New Here?</a></li>
-            <li><a href="{$root}/give/">Give</a></li>
-            <li>
-              <xsl:attribute name="class">
-                <xsl:choose>
-                  <xsl:when test="$cookie-username">
-                    <xsl:text>worship</xsl:text>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:text>last worship</xsl:text>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:attribute>
-              <a href="{$root}/events/12962/tuesday-sunrise-worship/">
-                <span class="icon">Z</span>
-                <span class="worship">Worship: </span>
-                <xsl:value-of select="$main-worship-sunrise" disable-output-escaping="yes" />
-              </a>
-            </li>
-            <xsl:if test="$cookie-username">
-              <li class="admin-menu">
-                <a href="#" data-toggle="dropdown"><i class="glyphicon-wrench"></i></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="/symphony/" target="_blank">Symphony</a>
-                  </li>
-                  <li>
-                    <a href="?debug" target="_blank">Debug</a>
-                  </li>
-                  <xsl:if test="not($pt1 = 'toolkit')">
-                    <li>
-                      <a target="_blank">
-                        <xsl:attribute name="href">
-                          <xsl:choose>
-                            <xsl:when test="$pt1">
-                              <xsl:value-of select="concat($root, '/symphony/publish/tags/edit/', $pt1, '/')" />
-                            </xsl:when>
-                            <xsl:otherwise>
-                              <xsl:value-of select="concat($root, '/symphony/publish/tags/edit/',/data/tags-all-entries/entry[title/@handle = 'home']/@id , '/')" />
-                            </xsl:otherwise>
-                          </xsl:choose>
-                        </xsl:attribute>
-                        <xsl:text> Edit Page</xsl:text>
-                      </a>
-                    </li>
-                  </xsl:if>
-                  <li>
-                    <a href="{$root}/symphony/logout/">Logout</a>
-                  </li>
-                </ul>
-              </li>
-            </xsl:if>
-          </ul>
-        </div>
+  <nav class="navbar navbar-inverse hidden-desktop" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle menu-activate">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{$root}">Athey Creek</a>
       </div>
     </div>
-  </div> -->
+  </nav>
+
+</xsl:template>
+
+<xsl:template name="side-menu">
+
+  <div class="snap-drawers">
+    <div class="snap-drawer snap-drawer-right">
+      <h3 class="brand"><a href="{{ siteUrl }}"><span class="brand-name">{{ siteName }}</span> National Conference</a></h3>
+      <ul class="menu">
+        {% if registration.registrationOpen  %}
+        <li class="register"><a href="{{ registration.registrationUrl }}">Register</a></li>
+        {% endif %}
+        <li><a href="{{ siteUrl }}">Home</a></li>
+        <li><a href="{{ url('overview') }}">Overview</a></li>
+        <li><a href="{{ url('talks') }}">Talks</a></li>
+        <li><a href="{{ url('speakers') }}">Speakers</a></li>
+        <li><a href="{{ url('travel') }}">Travel</a></li>
+        <li><a href="{{ url('schedule') }}">Schedule</a></li>
+        {% set street = craft.entries.section('streetTeam').first() %}
+        {% if street.imageMatrix | length %}
+        <li><a href="{{ siteUrl }}#street-team">Promote</a></li>
+        {% endif %}
+        <li><a href="{{ url('course-credit') }}">Course Credit</a></li>
+        <li class="social">
+          <div id="facebook-side" class="facebook-side" data-url="http://2015.thegospelcoalition.org/" data-text="The Gospel Coalition 2015 National Conference" data-title="Like"></div>
+        </li>
+        <li class="social">
+          <div id="twitter-side" class="twitter-side" data-url="http://2015.thegospelcoalition.org/" data-text="The Gospel Coalition 2015 National Conference" data-title="Tweet"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
 
 </xsl:template>
 

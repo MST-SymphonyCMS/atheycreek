@@ -13550,6 +13550,26 @@ if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) 
 
 $(function() {
 
+  // ------------------------------------------------
+  // + SNAPJS
+  // + - handles the slide menu
+  // ------------------------------------------------
+
+  var snapper = new Snap({
+    element: document.getElementById('content'),
+    disable: 'left',
+    maxPosition: 288,
+    minPosition: -288
+  });
+
+  $('.menu-activate').click(function() {
+    if( snapper.state().state == "right" ){
+      snapper.close();
+    } else {
+      snapper.open('right');
+    }
+  });
+
   // Dropdowns
   // --------------------------------------------------
 

@@ -78,71 +78,75 @@
 				</xsl:if>
 			</xsl:attribute>
 
-		  <xsl:call-template name="alerts-home"/>
-		  <header class="header">
-		  	<xsl:call-template name="masthead"/>
-		  </header>
+			<xsl:call-template name="side-menu"/>
 
+			<div id="content" class="content snap-content">
 
-			<xsl:if test="not($pt1) or $pt1 = 'home'">
+				<xsl:call-template name="alerts-home"/>
+				<xsl:call-template name="navbar"/>
 
-				<xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='tagline']/content)" disable-output-escaping="yes" />
+				<header class="header">
+					<xsl:call-template name="masthead"/>
+				</header>
 
-				<xsl:call-template name="featured-home"/>
+				<xsl:if test="not($pt1) or $pt1 = 'home'">
+
+					<xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='tagline']/content)" disable-output-escaping="yes" />
+
+					<xsl:call-template name="featured-home"/>
+
+					<div class="main-container">
+
+						<xsl:call-template name="events-home">
+							<xsl:with-param name="component" select="'events'" />
+							<xsl:with-param name="entries" select="/data/events-latest/entry" />
+						</xsl:call-template>
+
+						<xsl:call-template name="teachings-home"/>
+
+					</div> <!-- .main-container -->
+
+				</xsl:if>
+
 
 				<div class="main-container">
+					<xsl:choose>
+						<xsl:when test="$pt1 = 'toolkit' and $cookie-username">
+							<xsl:call-template name="toolkit" />
+						</xsl:when>
+						<xsl:when test="$pt1 = 'search'">
+							<xsl:call-template name="component-search">
+								<xsl:with-param name="position" select="column-full-width" />
+								<xsl:with-param name="entries" select="data/search/entry" />
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:when test="not(/data/tags-entries-by-tag/entry)">
+							<xsl:call-template name="error"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:choose>
+								<xsl:when test="count(/data/layouts-ds-tags-entries-by-tag/entry)">
+									<xsl:call-template name="call-components">
+										<xsl:with-param name="xpath" select="/data/layouts-ds-tags-entries-by-tag/entry" />
+									</xsl:call-template>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:call-template name="call-components">
+										<xsl:with-param name="xpath" select="/data/layouts-default/entry" />
+									</xsl:call-template>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:otherwise>
+					</xsl:choose>
 
-					<xsl:call-template name="events-home">
-						<xsl:with-param name="component" select="'events'" />
-						<xsl:with-param name="entries" select="/data/events-latest/entry" />
-					</xsl:call-template>
-
-					<xsl:call-template name="teachings-home"/>
-
+					<xsl:call-template name="page-live"/>
 				</div> <!-- .main-container -->
 
-			</xsl:if>
-
-
-			<div class="main-container">
-
-<!-- 				<xsl:call-template name="subnavs"/> -->
-
-				<xsl:choose>
-					<xsl:when test="$pt1 = 'toolkit' and $cookie-username">
-						<xsl:call-template name="toolkit" />
-					</xsl:when>
-					<xsl:when test="$pt1 = 'search'">
-						<xsl:call-template name="component-search">
-						  <xsl:with-param name="position" select="column-full-width" />
-						  <xsl:with-param name="entries" select="data/search/entry" />
-						</xsl:call-template>
-					</xsl:when>
-					<xsl:when test="not(/data/tags-entries-by-tag/entry)">
-						<xsl:call-template name="error"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:choose>
-							<xsl:when test="count(/data/layouts-ds-tags-entries-by-tag/entry)">
-								<xsl:call-template name="call-components">
-									<xsl:with-param name="xpath" select="/data/layouts-ds-tags-entries-by-tag/entry" />
-								</xsl:call-template>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:call-template name="call-components">
-									<xsl:with-param name="xpath" select="/data/layouts-default/entry" />
-								</xsl:call-template>
-							</xsl:otherwise>
-						</xsl:choose>
-					</xsl:otherwise>
-				</xsl:choose>
-
-				<xsl:call-template name="page-live"/>
-
 				<xsl:call-template name="footer"/>
-			</div> <!-- .main-container -->
 
-		<xsl:call-template name="livereload"/>
+			</div> <!-- #content -->
+
+			<xsl:call-template name="scripts"/>
 		</body>
 	</html>
 </xsl:template>

@@ -17,12 +17,27 @@
 }
 
 
+// Navbar
+// ------------------------------------------------
+
+.navbar-brand {
+  font-family: 'proxima-nova-alt-ext-cond', 'HelveticaNeue-CondensedBold','Helvetica Neue', 'Arial Narrow', Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.navbar-toggle:hover {
+  @include opacity(.5);
+  @include animate-simple(all);
+}
+
+
 // Header
 // ------------------------------------------------
 
 .header {
   background: $gray-darker;
 }
+
 
 // Masthead
 // ------------------------------------------------

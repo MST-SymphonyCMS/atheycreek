@@ -36,7 +36,5 @@ body {
 
 a:hover {
   text-decoration: none;
-  @include animate-simple();
   @include animate-simple(all);
 }
-

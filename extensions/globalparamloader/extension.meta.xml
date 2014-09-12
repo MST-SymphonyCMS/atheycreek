@@ -18,6 +18,9 @@
 		</author>
 	</authors>
 	<releases>
+		<release version="1.5.1" date="2014-09-06" min="2.4" max="2.5">
+			- Fix issue when saving multiple parameters
+		</release>
 		<release version="1.5" date="2014-05-27" min="2.4">
 			- Updates for Symphony 2.4
 			- Show Pages by title instead of path

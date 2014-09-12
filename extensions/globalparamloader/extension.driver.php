@@ -25,7 +25,7 @@
 					`exclude_page` varchar(255),
 					PRIMARY KEY (`id`),
 					INDEX `name` (`name`)
-				)
+				) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 			");
 
 			Symphony::Database()->query("
@@ -39,7 +39,7 @@
 					PRIMARY KEY (`id`),
 					INDEX `param` (`param`),
 					INDEX `value` (`value`)
-				)
+				) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 			");
 
 			return true;
@@ -123,16 +123,18 @@
 
 		public function getParameters($set_id = null) {
 			if (is_numeric($set_id)) {
-				return Symphony::Database()->fetch("
-					SELECT
-						c.*
-					FROM
-						`tbl_gpl_params` AS c
-					WHERE
-						c.set_id = {$set_id}
-					ORDER BY
-						c.sortorder ASC
-				");
+				return Symphony::Database()->fetch(sprintf("
+						SELECT
+							c.*
+						FROM
+							`tbl_gpl_params` AS c
+						WHERE
+							c.set_id = %d
+						ORDER BY
+							c.sortorder ASC
+					",
+					$set_id
+				));
 
 			} else {
 				return Symphony::Database()->fetch("
@@ -183,15 +185,17 @@
 		}
 
 		public function getSet($set_id) {
-			return Symphony::Database()->fetchRow(0, "
-				SELECT
-					s.*
-				FROM
-					`tbl_gpl_sets` AS s
-				WHERE
-					s.id = '{$set_id}'
-				LIMIT 1
-			");
+			return Symphony::Database()->fetchRow(0, sprintf("
+					SELECT
+						s.*
+					FROM
+						`tbl_gpl_sets` AS s
+					WHERE
+						s.id = %d
+					LIMIT 1
+				",
+				$set_id
+			));
 		}
 
 		public function getParamPages($set_id) {
@@ -206,4 +210,3 @@
 			return in_array($id, $pages);
 		}
 	}
-?>

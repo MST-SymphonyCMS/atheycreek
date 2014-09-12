@@ -53,8 +53,8 @@
 		}
 
 		public function __actionEditDelete() {
-			Symphony::Database()->delete('tbl_gpl_sets', " `id` = '{$this->_fields['id']}'");
-			Symphony::Database()->delete('tbl_gpl_params', " `set_id` = '{$this->_fields['id']}'");
+			Symphony::Database()->delete('tbl_gpl_sets', sprintf(" `id` = %d ", $this->_fields['id']));
+			Symphony::Database()->delete('tbl_gpl_params', sprintf(" `set_id` = %d ", $this->_fields['id']));
 
 			redirect("{$this->_uri}/sets/");
 		}
@@ -92,7 +92,7 @@
 			if($this->_fields['exclude_page']) $this->_fields['exclude_page'] = implode(',', $this->_fields['exclude_page']);
 
 			Symphony::Database()->insert($this->_fields, 'tbl_gpl_sets', true);
-			Symphony::Database()->update($this->_fields, 'tbl_gpl_sets', "`id` = '".$this->_fields['id']."'");
+			Symphony::Database()->update($this->_fields, 'tbl_gpl_sets', sprintf(" `id` = %d ", $this->_fields['id']));
 
 			if (!$this->_editing) {
 				$redirect_mode = 'created';
@@ -113,13 +113,12 @@
 			}
 
 			// Remove all parameters before adding existing ones
-			Symphony::Database()->delete('tbl_gpl_params', " `set_id` = '{$this->_fields['id']}'");
+			Symphony::Database()->delete('tbl_gpl_params', sprintf(" `set_id` = %d ", $this->_fields['id']));
 
-			foreach ($this->_params as $param) {
-				$param['set_id'] = $set_id;
+			foreach ($this->_params as $key => $p) {
+				$p['set_id'] = $set_id;
 
-				Symphony::Database()->insert($param, 'tbl_gpl_params', true);
-
+				Symphony::Database()->insert($p, 'tbl_gpl_params', true);
 			}
 
 			redirect("{$this->_uri}/sets/edit/{$set_id}/{$redirect_mode}/");
@@ -165,14 +164,16 @@
 			// Edit:
 			if ($this->_action == 'edit') {
 				if ($this->_set > 0) {
-					$row = Symphony::Database()->fetchRow(0, "
+					$row = Symphony::Database()->fetchRow(0, sprintf("
 						SELECT
 							s.*
 						FROM
 							`tbl_gpl_sets` AS s
 						WHERE
-							s.id = {$this->_set}
-					");
+							s.id = %d
+					",
+						$this->_set
+					));
 
 					if (!empty($row)) {
 						$this->_fields = $row;
@@ -188,7 +189,7 @@
 			$this->setTitle(__('Symphony &ndash; Global Parameter Sets') . (
 				$this->_editing ? ' &ndash; ' . $this->_fields['name'] : null
 			));
-			$this->appendSubheading($this->_editing ? $this->_fields['name'] : 'Untitled');
+			$this->appendSubheading($this->_editing ? $this->_fields['name'] : __('Untitled'));
 			$this->insertBreadcrumbs(array(
 				Widget::Anchor(__('Parameter Sets'), $this->_uri . '/sets/'),
 			));
@@ -210,7 +211,7 @@
 			));
 
 			if (isset($this->_errors['name'])) {
-				$label = Widget::wrapFormElementWithError($label, $this->_errors['name']);
+				$label = Widget::Error($label, $this->_errors['name']);
 			}
 
 			$fieldset->appendChild($label);
@@ -323,7 +324,7 @@
 			));
 
 			if (isset($this->_errors["{$sortorder}:param"])) {
-				$label = Widget::wrapFormElementWithError($label, $this->_errors["{$sortorder}:param"]);
+				$label = Widget::Error($label, $this->_errors["{$sortorder}:param"]);
 			}
 
 			$div->appendChild($label);
@@ -338,7 +339,7 @@
 			));
 
 			if (isset($this->_errors["{$sortorder}:value"])) {
-				$label = Widget::wrapFormElementWithError($label, $this->_errors["{$sortorder}:value"]);
+				$label = Widget::Error($label, $this->_errors["{$sortorder}:value"]);
 			}
 
 			$div->appendChild($label);
@@ -381,19 +382,8 @@
 				switch ($_POST['with-selected']) {
 					case 'delete':
 						foreach ($checked as $set_id) {
-							Symphony::Database()->query("
-								DELETE FROM
-									`tbl_gpl_sets`
-								WHERE
-									`id` = {$set_id}
-							");
-
-							Symphony::Database()->query("
-								DELETE FROM
-									`tbl_gpl_params`
-								WHERE
-									`set_id` = {$set_id}
-							");
+							Symphony::Database()->delete('tbl_gpl_sets', sprintf(" `id` = %d ", $set_id));
+							Symphony::Database()->delete('tbl_gpl_params', sprintf(" `set_id` = %d ", $set_id));
 						}
 
 						redirect("{$this->_uri}/sets/");

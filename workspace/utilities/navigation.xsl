@@ -17,7 +17,7 @@
             <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
           </form>
           <ul class="nav pull-right">
-            <xsl:if test="/data/live-status/entry/status = 'live'">
+            <xsl:if test="/data/live-status/entry/ustream-status = 'live'">
               <li>
                 <a href="{$root}/live/" class="live">
                   <span class="icon">V</span>
@@ -102,7 +102,7 @@
       </a>
       <div class="nav-collapse">
         <ul class="nav">
-          <xsl:if test="/data/live-status/entry/status = 'live'">
+          <xsl:if test="/data/live-status/entry/ustream-status = 'live'">
             <li>
               <a href="{$root}/live/">
                 <span class="icon">V</span>

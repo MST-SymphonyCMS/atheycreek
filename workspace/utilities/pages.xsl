@@ -10,7 +10,7 @@
          <div class="row">
            <div class="span12">
             <xsl:choose>
-              <xsl:when test="/data/live-status/entry/status = 'live'">
+              <xsl:when test="/data/live-status/entry/ustream-status = 'live'">
                 <h2>Live Broadcast</h2>
               </xsl:when>
               <xsl:otherwise>
@@ -22,7 +22,7 @@
        </div>
      </div>
     <xsl:choose>
-      <xsl:when test="/data/live-status/entry/status = 'live'">
+      <xsl:when test="/data/live-status/entry/ustream-status = 'live'">
         <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='broadcast-live']/content)" disable-output-escaping="yes" />
         <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='main-podcast']/content)" disable-output-escaping="yes" />
       </xsl:when>

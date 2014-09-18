@@ -34,7 +34,7 @@ class datasourcelive_status extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.0',
-            'release-date' => '2014-09-18T23:22:53+00:00'
+            'release-date' => '2014-09-18T23:42:13+00:00'
         );
     }
 

@@ -13,7 +13,7 @@
 				'description'	=> '',
 				'file'			=> __FILE__,
 				'created'		=> '2014-09-18T22:37:50+00:00',
-				'updated'		=> '2014-09-18T22:45:18+00:00'
+				'updated'		=> '2014-09-18T23:19:05+00:00'
 			);
 		}
 
@@ -23,7 +23,7 @@
 				'fields'			=> array (
   0 => 
   array (
-    'field' => '339',
+    'field' => '340',
     'xpath' => 'status/node()',
     'php' => 'str_replace(array(\\\'<![CDATA[\\\',\\\']]>\\\'), \\\'\\\', $value)',
   ),
@@ -40,7 +40,7 @@
 				'source'			=> 'http://api.ustream.tv/xml/channel/atheycreek/getInfo/?key=4E23272206B10532FEC6335E3D79977E',
 				'timeout'			=> '60',
 				'section'			=> '29',
-				'unique-field'		=> '339'
+				'unique-field'		=> '340'
 			);
 		}
 

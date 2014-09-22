@@ -30,7 +30,7 @@
             : E_ALL & ~E_NOTICE
     );
 
-    // Turn of old-style magic:
+    // Turn off old-style magic:
     ini_set('magic_quotes_runtime', false);
 
     // Redirect to installer if it exists
@@ -57,7 +57,7 @@
         // Handle custom admin paths, #702
         $adminPath = Symphony::Configuration()->get('admin-path', 'symphony');
         $adminPath = (is_null($adminPath)) ? 'symphony' :  $adminPath;
-        if (strpos($_GET['symphony-page'], $adminPath, 0) === 0) {
+        if (isset($_GET['symphony-page']) && strpos($_GET['symphony-page'], $adminPath, 0) === 0) {
             $_GET['symphony-page'] = str_replace($adminPath . '/', '', $_GET['symphony-page']);
 
             if ($_GET['symphony-page'] == '') {

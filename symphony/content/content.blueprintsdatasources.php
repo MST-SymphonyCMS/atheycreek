@@ -428,7 +428,7 @@ class contentBlueprintsDatasources extends ResourcesPage
                 $li = new XMLElement('li');
                 $li->setAttribute('class', 'unique');
                 $li->setAttribute('data-type', 'system:modification-date');
-                $li->appendChild(new XMLElement('header', '<h4>' . __('System Modified Date') . '</h4>'));
+                $li->appendChild(new XMLElement('header', '<h4>' . __('System Modification Date') . '</h4>'));
                 $label = Widget::Label(__('Value'));
                 $label->appendChild(Widget::Input('fields[filter]['.$section_id.'][system:modification-date]', General::sanitize($fields['filter'][$section_id]['system:modification-date'])));
                 $li->appendChild($label);
@@ -438,7 +438,7 @@ class contentBlueprintsDatasources extends ResourcesPage
             $li = new XMLElement('li');
             $li->setAttribute('class', 'unique template');
             $li->setAttribute('data-type', 'system:modification-date');
-            $li->appendChild(new XMLElement('header', '<h4>' . __('System Modified Date') . '</h4>'));
+            $li->appendChild(new XMLElement('header', '<h4>' . __('System Modification Date') . '</h4>'));
             $label = Widget::Label(__('Value'));
             $label->appendChild(Widget::Input('fields[filter]['.$section_id.'][system:modification-date]'));
             $li->appendChild($label);
@@ -685,8 +685,6 @@ class contentBlueprintsDatasources extends ResourcesPage
         foreach ($field_groups as $section_id => $section_data) {
             $optgroup = array('label' => $section_data['section']->get('name'), 'data-label' => 'section-' . $section_data['section']->get('id'), 'options' => array());
 
-            $authorOverride = false;
-
             if (is_array($section_data['fields']) && !empty($section_data['fields'])) {
                 foreach ($section_data['fields'] as $input) {
 
@@ -694,16 +692,8 @@ class contentBlueprintsDatasources extends ResourcesPage
                         continue;
                     }
 
-                    if ($input->get('element_name') == 'author') {
-                        $authorOverride = true;
-                    }
-
                     $optgroup['options'][] = array($input->get('id'), ($fields['source'] == $section_id && $fields['group'] == $input->get('id')), $input->get('label'));
                 }
-            }
-
-            if (!$authorOverride) {
-                $optgroup['options'][] = array('author', ($fields['source'] == $section_id && $fields['group'] == 'author'), __('Author'));
             }
 
             $options[] = $optgroup;

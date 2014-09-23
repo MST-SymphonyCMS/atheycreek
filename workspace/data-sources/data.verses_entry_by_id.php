@@ -11,6 +11,8 @@ class datasourceverses_entry_by_id extends SectionDatasource
     public $dsParamLIMIT = '1';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamPARAMOUTPUT = array(
         'passage'
         );
@@ -19,7 +21,7 @@ class datasourceverses_entry_by_id extends SectionDatasource
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
     public $dsParamFILTERS = array(
-        'system:id' => '{$ds-events-entry-by-id-preview},{$ds-events-recurring-entry-by-id},{$ds-events-entry-by-id.verses}',
+        'system:id' => '{$ds-events-recurring-entry-by-id.verses},{$ds-events-entry-by-id.verses}',
         '211' => 'no',
     );
 
@@ -32,7 +34,7 @@ class datasourceverses_entry_by_id extends SectionDatasource
     public function __construct($env = null, $process_params = true)
     {
         parent::__construct($env, $process_params);
-        $this->_dependencies = array('$ds-events-entry-by-id-preview', '$ds-events-recurring-entry-by-id', '$ds-events-entry-by-id.verses');
+        $this->_dependencies = array('$ds-events-recurring-entry-by-id.verses', '$ds-events-entry-by-id.verses');
     }
 
     public function about()
@@ -42,9 +44,9 @@ class datasourceverses_entry_by_id extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-13T16:15:06+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.1',
+            'release-date' => '2014-09-23T16:52:32+00:00'
         );
     }
 

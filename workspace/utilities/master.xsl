@@ -81,6 +81,7 @@
 		  <xsl:call-template name="alerts-home"/>
 			<xsl:call-template name="navbar"/>
 			<xsl:call-template name="mast"/>
+			
 
 			<xsl:if test="not($pt1) or $pt1 = 'home'">
 

@@ -20,14 +20,24 @@
 // Navbar
 // ------------------------------------------------
 
+@media (min-width: $screen-md-min) {
+  .navbar {
+    display: none;
+  }
+}
+
 .navbar-brand {
   font-family: 'proxima-nova-alt-ext-cond', 'HelveticaNeue-CondensedBold','Helvetica Neue', 'Arial Narrow', Arial, sans-serif;
   text-transform: uppercase;
 }
 
-.navbar-toggle:hover {
-  @include opacity(.5);
-  @include animate-simple(all);
+.navbar-toggle {
+  margin-right: 0;
+
+  &:hover {
+    @include opacity(.5);
+    @include animate-simple(all);
+  }
 }
 
 

@@ -189,8 +189,8 @@ td, th {
 
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('../fonts/bootstrap/glyphicons-halflings-regular.eot');
-  src: url('../fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/bootstrap/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/bootstrap/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg'); }
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg'); }
 
 .glyphicon {
   position: relative;
@@ -2821,9 +2821,6 @@ tbody.collapse.in {
   display: table; }
 .navbar-header:after {
   clear: both; }
-@media (min-width: 768px) {
-  .navbar-header {
-    float: left; } }
 
 .navbar-collapse {
   overflow-x: visible;
@@ -2930,9 +2927,6 @@ tbody.collapse.in {
     border-radius: 1px; }
   .navbar-toggle .icon-bar + .icon-bar {
     margin-top: 4px; }
-  @media (min-width: 768px) {
-    .navbar-toggle {
-      display: none; } }
 
 .navbar-nav {
   margin: 8px -15px; }
@@ -4269,6 +4263,7 @@ button.close {
     left: 100%; }
 
 .carousel-control {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -4297,9 +4292,7 @@ button.close {
   .carousel-control:hover, .carousel-control:focus {
     outline: 0;
     color: #fff;
-    text-decoration: none;
-    opacity: 0.9;
-    filter: alpha(opacity=90); }
+    text-decoration: none; }
   .carousel-control .icon-prev, .carousel-control .icon-next, .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right {
     position: absolute;
     top: 50%;
@@ -4320,6 +4313,9 @@ button.close {
     content: '\2039'; }
   .carousel-control .icon-next:before {
     content: '\203a'; }
+
+.carousel:hover .carousel-control {
+  display: block; }
 
 .carousel-indicators {
   position: absolute;
@@ -4688,15 +4684,21 @@ a:hover {
 .icon-menu:before {
   content: '\f103'; }
 
+@media (min-width: 992px) {
+  .navbar {
+    display: none; } }
+
 .navbar-brand {
   font-family: 'proxima-nova-alt-ext-cond', 'HelveticaNeue-CondensedBold', 'Helvetica Neue', 'Arial Narrow', Arial, sans-serif;
   text-transform: uppercase; }
 
-.navbar-toggle:hover {
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  -webkit-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out; }
+.navbar-toggle {
+  margin-right: 0; }
+  .navbar-toggle:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out; }
 
 .header {
   background: #373839; }

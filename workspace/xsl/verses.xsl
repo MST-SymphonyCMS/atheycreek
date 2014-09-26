@@ -17,7 +17,7 @@
 				<xsl:call-template name="class-rows" />
 				<xsl:for-each select="$entries">
 					<div class="row">
-						<div class="span6 offset3">
+						<div class="col-md-6 col-md-offset-3">
 							<xsl:choose>
 								<xsl:when test="string-length(content)">
 									<blockquote>
@@ -41,10 +41,9 @@
 											<xsl:value-of select="//xml-api-biblia-com/text" />
 											<xsl:text>&#8221;</xsl:text>
 										</span>
+										<xsl:text>&#160;</xsl:text>
+										<strong><xsl:value-of select="passage" /></strong>
 									</blockquote>
-									<cite>
-										<xsl:value-of select="passage" />
-									</cite>
 								</xsl:otherwise>
 							</xsl:choose>
 						</div>

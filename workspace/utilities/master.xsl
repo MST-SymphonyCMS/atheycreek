@@ -158,13 +158,9 @@
 
 	<div class="container">
 
-		<div class="row">
-			<div class="col-md-12">
-				<xsl:call-template name="component">
-					<xsl:with-param name="xpath" select="$xpath/column-full-width" />
-				</xsl:call-template>
-			</div>
-		</div> <!-- .row -->
+		<xsl:call-template name="component">
+			<xsl:with-param name="xpath" select="$xpath/column-full-width" />
+		</xsl:call-template>
 
 		<div class="row">
 			<xsl:call-template name="component">

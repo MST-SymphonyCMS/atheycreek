@@ -76,7 +76,14 @@
     <xsl:call-template name="merge-data-sources" />
   </xsl:variable>
 
-	<div id="frontCarousel" class="carousel slide">
+	<div id="frontCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#frontCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#frontCarousel" data-slide-to="1"></li>
+      <xsl:for-each select="exsl:node-set($entries)/entry">
+        <li data-target="#frontCarousel" data-slide-to="{position() + 1}"></li>
+      </xsl:for-each>
+    </ol>
     <div class="carousel-inner">
       <div class="item active">
 				<xsl:for-each select="/data/featured-teachings-home/entry">
@@ -93,13 +100,13 @@
 		  <xsl:for-each select="exsl:node-set($entries)/entry">
 		    <div class="item">
 		      <div class="row">
-		        <div class="span12">
+		        <div class="col-md-12">
 		          <a>
 		            <xsl:attribute name="href">
 		              <xsl:value-of select="uri" />
 		            </xsl:attribute>
 
-		            <img style="width:940px; height: 529px;" class="inline" data-responsimage-anchor="5" src="/workspace/assets/img/spacer.gif">
+		            <img style="width:1140px; height: 642px;" class="inline" data-responsimage-anchor="5" src="/workspace/assets/img/spacer.gif">
 		              <xsl:attribute name="data-responsimage">
 		                <xsl:value-of select="image" />
 		              </xsl:attribute>
@@ -107,17 +114,15 @@
 		          </a>
 		        </div>
 		      </div>
-					<div class="carousel-caption">
-						<a href="{uri}">
-							<h3>Featured: <em class="verse"> <xsl:value-of select="title"/></em>
-							</h3>
-						</a>
-					</div>
 		    </div>
 		  </xsl:for-each>
     </div>
-    <a class="left carousel-control" href="#frontCarousel" data-slide="prev">&lt;</a>
-    <a class="right carousel-control" href="#frontCarousel" data-slide="next">&gt;</a>
+    <a class="left carousel-control" href="#frontCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#frontCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
   </div>
 
 </xsl:template>
@@ -128,7 +133,7 @@
   <div class="feature">
     <div class="container">
       <div class="row home">
-        <div id="main-content" class="span12">
+        <div id="main-content" class="col-md-12">
           <h3>Featured Content</h3>
           <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='banner']/content)" disable-output-escaping="yes" />
           <xsl:call-template name="component-featured" />

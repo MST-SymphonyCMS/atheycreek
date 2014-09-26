@@ -9,18 +9,18 @@
 // ------------------------------------------------
 
 // Colors
-
 $gray-darker: #373839;
 $brand-primary: #3aa2dd;
 $text-color: $gray-darker;
 
-// Typography
+// Icons
+$icon-font-path: '../fonts/';
 
+// Typography
 $font-family-sans-serif: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $font-size-base: 20px;
 
 // Navbar
-
 $navbar-height: 60px;
 $navbar-margin-bottom: 0;
 $navbar-inverse-brand-color: white;
@@ -32,5 +32,4 @@ $navbar-inverse-toggle-hover-bg: lighten($gray-darker, 2%);
 $navbar-inverse-toggle-border-color: lighten($gray-darker, 2%);
 
 // Navs
-
 $nav-pills-border-radius: 0;

@@ -30,10 +30,6 @@
 
 .navbar-header {
   @include clearfix();
-
-  @media (min-width: $grid-float-breakpoint) {
-    float: left;
-  }
 }
 
 
@@ -213,10 +209,6 @@
   }
   .icon-bar + .icon-bar {
     margin-top: 4px;
-  }
-
-  @media (min-width: $grid-float-breakpoint) {
-    display: none;
   }
 }
 

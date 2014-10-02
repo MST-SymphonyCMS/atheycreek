@@ -1,0 +1,74 @@
+{
+  "checksum": {
+    "previous": "bc47788f45bcff9526ff5cbc6c0ce1d21b0bc572498d0704c8688052298826fa",
+    "current": "bc47788f45bcff9526ff5cbc6c0ce1d21b0bc572498d0704c8688052298826fa"
+  },
+  "fonts": [
+    "workspace/assets/build/fonts/icons.ttf",
+    "workspace/assets/build/fonts/icons.svg",
+    "workspace/assets/build/fonts/icons.woff",
+    "workspace/assets/build/fonts/icons.eot"
+  ],
+  "glyphs": {
+    "badge": {
+      "codepoint": 61696,
+      "source": "workspace/assets/source/media/icons/badge.svg"
+    },
+    "facebook": {
+      "codepoint": 61697,
+      "source": "workspace/assets/source/media/icons/facebook.svg"
+    },
+    "logo": {
+      "codepoint": 61698,
+      "source": "workspace/assets/source/media/icons/logo.svg"
+    },
+    "logo-outline": {
+      "codepoint": 61699,
+      "source": "workspace/assets/source/media/icons/logo-outline.svg"
+    },
+    "logo-short": {
+      "codepoint": 61700,
+      "source": "workspace/assets/source/media/icons/logo-short.svg"
+    },
+    "logo-short-outline": {
+      "codepoint": 61701,
+      "source": "workspace/assets/source/media/icons/logo-short-outline.svg"
+    },
+    "menu": {
+      "codepoint": 61702,
+      "source": "workspace/assets/source/media/icons/menu.svg"
+    },
+    "twitter": {
+      "codepoint": 61703,
+      "source": "workspace/assets/source/media/icons/twitter.svg"
+    }
+  },
+  "options": {
+    "autowidth": false,
+    "config": "./fontcustom.yml",
+    "css_selector": ".icon-{{glyph}}",
+    "debug": false,
+    "font_name": "icons",
+    "force": true,
+    "input": {
+      "templates": "workspace/assets/source/media/icons",
+      "vectors": "workspace/assets/source/media/icons"
+    },
+    "no_hash": true,
+    "output": {
+      "css": "workspace/assets/source/styles/core",
+      "fonts": "workspace/assets/build/fonts",
+      "preview": "workspace/assets/build/fonts"
+    },
+    "preprocessor_path": null,
+    "quiet": false,
+    "templates": [
+      "_icons.scss",
+      "fontcustom-preview.html"
+    ]
+  },
+  "templates": [
+    "workspace/assets/source/styles/core/_icons.scss",
+    "workspace/assets/build/fonts/icons-preview.html"
+  ]
+}

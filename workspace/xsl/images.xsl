@@ -44,7 +44,7 @@
 		</xsl:call-template>
 
 		<xsl:for-each select="$entries">
-			<img class="img-responsive" src="{$root}/workspace/uploads/images/{image/file/filename}" />
+			<img class="img-respsonsive" src="{$root}/workspace/uploads/images/{image/file/filename}" />
 		</xsl:for-each>
 	</div>
 

@@ -20,6 +20,11 @@ $(function() {
     }
   });
 
+  // Dropdowns
+  // --------------------------------------------------
+
+  $('.masthead > ul > li.dropdown').hover().toggleClass('open');
+
   // Joey Special
   // --------------------------------------------------
 

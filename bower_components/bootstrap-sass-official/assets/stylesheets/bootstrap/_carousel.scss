@@ -67,7 +67,6 @@
 // ---------------------------
 
 .carousel-control {
-  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -97,6 +96,7 @@
     outline: 0;
     color: $carousel-control-color;
     text-decoration: none;
+    @include opacity(.9);
   }
 
   // Toggles
@@ -138,10 +138,6 @@
       content: '\203a';// SINGLE RIGHT-POINTING ANGLE QUOTATION MARK (U+203A)
     }
   }
-}
-
-.carousel:hover .carousel-control {
-  display: block;
 }
 
 // Optional indicator pips

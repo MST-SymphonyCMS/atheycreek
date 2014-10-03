@@ -15,7 +15,7 @@
 				<div class="title-wrapper">
 					<div class="container">
 						<div class="row">
-							<div class="col-md-12">
+							<div class="span12">
 								<h2>
 									<xsl:choose>
 										<xsl:when test="$pt4 = 'psalm'">
@@ -35,7 +35,7 @@
 				<div class="title-wrapper">
 					<div class="container">
 						<div class="row">
-							<div class="col-md-12">
+							<div class="span12">
 								<h2>
 									<xsl:text>Series: </xsl:text>
 									<em>
@@ -55,7 +55,7 @@
 				<div class="title-wrapper">
 					<div class="container">
 						<div class="row">
-							<div class="col-md-12">
+							<div class="span12">
 								<h2>
 									<xsl:text>Tag: </xsl:text>
 									<em>
@@ -76,7 +76,7 @@
 			<div class="row">
 				<xsl:choose>
 	 				<xsl:when test="number($pt2)">
-						<div class="col-md-12">
+						<div class="span12">
 							<xsl:for-each select="$entries">
 								<div class="result">
 									<xsl:attribute name="class">
@@ -90,7 +90,7 @@
 						</div>
 					</xsl:when>
 					<xsl:when test="$pt2 = 'book' or $pt2 = 'tag' or $pt2 = 'year' or $pt2 = 'series'">
-						<div class="col-md-12 poster">
+						<div class="span12 poster">
 							<xsl:if test="$pt2 = 'series'">
 								<img class="img-responsive">
 									<xsl:attribute name="src">
@@ -102,7 +102,7 @@
 								<xsl:if test="/data/teachings-series-entries-all/entry[@id = $pt3]/description != ''">
 							    <div class="container">
 							      <div class="row">
-								    	<div class="col-md-12 center">
+								    	<div class="span12 center">
 												<span class="intro big">
 													<xsl:value-of select="/data/teachings-series-entries-all/entry[@id = $pt3]/description" disable-output-escaping="yes" />
 												</span>
@@ -351,23 +351,26 @@
 	<xsl:param name="entry" select="." />
 	<xsl:for-each select="$entry">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="span12">
 				<a>
 					<xsl:call-template name="url-teachings-series" />
-					<img style="width:1140px;height:642px" src="/workspace/assets/img/spacer.gif">
-						<xsl:attribute name="data-responsimage">
-							<xsl:choose>
-								<xsl:when test="string-length(poster/item)">
-									<xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-								</xsl:otherwise>
-							</xsl:choose>
-						</xsl:attribute>
-					</img>
+					<xsl:call-template name="teaching-poster-or-default">
+						<xsl:with-param name="poster" select="poster" />
+					</xsl:call-template>
 				</a>
 			</div>
+		</div>
+		<div class="carousel-caption">
+			<a>
+				<xsl:call-template name="url-teachings-series" />
+				<h3>
+					<xsl:text>Featured Series: </xsl:text>
+					<em class="verse">
+						<xsl:text> </xsl:text>
+						<xsl:value-of select="title" />
+					</em>
+				</h3>
+			</a>
 		</div>
 	</xsl:for-each>
 </xsl:template>
@@ -470,7 +473,7 @@
 	<div class="title-wrapper">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="span12">
 					<h2 style="text-align: center !important;">
 						<xsl:text>Teaching Series</xsl:text>
 					</h2>
@@ -539,7 +542,7 @@
 
 	<div class="component-teachings">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="span12">
 				<h3>Recent Teachings</h3>
 	        <div class="row">
 	          <xsl:for-each select="/data/teachings-latest/entry[position() &lt; 4]">
@@ -682,30 +685,45 @@
 	<xsl:for-each select="$entry">
 		<xsl:if test="not($pt1)">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="span12">
 					<a>
 						<xsl:call-template name="url-teachings" />
-						<img style="width:1140px;height:642px" src="/workspace/assets/img/spacer.gif">
-							<xsl:attribute name="data-responsimage">
-								<xsl:choose>
-									<xsl:when test="string-length(poster/item)">
-										<xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
-									</xsl:when>
-									<xsl:otherwise>
-										<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-									</xsl:otherwise>
-								</xsl:choose>
-							</xsl:attribute>
-						</img>
+							<img style="width:940px; height: 529px" src="/workspace/assets/img/spacer.gif">
+								<xsl:attribute name="data-responsimage">
+									<xsl:choose>
+										<xsl:when test="string-length(poster/item)">
+											<xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:attribute>
+							</img>
 					</a>
 				</div>
 			</div>
+			<div class="carousel-caption">
+				<a>
+					<xsl:call-template name="url-teachings" />
+					<h3>
+						<xsl:text>Featured Teaching: </xsl:text>
+						<em class="verse">
+							<xsl:text> </xsl:text>
+							<xsl:value-of select="book/item" />
+							<xsl:text> </xsl:text>
+							<xsl:value-of select="chapter" />
+						</em>
+					</h3>
+				</a>
+			</div>
 		</xsl:if>
 		<xsl:if test="number($pt2)">
+
 			<div class="title-wrapper">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-12 center">
+						<div class="span12 center">
 							<h2>
 								<xsl:value-of select="title" disable-output-escaping="yes" />
 								<span class="verse">
@@ -841,7 +859,7 @@
 						</xsl:call-template>
 					</xsl:if>
 				</div>
-				<div class="col-md-12">
+				<div class="span12">
 					<br/><br/>
 					<hr/>
 					<br/><br/>

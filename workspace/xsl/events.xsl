@@ -70,7 +70,7 @@
 		<div class="events">
 			<div class="container">
 				<div class="row">
-					<div class="cold-md-12">
+					<div class="span12">
 					  <div>
 					  	<xsl:call-template name="class-position">
 								<xsl:with-param name="component" select="$component" />
@@ -86,28 +86,28 @@
 														<xsl:attribute name="class">
 															<xsl:choose>
 																<xsl:when test="tags/item/@id = '25'">
-																	<xsl:text>col-md-6 col-md-offset-3 men</xsl:text>
+																	<xsl:text>span6 offset3 men</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '26'">
-																	<xsl:text>col-md-6 col-md-offset-3 women</xsl:text>
+																	<xsl:text>span6 offset3 women</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '31'">
-																	<xsl:text>col-md-6 col-md-offset-3 college</xsl:text>
+																	<xsl:text>span6 offset3 college</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '30'">
-																	<xsl:text>col-md-6 col-md-offset-3 highschool</xsl:text>
+																	<xsl:text>span6 offset3 highschool</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '29'">
-																	<xsl:text>col-md-6 col-md-offset-3 jrhigh</xsl:text>
+																	<xsl:text>span6 offset3 jrhigh</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '28'">
-																	<xsl:text>col-md-6 col-md-offset-3 gradeschool</xsl:text>
+																	<xsl:text>span6 offset3 gradeschool</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '27'">
-																	<xsl:text>col-md-6 col-md-offset-3 children</xsl:text>
+																	<xsl:text>span6 offset3 children</xsl:text>
 																</xsl:when>
 																<xsl:otherwise>
-																	<xsl:text>col-md-6 col-md-offset-3 allchurch</xsl:text>
+																	<xsl:text>span6 offset3 allchurch</xsl:text>
 																</xsl:otherwise>
 															</xsl:choose>
 														</xsl:attribute>
@@ -116,28 +116,28 @@
 														<xsl:attribute name="class">
 															<xsl:choose>
 																<xsl:when test="tags/item/@id = '25'">
-																	<xsl:text>col-md-6 men</xsl:text>
+																	<xsl:text>span6 men</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '26'">
-																	<xsl:text>col-md-6 women</xsl:text>
+																	<xsl:text>span6 women</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '31'">
-																	<xsl:text>col-md-6 college</xsl:text>
+																	<xsl:text>span6 college</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '30'">
-																	<xsl:text>col-md-6 highschool</xsl:text>
+																	<xsl:text>span6 highschool</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '29'">
-																	<xsl:text>col-md-6 jrhigh</xsl:text>
+																	<xsl:text>span6 jrhigh</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '28'">
-																	<xsl:text>col-md-6 gradeschool</xsl:text>
+																	<xsl:text>span6 gradeschool</xsl:text>
 																</xsl:when>
 																<xsl:when test="tags/item/@id = '27'">
-																	<xsl:text>col-md-6 children</xsl:text>
+																	<xsl:text>span6 children</xsl:text>
 																</xsl:when>
 																<xsl:otherwise>
-																	<xsl:text>col-md-6 allchurch</xsl:text>
+																	<xsl:text>span6 allchurch</xsl:text>
 																</xsl:otherwise>
 															</xsl:choose>
 														</xsl:attribute>
@@ -148,28 +148,28 @@
 												<xsl:attribute name="class">
 													<xsl:choose>
 														<xsl:when test="tags/item/@id = '25'">
-															<xsl:text>col-md-4 men</xsl:text>
+															<xsl:text>span4 men</xsl:text>
 														</xsl:when>
 														<xsl:when test="tags/item/@id = '26'">
-															<xsl:text>col-md-4 women</xsl:text>
+															<xsl:text>span4 women</xsl:text>
 														</xsl:when>
 														<xsl:when test="tags/item/@id = '31'">
-															<xsl:text>col-md-4 college</xsl:text>
+															<xsl:text>span4 college</xsl:text>
 														</xsl:when>
 														<xsl:when test="tags/item/@id = '30'">
-															<xsl:text>col-md-4 highschool</xsl:text>
+															<xsl:text>span4 highschool</xsl:text>
 														</xsl:when>
 														<xsl:when test="tags/item/@id = '29'">
-															<xsl:text>col-md-4 jrhigh</xsl:text>
+															<xsl:text>span4 jrhigh</xsl:text>
 														</xsl:when>
 														<xsl:when test="tags/item/@id = '28'">
-															<xsl:text>col-md-4 gradeschool</xsl:text>
+															<xsl:text>span4 gradeschool</xsl:text>
 														</xsl:when>
 														<xsl:when test="tags/item/@id = '27'">
-															<xsl:text>col-md-4 children</xsl:text>
+															<xsl:text>span4 children</xsl:text>
 														</xsl:when>
 														<xsl:otherwise>
-															<xsl:text>col-md-4 allchurch</xsl:text>
+															<xsl:text>span4 allchurch</xsl:text>
 														</xsl:otherwise>
 													</xsl:choose>
 												</xsl:attribute>
@@ -368,7 +368,7 @@
 				</xsl:for-each>
 			</div> <!-- .entries -->
 		</div> <!-- class-position -->
-		<div class="col-md-4 column-right">
+		<div class="span4 column-right">
 			<div class="component component-events-recurring">
 
 				<h3>Bible Studies</h3>
@@ -688,7 +688,7 @@
 						</div> <!-- .description -->
 					</div> <!-- .span8 -->
 
-					<div class="col-md-4 column-right">
+					<div class="span4 column-right">
 						<xsl:call-template name="component-locations">
 							<xsl:with-param name="component" select="'locations'" />
 							<xsl:with-param name="position" select="'column-right'" />
@@ -705,7 +705,7 @@
 							<xsl:with-param name="position" select="'column-right'" />
 							<xsl:with-param name="entries" select="downloads/item" />
 						</xsl:call-template>
-					</div> <!-- .col-md-4 -->
+					</div> <!-- .span4 -->
 
 					<div class="component-footer">
 						<div class="back">

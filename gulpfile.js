@@ -56,7 +56,7 @@ var paths = {
   ],
   scripts: [
     bower_path + '/jquery/dist/jquery.js',
-    source_path + '/scripts/bootstrap/bootstrap.js',
+    bower_path + '/bootstrap-sass-official/assets/javascripts/bootstrap.js',
     bower_path + '/responsimage/responsimage.js',
     bower_path + '/fastclick/lib/fastclick.js',
     bower_path + '/snapjs/snap.js',
@@ -69,9 +69,6 @@ var paths = {
   ],
   audio: [
     source_path + '/media/audio/**/*'
-  ],
-  fonts: [
-    source_path + '/media/fonts/**/*'
   ],
   sprites: [
     source_path + '/media/sprite/*.png'
@@ -210,17 +207,6 @@ gulp.task('clean', function() {
 
 
 // ------------------------------------------------
-// + FONTS
-// + - moves custom font assets to build folder
-// ------------------------------------------------
-
-gulp.task("fonts", function() {
-  return gulp.src(paths.fonts)  
-    .pipe(gulp.dest(build_path + '/fonts/'))
-});
-
-
-// ------------------------------------------------
 // + ICONS
 // + - builds a custom icon font from SVG files
 // ------------------------------------------------
@@ -262,7 +248,7 @@ gulp.task('sprites', function () {
 // ------------------------------------------------
 
 gulp.task('default', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images', 'fonts', 'watch');
+  gulp.start('styles', 'scripts', 'images', 'watch');
 });
 
 

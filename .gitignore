@@ -10,3 +10,4 @@ workspace/uploads/images/*
 node_modules/
 utilities/*.sh
 _sql/
+.sass-cache/

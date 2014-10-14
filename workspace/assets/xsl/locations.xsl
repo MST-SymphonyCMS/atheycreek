@@ -125,7 +125,7 @@
 									<br/>
 									<span style="position:relative;top:-15px;">
 										<span class="icon" style="font-size:1.8em;position:relative;left:-3px;">/</span>
-										<span style="position:relative;left:-4px">Childcare: </span>
+										<span style="position:relative;left:-4px">Children Welcome: </span>
 										<xsl:choose>
 											<xsl:when test="childcare = 'Yes'">
 												<span class="label label-success allcaps">Yes</span>

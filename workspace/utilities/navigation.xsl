@@ -24,28 +24,19 @@
 
   <div class="snap-drawers">
     <div class="snap-drawer snap-drawer-right">
-      <h3 class="brand"><a href="{{ siteUrl }}"><span class="brand-name">{{ siteName }}</span> National Conference</a></h3>
+      <div class="brand">
+        <a href="{$root}"><span class="icon icon-logo"></span></a>
+      </div>
       <ul class="menu">
-        {% if registration.registrationOpen  %}
-        <li class="register"><a href="{{ registration.registrationUrl }}">Register</a></li>
-        {% endif %}
-        <li><a href="{{ siteUrl }}">Home</a></li>
-        <li><a href="{{ url('overview') }}">Overview</a></li>
-        <li><a href="{{ url('talks') }}">Talks</a></li>
-        <li><a href="{{ url('speakers') }}">Speakers</a></li>
-        <li><a href="{{ url('travel') }}">Travel</a></li>
-        <li><a href="{{ url('schedule') }}">Schedule</a></li>
-        {% set street = craft.entries.section('streetTeam').first() %}
-        {% if street.imageMatrix | length %}
-        <li><a href="{{ siteUrl }}#street-team">Promote</a></li>
-        {% endif %}
-        <li><a href="{{ url('course-credit') }}">Course Credit</a></li>
-        <li class="social">
+        <xsl:for-each select="/data/tags-all-entries/entry[not(parent/item) and not(hide-nav = 'Yes')]">
+          <xsl:call-template name="subnav-entry" />
+        </xsl:for-each>
+<!--         <li class="social">
           <div id="facebook-side" class="facebook-side" data-url="http://2015.thegospelcoalition.org/" data-text="The Gospel Coalition 2015 National Conference" data-title="Like"></div>
         </li>
         <li class="social">
           <div id="twitter-side" class="twitter-side" data-url="http://2015.thegospelcoalition.org/" data-text="The Gospel Coalition 2015 National Conference" data-title="Tweet"></div>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>

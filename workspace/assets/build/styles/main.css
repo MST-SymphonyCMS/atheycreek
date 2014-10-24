@@ -816,7 +816,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 body {
-  font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'adelle-sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 20px;
   line-height: 1.42857;
   color: #373839;
@@ -894,8 +894,8 @@ hr {
   clip: auto; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: inherit;
-  font-weight: 500;
+  font-family: 'freight-display-pro', Georgia, Times, serif;
+  font-weight: 900;
   line-height: 1.1;
   color: inherit; }
   h1 small, h1 .small, h2 small, h2 .small, h3 small, h3 .small, h4 small, h4 .small, h5 small, h5 .small, h6 small, h6 .small, .h1 small, .h1 .small, .h2 small, .h2 .small, .h3 small, .h3 .small, .h4 small, .h4 .small, .h5 small, .h5 .small, .h6 small, .h6 .small {
@@ -4688,10 +4688,6 @@ a:hover {
 .icon-menu:before {
   content: '\f103'; }
 
-.navbar-brand {
-  font-family: 'proxima-nova-alt-ext-cond', 'HelveticaNeue-CondensedBold', 'Helvetica Neue', 'Arial Narrow', Arial, sans-serif;
-  text-transform: uppercase; }
-
 .navbar-toggle:hover {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -4722,6 +4718,9 @@ a:hover {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 0.25rem; }
+
+.masthead .navigation > li.dropdown {
+  z-index: 9999; }
 
 .masthead .navigation > li.active > a {
   color: #3aa2dd; }
@@ -4802,6 +4801,17 @@ a:hover {
   -webkit-overflow-scrolling: touch;
   -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease; }
+
+.snap-drawer .brand {
+  font-size: 100px;
+  line-height: 36px;
+  text-align: center; }
+  .snap-drawer .brand a {
+    color: #505253; }
+
+.snap-drawer ul li.dropdown .dropdown-menu {
+  display: block;
+  position: relative; }
 
 .snap-drawer-right {
   right: 0;

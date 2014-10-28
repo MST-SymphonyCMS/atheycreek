@@ -1,5 +1,5 @@
 {
-  "name": "atheycreek-site",
+  "name": "atheycreek",
   "version": "2.0.0",
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -17,6 +17,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://jdsimcoe@bitbucket.org/jdsimcoe/atheycreek.git"
+    "url": "git@github.com:atheycreek/atheycreek.git"
   }
 }

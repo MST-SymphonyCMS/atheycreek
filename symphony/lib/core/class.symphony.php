@@ -244,7 +244,7 @@ abstract class Symphony implements Singleton
         self::$Log->setMaxSize(intval(self::Configuration()->get('maxsize', 'log')));
         self::$Log->setDateTimeFormat(self::Configuration()->get('date_format', 'region') . ' ' . self::Configuration()->get('time_format', 'region'));
 
-        if (self::$Log->open(Log::APPEND, self::Configuration()->get('write_mode', 'file')) == 1) {
+        if (self::$Log->open(Log::APPEND, self::Configuration()->get('write_mode', 'file')) == '1') {
             self::$Log->initialise('Symphony Log');
         }
     }
@@ -300,10 +300,13 @@ abstract class Symphony implements Singleton
      * Setter for `$ExtensionManager` using the current
      * Symphony instance as the parent. If for some reason this fails,
      * a Symphony Error page will be thrown
+     * @param Boolean $force (optional)
+     *  When set to true, this function will always create a new
+     *  instance of ExtensionManager, replacing self::$ExtensionManager.
      */
-    public static function initialiseExtensionManager()
+    public static function initialiseExtensionManager($force=false)
     {
-        if (self::$ExtensionManager instanceof ExtensionManager) {
+        if (!$force && self::$ExtensionManager instanceof ExtensionManager) {
             return true;
         }
 
@@ -514,7 +517,7 @@ abstract class Symphony implements Singleton
             return false;
         }
 
-        if (strlen($token) == 6 | strlen($token) == 16) {
+        if (strlen($token) == 6 || strlen($token) == 16) {
             $row = self::Database()->fetchRow(0, sprintf(
                 "SELECT `a`.`id`, `a`.`username`, `a`.`password`
                 FROM `tbl_authors` AS `a`, `tbl_forgotpass` AS `f`

@@ -246,10 +246,7 @@ All URL helpers can now be replaced with "url-prefix"
 		</xsl:when>
 		<xsl:otherwise>
 			<xsl:attribute name="href">
-				<xsl:value-of select="$workspace" />
-				<xsl:value-of select="$node/file/file/@path" />
-				<xsl:text>/</xsl:text>
-				<xsl:value-of select="$node/file/file/filename" />
+				<xsl:value-of select="$node/file/@url" />
 			</xsl:attribute>
 		</xsl:otherwise>
 	</xsl:choose>

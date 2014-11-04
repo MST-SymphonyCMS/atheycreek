@@ -331,15 +331,6 @@ All URL helpers can now be replaced with "url-prefix"
 	<xsl:attribute name="href">
 		<xsl:value-of select="$root" />
 		<xsl:value-of select="path"/>
-		<!-- <xsl:text>/</xsl:text>
-		<xsl:choose>
-			<xsl:when test="string-length($node/slug)">
-				<xsl:value-of select="$node/slug/@handle" disable-output-escaping="yes" />
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="$node/title/@handle" disable-output-escaping="yes" />
-			</xsl:otherwise>
-		</xsl:choose> -->
 		<xsl:text>/</xsl:text>
 	</xsl:attribute>
 </xsl:template>

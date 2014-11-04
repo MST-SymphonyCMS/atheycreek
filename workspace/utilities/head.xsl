@@ -59,8 +59,9 @@
     </xsl:choose>
 
     <link rel="dns-prefetch" href="{$root}" />
-    <link rel="dns-prefetch" href="http://use.typekit.com" />
-    <link rel="dns-prefetch" href="http://cdn.sublimevideo.net" />
+    <link rel="dns-prefetch" href="//use.typekit.com" />
+    <link rel="dns-prefetch" href="//atheycreek.s3.amazonaws.com" />
+    <link rel="dns-prefetch" href="//cdn.sublimevideo.net" />
 
     <xsl:if test="$pt1 = 'teachings'">
       <script type="text/javascript" src="//cdn.sublimevideo.net/js/gblul6wk-beta.js"></script>

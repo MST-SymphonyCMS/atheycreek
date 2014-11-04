@@ -96,7 +96,7 @@
 									<xsl:attribute name="src">
 										<xsl:value-of select="$root"/>
 										<xsl:text>/workspace/uploads/images/</xsl:text>
-										<xsl:value-of select="/data/teachings-series-entries-all/entry[@id = $pt3]/poster/item/image/file/filename" disable-output-escaping="yes" />
+										<xsl:value-of select="/data/teachings-series-entries-all/entry[@id = $pt3]/poster/item/image/filename" disable-output-escaping="yes" />
 									</xsl:attribute>
 								</img>
 								<xsl:if test="/data/teachings-series-entries-all/entry[@id = $pt3]/description != ''">
@@ -170,7 +170,7 @@
 									            <xsl:attribute name="data-responsimage">
 									              <xsl:choose>
 									                <xsl:when test="string-length(poster/item)">
-									                  <xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
+									                  <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
 									                </xsl:when>
 									                <xsl:otherwise>
 									                  <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
@@ -189,7 +189,7 @@
 									            <xsl:attribute name="data-responsimage">
 									              <xsl:choose>
 									                <xsl:when test="string-length(poster/item)">
-									                  <xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
+									                  <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
 									                </xsl:when>
 									                <xsl:otherwise>
 									                  <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
@@ -692,7 +692,7 @@
 								<xsl:attribute name="data-responsimage">
 									<xsl:choose>
 										<xsl:when test="string-length(poster/item)">
-											<xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
+											<xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
 										</xsl:when>
 										<xsl:otherwise>
 											<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
@@ -773,7 +773,7 @@
 			                <xsl:attribute name="data-responsimage">
 			                  <xsl:choose>
 			                    <xsl:when test="string-length(poster/item)">
-			                      <xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
+			                      <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
 			                    </xsl:when>
 			                    <xsl:otherwise>
 			                      <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
@@ -792,7 +792,7 @@
 			                <xsl:attribute name="data-responsimage">
 			                  <xsl:choose>
 			                    <xsl:when test="string-length(poster/item)">
-			                      <xsl:value-of select="poster/item/image/file/filename" disable-output-escaping="yes" />
+			                      <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
 			                    </xsl:when>
 			                    <xsl:otherwise>
 			                      <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
@@ -1050,7 +1050,7 @@
 		<xsl:attribute name="data-responsimage">
 			<xsl:choose>
 				<xsl:when test="string-length(poster/item)">
-					<xsl:value-of select="$poster/item/image/file/filename" disable-output-escaping="yes" />
+					<xsl:value-of select="$poster/item/image/filename" disable-output-escaping="yes" />
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>

@@ -188,11 +188,14 @@
 											<xsl:value-of select="/data/members-by-id/entry[@id = $leader-id]/phone-number" />
 										</xsl:variable>
 					  				<div class="entry clearfix odd first span4">
-						  				<xsl:call-template name="members-roles-avatar">
-													<xsl:with-param name="filename" select="/data/members-by-id/entry[@id = $leader-id]/photo/filename" />
-													<xsl:with-param name="height" select="180" />
-													<xsl:with-param name="width" select="180" />
-												</xsl:call-template>
+		  								<xsl:call-template name="image-master">
+		  					        <xsl:with-param name="photo" select="/data/members-by-id/entry[@id = $leader-id]/photo/filename" />
+		  					        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+		  					        <xsl:with-param name="width" select="360" />
+		  					        <xsl:with-param name="height" select="360" />
+		  					        <xsl:with-param name="responsive" select="0" />
+		  					        <xsl:with-param name="circle" select="1" />
+		  					      </xsl:call-template>
 						  				<h4><xsl:value-of select="role/item"/></h4>
 						  				<h3><xsl:value-of select="$name" disable-output-escaping="yes" /></h3>
 						  				<div class="content">

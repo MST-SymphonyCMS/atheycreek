@@ -44,7 +44,10 @@
 		</xsl:call-template>
 
 		<xsl:for-each select="$entries">
-			<img class="img-respsonsive" src="{image/@url}" />
+			<xsl:call-template name="image-master">
+        <xsl:with-param name="photo" select="image/filename" />
+        <xsl:with-param name="width" select="1800" />
+      </xsl:call-template>
 		</xsl:for-each>
 	</div>
 
@@ -77,12 +80,11 @@
 		            <xsl:attribute name="href">
 		              <xsl:value-of select="uri" />
 		            </xsl:attribute>
-
-		            <img style="width:100%" class="inline" data-responsimage-anchor="5" src="/workspace/assets/img/spacer.gif">
-		              <xsl:attribute name="data-responsimage">
-		                <xsl:value-of select="image/filename" />
-		              </xsl:attribute>
-		            </img>
+          			<xsl:call-template name="image-master">
+                  <xsl:with-param name="photo" select="image/filename" />
+                  <xsl:with-param name="width" select="1800" />
+                  <xsl:with-param name="width" select="1013" />
+                </xsl:call-template>
 		          </a>
 			      </div>
 						<div class="carousel-caption">

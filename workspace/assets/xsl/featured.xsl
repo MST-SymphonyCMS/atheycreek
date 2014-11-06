@@ -98,12 +98,11 @@
 		            <xsl:attribute name="href">
 		              <xsl:value-of select="uri" />
 		            </xsl:attribute>
-
-		            <img style="width:940px; height: 529px;" class="inline" data-responsimage-anchor="5" src="/workspace/assets/img/spacer.gif">
-		              <xsl:attribute name="data-responsimage">
-		                <xsl:value-of select="image" />
-		              </xsl:attribute>
-		            </img>
+                <xsl:call-template name="image-master">
+                  <xsl:with-param name="photo" select="image" />
+                  <xsl:with-param name="width" select="1800" />
+                  <xsl:with-param name="height" select="1013" />
+                </xsl:call-template>
 		          </a>
 		        </div>
 		      </div>

@@ -60,6 +60,66 @@ Toolkit
 
 <!--
 
+Image Master
+
+-->
+
+<xsl:template name="image-master">
+
+	<xsl:param name="photo" />
+	<xsl:param name="default" select="'accf-flat-4fc3e05b81747-545860ddc7904.jpg'" />
+	<xsl:param name="width" select="2400" />
+	<xsl:param name="height" select="0" />
+	<xsl:param name="scale" select="5" />
+	<xsl:param name="responsive" select="1" />
+	<xsl:param name="circle" select="0" />
+	<xsl:param name="alt" />
+
+	<img>
+		<xsl:if test="$responsive = 1 or $circle = 1">
+			<xsl:attribute name="class">
+				<xsl:if test="$responsive = 1">
+					<xsl:text>img-responsive</xsl:text>
+					<xsl:if test="$circle = 1">
+						<xsl:text> </xsl:text>
+					</xsl:if>
+				</xsl:if>
+				<xsl:if test="$circle = 1">
+					<xsl:text>img-circle</xsl:text>
+				</xsl:if>
+			</xsl:attribute>
+		</xsl:if>
+
+		<xsl:attribute name="src">
+			<xsl:value-of select="$root"/>
+			<xsl:text>/image/2/</xsl:text>
+			<xsl:value-of select="$width"/>
+			<xsl:text>/</xsl:text>
+			<xsl:value-of select="$height"/>
+			<xsl:text>/</xsl:text>
+			<xsl:value-of select="$scale"/>
+			<xsl:text>/1/atheycreek.s3.amazonaws.com/</xsl:text>
+			<xsl:choose>
+				<xsl:when test="string-length($photo)">
+					<xsl:value-of select="$photo" disable-output-escaping="yes"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$default"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:attribute>
+		<xsl:if test="string-length($alt)">
+			<xsl:attribute name="alt">
+				<xsl:value-of select="$alt"/>
+			</xsl:attribute>
+		</xsl:if>
+	</img>
+
+</xsl:template>
+
+
+<!--
+
 Global date formatting
 
 -->

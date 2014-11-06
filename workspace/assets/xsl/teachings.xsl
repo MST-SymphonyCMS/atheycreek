@@ -92,13 +92,11 @@
 					<xsl:when test="$pt2 = 'book' or $pt2 = 'tag' or $pt2 = 'year' or $pt2 = 'series'">
 						<div class="span12 poster">
 							<xsl:if test="$pt2 = 'series'">
-								<img class="img-responsive">
-									<xsl:attribute name="src">
-										<xsl:value-of select="$root"/>
-										<xsl:text>/workspace/uploads/images/</xsl:text>
-										<xsl:value-of select="/data/teachings-series-entries-all/entry[@id = $pt3]/poster/item/image/filename" disable-output-escaping="yes" />
-									</xsl:attribute>
-								</img>
+								<xsl:call-template name="image-master">
+					        <xsl:with-param name="photo" select="/data/teachings-series-entries-all/entry[@id = $pt3]/poster/item/image/filename" />
+					        <xsl:with-param name="width" select="1920" />
+					        <xsl:with-param name="height" select="1080" />
+					      </xsl:call-template>
 								<xsl:if test="/data/teachings-series-entries-all/entry[@id = $pt3]/description != ''">
 							    <div class="container">
 							      <div class="row">
@@ -166,18 +164,11 @@
 									      </div>
 									      <div class="tab-pane fade in" id="audio">
 									        <div class="audio-poster">
-									          <img style="width:620px; height:348px" src="/workspace/assets/img/spacer.gif">
-									            <xsl:attribute name="data-responsimage">
-									              <xsl:choose>
-									                <xsl:when test="string-length(poster/item)">
-									                  <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
-									                </xsl:when>
-									                <xsl:otherwise>
-									                  <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-									                </xsl:otherwise>
-									              </xsl:choose>
-									            </xsl:attribute>
-									          </img>
+						        				<xsl:call-template name="image-master">
+						        	        <xsl:with-param name="photo" select="poster/item/image/filename" />
+						        	        <xsl:with-param name="width" select="1920" />
+						        	        <xsl:with-param name="height" select="1080" />
+						        	      </xsl:call-template>
 									        </div>
 									        <xsl:call-template name="teaching-actions" />
 									      </div>
@@ -185,18 +176,11 @@
 									    <xsl:otherwise>
 									      <div class="tab-pane fade active in" id="audio">
 									        <div class="audio-poster">
-									          <img style="width:620px; height:348px" src="/workspace/assets/img/spacer.gif">
-									            <xsl:attribute name="data-responsimage">
-									              <xsl:choose>
-									                <xsl:when test="string-length(poster/item)">
-									                  <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
-									                </xsl:when>
-									                <xsl:otherwise>
-									                  <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-									                </xsl:otherwise>
-									              </xsl:choose>
-									            </xsl:attribute>
-									          </img>
+						          			<xsl:call-template name="image-master">
+						                  <xsl:with-param name="photo" select="poster/item/image/filename" />
+						                  <xsl:with-param name="width" select="1920" />
+						                  <xsl:with-param name="height" select="1080" />
+						                </xsl:call-template>
 									        </div>
 									        <xsl:call-template name="teaching-actions" />
 									      </div>
@@ -252,9 +236,11 @@
 									<div class="span4 series">
 										<a>
 											<xsl:call-template name="url-teachings-series" />
-											<xsl:call-template name="teaching-poster-or-default">
-												<xsl:with-param name="poster" select="poster" />
-											</xsl:call-template>
+											<xsl:call-template name="image-master">
+								        <xsl:with-param name="photo" select="poster/item/image/filename" />
+								        <xsl:with-param name="width" select="600" />
+								        <xsl:with-param name="height" select="0" />
+								      </xsl:call-template>
 										</a>
 									</div>
 								</xsl:for-each>
@@ -271,9 +257,11 @@
 										<div class="span4 series">
 											<a>
 												<xsl:call-template name="url-teachings-series" />
-												<xsl:call-template name="teaching-poster-or-default">
-													<xsl:with-param name="poster" select="poster" />
-												</xsl:call-template>
+												<xsl:call-template name="image-master">
+									        <xsl:with-param name="photo" select="poster/item/image/filename" />
+									        <xsl:with-param name="width" select="600" />
+									        <xsl:with-param name="height" select="0" />
+									      </xsl:call-template>
 											</a>
 										</div>
 									</xsl:for-each>
@@ -354,9 +342,11 @@
 			<div class="span12">
 				<a>
 					<xsl:call-template name="url-teachings-series" />
-					<xsl:call-template name="teaching-poster-or-default">
-						<xsl:with-param name="poster" select="poster" />
-					</xsl:call-template>
+					<xsl:call-template name="image-master">
+		        <xsl:with-param name="photo" select="poster/item/image/filename" />
+		        <xsl:with-param name="width" select="1800" />
+		        <xsl:with-param name="height" select="1013" />
+		      </xsl:call-template>
 				</a>
 			</div>
 		</div>
@@ -489,9 +479,11 @@
 						<div class="span4 series">
 							<a>
 								<xsl:call-template name="url-teachings-series" />
-								<xsl:call-template name="teaching-poster-or-default">
-									<xsl:with-param name="poster" select="poster" />
-								</xsl:call-template>
+								<xsl:call-template name="image-master">
+					        <xsl:with-param name="photo" select="poster/item/image/filename" />
+					        <xsl:with-param name="width" select="600" />
+					        <xsl:with-param name="height" select="0" />
+					      </xsl:call-template>
 							</a>
 							<div class="info">
 								<a>
@@ -511,9 +503,11 @@
 						<div class="span4 series">
 							<a>
 								<xsl:call-template name="url-teachings-series" />
-								<xsl:call-template name="teaching-poster-or-default">
-									<xsl:with-param name="poster" select="poster" />
-								</xsl:call-template>
+								<xsl:call-template name="image-master">
+					        <xsl:with-param name="photo" select="poster/item/image/filename" />
+					        <xsl:with-param name="width" select="600" />
+					        <xsl:with-param name="height" select="0" />
+					      </xsl:call-template>
 							</a>
 							<div class="info">
 								<a>
@@ -640,9 +634,11 @@
 					<div class="span4 series">
 						<a>
 							<xsl:call-template name="url-teachings-series" />
-							<xsl:call-template name="teaching-poster-or-default">
-								<xsl:with-param name="poster" select="poster" />
-							</xsl:call-template>
+							<xsl:call-template name="image-master">
+				        <xsl:with-param name="photo" select="poster/item/image/filename" />
+				        <xsl:with-param name="width" select="600" />
+				        <xsl:with-param name="height" select="0" />
+				      </xsl:call-template>
 						</a>
 					</div>
 				</xsl:for-each>
@@ -656,9 +652,11 @@
 					<div class="span4 series">
 						<a>
 							<xsl:call-template name="url-teachings-series" />
-							<xsl:call-template name="teaching-poster-or-default">
-								<xsl:with-param name="poster" select="poster" />
-							</xsl:call-template>
+							<xsl:call-template name="image-master">
+				        <xsl:with-param name="photo" select="poster/item/image/filename" />
+				        <xsl:with-param name="width" select="600" />
+				        <xsl:with-param name="height" select="0" />
+				      </xsl:call-template>
 						</a>
 					</div>
 				</xsl:for-each>
@@ -688,18 +686,11 @@
 				<div class="span12">
 					<a>
 						<xsl:call-template name="url-teachings" />
-							<img style="width:940px; height: 529px" src="/workspace/assets/img/spacer.gif">
-								<xsl:attribute name="data-responsimage">
-									<xsl:choose>
-										<xsl:when test="string-length(poster/item)">
-											<xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
-										</xsl:when>
-										<xsl:otherwise>
-											<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-										</xsl:otherwise>
-									</xsl:choose>
-								</xsl:attribute>
-							</img>
+						<xsl:call-template name="image-master">
+			        <xsl:with-param name="photo" select="poster/item/image/filename" />
+			        <xsl:with-param name="width" select="1800" />
+			        <xsl:with-param name="height" select="1013" />
+			      </xsl:call-template>
 					</a>
 				</div>
 			</div>
@@ -769,18 +760,11 @@
 			          </div>
 			          <div class="tab-pane fade in" id="audio">
 			            <div class="audio-poster">
-			              <img style="width:620px; height:348px" src="/workspace/assets/img/spacer.gif">
-			                <xsl:attribute name="data-responsimage">
-			                  <xsl:choose>
-			                    <xsl:when test="string-length(poster/item)">
-			                      <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
-			                    </xsl:when>
-			                    <xsl:otherwise>
-			                      <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-			                    </xsl:otherwise>
-			                  </xsl:choose>
-			                </xsl:attribute>
-			              </img>
+            				<xsl:call-template name="image-master">
+            	        <xsl:with-param name="photo" select="poster/item/image/filename" />
+            	        <xsl:with-param name="width" select="1920" />
+            	        <xsl:with-param name="height" select="1080" />
+            	      </xsl:call-template>
 			            </div>
 			            <xsl:call-template name="teaching-actions" />
 			          </div>
@@ -788,18 +772,11 @@
 			        <xsl:otherwise>
 			          <div class="tab-pane fade active in" id="audio">
 			            <div class="audio-poster">
-			              <img style="width:620px; height:348px" src="/workspace/assets/img/spacer.gif">
-			                <xsl:attribute name="data-responsimage">
-			                  <xsl:choose>
-			                    <xsl:when test="string-length(poster/item)">
-			                      <xsl:value-of select="poster/item/image/filename" disable-output-escaping="yes" />
-			                    </xsl:when>
-			                    <xsl:otherwise>
-			                      <xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-			                    </xsl:otherwise>
-			                  </xsl:choose>
-			                </xsl:attribute>
-			              </img>
+            				<xsl:call-template name="image-master">
+            	        <xsl:with-param name="photo" select="poster/item/image/filename" />
+            	        <xsl:with-param name="width" select="1920" />
+            	        <xsl:with-param name="height" select="1080" />
+            	      </xsl:call-template>
 			            </div>
 			            <xsl:call-template name="teaching-actions" />
 			          </div>
@@ -818,10 +795,13 @@
 			      </strong>
 			    </div>
 			    <div class="avatar">
-			      <xsl:call-template name="speaker-avatar">
-			        <xsl:with-param name="photo" select="speaker/item/photo/file/filename" />
+			    	<xsl:call-template name="image-master">
+			        <xsl:with-param name="photo" select="speaker/item/photo/filename" />
+			        <xsl:with-param name="default" select="'anonymous-4fef5a675fd64-5459168309152.jpg'" />
 			        <xsl:with-param name="height" select="140" />
 			        <xsl:with-param name="width" select="140" />
+			        <xsl:with-param name="responsive" select="0" />
+			        <xsl:with-param name="circle" select="1" />
 			      </xsl:call-template>
 			    </div>
 			    <div class="about">
@@ -894,9 +874,7 @@
 							</xsl:if>
 							<span class="teacher">
 								<em>by </em>
-								<xsl:value-of select="speaker/item/first-name" disable-output-escaping="yes" />
-								<xsl:text disable-output-escaping="yes"> </xsl:text>
-								<xsl:value-of select="speaker/item/last-name" disable-output-escaping="yes" />
+								<xsl:value-of select="speaker/item" disable-output-escaping="yes" />
 							</span>
 							<span class="verse">
 								<span class="icon">u</span>
@@ -948,7 +926,6 @@
 	<xsl:param name="entry" select="." />
 
 	<xsl:variable name="audio-url">
-		<!-- <xsl:text>http://72.10.33.203/media/audio/teachings/</xsl:text> -->
 		<xsl:text disable-output-escaping="yes">http://66.147.244.244/~atheycre/teachings/</xsl:text>
 		<xsl:value-of select="translate(filename,$en-uppercase-letters,$en-lowercase-letters)"/>
 		<xsl:text>.mp3</xsl:text>
@@ -1036,31 +1013,6 @@
 </xsl:template>
 
 
-<xsl:template name="teaching-poster-or-default">
-
-	<xsl:param name="poster" />
-
-	<xsl:call-template name="component-images">
-		<xsl:with-param name="component" select="'images'"/>
-		<xsl:with-param name="position" select="'column-full-width'"/>
-		<xsl:with-param name="entries" select="images/item" />
-	</xsl:call-template>
-
-	<img style="height:169px; width:100%;" src="/workspace/assets/img/spacer.gif">
-		<xsl:attribute name="data-responsimage">
-			<xsl:choose>
-				<xsl:when test="string-length(poster/item)">
-					<xsl:value-of select="$poster/item/image/filename" disable-output-escaping="yes" />
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:text disable-output-escaping="yes">accf-flat-4fc3e05b81747.jpg</xsl:text>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:attribute>
-	</img>
-
-</xsl:template>
-
 <xsl:template name="teachings-pagination">
 
 	<xsl:param name="entries" />
@@ -1083,27 +1035,6 @@
 			</xsl:if>
 		</xsl:with-param>
 	</xsl:call-template>
-
-</xsl:template>
-
-<xsl:template name="speaker-avatar">
-
-	<xsl:param name="photo" />
-	<xsl:param name="width" />
-	<xsl:param name="height" />
-
-	<img width="{$width}" height="{$height}" class="img-circle" data-responsimage-anchor="5" src="/workspace/assets/img/spacer.gif">
-		<xsl:attribute name="data-responsimage">
-			<xsl:choose>
-				<xsl:when test="string-length($photo)">
-					<xsl:value-of select="$photo" disable-output-escaping="yes" />
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:text disable-output-escaping="yes">anonymous-4fef5a675fd64-5459168309152.jpg</xsl:text>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:attribute>
-	</img>
 
 </xsl:template>
 

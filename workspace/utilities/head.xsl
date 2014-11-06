@@ -35,7 +35,6 @@
     <meta name="application-name" content="{$website-name}" />
     <meta name="msapplication-tooltip" content="{$page-title}" />
     <meta name="msapplication-starturl" content="{$root}" />
-    <meta name="responsimage" data-server="{$root}/image/2/width/height/anchor/1/atheycreek.s3.amazonaws.com/filename" data-static="{$workspace}/assets/img/spacer.gif" data-loading="{$workspace}/assets/img/loading.gif" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{$root}" />
     <meta property="og:image" content="{$workspace}/assets/img/apple-touch-icon.png" />

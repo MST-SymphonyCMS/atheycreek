@@ -103,7 +103,7 @@ class contentSystemAuthors extends AdministrationPage
                         $td1->appendChild(Widget::Label(__('Select Author %s', array($a->getFullName())), null, 'accessible', null, array(
                             'for' => 'author-' . $a->get('id')
                         )));
-                        $td1->appendChild(Widget::Input('items['.$name.']', 'on', 'checkbox', array(
+                        $td1->appendChild(Widget::Input('items['.$a->get('id').']', 'on', 'checkbox', array(
                             'id' => 'author-' . $a->get('id')
                         )));
                     }
@@ -243,28 +243,21 @@ class contentSystemAuthors extends AdministrationPage
 
             switch ($this->_context[2]) {
                 case 'saved':
-                    $this->pageAlert(
-                        __('Author updated at %s.', array($time->generate()))
-                        . ' <a href="' . SYMPHONY_URL . '/system/authors/new/" accesskey="c">'
-                        . __('Create another?')
-                        . '</a> <a href="' . SYMPHONY_URL . '/system/authors/" accesskey="a">'
-                        . __('View all Authors')
-                        . '</a>',
-                        Alert::SUCCESS
-                    );
+                    $message = __('Author updated at %s.', array($time->generate()));
                     break;
                 case 'created':
-                    $this->pageAlert(
-                        __('Author created at %s.', array($time->generate()))
-                        . ' <a href="' . SYMPHONY_URL . '/system/authors/new/" accesskey="c">'
-                        . __('Create another?')
-                        . '</a> <a href="' . SYMPHONY_URL . '/system/authors/" accesskey="a">'
-                        . __('View all Authors')
-                        . '</a>',
-                        Alert::SUCCESS
-                    );
-                    break;
+                    $message = __('Author created at %s.', array($time->generate()));
             }
+
+            $this->pageAlert(
+                $message
+                . ' <a href="' . SYMPHONY_URL . '/system/authors/new/" accesskey="c">'
+                . __('Create another?')
+                . '</a> <a href="' . SYMPHONY_URL . '/system/authors/" accesskey="a">'
+                . __('View all Authors')
+                . '</a>',
+                Alert::SUCCESS
+            );
         }
 
         $this->setPageType('form');

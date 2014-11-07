@@ -57,7 +57,6 @@ var paths = {
   scripts: [
     bower_path + '/jquery/dist/jquery.js',
     bower_path + '/bootstrap-sass-official/assets/javascripts/bootstrap.js',
-    bower_path + '/responsimage/responsimage.js',
     bower_path + '/fastclick/lib/fastclick.js',
     bower_path + '/snapjs/snap.js',
     bower_path + '/unslider/src/unslider.js',

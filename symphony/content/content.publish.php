@@ -17,10 +17,7 @@ require_once CONTENT . '/class.sortable.php';
 class contentPublish extends AdministrationPage
 {
     public $_errors = array();
-
-    private $_filteringForm = null;
     private $_filteringFields = array();
-    private $_filteringOptions = array();
 
     public function sort(&$sort, &$order, $params)
     {
@@ -228,6 +225,14 @@ class contentPublish extends AdministrationPage
             Administration::instance()->errorPageNotFound();
         }
 
+        // Is this request allowed by server?
+        if ($this->isRequestValid() === false) {
+            $this->pageAlert(__('This request exceeds the maximum allowed request size of %s specified by your host.', array(
+                    ini_get('post_max_size')
+                )),
+                Alert::ERROR
+            );
+        }
         $this->$function();
     }
 
@@ -792,8 +797,11 @@ class contentPublish extends AdministrationPage
         $section = SectionManager::fetch($section_id);
 
         $this->setPageType('form');
-        $this->Form->setAttribute('enctype', 'multipart/form-data');
         $this->setTitle(__('%1$s &ndash; %2$s', array($section->get('name'), __('Symphony'))));
+
+        // Ensure errored entries still maintain any prepopulated values [#2211]
+        $this->Form->setAttribute('action', $this->Form->getAttribute('action') . $this->getPrepopulateString());
+        $this->Form->setAttribute('enctype', 'multipart/form-data');
 
         $sidebar_fields = $section->fetchFields(null, 'sidebar');
         $main_fields = $section->fetchFields(null, 'main');
@@ -814,20 +822,8 @@ class contentPublish extends AdministrationPage
         }
 
         // Build filtered breadcrumb [#1378}
-        if (isset($_REQUEST['prepopulate'])) {
-            $link = '?';
-
-            foreach ($_REQUEST['prepopulate'] as $field_id => $value) {
-                $handle = FieldManager::fetchHandleFromID($field_id);
-                $link .= "filter[$handle]=$value&amp;";
-            }
-            $link = preg_replace("/&amp;$/", '', $link);
-        } else {
-            $link = '';
-        }
-
         $this->insertBreadcrumbs(array(
-            Widget::Anchor($section->get('name'), SYMPHONY_URL . '/publish/' . $this->_context['section_handle'] . '/' . $link),
+            Widget::Anchor($section->get('name'), SYMPHONY_URL . '/publish/' . $this->_context['section_handle'] . '/' . $this->getFilterString()),
         ));
 
         $this->Form->appendChild(Widget::Input('MAX_FILE_SIZE', Symphony::Configuration()->get('max_upload_size', 'admin'), 'hidden'));
@@ -992,21 +988,13 @@ class contentPublish extends AdministrationPage
                      */
                     Symphony::ExtensionManager()->notifyMembers('EntryPostCreate', '/publish/new/', array('section' => $section, 'entry' => $entry, 'fields' => $fields));
 
-                    $prepopulate_querystring = '';
-
-                    if (isset($_POST['prepopulate'])) {
-                        foreach ($_POST['prepopulate'] as $field_id => $value) {
-                            $prepopulate_querystring .= sprintf("prepopulate[%s]=%s&", $field_id, rawurldecode($value));
-                        }
-                        $prepopulate_querystring = trim($prepopulate_querystring, '&');
-                    }
-
+                    $prepopulate_querystring = $this->getPrepopulateString();
                     redirect(sprintf(
                         '%s/publish/%s/edit/%d/created/%s',
                         SYMPHONY_URL,
                         $this->_context['section_handle'],
                         $entry->get('id'),
-                        (!empty($prepopulate_querystring) ? "?" . $prepopulate_querystring : null)
+                        (!empty($prepopulate_querystring) ? $prepopulate_querystring : null)
                     ));
                 }
             }
@@ -1083,16 +1071,8 @@ class contentPublish extends AdministrationPage
         // Breadcrumb links. If `prepopulate` doesn't exist, this will
         // just use the standard pages (ie. no filtering)
         if (isset($_REQUEST['prepopulate'])) {
-            $new_link .= '?';
-            $filter_link .= '?';
-
-            foreach ($_REQUEST['prepopulate'] as $field_id => $value) {
-                $new_link .= "prepopulate[$field_id]=$value&amp;";
-                $field_name = FieldManager::fetchHandleFromID($field_id);
-                $filter_link .= "filter[$field_name]=$value&amp;";
-            }
-            $new_link = preg_replace("/&amp;$/", '', $new_link);
-            $filter_link = preg_replace("/&amp;$/", '', $filter_link);
+            $new_link .= $this->getPrepopulateString();
+            $filter_link .= $this->getFilterString();
         }
 
         if (isset($this->_context['flag'])) {
@@ -1100,30 +1080,23 @@ class contentPublish extends AdministrationPage
             if (empty($this->_errors)) {
                 $time = Widget::Time();
 
-                switch($this->_context['flag']) {
+                switch ($this->_context['flag']) {
                     case 'saved':
-                        $this->pageAlert(
-                            __('Entry updated at %s.', array($time->generate()))
-                            . ' <a href="' . SYMPHONY_URL . $new_link . '" accesskey="c">'
-                            . __('Create another?')
-                            . '</a> <a href="' . SYMPHONY_URL . $filter_link . '" accesskey="a">'
-                            . __('View all Entries')
-                            . '</a>',
-                            Alert::SUCCESS
-                        );
+                        $message = __('Entry updated at %s.', array($time->generate()));
                         break;
                     case 'created':
-                        $this->pageAlert(
-                            __('Entry created at %s.', array($time->generate()))
-                            . ' <a href="' . SYMPHONY_URL . $new_link . '" accesskey="c">'
-                            . __('Create another?')
-                            . '</a> <a href="' . SYMPHONY_URL . $filter_link . '" accesskey="a">'
-                            . __('View all Entries')
-                            . '</a>',
-                            Alert::SUCCESS
-                        );
-                        break;
+                        $message = __('Entry created at %s.', array($time->generate()));
                 }
+
+                $this->pageAlert(
+                    $message
+                    . ' <a href="' . SYMPHONY_URL . $new_link . '" accesskey="c">'
+                    . __('Create another?')
+                    . '</a> <a href="' . SYMPHONY_URL . $filter_link . '" accesskey="a">'
+                    . __('View all Entries')
+                    . '</a>',
+                    Alert::SUCCESS
+                );
             }
         }
 
@@ -1134,7 +1107,7 @@ class contentPublish extends AdministrationPage
         }
 
         if ($field) {
-            $title = $field->prepareReadableValue($existingEntry->getData($field->get('id')), $entry_id);
+            $title = $field->prepareReadableValue($existingEntry->getData($field->get('id')), $entry_id, true);
         } else {
             $title = '';
         }
@@ -1290,21 +1263,13 @@ class contentPublish extends AdministrationPage
                      */
                     Symphony::ExtensionManager()->notifyMembers('EntryPostEdit', '/publish/edit/', array('section' => $section, 'entry' => $entry, 'fields' => $fields));
 
-                    $prepopulate_querystring = '';
-
-                    if (isset($_POST['prepopulate'])) {
-                        foreach ($_POST['prepopulate'] as $field_id => $value) {
-                            $prepopulate_querystring .= sprintf("prepopulate[%s]=%s&", $field_id, $value);
-                        }
-                        $prepopulate_querystring = trim($prepopulate_querystring, '&');
-                    }
-
+                    $prepopulate_querystring = $this->getPrepopulateString();
                     redirect(sprintf(
                         '%s/publish/%s/edit/%d/saved/%s',
                         SYMPHONY_URL,
                         $this->_context['section_handle'],
                         $entry->get('id'),
-                        (!empty($prepopulate_querystring) ? "?" . $prepopulate_querystring : null)
+                        (!empty($prepopulate_querystring) ? $prepopulate_querystring : null)
                     ));
                 }
             }
@@ -1599,7 +1564,8 @@ class contentPublish extends AdministrationPage
                             $pagination = new XMLElement('li', null, array(
                                 'class' => 'association-more',
                                 'data-current-page' => '1',
-                                'data-total-pages' => ceil($entries['total-entries'] / $show_entries)
+                                'data-total-pages' => ceil($entries['total-entries'] / $show_entries),
+                                'data-total-entries' => $entries['total-entries']
                             ));
                             $counts = new XMLElement('a', __('Show more entries'), array(
                                 'href' => $link
@@ -1624,5 +1590,60 @@ class contentPublish extends AdministrationPage
 
         $drawer = Widget::Drawer('section-associations', __('Show Associations'), $content);
         $this->insertDrawer($drawer, $drawer_position, 'prepend');
+    }
+
+    /**
+     * If this entry is being prepopulated, this function will return the prepopulated
+     * fields and values as a query string.
+     *
+     * @since Symphony 2.5.2
+     * @return string
+     */
+    public function getPrepopulateString()
+    {
+        $prepopulate_querystring = '?';
+
+        if (isset($_REQUEST['prepopulate'])) {
+            foreach ($_REQUEST['prepopulate'] as $field_id => $value) {
+                $prepopulate_querystring .= sprintf("prepopulate[%s]=%s&", $field_id, rawurldecode($value));
+            }
+            $prepopulate_querystring = trim($prepopulate_querystring, '&');
+        }
+
+        // This is to prevent the value being interpreted as an additional GET
+        // parameter. eg. prepopulate[cat]=Minx&June, would come through as:
+        // $_GET['cat'] = Minx
+        // $_GET['June'] = ''
+        $prepopulate_querystring = preg_replace("/&amp;$/", '', $prepopulate_querystring);
+
+        return $prepopulate_querystring;
+    }
+
+    /**
+     * If the entry is being prepopulated, we may want to filter other views by this entry's
+     * value. This function will create that filter query string.
+     *
+     * @since Symphony 2.5.2
+     * @return string
+     */
+    public function getFilterString()
+    {
+        $filter_querystring = '?';
+
+        if (isset($_REQUEST['prepopulate'])) {
+            foreach ($_REQUEST['prepopulate'] as $field_id => $value) {
+                $handle = FieldManager::fetchHandleFromID($field_id);
+                $filter_querystring .= sprintf("filter[%s]=%s&", $handle, rawurldecode($value));
+            }
+            $filter_querystring = trim($filter_querystring, '&');
+        }
+
+        // This is to prevent the value being interpreted as an additional GET
+        // parameter. eg. filter[cat]=Minx&June, would come through as:
+        // $_GET['cat'] = Minx
+        // $_GET['June'] = ''
+        $filter_querystring = preg_replace("/&amp;$/", '', $filter_querystring);
+
+        return $filter_querystring;
     }
 }

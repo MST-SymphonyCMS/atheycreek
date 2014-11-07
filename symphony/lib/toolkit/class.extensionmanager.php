@@ -542,13 +542,6 @@ class ExtensionManager implements FileResource
      */
     public static function removeDelegates($name)
     {
-        $classname = self::__getClassName($name);
-        $path = self::__getDriverPath($name);
-
-        if (!file_exists($path)) {
-            return false;
-        }
-
         $delegates = Symphony::Database()->fetchCol('id', sprintf("
             SELECT tbl_extensions_delegates.`id`
             FROM `tbl_extensions_delegates`
@@ -696,11 +689,14 @@ class ExtensionManager implements FileResource
         }
 
         $context += array('page' => $page, 'delegate' => $delegate);
+        $profiling = Symphony::Profiler() instanceof Profiler;
 
         foreach ($services as $s) {
-            // Initial seeding and query count
-            Symphony::Profiler()->seed();
-            $queries = Symphony::Database()->queryCount();
+            if($profiling) {
+                // Initial seeding and query count
+                Symphony::Profiler()->seed();
+                $queries = Symphony::Database()->queryCount();
+            }
 
             // Get instance of extension and execute the callback passing
             // the `$context` along
@@ -711,8 +707,10 @@ class ExtensionManager implements FileResource
             }
 
             // Complete the Profiling sample
-            $queries = Symphony::Database()->queryCount() - $queries;
-            Symphony::Profiler()->sample($delegate . '|' . $s['name'], PROFILE_LAP, 'Delegate', $queries);
+            if($profiling) {
+                $queries = Symphony::Database()->queryCount() - $queries;
+                Symphony::Profiler()->sample($delegate . '|' . $s['name'], PROFILE_LAP, 'Delegate', $queries);
+            }
         }
     }
 
@@ -963,7 +961,6 @@ class ExtensionManager implements FileResource
                 );
 
                 // If it exists, load in the 'min/max' version data for this release
-                $required_version = null;
                 $required_min_version = $xpath->evaluate('string(@min)', $release);
                 $required_max_version = $xpath->evaluate('string(@max)', $release);
                 $current_symphony_version = Symphony::Configuration()->get('version', 'symphony');

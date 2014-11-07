@@ -53,28 +53,21 @@ class contentBlueprintsEvents extends ResourcesPage
 
             switch ($this->_context[2]) {
                 case 'saved':
-                    $this->pageAlert(
-                        __('Event updated at %s.', array($time->generate()))
-                        . ' <a href="' . SYMPHONY_URL . '/blueprints/events/new/" accesskey="c">'
-                        . __('Create another?')
-                        . '</a> <a href="' . SYMPHONY_URL . '/blueprints/events/" accesskey="a">'
-                        . __('View all Events')
-                        . '</a>',
-                        Alert::SUCCESS
-                    );
+                    $message = __('Event updated at %s.', array($time->generate()));
                     break;
                 case 'created':
-                    $this->pageAlert(
-                        __('Event created at %s.', array($time->generate()))
-                        . ' <a href="' . SYMPHONY_URL . '/blueprints/events/new/" accesskey="c">'
-                        . __('Create another?')
-                        . '</a> <a href="' . SYMPHONY_URL . '/blueprints/events/" accesskey="a">'
-                        . __('View all Events')
-                        . '</a>',
-                        Alert::SUCCESS
-                    );
-                    break;
+                    $message = __('Event created at %s.', array($time->generate()));
             }
+
+            $this->pageAlert(
+                $message
+                . ' <a href="' . SYMPHONY_URL . '/blueprints/events/new/" accesskey="c">'
+                . __('Create another?')
+                . '</a> <a href="' . SYMPHONY_URL . '/blueprints/events/" accesskey="a">'
+                . __('View all Events')
+                . '</a>',
+                Alert::SUCCESS
+            );
         }
 
         $isEditing = ($readonly ? true : false);
@@ -127,7 +120,7 @@ class contentBlueprintsEvents extends ResourcesPage
         }
 
         $this->setPageType('form');
-        $this->setTitle(__(($isEditing ? '%1$s &ndash; %2$s &ndash; %3$s' : '%2$s &ndash; %3$s'), array($about['name'], __('Events'), __('Symphony'))));
+        $this->setTitle(__(($isEditing ? '%1$s &ndash; %2$s &ndash; %3$s' : '%2$s &ndash; %3$s'), array($name, __('Events'), __('Symphony'))));
         $this->appendSubheading(($isEditing ? $about['name'] : __('Untitled')));
         $this->insertBreadcrumbs(array(
             Widget::Anchor(__('Events'), SYMPHONY_URL . '/blueprints/events/'),
@@ -461,9 +454,6 @@ class contentBlueprintsEvents extends ResourcesPage
         }
 
         if (empty($this->_errors)) {
-            $multiple = in_array('expect-multiple', $filters);
-            $elements = null;
-            $placeholder = '<!-- GRAB -->';
             $source = $fields['source'];
             $params = array(
                 'rootelement' => $rootelement,
@@ -500,19 +490,18 @@ class contentBlueprintsEvents extends ResourcesPage
                 // Add Documentation
                 require_once(CONTENT . '/content.ajaxeventdocumentation.php');
                 $ajaxEventDoc = new contentAjaxEventDocumentation();
-                $documentation = null;
                 $doc_parts = array();
 
                 // Add Documentation (Success/Failure)
-                $ajaxEventDoc->addEntrySuccessDoc($doc_parts, $rootelement, $fields['source'], $filters);
-                $ajaxEventDoc->addEntryFailureDoc($doc_parts, $rootelement, $fields['source'], $filters);
+                $ajaxEventDoc->addEntrySuccessDoc($doc_parts, $rootelement, $filters);
+                $ajaxEventDoc->addEntryFailureDoc($doc_parts, $rootelement, $filters);
 
                 // Filters
-                $ajaxEventDoc->addDefaultFiltersDoc($doc_parts, $rootelement, $fields['source'], $filters);
+                $ajaxEventDoc->addDefaultFiltersDoc($doc_parts, $rootelement, $filters);
 
                 // Frontend Markup
                 $ajaxEventDoc->addFrontendMarkupDoc($doc_parts, $rootelement, $fields['source'], $filters);
-                $ajaxEventDoc->addSendMailFilterDoc($doc_parts, $rootelement, $fields['source'], $filters);
+                $ajaxEventDoc->addSendMailFilterDoc($doc_parts, $filters);
 
                 /**
                  * Allows adding documentation for new filters. A reference to the $documentation

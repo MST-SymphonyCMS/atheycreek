@@ -78,14 +78,14 @@
 								</xsl:call-template>
 							</xsl:otherwise>
 						</xsl:choose>
-
-
-						<xsl:call-template name="members-roles-avatar">
-							<xsl:with-param name="filename" select="member/item/photo/file/filename" />
-							<xsl:with-param name="height" select="180" />
-							<xsl:with-param name="width" select="180" />
-						</xsl:call-template>
-
+						<xsl:call-template name="image-master">
+			        <xsl:with-param name="photo" select="member/item/photo/filename" />
+			        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+			        <xsl:with-param name="width" select="360" />
+			        <xsl:with-param name="height" select="360" />
+			        <xsl:with-param name="responsive" select="0" />
+			        <xsl:with-param name="circle" select="1" />
+			      </xsl:call-template>
 						<h4>
 							<xsl:value-of select="role/item/role" disable-output-escaping="yes" />
 						</h4>
@@ -94,11 +94,9 @@
 						</h3>
 						<div class="content">
 							<div class="contact-info">
-
 								<span class="phone">
 									<xsl:value-of select="$phone" />
 								</span>
-
 								<span class="email">
 									<a title="Email {$name}">
 										<xsl:attribute name="href">
@@ -108,7 +106,6 @@
 										<xsl:value-of select="$email" />
 									</a>
 								</span>
-
 							</div>
 							<xsl:value-of select="member/item/about" disable-output-escaping="yes" />
 						</div>
@@ -157,11 +154,14 @@
 							</xsl:attribute>
 						</xsl:if>
 						<div class="pull-left">
-							<xsl:call-template name="members-roles-avatar">
-								<xsl:with-param name="filename" select="member/item/photo/file/filename" />
-								<xsl:with-param name="height" select="72" />
-								<xsl:with-param name="width" select="72" />
-							</xsl:call-template>
+							<xsl:call-template name="image-master">
+				        <xsl:with-param name="photo" select="photo/filename" />
+				        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+				        <xsl:with-param name="width" select="144" />
+				        <xsl:with-param name="height" select="144" />
+				        <xsl:with-param name="responsive" select="0" />
+				        <xsl:with-param name="circle" select="1" />
+				      </xsl:call-template>
 						</div>
 						<div class="info">
 							<h4>
@@ -219,11 +219,14 @@
 						</xsl:if>
 
 						<div class="pull-left">
-							<xsl:call-template name="members-roles-avatar">
-								<xsl:with-param name="filename" select="photo/file/filename" />
-								<xsl:with-param name="height" select="72" />
-								<xsl:with-param name="width" select="72" />
-							</xsl:call-template>
+							<xsl:call-template name="image-master">
+				        <xsl:with-param name="photo" select="photo/filename" />
+				        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+				        <xsl:with-param name="width" select="144" />
+				        <xsl:with-param name="height" select="144" />
+				        <xsl:with-param name="responsive" select="0" />
+				        <xsl:with-param name="circle" select="1" />
+				      </xsl:call-template>
 						</div>
 						<div class="info">
 							<h4>
@@ -243,28 +246,6 @@
 			</a>
 		</ul>
 	</div>
-
-</xsl:template>
-
-
-<xsl:template name="members-roles-avatar">
-
-	<xsl:param name="filename" />
-	<xsl:param name="width" />
-	<xsl:param name="height" />
-
-	<img width="{$width}" height="{$height}" class="img-circle" data-responsimage-anchor="5" src="/workspace/assets/img/spacer.gif">
-		<xsl:attribute name="data-responsimage">
-			<xsl:choose>
-				<xsl:when test="string-length($filename)">
-					<xsl:value-of select="$filename" disable-output-escaping="yes" />
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:text disable-output-escaping="yes">anonymous-4fef5a675fd64.jpg</xsl:text>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:attribute>
-	</img>
 
 </xsl:template>
 

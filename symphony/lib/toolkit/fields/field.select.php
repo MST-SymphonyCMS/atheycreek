@@ -256,28 +256,11 @@ class FieldSelect extends Field implements ExportableField, ImportableField
         $div = new XMLElement('div', null, array('class' => 'two columns'));
 
         // Allow selection of multiple items
-        $label = Widget::Label();
-        $label->setAttribute('class', 'column');
-        $input = Widget::Input('fields['.$this->get('sortorder').'][allow_multiple_selection]', 'yes', 'checkbox');
-
-        if ($this->get('allow_multiple_selection') == 'yes') {
-            $input->setAttribute('checked', 'checked');
-        }
-
-        $label->setValue(__('%s Allow selection of multiple options', array($input->generate())));
-        $div->appendChild($label);
+        $this->createCheckboxSetting($div, 'allow_multiple_selection', 'Allow selection of multiple options');
 
         // Sort options?
-        $label = Widget::Label();
-        $label->setAttribute('class', 'column');
-        $input = Widget::Input('fields['.$this->get('sortorder').'][sort_options]', 'yes', 'checkbox');
+        $this->createCheckboxSetting($div, 'sort_options', 'Sort all options alphabetically');
 
-        if ($this->get('sort_options') == 'yes') {
-            $input->setAttribute('checked', 'checked');
-        }
-
-        $label->setValue(__('%s Sort all options alphabetically', array($input->generate())));
-        $div->appendChild($label);
         $wrapper->appendChild($div);
 
         // Associations
@@ -567,9 +550,6 @@ class FieldSelect extends Field implements ExportableField, ImportableField
     public function displayDatasourceFilterPanel(XMLElement &$wrapper, $data = null, $errors = null, $fieldnamePrefix = null, $fieldnamePostfix = null)
     {
         parent::displayDatasourceFilterPanel($wrapper, $data, $errors, $fieldnamePrefix, $fieldnamePostfix);
-
-        $data = preg_split('/,\s*/i', $data);
-        $data = array_map('trim', $data);
 
         $existing_options = $this->getToggleStates();
 

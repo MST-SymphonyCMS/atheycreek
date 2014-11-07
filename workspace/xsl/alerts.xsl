@@ -5,7 +5,6 @@
 
 	<xsl:if test="/data/live-status/entry/status = 'live' or /data/ustream/status = 'live'">
     <div id="14097" class="alert alertLive">
-      <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
       <div class="container">
         <p>Athey Creek is currently broadcasting live. <a href="/live/">Watch Live &#8594;</a></p>
       </div>
@@ -37,10 +36,6 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
-
-        <!-- <xsl:if test="can-be-closed = 'Yes'">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-        </xsl:if> -->
 
         <div class="container">
 
@@ -91,10 +86,6 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
-
-        <!-- <xsl:if test="can-be-closed = 'Yes'">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-        </xsl:if> -->
 
         <div class="container">
 

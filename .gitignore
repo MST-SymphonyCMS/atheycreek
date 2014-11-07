@@ -6,7 +6,6 @@ manifest/config.php
 manifest/cache/*
 manifest/logs/*
 manifest/tmp/*
-node_modules/
 workspace/uploads/documents/*
 workspace/uploads/images/*
 utilities/*.sh

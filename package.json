@@ -7,6 +7,7 @@
     "gulp-cache": "^0.2.0",
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.3.3",
+    "gulp-if": "^1.2.5",
     "gulp-imagemin": "^0.6.1",
     "gulp-jshint": "^1.7.1",
     "gulp-livereload": "^2.1.0",
@@ -17,7 +18,9 @@
     "gulp-sass": "^0.7.2",
     "gulp-shell": "^0.2.8",
     "gulp-uglify": "^0.3.1",
-    "gulp-uncss": "^0.4.5"
+    "gulp-uncss": "^0.4.5",
+    "fontcustom": "0.0.3",
+    "css-sprite": "^0.7.0-beta3"
   },
   "repository": {
     "type": "git",

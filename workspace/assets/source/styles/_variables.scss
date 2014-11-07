@@ -8,11 +8,22 @@
 // Bootstrap Overrides
 // ------------------------------------------------
 
-// Colors
+// Global Colors
 
 $gray-darker: #373839;
 $brand-primary: #3aa2dd;
 $text-color: $gray-darker;
+
+// Ministry Colors
+
+$color-men: #3d3a3a;
+$color-women: #Df90f0;
+$color-college: #06e3b2;
+$color-highschool: #99a2ab;
+$color-jrhigh: #48a4ff;
+$color-gradeschool: #fed666;
+$color-children: $color-gradeschool;
+$color-allchurch: #ff5656;
 
 
 // Typography

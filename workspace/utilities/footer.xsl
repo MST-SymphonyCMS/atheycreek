@@ -5,9 +5,9 @@
 <xsl:template name="footer">
 
   <footer class="footer">
-    <div class="footer-nav container">
+    <div class="container">
       <div class="row">
-        <div class="span2">
+        <div class="col-md-2">
           <ul class="nav nav-list">
             <li class="nav-header first"><a href="/meetings/">Meetings</a></li><br />
             <li class="nav-header"><a href="/teachings/">Teachings</a></li><br />
@@ -24,7 +24,7 @@
     <div class="baseline">
       <div class="container">
         <div class="row">
-          <div class="span12 center">
+          <div class="col-md-12 center">
             <div class="facebook">
               <a href="https://www.facebook.com/pages/Athey-Creek-Christian-Fellowship/138279749547289">Visit us on Facebook</a>
             </div>

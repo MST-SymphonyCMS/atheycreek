@@ -4979,4 +4979,10 @@ a:hover {
   transform: translate3d(0, 0, 0); }
 
 .feature h4 {
-  margin-top: 40px; }
+  margin-top: 4rem; }
+
+.events.events-home h4 {
+  margin-top: 4rem; }
+
+.feature h4 {
+  margin-top: 4rem; }

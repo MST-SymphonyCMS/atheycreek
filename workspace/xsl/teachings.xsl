@@ -335,36 +335,6 @@
 
 </xsl:template>
 
-<xsl:template name="teaching-series-entry">
-  <xsl:param name="entry" select="." />
-  <xsl:for-each select="$entry">
-    <div class="row">
-      <div class="col-md-12">
-        <a>
-          <xsl:call-template name="url-teachings-series" />
-          <xsl:call-template name="image-master">
-            <xsl:with-param name="photo" select="poster/item/image/filename" />
-            <xsl:with-param name="width" select="1800" />
-            <xsl:with-param name="height" select="1013" />
-          </xsl:call-template>
-        </a>
-      </div>
-    </div>
-    <div class="carousel-caption">
-      <a>
-        <xsl:call-template name="url-teachings-series" />
-        <h3>
-          <xsl:text>Featured Series: </xsl:text>
-          <em class="verse">
-            <xsl:text> </xsl:text>
-            <xsl:value-of select="title" />
-          </em>
-        </h3>
-      </a>
-    </div>
-  </xsl:for-each>
-</xsl:template>
-
 
 <xsl:template name="teachings-sidebar">
 
@@ -681,34 +651,6 @@
   <xsl:param name="entry" select="." />
 
   <xsl:for-each select="$entry">
-    <xsl:if test="not($pt1)">
-      <div class="row">
-        <div class="col-md-12">
-          <a>
-            <xsl:call-template name="url-teachings" />
-            <xsl:call-template name="image-master">
-              <xsl:with-param name="photo" select="poster/item/image/filename" />
-              <xsl:with-param name="width" select="1800" />
-              <xsl:with-param name="height" select="1013" />
-            </xsl:call-template>
-          </a>
-        </div>
-      </div>
-      <div class="carousel-caption">
-        <a>
-          <xsl:call-template name="url-teachings" />
-          <h3>
-            <xsl:text>Featured Teaching: </xsl:text>
-            <em class="verse">
-              <xsl:text> </xsl:text>
-              <xsl:value-of select="book/item" />
-              <xsl:text> </xsl:text>
-              <xsl:value-of select="chapter" />
-            </em>
-          </h3>
-        </a>
-      </div>
-    </xsl:if>
     <xsl:if test="number($pt2)">
 
       <div class="title-wrapper">

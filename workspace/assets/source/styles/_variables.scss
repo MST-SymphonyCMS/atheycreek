@@ -14,12 +14,15 @@ $gray-darker: #373839;
 $brand-primary: #3aa2dd;
 $text-color: $gray-darker;
 
+
 // Typography
 
+$icon-font-path: '../../build/fonts/';
 $font-family-sans-serif: 'adelle-sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $headings-font-family: 'freight-display-pro', Georgia, Times, serif;
 $headings-font-weight: 900;
 $font-size-base: 20px;
+
 
 // Navbar
 $navbar-height: 60px;
@@ -31,6 +34,7 @@ $navbar-inverse-border: none;
 $navbar-border-radius: 0;
 $navbar-inverse-toggle-hover-bg: lighten($gray-darker, 2%);
 $navbar-inverse-toggle-border-color: lighten($gray-darker, 2%);
+
 
 // Navs
 

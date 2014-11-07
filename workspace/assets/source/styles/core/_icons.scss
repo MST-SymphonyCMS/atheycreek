@@ -37,21 +37,23 @@
 
 /** Sass variables **/
 
-$accf-badge: '\f106';
+$accf-badge: '\f101';
 
-$accf-facebook: '\f101';
+$accf-facebook: '\f102';
 
-$accf-logo: '\f107';
+$accf-logo: '\f103';
 
-$accf-logo-outline: '\f108';
+$accf-logo-outline: '\f104';
 
-$accf-logo-short: '\f109';
+$accf-logo-short: '\f105';
 
-$accf-logo-short-outline: '\f10a';
+$accf-logo-short-outline: '\f106';
 
-$accf-menu: '\f103';
+$accf-menu: '\f107';
 
-$accf-twitter: '\f105';
+$accf-twitter: '\f108';
+
+$accf-wordmark: '\f109';
 
 
 /** Sass mixins **/
@@ -101,6 +103,12 @@ $accf-twitter: '\f105';
 @mixin accf-twitter() {
   &:before {
     content: $accf-twitter;
+  }
+}
+
+@mixin accf-wordmark() {
+  &:before {
+    content: $accf-wordmark;
   }
 }
 

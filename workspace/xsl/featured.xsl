@@ -76,48 +76,77 @@
     <xsl:call-template name="merge-data-sources" />
   </xsl:variable>
 
-  <div id="frontCarousel" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="item active">
-        <xsl:for-each select="/data/featured-teachings-home/entry">
-          <xsl:call-template name="teaching-entry" />
-        </xsl:for-each>
+  <div class="teachings-current container">
+
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Featured Teaching <span class="pull-right">Featured Series</span></h4>
       </div>
-      <xsl:if test="count(data/featured-teachings-series/entry) &gt; 0">
-        <div class="item">
-          <xsl:for-each select="/data/featured-teachings-series/entry">
-            <xsl:call-template name="teaching-series-entry" />
-          </xsl:for-each>
+      <xsl:for-each select="/data/featured-teachings-home/entry">
+        <div class="col-md-6">
+          <a>
+            <xsl:call-template name="url-teachings" />
+            <xsl:call-template name="image-master">
+              <xsl:with-param name="photo" select="poster/item/image/filename" />
+              <xsl:with-param name="width" select="1920" />
+              <xsl:with-param name="height" select="1080" />
+            </xsl:call-template>
+          </a>
         </div>
-      </xsl:if>
-      <xsl:for-each select="exsl:node-set($entries)/entry">
-        <div class="item">
-          <div class="row">
-            <div class="span12">
-              <a>
-                <xsl:attribute name="href">
-                  <xsl:value-of select="uri" />
-                </xsl:attribute>
-                <xsl:call-template name="image-master">
-                  <xsl:with-param name="photo" select="image" />
-                  <xsl:with-param name="width" select="1800" />
-                  <xsl:with-param name="height" select="1013" />
-                </xsl:call-template>
-              </a>
-            </div>
-          </div>
-          <div class="carousel-caption">
-            <a href="{uri}">
-              <h3>Featured: <em class="verse"> <xsl:value-of select="title"/></em>
-              </h3>
-            </a>
-          </div>
+      </xsl:for-each>
+      <xsl:for-each select="/data/featured-teachings-series/entry">
+        <div class="col-md-6">
+          <a>
+            <xsl:call-template name="url-teachings-series" />
+            <xsl:call-template name="image-master">
+              <xsl:with-param name="photo" select="poster/item/image/filename" />
+              <xsl:with-param name="width" select="1920" />
+              <xsl:with-param name="height" select="1080" />
+            </xsl:call-template>
+          </a>
         </div>
       </xsl:for-each>
     </div>
-    <a class="left carousel-control" href="#frontCarousel" data-slide="prev">&lt;</a>
-    <a class="right carousel-control" href="#frontCarousel" data-slide="next">&gt;</a>
-  </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Featured Items</h4>
+      </div>
+      <div class="col-md-12">
+        <div id="home-carousel" class="carousel slide">
+          <div class="carousel-inner">
+            <xsl:for-each select="exsl:node-set($entries)/entry">
+              <div>
+                <xsl:attribute name="class">
+                  <xsl:choose>
+                    <xsl:when test="position() = 1">item active</xsl:when>
+                    <xsl:otherwise>item</xsl:otherwise>
+                  </xsl:choose>
+                </xsl:attribute>
+                <a>
+                  <xsl:attribute name="href">
+                    <xsl:value-of select="uri" />
+                  </xsl:attribute>
+                  <xsl:call-template name="image-master">
+                    <xsl:with-param name="photo" select="image" />
+                    <xsl:with-param name="width" select="1800" />
+                    <xsl:with-param name="height" select="900" />
+                  </xsl:call-template>
+                </a>
+              </div>
+            </xsl:for-each>
+          </div><!-- .carousel-inner -->
+          <a class="left carousel-control" href="#home-carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#home-carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </div><!-- #home-carousel -->
+      </div><!-- .col-md-12 -->
+    </div><!-- .row -->
+
+  </div><!-- .teachings-current -->
 
 </xsl:template>
 
@@ -125,15 +154,10 @@
 <xsl:template name="featured-home">
 
   <div class="feature">
-    <div class="container">
-      <div class="row home">
-        <div id="main-content" class="span12">
-          <h3>Featured Content</h3>
-          <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='banner']/content)" disable-output-escaping="yes" />
-          <xsl:call-template name="component-featured" />
-        </div>
-      </div><!-- .row -->
-    </div><!-- .container -->
+    <div id="main-content">
+      <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='banner']/content)" disable-output-escaping="yes" />
+      <xsl:call-template name="component-featured" />
+    </div><!-- #main-content -->
   </div><!-- .feature -->
 
 </xsl:template>

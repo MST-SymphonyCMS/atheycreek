@@ -16,13 +16,40 @@
   @include accf-menu;
 }
 
+.icon-wordmark {
+  @include accf-wordmark;
+}
+
 
 // Navbar
 // ------------------------------------------------
 
-.navbar-toggle:hover {
+// Hide navbar on desktop and up
+@media (min-width: $screen-md-min) {
+  .navbar {
+    display: none;
+  }
+}
+
+.navbar-toggle:hover,
+.navbar-brand:hover {
   @include opacity(.5);
   @include animate-simple(all);
+}
+
+.navbar-brand {
+  position: relative;
+  top: .25rem;
+}
+
+// Some fixes for Navbar display with responsive setup
+@media (min-width: $grid-float-breakpoint) {
+  .navbar-header {
+    float: none;
+  }
+  .navbar-toggle {
+    display: block;
+  }
 }
 
 
@@ -49,7 +76,8 @@
 }
 
 .masthead .navigation {
-  margin-bottom: 0;
+  margin: 0;
+  padding-left: 0;
   list-style: none;
   text-transform: uppercase;
 }

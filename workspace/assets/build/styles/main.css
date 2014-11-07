@@ -190,8 +190,8 @@ td, th {
 
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('../fonts/bootstrap/glyphicons-halflings-regular.eot');
-  src: url('../fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/bootstrap/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/bootstrap/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg'); }
+  src: url('../../build/fonts/glyphicons-halflings-regular.eot');
+  src: url('../../build/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../../build/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../../build/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../../build/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg'); }
 
 .glyphicon {
   position: relative;
@@ -4759,16 +4759,33 @@ a:hover {
 /** Sass variables **/
 /** Sass mixins **/
 .icon-logo:before {
-  content: '\f107'; }
-
-.icon-menu:before {
   content: '\f103'; }
 
-.navbar-toggle:hover {
+.icon-menu:before {
+  content: '\f107'; }
+
+.icon-wordmark:before {
+  content: '\f109'; }
+
+@media (min-width: 992px) {
+  .navbar {
+    display: none; } }
+
+.navbar-toggle:hover, .navbar-brand:hover {
   opacity: 0.5;
   filter: alpha(opacity=50);
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out; }
+
+.navbar-brand {
+  position: relative;
+  top: 0.25rem; }
+
+@media (min-width: 768px) {
+  .navbar-header {
+    float: none; }
+  .navbar-toggle {
+    display: block; } }
 
 .header {
   background: #373839; }
@@ -4782,7 +4799,8 @@ a:hover {
       padding: 2rem 0; } }
 
 .masthead .navigation {
-  margin-bottom: 0;
+  margin: 0;
+  padding-left: 0;
   list-style: none;
   text-transform: uppercase; }
 
@@ -4959,3 +4977,6 @@ a:hover {
   -webkit-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0); }
+
+.feature h4 {
+  margin-top: 40px; }

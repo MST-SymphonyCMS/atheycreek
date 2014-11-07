@@ -7,40 +7,34 @@
   <footer class="footer">
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
-          <ul class="nav nav-list">
-            <li class="nav-header first"><a href="/meetings/">Meetings</a></li><br />
-            <li class="nav-header"><a href="/teachings/">Teachings</a></li><br />
-            <li class="nav-header"><a href="/events/">Events</a></li><br />
-            <li class="nav-header"><a href="/ministries/">Ministries</a></li><br />
-            <li class="nav-header"><a href="/home-groups/">Home Groups</a></li><br />
-            <li class="nav-header"><a href="/missions/">Missions</a></li><br />
-            <li class="nav-header"><a href="/about/">About</a></li>
+        <div class="col-md-12">
+          <ul class="footer-nav">
+            <li><a href="/meetings/">Meetings</a></li>
+            <li><a href="/teachings/">Teachings</a></li>
+            <li><a href="/events/">Events</a></li>
+            <li><a href="/ministries/">Ministries</a></li>
+            <li><a href="/home-groups/">Home Groups</a></li>
+            <li><a href="/missions/">Missions</a></li>
+            <li><a href="/about/">About</a></li>
           </ul>
         </div>
-        <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='footer']/content)" disable-output-escaping="yes" />
+        <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='footer-new']/content)" disable-output-escaping="yes" />
       </div>
     </div>
     <div class="baseline">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 center">
-            <div class="facebook">
-              <a href="https://www.facebook.com/pages/Athey-Creek-Christian-Fellowship/138279749547289">Visit us on Facebook</a>
-            </div>
-            <div class="copyright">
-              <xsl:text>© </xsl:text>
+          <div class="col-md-12">
+            <p class="copyright">
+              <small>
+              <xsl:text>© 2006–</xsl:text>
+              <xsl:value-of select="$this-year" />
+              <xsl:text>&#160;&#160;•&#160;&#160;</xsl:text>
               <a href="{$root}"><xsl:value-of select="$website-name" /></a>
-              <xsl:text>.&#160;All&#160;rights&#160;reserved.&#160;|&#160;&#160;</xsl:text>
-              <span class="dev">
-               <a href="https://github.com/atheycreek/atheycreek/issues/" target="_blank">Website Support</a>
-               <span class="divider">| Some photos courtesy of <a href="http://fiftyfootshadows.net" target="_blank">John Carey</a></span>
-               <br />
-              </span>
-            </div>
-            <div class="branding">
-              <a href="{root}">&#x2014;<span class="year left">1996</span><span class="icon">0</span><span class="year right"><xsl:value-of select="$this-year" /></span>&#x2014;</a>
-            </div>
+              <xsl:text>&#160;&#160;•&#160;&#160;All&#160;rights&#160;reserved.&#160;&#160;•&#160;&#160;&#160;Some&#160;photos&#160;courtesy&#160;of&#160;</xsl:text>
+              <a href="http://fiftyfootshadows.net" target="_blank">John Carey</a>
+              </small>
+            </p>
           </div>
         </div>
       </div>

@@ -4984,5 +4984,38 @@ a:hover {
 .events.events-home h4 {
   margin-top: 4rem; }
 
-.feature h4 {
-  margin-top: 4rem; }
+.footer {
+  background: #c3c4c5;
+  padding-top: 4rem; }
+
+.footer a {
+  color: #ffffff; }
+  .footer a:hover {
+    color: #5d5e60; }
+
+.footer-nav {
+  text-align: center;
+  padding-left: 0;
+  list-style: none; }
+
+.footer-nav li {
+  display: inline-block; }
+
+.footer-nav li a {
+  display: block;
+  padding: 0 2rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+.footer .col-md-4 {
+  padding: 3rem 0 4rem 0; }
+
+.footer h5, .footer p, .footer address {
+  text-align: center; }
+
+.footer .baseline {
+  background: #b6b8b9; }
+
+.footer .baseline .copyright {
+  margin: 2rem 0 2rem 0; }

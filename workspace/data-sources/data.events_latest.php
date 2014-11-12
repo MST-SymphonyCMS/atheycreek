@@ -8,7 +8,7 @@ class datasourceevents_latest extends SectionDatasource
 		public $dsParamConditionalizer = '(if value of ({$pt1}) is ())';
     public $dsParamORDER = 'asc';
     public $dsParamPAGINATERESULTS = 'yes';
-    public $dsParamLIMIT = '3';
+    public $dsParamLIMIT = '2';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
     public $dsParamREDIRECTONFORBIDDEN = 'no';
@@ -26,15 +26,23 @@ class datasourceevents_latest extends SectionDatasource
         'system:pagination',
         'name: unformatted',
         'date',
-        'tags'
+        'tags',
+        'images'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'tags' => array(
             'section_id' => '3',
             'field_id' => '337',
             'elements' => array(
                 'title'
+            )
+        ),
+        'images' => array(
+            'section_id' => '8',
+            'field_id' => '313',
+            'elements' => array(
+                'image'
             )
         )
     );
@@ -52,9 +60,9 @@ class datasourceevents_latest extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-08-19T20:21:20+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.2',
+            'release-date' => '2014-11-12T00:52:46+00:00'
         );
     }
 

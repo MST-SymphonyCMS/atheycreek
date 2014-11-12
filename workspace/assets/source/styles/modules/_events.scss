@@ -11,3 +11,76 @@
 .events.events-home h4 {
   margin-top: 4rem;
 }
+
+.events.events-full-width {
+
+  .event-row {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .event {
+    text-align: center;
+    background: lighten($gray-darker, 70%);
+    border-top-width: 10px;
+    border-top-style: solid;
+
+    &:nth-child(2n) {
+      background: lighten($gray-darker, 75%);
+    }
+  }
+
+  .men          { border-color: $color-men; }
+  .women        { border-color: $color-women; }
+  .college      { border-color: $color-college; }
+  .highschool   { border-color: $color-highschool; }
+  .jrhigh       { border-color: $color-jrhigh; }
+  .gradeschool  { border-color: $color-gradeschool; }
+  .children     { border-color: $color-children; }
+  .allchurch    { border-color: $color-allchurch; }
+
+
+  a {
+    color: lighten($gray-darker, 25%);
+  }
+
+  h5 {
+    padding: 1rem 0;
+    font-family: $font-family-base;
+    font-weight: 500;
+    font-style: italic;
+    text-transform: none;
+  }
+
+  h3 {
+    width: 55%;
+    margin: 0 auto;
+    padding: 1rem 0 0 0;
+    font-family: $headings-font-family;
+    line-height: 1.4;
+    text-transform: uppercase;
+
+    span {
+      display: block;
+      min-height: 80px;
+    }
+  }
+
+  hr {
+    background: none;
+    border-top: 3px solid $white;
+    width: 10%;
+    margin: 1rem auto;
+  }
+
+  .view {
+    display: inline-block;
+    margin-bottom: 2rem;
+    padding: .5rem 3.5rem;
+    color: lighten($gray-darker, 25%);
+    font-family: $headings-font-family;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 2px solid lighten($gray-darker, 25%);
+  }
+}

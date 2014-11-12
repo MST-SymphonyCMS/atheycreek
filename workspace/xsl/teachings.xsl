@@ -272,7 +272,7 @@
                   </a>
                 </p>
               </div>
-              <h3>Recent Teachings</h3>
+              <h4>Recent Teachings</h4>
                 <div class="row">
                   <xsl:for-each select="/data/teachings-latest/entry[position() &lt; 5]">
                     <div>
@@ -508,7 +508,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h3>Recent Teachings</h3>
+          <h4>Recent Teachings</h4>
             <div class="row">
               <xsl:for-each select="/data/teachings-latest/entry[position() &lt; 4]">
                 <div>
@@ -518,7 +518,7 @@
                   </xsl:attribute>
                   <a>
                     <xsl:call-template name="url-teachings" />
-                    <h4>
+                    <h5>
                       <xsl:choose>
                         <xsl:when test="position() = 1 and featured = 'Yes'">
                           <xsl:call-template name="truncate">
@@ -534,8 +534,7 @@
                           </xsl:call-template>
                         </xsl:otherwise>
                       </xsl:choose>
-                    </h4>
-
+                    </h5>
                     <div class="meta">
                       <p>
                         <xsl:call-template name="date-teaching">
@@ -567,12 +566,12 @@
                   <a>
                     <xsl:call-template name="url-teachings" />
 
-                    <h4>
+                    <h5>
                       <xsl:value-of select="title" disable-output-escaping="yes" />
                       <xsl:if test="featured = 'Yes'">
                         <span class="label accent">FEATURED</span>
                       </xsl:if>
-                    </h4>
+                    </h5>
 
                     <div class="meta">
                       <p>

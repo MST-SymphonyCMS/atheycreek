@@ -7,17 +7,6 @@
   <footer class="footer">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <ul class="footer-nav">
-            <li><a href="/meetings/">Meetings</a></li>
-            <li><a href="/teachings/">Teachings</a></li>
-            <li><a href="/events/">Events</a></li>
-            <li><a href="/ministries/">Ministries</a></li>
-            <li><a href="/home-groups/">Home Groups</a></li>
-            <li><a href="/missions/">Missions</a></li>
-            <li><a href="/about/">About</a></li>
-          </ul>
-        </div>
         <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='footer-new']/content)" disable-output-escaping="yes" />
       </div>
     </div>
@@ -30,9 +19,9 @@
               <xsl:text>© 2006–</xsl:text>
               <xsl:value-of select="$this-year" />
               <xsl:text>&#160;&#160;•&#160;&#160;</xsl:text>
-              <a href="{$root}"><xsl:value-of select="$website-name" /></a>
-              <xsl:text>&#160;&#160;•&#160;&#160;All&#160;rights&#160;reserved.&#160;&#160;•&#160;&#160;&#160;Some&#160;photos&#160;courtesy&#160;of&#160;</xsl:text>
+              <a href="{$root}"><xsl:value-of select="$website-name" /></a> <xsl:text>&#160;&#160;•&#160;&#160;All&#160;rights&#160;reserved.&#160;&#160;•&#160;&#160;&#160;Some&#160;photos&#160;courtesy&#160;of&#160;</xsl:text>
               <a href="http://fiftyfootshadows.net" target="_blank">John Carey</a>
+              <xsl:text>.</xsl:text>
               </small>
             </p>
           </div>

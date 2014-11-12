@@ -72,100 +72,66 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h4>Upcoming Events</h4>
-						<div class="row">
+						<div class="row event-row">
 							<xsl:for-each select="$entries">
 								<div>
 									<xsl:choose>
-										<xsl:when test="count($entries) &lt;3">
-											<xsl:choose>
-												<xsl:when test="count($entries) &lt;2">
-													<xsl:attribute name="class">
-														<xsl:choose>
-															<xsl:when test="tags/item/@id = '25'">
-																<xsl:text>col-md-6 cold-md-offset-3 men</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '26'">
-																<xsl:text>col-md-6 cold-md-offset-3 women</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '31'">
-																<xsl:text>col-md-6 cold-md-offset-3 college</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '30'">
-																<xsl:text>col-md-6 cold-md-offset-3 highschool</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '29'">
-																<xsl:text>col-md-6 cold-md-offset-3 jrhigh</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '28'">
-																<xsl:text>col-md-6 cold-md-offset-3 gradeschool</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '27'">
-																<xsl:text>col-md-6 cold-md-offset-3 children</xsl:text>
-															</xsl:when>
-															<xsl:otherwise>
-																<xsl:text>col-md-6 cold-md-offset-3 allchurch</xsl:text>
-															</xsl:otherwise>
-														</xsl:choose>
-													</xsl:attribute>
-												</xsl:when>
-												<xsl:otherwise>
-													<xsl:attribute name="class">
-														<xsl:choose>
-															<xsl:when test="tags/item/@id = '25'">
-																<xsl:text>col-md-6 men</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '26'">
-																<xsl:text>col-md-6 women</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '31'">
-																<xsl:text>col-md-6 college</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '30'">
-																<xsl:text>col-md-6 highschool</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '29'">
-																<xsl:text>col-md-6 jrhigh</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '28'">
-																<xsl:text>col-md-6 gradeschool</xsl:text>
-															</xsl:when>
-															<xsl:when test="tags/item/@id = '27'">
-																<xsl:text>col-md-6 children</xsl:text>
-															</xsl:when>
-															<xsl:otherwise>
-																<xsl:text>col-md-6 allchurch</xsl:text>
-															</xsl:otherwise>
-														</xsl:choose>
-													</xsl:attribute>
-												</xsl:otherwise>
-											</xsl:choose>
+										<xsl:when test="count($entries) &lt;2">
+											<xsl:attribute name="class">
+												<xsl:choose>
+													<xsl:when test="tags/item/@id = '25'">
+														<xsl:text>event col-md-12 men</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '26'">
+														<xsl:text>event col-md-12 women</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '31'">
+														<xsl:text>event col-md-12 college</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '30'">
+														<xsl:text>event col-md-12 highschool</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '29'">
+														<xsl:text>event col-md-12 jrhigh</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '28'">
+														<xsl:text>event col-md-12 gradeschool</xsl:text>
+													</xsl:when>
+													<xsl:when test="tags/item/@id = '27'">
+														<xsl:text>event col-md-12 children</xsl:text>
+													</xsl:when>
+													<xsl:otherwise>
+														<xsl:text>event col-md-12 allchurch</xsl:text>
+													</xsl:otherwise>
+												</xsl:choose>
+											</xsl:attribute>
 										</xsl:when>
 										<xsl:otherwise>
 											<xsl:attribute name="class">
 												<xsl:choose>
 													<xsl:when test="tags/item/@id = '25'">
-														<xsl:text>col-md-4 men</xsl:text>
+														<xsl:text>event col-md-6 men</xsl:text>
 													</xsl:when>
 													<xsl:when test="tags/item/@id = '26'">
-														<xsl:text>col-md-4 women</xsl:text>
+														<xsl:text>event col-md-6 women</xsl:text>
 													</xsl:when>
 													<xsl:when test="tags/item/@id = '31'">
-														<xsl:text>col-md-4 college</xsl:text>
+														<xsl:text>event col-md-6 college</xsl:text>
 													</xsl:when>
 													<xsl:when test="tags/item/@id = '30'">
-														<xsl:text>col-md-4 highschool</xsl:text>
+														<xsl:text>event col-md-6 highschool</xsl:text>
 													</xsl:when>
 													<xsl:when test="tags/item/@id = '29'">
-														<xsl:text>col-md-4 jrhigh</xsl:text>
+														<xsl:text>event col-md-6 jrhigh</xsl:text>
 													</xsl:when>
 													<xsl:when test="tags/item/@id = '28'">
-														<xsl:text>col-md-4 gradeschool</xsl:text>
+														<xsl:text>event col-md-6 gradeschool</xsl:text>
 													</xsl:when>
 													<xsl:when test="tags/item/@id = '27'">
-														<xsl:text>col-md-4 children</xsl:text>
+														<xsl:text>event col-md-6 children</xsl:text>
 													</xsl:when>
 													<xsl:otherwise>
-														<xsl:text>col-md-4 allchurch</xsl:text>
+														<xsl:text>event col-md-6 allchurch</xsl:text>
 													</xsl:otherwise>
 												</xsl:choose>
 											</xsl:attribute>
@@ -173,22 +139,21 @@
 									</xsl:choose>
 									<a>
 										<xsl:call-template name="url-events" />
-										<h4 class="date">
+										<h5 class="date">
 											<span>
 												<xsl:call-template name="format-date">
 													<xsl:with-param name="date" select="date/date/start/@iso" />
 													<xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
 												</xsl:call-template>
 											</span>
-										</h4>
-										<hr class="divider" />
+										</h5>
+										<hr />
 										<h3>
 											<span>
 												<xsl:value-of select="name" disable-output-escaping="yes" />
 											</span>
 										</h3>
-										<hr class="divider" />
-										<h4 class="ministry">
+										<h5 class="ministry">
 											<xsl:choose>
 												<xsl:when test="tags/item/@id = '25'">
 													<span><xsl:text>Men's Ministry</xsl:text></span>
@@ -215,7 +180,8 @@
 													<span><xsl:text>All Church</xsl:text></span>
 												</xsl:otherwise>
 											</xsl:choose>
-										</h4>
+										</h5>
+										<span class="view">View</span>
 									</a>
 								</div>
 							</xsl:for-each>
@@ -318,9 +284,6 @@
 										</span>
 									</xsl:otherwise>
 								</xsl:choose>
-								<xsl:call-template name="edit-entry">
-									<xsl:with-param name="component" select="$component"/>
-								</xsl:call-template>
 							</h2> <!-- .header -->
 							<div class="date clearfix">
 								<xsl:for-each select="date/date">

@@ -154,10 +154,8 @@
 <xsl:template name="featured-home">
 
   <div class="feature">
-    <div id="main-content">
-      <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='banner']/content)" disable-output-escaping="yes" />
-      <xsl:call-template name="component-featured" />
-    </div><!-- #main-content -->
+    <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='banner']/content)" disable-output-escaping="yes" />
+    <xsl:call-template name="component-featured" />
   </div><!-- .feature -->
 
 </xsl:template>

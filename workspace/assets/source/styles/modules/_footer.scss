@@ -15,29 +15,12 @@
 }
 
 .footer a {
-  color: $white;
+  color: $gray-darker;
+  border-bottom: 2px solid darken($white, 20%);
 
   &:hover {
-    color: lighten($gray-darker, 15%);
+    border-color: darken($white, 10%);
   }
-}
-
-.footer-nav {
-  text-align: center;
-  padding-left: 0;
-  list-style: none;
-}
-
-.footer-nav li {
-  display: inline-block;
-}
-
-.footer-nav li a {
-  display: block;
-  padding: 0 2rem;
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-transform: uppercase;
 }
 
 .footer .col-md-4 {
@@ -48,6 +31,15 @@
 .footer p,
 .footer address {
   text-align: center;
+}
+
+.footer h5 {
+  text-transform: uppercase;
+}
+
+.footer p,
+.footer address {
+  color: lighten($gray-darker, 15%);
 }
 
 .footer .baseline {

@@ -509,99 +509,58 @@
       <div class="row">
         <div class="col-md-12">
           <h4>Recent Teachings</h4>
-            <div class="row">
-              <xsl:for-each select="/data/teachings-latest/entry[position() &lt; 4]">
-                <div>
-                  <xsl:attribute name="class">
-                    <xsl:text>col-md-4 recent number</xsl:text>
-                    <xsl:value-of select="position()" />
-                  </xsl:attribute>
-                  <a>
-                    <xsl:call-template name="url-teachings" />
-                    <h5>
-                      <xsl:choose>
-                        <xsl:when test="position() = 1 and featured = 'Yes'">
-                          <xsl:call-template name="truncate">
-                            <xsl:with-param name="node" select="title" />
-                            <xsl:with-param name="length" select="25" />
-                          </xsl:call-template>
-                          <span class="label accent">FEATURED</span>
-                        </xsl:when>
-                        <xsl:otherwise>
-                          <xsl:call-template name="truncate">
-                            <xsl:with-param name="node" select="title" />
-                            <xsl:with-param name="length" select="30" />
-                          </xsl:call-template>
-                        </xsl:otherwise>
-                      </xsl:choose>
-                    </h5>
-                    <div class="meta">
-                      <p>
-                        <xsl:call-template name="date-teaching">
-                           <xsl:with-param name="date" select="date/date/start/@iso" />
+          <div class="row">
+            <xsl:for-each select="/data/teachings-latest/entry[position() &lt; 5]">
+              <div>
+                <xsl:attribute name="class">
+                  <xsl:text>teaching col-md-6 recent number</xsl:text>
+                  <xsl:value-of select="position()" />
+                </xsl:attribute>
+                <a>
+                  <xsl:call-template name="url-teachings" />
+                  <h5>
+                    <xsl:choose>
+                      <xsl:when test="position() = 1 and featured = 'Yes'">
+                        <xsl:call-template name="truncate">
+                          <xsl:with-param name="node" select="title" />
+                          <xsl:with-param name="length" select="25" />
                         </xsl:call-template>
-                      </p>
-                    </div>
-                    <div class="description">
-                      <p>
-                        <span>
-                          <xsl:call-template name="truncate">
-                            <xsl:with-param name="node" select="description" />
-                            <xsl:with-param name="length" select="100" />
-                          </xsl:call-template>
-                        </span>
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </xsl:for-each>
-            </div>
-            <div class="row num2">
-              <xsl:for-each select="/data/teachings-latest/entry[position() &gt; 3]">
-                <div>
-                  <xsl:attribute name="class">
-                    <xsl:text>col-md-4 recent number</xsl:text>
-                    <xsl:value-of select="position()" />
-                  </xsl:attribute>
-                  <a>
-                    <xsl:call-template name="url-teachings" />
-
-                    <h5>
-                      <xsl:value-of select="title" disable-output-escaping="yes" />
-                      <xsl:if test="featured = 'Yes'">
                         <span class="label accent">FEATURED</span>
-                      </xsl:if>
-                    </h5>
-
-                    <div class="meta">
-                      <p>
-                        <xsl:call-template name="date-teaching">
-                          <xsl:with-param name="date" select="date/date/start/@iso" />
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:call-template name="truncate">
+                          <xsl:with-param name="node" select="title" />
+                          <xsl:with-param name="length" select="30" />
                         </xsl:call-template>
-                      </p>
-                    </div>
-                    <div class="description">
-                      <p>
-                        <span>
-                          <xsl:call-template name="truncate">
-                            <xsl:with-param name="node" select="description" />
-                            <xsl:with-param name="length" select="100" />
-                          </xsl:call-template>
-                        </span>
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </xsl:for-each>
-            </div>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </h5>
+                  <p class="date">
+                    <xsl:call-template name="date-teaching">
+                       <xsl:with-param name="date" select="date/date/start/@iso" />
+                    </xsl:call-template>
+                  </p>
+                  <p class="description">
+                    <xsl:call-template name="truncate">
+                      <xsl:with-param name="node" select="description" />
+                      <xsl:with-param name="length" select="200" />
+                    </xsl:call-template>
+                  </p>
+                  <p class="more">
+                    <span class="more-link">More</span>
+                  </p>
+                </a>
+              </div>
+            </xsl:for-each>
+          </div>
         </div>
       </div>
 
       <div class="teachings-series teachings-series-full-width teachings-series-home">
         <h4>Teaching Series</h4>
         <div class="row">
-          <xsl:for-each select="/data/teachings-series-entries-filtered/entry[position() &lt; 4]">
-            <div class="col-md-4 series">
+          <xsl:for-each select="/data/teachings-series-entries-filtered/entry[position() &lt; 3]">
+            <div class="col-md-6 series">
               <a>
                 <xsl:call-template name="url-teachings-series" />
                 <xsl:call-template name="image-master">
@@ -612,14 +571,11 @@
               </a>
             </div>
           </xsl:for-each>
-          <div class="center visible-phone">
-            <a href="/teachings/series" class="link-big inline">See All Teachings Series</a>
-          </div>
         </div>
         <h4>Special Series</h4>
         <div class="row">
-          <xsl:for-each select="/data/teachings-series-special-filtered/entry[position() &lt; 4]">
-            <div class="col-md-4 series">
+          <xsl:for-each select="/data/teachings-series-special-filtered/entry[position() &lt; 3]">
+            <div class="col-md-6 series">
               <a>
                 <xsl:call-template name="url-teachings-series" />
                 <xsl:call-template name="image-master">
@@ -630,14 +586,7 @@
               </a>
             </div>
           </xsl:for-each>
-          <div class="center visible-phone">
-            <a href="/teachings/series/#special" class="link-big inline">See All Special Series</a>
-          </div>
         </div>
-
-        <hr/>
-
-        <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='main-podcast']/content)" disable-output-escaping="yes" />
       </div><!-- .row -->
 
     </div><!-- .container -->

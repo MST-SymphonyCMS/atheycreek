@@ -1,0 +1,75 @@
+
+// ================================================
+// TEACHINGS
+// - everything related to Teachings
+// ================================================
+
+
+// Home
+// ------------------------------------------------
+
+.teachings.teachings-home {
+
+  .teaching {
+    margin-bottom: 6rem;
+    @include animate-simple(all);
+
+    @media (min-width: $screen-md) {
+      margin-bottom: 3rem;
+    }
+
+    &:hover {
+      @include opacity(.5);
+    }
+  }
+
+  a {
+    color: lighten($gray-darker, 10%);
+  }
+
+  h5 {
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+
+  .date {
+    font-style: italic;
+    color: lighten($gray-darker, 40%);
+  }
+
+  @media (min-width: $screen-md) {
+    .description {
+      width: 80%;
+    }
+  }
+
+  .more {
+    margin-top: 2rem;
+  }
+
+  .more-link {
+    padding: .5rem 4rem;
+    font-family: $headings-font-family;
+    text-transform: uppercase;
+    color: white;
+    background: $brand-primary;
+  }
+
+}
+
+// Home: Teachings Series
+// ------------------------------------------------
+
+
+.teachings-series.teachings-series-home {
+
+  .series a {
+    display: block;
+    margin-bottom: 1.5rem;
+
+    @media (min-width: $screen-md) {
+      margin-bottom: 0;
+    }
+  }
+
+}

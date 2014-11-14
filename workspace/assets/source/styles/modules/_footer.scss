@@ -5,7 +5,6 @@
 // ================================================
 
 
-
 // Footer
 // ------------------------------------------------
 
@@ -34,15 +33,19 @@
 }
 
 .footer h5 {
+  font-size: 1.75rem;
+  font-weight: normal;
   text-transform: uppercase;
 }
 
 .footer p,
 .footer address {
-  color: lighten($gray-darker, 15%);
+  color: lighten($gray-darker, 25%);
 }
 
 .footer .baseline {
+  padding: 1rem 0;
+  font-size: 1.6rem;
   background: lighten($gray-darker, 50%);
 }
 

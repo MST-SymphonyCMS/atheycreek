@@ -8,10 +8,6 @@
 // Home
 // ------------------------------------------------
 
-.events.events-home h4 {
-  margin-top: 4rem;
-}
-
 .events.events-full-width {
 
   .event-row {
@@ -20,13 +16,23 @@
   }
 
   .event {
+    padding: 4rem 0;
     text-align: center;
     background: lighten($gray-darker, 70%);
     border-top-width: 10px;
     border-top-style: solid;
+    @include animate-simple(all);
+
+    &:hover {
+      background: lighten($gray-darker, 63%);
+    }
 
     &:nth-child(2n) {
       background: lighten($gray-darker, 75%);
+
+      &:hover {
+        background: lighten($gray-darker, 68%);
+      }
     }
   }
 
@@ -45,7 +51,7 @@
   }
 
   h5 {
-    padding: 1rem 0;
+    padding: 0 0 1rem 0;
     font-family: $font-family-base;
     font-weight: 500;
     font-style: italic;
@@ -68,14 +74,13 @@
 
   hr {
     background: none;
-    border-top: 3px solid $white;
+    border-top: 3px solid lighten($gray-darker, 55%);
     width: 10%;
     margin: 1rem auto;
   }
 
   .view {
     display: inline-block;
-    margin-bottom: 2rem;
     padding: .5rem 3.5rem;
     color: lighten($gray-darker, 25%);
     font-family: $headings-font-family;

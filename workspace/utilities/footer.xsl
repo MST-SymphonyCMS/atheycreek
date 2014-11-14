@@ -11,22 +11,17 @@
       </div>
     </div>
     <div class="baseline">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <p class="copyright">
-              <small>
-              <xsl:text>© 2006–</xsl:text>
-              <xsl:value-of select="$this-year" />
-              <xsl:text>&#160;&#160;•&#160;&#160;</xsl:text>
-              <a href="{$root}"><xsl:value-of select="$website-name" /></a> <xsl:text>&#160;&#160;•&#160;&#160;All&#160;rights&#160;reserved.&#160;&#160;•&#160;&#160;&#160;Some&#160;photos&#160;courtesy&#160;of&#160;</xsl:text>
-              <a href="http://fiftyfootshadows.net" target="_blank">John Carey</a>
-              <xsl:text>.</xsl:text>
-              </small>
-            </p>
-          </div>
-        </div>
-      </div>
+
+      <p class="copyright">
+        <xsl:text>© 2006–</xsl:text>
+        <xsl:value-of select="$this-year" />
+        <xsl:text>&#160;&#160;•&#160;&#160;</xsl:text>
+        <a href="{$root}"><xsl:value-of select="$website-name" /></a>
+        <xsl:text>&#160;&#160;•&#160;&#160;All rights reserved.&#160;&#160;•&#160;&#160;Some photos courtesy of </xsl:text>
+        <a href="http://fiftyfootshadows.net" target="_blank">John Carey</a>
+        <xsl:text>.</xsl:text>
+      </p>
+
     </div>
   </footer>
 

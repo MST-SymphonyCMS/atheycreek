@@ -37,6 +37,10 @@ body {
 a:hover {
   text-decoration: none;
   @include animate-simple(all);
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 
@@ -44,6 +48,8 @@ a:hover {
 // ------------------------------------------------
 
 .main-content {
+
+  padding-bottom: 6rem;
 
   h1,
   h2,

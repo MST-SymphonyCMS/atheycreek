@@ -80,7 +80,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <h4>Featured Teaching <span class="pull-right">Featured Series</span></h4>
+        <h4>Featured Teaching &amp; Series</h4>
       </div>
       <xsl:for-each select="/data/featured-teachings-home/entry">
         <div class="col-md-6">

@@ -12,3 +12,12 @@
 .feature h4 {
   margin-top: 4rem;
 }
+
+.feature a {
+  display: block;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: $screen-md) {
+    margin-bottom: 0;
+  }
+}

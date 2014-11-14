@@ -4,7 +4,7 @@
 <xsl:template name="alerts">
 
 	<xsl:if test="/data/live-status/entry/status = 'live' or /data/ustream/status = 'live'">
-    <div id="14097" class="alert alertLive">
+    <div id="14097" class="alert alert-warning">
       <div class="container">
         <p>Athey Creek is currently broadcasting live. <a href="/live/">Watch Live &#8594;</a></p>
       </div>
@@ -23,7 +23,7 @@
         <xsl:attribute name="class">
           <xsl:choose>
             <xsl:when test="type = 'warning'">
-              <xsl:text>alert alert-error</xsl:text>
+              <xsl:text>alert alert-warning</xsl:text>
             </xsl:when>
             <xsl:when test="type = 'success'">
               <xsl:text>alert alert-success</xsl:text>
@@ -32,7 +32,7 @@
               <xsl:text>alert alert-info</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:text>alert</xsl:text>
+              <xsl:text>alert alert-danger</xsl:text>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
@@ -73,7 +73,7 @@
         <xsl:attribute name="class">
           <xsl:choose>
             <xsl:when test="type = 'warning'">
-              <xsl:text>alert alert-error</xsl:text>
+              <xsl:text>alert alert-warning</xsl:text>
             </xsl:when>
             <xsl:when test="type = 'success'">
               <xsl:text>alert alert-success</xsl:text>
@@ -82,7 +82,7 @@
               <xsl:text>alert alert-info</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:text>alert</xsl:text>
+              <xsl:text>alert alert-danger</xsl:text>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>

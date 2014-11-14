@@ -3442,7 +3442,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
   padding: 15px;
   margin-bottom: 28px;
   border: 1px solid transparent;
-  border-radius: 4px; }
+  border-radius: 0; }
   .alert h4 {
     margin-top: 0;
     color: inherit; }
@@ -4766,6 +4766,32 @@ a:hover {
 
 /** Sass variables **/
 /** Sass mixins **/
+.alert {
+  margin-bottom: 0;
+  border: none; }
+  .alert a {
+    display: inline-block;
+    margin-left: 1.5rem;
+    padding: 0.15rem 0.75rem;
+    font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    text-transform: uppercase; }
+    .alert a:hover {
+      opacity: 0.5;
+      filter: alpha(opacity=50); }
+  .alert.alert-success a {
+    background: #3c763d;
+    color: #dff0d8; }
+  .alert.alert-info a {
+    background: #31708f;
+    color: #d9edf7; }
+  .alert.alert-warning a {
+    background: #8a6d3b;
+    color: #fcf8e3; }
+  .alert.alert-danger a {
+    background: #a94442;
+    color: #f2dede; }
+
 .icon-logo:before {
   content: '\f103'; }
 

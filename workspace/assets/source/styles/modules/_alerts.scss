@@ -1,0 +1,44 @@
+
+// ================================================
+// ALERTS
+// - everything related to Alerts
+// ================================================
+
+
+// Alerts
+// ------------------------------------------------
+
+.alert {
+  margin-bottom: 0;
+  border: none;
+
+  a {
+    display: inline-block;
+    margin-left: 1.5rem;
+    padding: .15rem .75rem;
+    font-family: $headings-font-family;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+
+    &:hover {
+      @include opacity(.5);
+    }
+  }
+
+  &.alert-success a {
+    background: $alert-success-text;
+    color: $alert-success-bg;
+  }
+  &.alert-info a {
+    background: $alert-info-text;
+    color: $alert-info-bg;
+  }
+  &.alert-warning a {
+    background: $alert-warning-text;
+    color: $alert-warning-bg;
+  }
+  &.alert-danger a {
+    background: $alert-danger-text;
+    color: $alert-danger-bg;
+  }
+}

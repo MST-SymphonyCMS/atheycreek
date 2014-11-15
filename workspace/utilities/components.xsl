@@ -69,14 +69,19 @@
 						<xsl:with-param name="mode" select="'single'" />
 					</xsl:call-template>
 				</xsl:when>
-				<!-- Current entries -->
 				<xsl:when test="$pt1 = 'events'">
-					<xsl:call-template name="component-events">
+					<!-- This is the /events landing page -->
+					<xsl:call-template name="events-landing">
+						<xsl:with-param name="position" select="name($xpath)" />
+						<xsl:with-param name="entries" select="/data/events-all-entries-filtered/entry" />
+					</xsl:call-template>
+					<!-- <xsl:call-template name="component-events">
 						<xsl:with-param name="component" select="." />
 						<xsl:with-param name="position" select="name($xpath)" />
 						<xsl:with-param name="entries" select="/data/events-all-entries-filtered/entry" />
 						<xsl:with-param name="mode" select="'list'" />
-					</xsl:call-template>
+					</xsl:call-template> -->
+					<!-- These are single entry recurring events -->
 					<xsl:call-template name="component-events">
 						<xsl:with-param name="component" select="." />
 						<xsl:with-param name="position" select="name($xpath)" />
@@ -97,6 +102,7 @@
 			</xsl:choose>
 		</xsl:if>
 		<xsl:if test=". = 'events-recurring'">
+			<!-- Events on the Meetings page -->
 			<xsl:call-template name="component-events">
 				<xsl:with-param name="component" select="." />
 				<xsl:with-param name="position" select="name($xpath)" />

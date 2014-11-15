@@ -1,0 +1,19 @@
+
+// ================================================
+// LABELS
+// - everything related to Labels
+// ================================================
+
+
+.label {
+
+  &.men         { background: $color-men; }
+  &.women       { background: $color-women; }
+  &.college     { background: $color-college; }
+  &.highschool  { background: $color-highschool; }
+  &.jrhigh      { background: $color-jrhigh; }
+  &.gradeschool { background: $color-gradeschool; }
+  &.children    { background: $color-children; }
+  &.allchurch   { background: $color-allchurch; }
+
+}

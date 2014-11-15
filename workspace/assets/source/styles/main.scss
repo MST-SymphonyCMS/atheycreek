@@ -26,7 +26,8 @@
 // ------------------------------------------------
 
 @import
-  "core/icons";
+  "core/icons",
+  "core/labels";
 
 
 // Modules
@@ -39,10 +40,3 @@
   "modules/events",
   "modules/teachings",
   "modules/footer";
-
-
-// Layouts
-// ------------------------------------------------
-
-@import
-  "layouts/home";

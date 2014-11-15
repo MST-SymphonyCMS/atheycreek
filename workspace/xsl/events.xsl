@@ -733,6 +733,111 @@
 </xsl:template>
 
 
+<!-- Template for the /events landing page -->
+<xsl:template name="events-landing">
+	<xsl:param name="position" />
+	<xsl:param name="entries" />
+
+	<h4>Upcoming Events</h4>
+
+	<div class="events events-full-width events-landing">
+		<xsl:for-each select="$entries">
+			<div class="event col-md-6">
+				<a>
+					<xsl:call-template name="url-events" />
+					<xsl:call-template name="image-master">
+					  <xsl:with-param name="photo" select="images/item/image/filename" />
+					  <xsl:with-param name="width" select="1800" />
+					</xsl:call-template>
+					<h5>
+						<xsl:value-of select="name"/>
+						<span>
+							<xsl:attribute name="class">
+								<xsl:choose>
+									<xsl:when test="tags/item/@id = '25'">
+										<xsl:text>label men</xsl:text>
+									</xsl:when>
+									<xsl:when test="tags/item/@id = '26'">
+										<xsl:text>label women</xsl:text>
+									</xsl:when>
+									<xsl:when test="tags/item/@id = '31'">
+										<xsl:text>label college</xsl:text>
+									</xsl:when>
+									<xsl:when test="tags/item/@id = '30'">
+										<xsl:text>label highschool</xsl:text>
+									</xsl:when>
+									<xsl:when test="tags/item/@id = '29'">
+										<xsl:text>label jrhigh</xsl:text>
+									</xsl:when>
+									<xsl:when test="tags/item/@id = '28'">
+										<xsl:text>label gradeschool</xsl:text>
+									</xsl:when>
+									<xsl:when test="tags/item/@id = '27'">
+										<xsl:text>label children</xsl:text>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:text>label allchurch</xsl:text>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:attribute>
+							<xsl:choose>
+								<xsl:when test="tags/item/@id = '25'">
+									<span>Men</span>
+								</xsl:when>
+								<xsl:when test="tags/item/@id = '26'">
+									<span>Women</span>
+								</xsl:when>
+								<xsl:when test="tags/item/@id = '31'">
+									<span>1824</span>
+								</xsl:when>
+								<xsl:when test="tags/item/@id = '30'">
+									<span>High School</span>
+								</xsl:when>
+								<xsl:when test="tags/item/@id = '29'">
+									<span>Jr. High</span>
+								</xsl:when>
+								<xsl:when test="tags/item/@id = '28'">
+									<span>Grade School</span>
+								</xsl:when>
+								<xsl:when test="tags/item/@id = '27'">
+									<span>Children's</span>
+								</xsl:when>
+								<xsl:otherwise>
+									<span>All Church</span>
+								</xsl:otherwise>
+							</xsl:choose>
+						</span>
+					</h5>
+					<p class="date">
+						<xsl:call-template name="format-date">
+							<xsl:with-param name="date" select="date/date/start/@iso" />
+							<xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
+						</xsl:call-template>
+					</p>
+					<p class="description">
+						<xsl:variable name="stripped">
+							<xsl:call-template name="remove-html">
+								<xsl:with-param name="text" select="description" />
+							</xsl:call-template>
+						</xsl:variable>
+						<xsl:call-template name="truncate">
+							<xsl:with-param name="node" select="$stripped" />
+							<xsl:with-param name="length" select="236" />
+						</xsl:call-template>
+					</p>
+					<p class="more">
+						<span class="more-link">More</span>
+					</p>
+				</a>
+			</div>
+		</xsl:for-each>
+	</div>
+
+
+
+</xsl:template>
+
+
 <xsl:template name="events-entry-column-right">
 
 	<xsl:param name="component" />
@@ -791,18 +896,18 @@
 
 	<xsl:param name="entries" />
 
-		<xsl:call-template name="cd-pagination">
-			<xsl:with-param name="pagination" select="$entries/../pagination" />
-			<xsl:with-param name="pagination-url">
-				<xsl:value-of select="$root" /><xsl:text>/</xsl:text>
-				<xsl:if test="$pt1">
-					<xsl:value-of select="$pt1" /><xsl:text>/</xsl:text>
-				</xsl:if>
-				<xsl:if test="$pt2">
-					<xsl:value-of select="'$'" /><xsl:text>/</xsl:text>
-				</xsl:if>
-			</xsl:with-param>
-		</xsl:call-template>
+	<xsl:call-template name="cd-pagination">
+		<xsl:with-param name="pagination" select="$entries/../pagination" />
+		<xsl:with-param name="pagination-url">
+			<xsl:value-of select="$root" /><xsl:text>/</xsl:text>
+			<xsl:if test="$pt1">
+				<xsl:value-of select="$pt1" /><xsl:text>/</xsl:text>
+			</xsl:if>
+			<xsl:if test="$pt2">
+				<xsl:value-of select="'$'" /><xsl:text>/</xsl:text>
+			</xsl:if>
+		</xsl:with-param>
+	</xsl:call-template>
 
 </xsl:template>
 

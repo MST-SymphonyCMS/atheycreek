@@ -4734,6 +4734,9 @@ a:hover {
   .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
     text-transform: uppercase;
     letter-spacing: 0.15rem; }
+  .main-content h4 {
+    margin: 6rem 0 3rem 0;
+    text-align: center; }
 
 @font-face {
   font-family: 'icons';
@@ -4766,6 +4769,23 @@ a:hover {
 
 /** Sass variables **/
 /** Sass mixins **/
+.label.men {
+  background: #3d3a3a; }
+.label.women {
+  background: #Df90f0; }
+.label.college {
+  background: #06e3b2; }
+.label.highschool {
+  background: #99a2ab; }
+.label.jrhigh {
+  background: #48a4ff; }
+.label.gradeschool {
+  background: #fed666; }
+.label.children {
+  background: #fed666; }
+.label.allchurch {
+  background: #ff5656; }
+
 .alert {
   margin-bottom: 0;
   border: none; }
@@ -5039,10 +5059,10 @@ a:hover {
     .feature a {
       margin-bottom: 0; } }
 
-.events.events-full-width .event-row {
+.events.events-full-width.events-home .event-row {
   padding-left: 15px;
   padding-right: 15px; }
-.events.events-full-width .event {
+.events.events-full-width.events-home .event {
   padding: 4rem 0;
   text-align: center;
   background: #eaebeb;
@@ -5050,52 +5070,52 @@ a:hover {
   border-top-style: solid;
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out; }
-  .events.events-full-width .event:hover {
+  .events.events-full-width.events-home .event:hover {
     background: #d8d9d9; }
-  .events.events-full-width .event:nth-child(2n) {
+  .events.events-full-width.events-home .event:nth-child(2n) {
     background: #f7f7f7; }
-    .events.events-full-width .event:nth-child(2n):hover {
+    .events.events-full-width.events-home .event:nth-child(2n):hover {
       background: #e5e5e6; }
-.events.events-full-width .men {
+.events.events-full-width.events-home .men {
   border-color: #3d3a3a; }
-.events.events-full-width .women {
+.events.events-full-width.events-home .women {
   border-color: #Df90f0; }
-.events.events-full-width .college {
+.events.events-full-width.events-home .college {
   border-color: #06e3b2; }
-.events.events-full-width .highschool {
+.events.events-full-width.events-home .highschool {
   border-color: #99a2ab; }
-.events.events-full-width .jrhigh {
+.events.events-full-width.events-home .jrhigh {
   border-color: #48a4ff; }
-.events.events-full-width .gradeschool {
+.events.events-full-width.events-home .gradeschool {
   border-color: #fed666; }
-.events.events-full-width .children {
+.events.events-full-width.events-home .children {
   border-color: #fed666; }
-.events.events-full-width .allchurch {
+.events.events-full-width.events-home .allchurch {
   border-color: #ff5656; }
-.events.events-full-width a {
+.events.events-full-width.events-home a {
   color: #76787a; }
-.events.events-full-width h5 {
+.events.events-full-width.events-home h5 {
   padding: 0 0 1rem 0;
   font-family: 'jubilat', Georgia, Times, serif;
   font-weight: 500;
   font-style: italic;
   text-transform: none; }
-.events.events-full-width h3 {
+.events.events-full-width.events-home h3 {
   width: 55%;
   margin: 0 auto;
   padding: 1rem 0 0 0;
   font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4;
   text-transform: uppercase; }
-  .events.events-full-width h3 span {
+  .events.events-full-width.events-home h3 span {
     display: block;
     min-height: 80px; }
-.events.events-full-width hr {
+.events.events-full-width.events-home hr {
   background: none;
   border-top: 3px solid #c3c4c5;
   width: 10%;
   margin: 1rem auto; }
-.events.events-full-width .view {
+.events.events-full-width.events-home .view {
   display: inline-block;
   padding: 0.5rem 3.5rem;
   color: #76787a;
@@ -5172,7 +5192,3 @@ a:hover {
 
 .footer .baseline .copyright {
   margin: 2rem 0 2rem 0; }
-
-.layout-home h4 {
-  margin: 6rem 0 3rem 0;
-  text-align: center; }

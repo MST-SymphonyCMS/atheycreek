@@ -62,12 +62,13 @@
 			<xsl:choose>
 				<!-- Single ID -->
 				<xsl:when test="count(/data/events-entry-by-id/entry)">
-					<xsl:call-template name="component-events">
+					<h1>Test</h1>
+					<!-- <xsl:call-template name="component-events">
 						<xsl:with-param name="component" select="." />
 						<xsl:with-param name="position" select="name($xpath)" />
 						<xsl:with-param name="entries" select="/data/events-entry-by-id/entry" />
 						<xsl:with-param name="mode" select="'single'" />
-					</xsl:call-template>
+					</xsl:call-template> -->
 				</xsl:when>
 				<xsl:when test="$pt1 = 'events'">
 					<!-- This is the /events landing page -->

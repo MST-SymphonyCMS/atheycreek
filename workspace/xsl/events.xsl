@@ -833,7 +833,19 @@
 		</xsl:for-each>
 	</div>
 
+	<h4>Bible Studies</h4>
 
+	<div class="events-recurring events-recurring-full-width events-recurring-landing">
+		<xsl:for-each select="/data/events-recurring-all-entries-filtered/entry [type/item/type/@handle = 'church-wide']">
+			<div class="event-recurring col-md-6">
+				<a>
+					<xsl:call-template name="url-events-recurring" />
+					<h5><xsl:value-of select="name"/></h5>
+					<p class="frequency"><xsl:value-of select="frequency"/></p>
+				</a>
+			</div>
+		</xsl:for-each>
+	</div>
 
 </xsl:template>
 
@@ -872,7 +884,7 @@
 					</table>
 				</xsl:when>
 				<xsl:otherwise>
-				    <div class="title">
+				   <div class="title">
 						<xsl:value-of select="name" disable-output-escaping="yes" />
 					</div>
 					<div class="frequency">

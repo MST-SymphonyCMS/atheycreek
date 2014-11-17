@@ -543,7 +543,7 @@
                   <p class="description">
                     <xsl:call-template name="truncate">
                       <xsl:with-param name="node" select="description" />
-                      <xsl:with-param name="length" select="200" />
+                      <xsl:with-param name="length" select="180" />
                     </xsl:call-template>
                   </p>
                   <p class="more">

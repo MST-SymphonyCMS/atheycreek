@@ -5124,6 +5124,48 @@ a:hover {
   text-transform: uppercase;
   border: 2px solid #76787a; }
 
+.events.events-full-width.events-landing .event {
+  margin-bottom: 3rem;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out; }
+  .events.events-full-width.events-landing .event:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50); }
+.events.events-full-width.events-landing a {
+  color: #505253; }
+.events.events-full-width.events-landing h5 {
+  margin-bottom: 0.5rem; }
+.events.events-full-width.events-landing h5 > .label {
+  position: relative;
+  top: -0.2rem;
+  margin-left: 1rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem; }
+.events.events-full-width.events-landing .date {
+  font-style: italic;
+  color: #9c9ea0; }
+.events.events-full-width.events-landing .more {
+  margin-top: 2rem; }
+.events.events-full-width.events-landing .more-link {
+  padding: 0.5rem 4rem;
+  font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  color: white;
+  background: #9c9ea0; }
+
+.events-recurring.events-recurring-full-width.events-recurring-landing .event-recurring a {
+  display: block;
+  margin-bottom: 3rem;
+  padding: 5rem 0;
+  color: #76787a;
+  text-align: center;
+  background: #dddede; }
+  .events-recurring.events-recurring-full-width.events-recurring-landing .event-recurring a:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50); }
+.events-recurring.events-recurring-full-width.events-recurring-landing h5 {
+  margin-bottom: 0.5rem; }
+
 .teachings.teachings-home .teaching {
   margin-bottom: 6rem;
   -webkit-transition: all 300ms ease-in-out;

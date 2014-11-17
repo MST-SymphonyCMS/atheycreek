@@ -89,3 +89,51 @@
     border: 2px solid lighten($gray-darker, 25%);
   }
 }
+
+// Landing
+
+.events.events-full-width.events-landing {
+
+  .event {
+    margin-bottom: 3rem;
+    @include animate-simple(all);
+
+    &:hover {
+      @include opacity(.5);
+    }
+  }
+
+  a {
+    color: lighten($gray-darker, 10%);
+  }
+
+  h5 {
+    margin-bottom: .5rem;
+  }
+
+  h5 > .label {
+    position: relative;
+    top: -.2rem;
+    margin-left: 1rem;
+    padding-top: .1rem;
+    padding-bottom: .1rem;
+  }
+
+  .date {
+    font-style: italic;
+    color: lighten($gray-darker, 40%);
+  }
+
+  .more {
+    margin-top: 2rem;
+  }
+
+  .more-link {
+    padding: .5rem 4rem;
+    font-family: $headings-font-family;
+    text-transform: uppercase;
+    color: white;
+    background: lighten($gray-darker, 40%);
+  }
+
+}

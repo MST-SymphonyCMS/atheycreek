@@ -1,0 +1,41 @@
+
+// ================================================
+// LOCATIONS
+// - everything related to Locations
+// ================================================
+
+
+// Sidebar
+// ------------------------------------------------
+
+.locations.locations-sidebar {
+  margin-bottom: 3rem;
+  color: lighten($gray-darker, 25%);
+
+  img {
+    margin-bottom: 2rem;
+  }
+
+  strong {
+    font-family: $headings-font-family;
+    font-size: 1.75rem;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  .more {
+    margin-top: 2rem;
+  }
+
+  .more-link {
+    display: block;
+    margin-bottom: 1.5rem;
+    padding: .5rem 4rem;
+    font-family: $headings-font-family;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    background: lighten($gray-darker, 40%);
+  }
+
+}

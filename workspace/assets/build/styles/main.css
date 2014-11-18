@@ -4737,6 +4737,8 @@ a:hover {
   .main-content h4 {
     margin: 6rem 0 3rem 0;
     text-align: center; }
+  .main-content ol, .main-content ul {
+    padding-left: 2rem; }
 
 @font-face {
   font-family: 'icons';
@@ -5049,9 +5051,6 @@ a:hover {
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0); }
 
-.feature h4 {
-  margin-top: 4rem; }
-
 .feature a {
   display: block;
   margin-bottom: 1.5rem; }
@@ -5134,7 +5133,7 @@ a:hover {
 .events.events-full-width.events-landing a {
   color: #505253; }
 .events.events-full-width.events-landing h5 {
-  margin-bottom: 0.5rem; }
+  margin: 2rem 0 0.5rem 0; }
 .events.events-full-width.events-landing h5 > .label {
   position: relative;
   top: -0.2rem;
@@ -5152,6 +5151,29 @@ a:hover {
   text-transform: uppercase;
   color: white;
   background: #9c9ea0; }
+
+.events.events-full-width.events-detail > img {
+  width: 100%; }
+.events.events-full-width.events-detail .title {
+  margin-bottom: 0.5rem;
+  padding-top: 3rem; }
+.events.events-full-width.events-detail .title > .label {
+  position: relative;
+  top: -0.2rem;
+  margin-left: 1rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem; }
+.events.events-full-width.events-detail .date {
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  color: #a9abac;
+  font-size: 2.1rem;
+  font-style: italic;
+  border-bottom: 0.2rem solid #f5f5f5; }
+.events.events-full-width.events-detail .description h1, .events.events-full-width.events-detail .description h2, .events.events-full-width.events-detail .description h3, .events.events-full-width.events-detail .description h4, .events.events-full-width.events-detail .description h5, .events.events-full-width.events-detail .description h6 {
+  font-size: 2.1rem; }
+.events.events-full-width.events-detail .description p, .events.events-full-width.events-detail .description em, .events.events-full-width.events-detail .description strong, .events.events-full-width.events-detail .description span, .events.events-full-width.events-detail .description address, .events.events-full-width.events-detail .description ul, .events.events-full-width.events-detail .description ol, .events.events-full-width.events-detail .description li {
+  color: #76787a; }
 
 .events-recurring.events-recurring-full-width.events-recurring-landing .event-recurring a {
   display: block;
@@ -5202,6 +5224,55 @@ a:hover {
   @media (min-width: 992px) {
     .teachings-series.teachings-series-home .series a {
       margin-bottom: 0; } }
+
+.members-roles.members-roles-sidebar {
+  padding: 3rem 0 0.5rem 0;
+  background: #f7f7f7; }
+  .members-roles.members-roles-sidebar .member {
+    margin-bottom: 30px;
+    padding: 1.5rem; }
+  .members-roles.members-roles-sidebar h4 {
+    margin: 0;
+    padding-bottom: 1.5rem; }
+  .members-roles.members-roles-sidebar a {
+    display: block;
+    color: #a9abac;
+    text-align: center; }
+    .members-roles.members-roles-sidebar a:hover {
+      opacity: 0.5;
+      filter: alpha(opacity=50); }
+  .members-roles.members-roles-sidebar img {
+    width: 20rem;
+    height: 20rem; }
+  .members-roles.members-roles-sidebar .info {
+    margin-top: 3rem; }
+  .members-roles.members-roles-sidebar h5 {
+    margin-bottom: 0.5rem; }
+  .members-roles.members-roles-sidebar .phone {
+    display: block;
+    margin-top: -0.2rem; }
+
+.locations.locations-sidebar {
+  margin-bottom: 3rem;
+  color: #76787a; }
+  .locations.locations-sidebar img {
+    margin-bottom: 2rem; }
+  .locations.locations-sidebar strong {
+    font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.75rem;
+    font-weight: normal;
+    text-transform: uppercase; }
+  .locations.locations-sidebar .more {
+    margin-top: 2rem; }
+  .locations.locations-sidebar .more-link {
+    display: block;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 4rem;
+    font-family: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    background: #9c9ea0; }
 
 .footer {
   background: #c3c4c5;

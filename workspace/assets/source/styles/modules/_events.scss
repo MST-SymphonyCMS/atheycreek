@@ -90,7 +90,9 @@
   }
 }
 
+
 // Landing
+// ------------------------------------------------
 
 .events.events-full-width.events-landing {
 
@@ -108,7 +110,7 @@
   }
 
   h5 {
-    margin-bottom: .5rem;
+    margin: 2rem 0 .5rem 0;
   }
 
   h5 > .label {
@@ -134,6 +136,64 @@
     text-transform: uppercase;
     color: white;
     background: lighten($gray-darker, 40%);
+  }
+
+}
+
+
+// Detail
+// ------------------------------------------------
+
+.events.events-full-width.events-detail {
+
+  > img {
+    width: 100%;
+  }
+
+  .title {
+    margin-bottom: .5rem;
+    padding-top: 3rem;
+  }
+
+  .title > .label {
+    position: relative;
+    top: -.2rem;
+    margin-left: 1rem;
+    padding-top: .1rem;
+    padding-bottom: .1rem;
+  }
+
+  .date {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    color: lighten($gray-darker, 45%);
+    font-size: 2.1rem;
+    font-style: italic;
+    border-bottom: .2rem solid lighten($gray-darker, 74%);
+  }
+
+  .description {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 2.1rem;
+    }
+
+    p,
+    em,
+    strong,
+    span,
+    address,
+    ul,
+    ol,
+    li {
+      color: lighten($gray-darker, 25%);
+    }
+
   }
 
 }

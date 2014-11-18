@@ -48,7 +48,6 @@ a:hover {
 // ------------------------------------------------
 
 .main-content {
-
   padding-bottom: 6rem;
 
   h1,
@@ -64,5 +63,10 @@ a:hover {
   h4 {
     margin: 6rem 0 3rem 0;
     text-align: center;
+  }
+
+  ol,
+  ul {
+    padding-left: 2rem;
   }
 }

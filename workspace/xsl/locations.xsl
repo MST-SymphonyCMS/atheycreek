@@ -231,17 +231,14 @@
 	<xsl:param name="component" />
 	<xsl:param name="entries" />
 
-	<div>
-		<xsl:call-template name="class-position">
-			<xsl:with-param name="component" select="$component" />
-		</xsl:call-template>
-		<h3 class="header">
+	<div class="locations locations-sidebar">
+		<h4>
 			<xsl:call-template name="pluralize">
 				<xsl:with-param name="singular" select="'Location'"  />
 				<xsl:with-param name="plural"   select="'Locations'" />
 				<xsl:with-param name="xpath"    select="$entries"    />
 			</xsl:call-template>
-		</h3>
+		</h4>
 		<xsl:for-each select="$entries">
 			<xsl:variable name="address">
 				<xsl:call-template name="url-encode">
@@ -269,18 +266,18 @@
 				</xsl:if>
 				<xsl:if test="string-length(longitude) and string-length(latitude) or string-length(address)">
 					<div class="map">
-						<img>
+						<img class="img-responsive">
 							<xsl:attribute name="src">
 								<xsl:text>http://maps.googleapis.com/maps/api/staticmap?center=</xsl:text>
 								<xsl:choose>
 									<xsl:when test="string-length(longitude) and string-length(latitude)">
 									 	<xsl:value-of select="$latlon" />
-									 	<xsl:text>&amp;zoom=14&amp;size=300x300&amp;markers=</xsl:text>
+									 	<xsl:text>&amp;zoom=14&amp;size=300x150&amp;markers=</xsl:text>
 									 	<xsl:value-of select="$latlon" />
 									</xsl:when>
 									<xsl:otherwise>
 										<xsl:value-of select="$address" />
-									 	<xsl:text>&amp;zoom=14&amp;size=300x300&amp;markers=</xsl:text>
+									 	<xsl:text>&amp;zoom=14&amp;size=300x150&amp;markers=</xsl:text>
 									 	<xsl:value-of select="$address" />
 									</xsl:otherwise>
 								</xsl:choose>
@@ -289,9 +286,10 @@
 						</img>
 						<div class="screen"></div>
 						<address>
-							<h5>
+							<strong>
 								<xsl:call-template name="location-name" />
-							</h5>
+							</strong>
+							<br/>
 							<xsl:choose>
 								<xsl:when test="string-length(address) = 0">
 									<strong>Latitude: </strong><xsl:value-of select="latitude"/>
@@ -308,26 +306,39 @@
 									<xsl:value-of select="zip" />
 								</xsl:otherwise>
 							</xsl:choose>
+							<br/>
+							<div class="more">
+								<a class="more-link" target="_blank">
+									<xsl:attribute name="href">
+										<xsl:text>http://maps.google.com/maps?q=</xsl:text>
+										<xsl:choose>
+											<xsl:when test="string-length(address) = 0">
+												<xsl:value-of select="$latlon"/>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:value-of select="$address"/>
+											</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
+									<xsl:text> View on Google Maps</xsl:text>
+								</a>
+								<a class="more-link">
+									<xsl:attribute name="href">
+										<xsl:text>http://maps.apple.com/maps?q=</xsl:text>
+										<xsl:choose>
+											<xsl:when test="string-length(address) = 0">
+												<xsl:value-of select="$latlon"/>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:value-of select="$address"/>
+											</xsl:otherwise>
+										</xsl:choose>
+									</xsl:attribute>
+									<xsl:text> View on Apple Maps</xsl:text>
+								</a>
+							</div>
 						</address>
-						<xsl:call-template name="edit-entry">
-							<xsl:with-param name="component" select="$component"/>
-						</xsl:call-template>
 					</div>
-					<a class="more" target="_blank">
-						<xsl:attribute name="href">
-							<xsl:text>http://maps.google.com/maps?q=</xsl:text>
-							<xsl:choose>
-								<xsl:when test="string-length(address) = 0">
-									<xsl:value-of select="$latlon"/>
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:value-of select="$address"/>
-								</xsl:otherwise>
-							</xsl:choose>
-						</xsl:attribute>
-						<span class="icon">G</span>
-						<xsl:text> View on Google Maps</xsl:text>
-					</a>
 				</xsl:if>
 			</div>
 		</xsl:for-each>

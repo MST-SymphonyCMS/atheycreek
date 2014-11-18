@@ -1,0 +1,54 @@
+
+// ================================================
+// MEMBERS ROLES
+// - everything related to Members Roles
+// ================================================
+
+
+// Sidebar
+// ------------------------------------------------
+
+.members-roles.members-roles-sidebar {
+  padding: 3rem 0 .5rem 0;
+  background: lighten($gray-darker, 75%);
+
+  .member {
+    margin-bottom: 30px;
+    padding: 1.5rem;
+  }
+
+  h4 {
+    margin: 0;
+    padding-bottom: 1.5rem;
+  }
+
+  a {
+    display: block;
+    color: lighten($gray-darker, 45%);
+    text-align: center;
+
+
+    &:hover {
+      @include opacity(.5);
+    }
+  }
+
+  img {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .info {
+    margin-top: 3rem;
+  }
+
+  h5 {
+    margin-bottom: .5rem;
+  }
+
+  .phone {
+    display: block;
+    margin-top: -.2rem;
+  }
+
+}

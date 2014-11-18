@@ -129,7 +129,7 @@
 			<xsl:with-param name="component" select="$component" />
 		</xsl:call-template>
 
-		<h3 class="header">Our Staff</h3>
+		<h4>Our Staff</h4>
 
 		<ul class="contacts nav nav-tabs nav-stacked">
 			<xsl:for-each select="$entries">
@@ -190,62 +190,61 @@
 	<xsl:param name="component" />
 	<xsl:param name="entries" />
 
-	<div>
-		<xsl:call-template name="class-position">
-			<xsl:with-param name="component" select="$component" />
-		</xsl:call-template>
+	<div class="members-roles members-roles-sidebar">
 
-		<h3 class="header">Our Staff</h3>
-
-		<ul class="contacts nav nav-tabs nav-stacked">
-			<xsl:for-each select="$entries">
-				<xsl:variable name="name">
-					<xsl:value-of select="display" disable-output-escaping="yes" />
-				</xsl:variable>
-				<xsl:variable name="email">
-					<xsl:call-template name="members-roles-email-events-anonymize" />
-				</xsl:variable>
-				<xsl:variable name="phone">
-					<xsl:call-template name="members-roles-phone-number-events-anonymize" />
-				</xsl:variable>
-				<li>
-					<xsl:call-template name="class-rows" />
-					<a title="Email {$name}" class="mailto">
-						<xsl:if test="anonymize = 'No' or string-length(email)">
-							<xsl:attribute name="href">
+		<h4>Our Staff</h4>
+		<xsl:for-each select="$entries">
+			<xsl:variable name="name">
+				<xsl:value-of select="display" disable-output-escaping="yes" />
+			</xsl:variable>
+			<xsl:variable name="email">
+				<xsl:call-template name="members-roles-email-events-anonymize" />
+			</xsl:variable>
+			<xsl:variable name="phone">
+				<xsl:call-template name="members-roles-phone-number-events-anonymize" />
+			</xsl:variable>
+			<xsl:if test="position() != 1">
+				<hr/>
+			</xsl:if>
+			<div class="member">
+				<a title="Email {$name}">
+					<xsl:attribute name="href">
+						<xsl:choose>
+							<xsl:when test="anonymize = 'No' and string-length(email)">
 								<xsl:text disable-output-escaping="yes">mailto:</xsl:text>
 								<xsl:value-of select="$email" />
-							</xsl:attribute>
-						</xsl:if>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:text>javascript:void(0)</xsl:text>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:attribute>
 
-						<div class="pull-left">
-							<xsl:call-template name="image-master">
-				        <xsl:with-param name="photo" select="photo/filename" />
-				        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
-				        <xsl:with-param name="width" select="144" />
-				        <xsl:with-param name="height" select="144" />
-				        <xsl:with-param name="responsive" select="0" />
-				        <xsl:with-param name="circle" select="1" />
-				      </xsl:call-template>
-						</div>
-						<div class="info">
-							<h4>
-								<xsl:value-of select="$name" disable-output-escaping="yes" />
-							</h4>
-							<div>
-								<span class="email"><xsl:value-of select="$email" /></span><br />
+					<xsl:call-template name="image-master">
+		        <xsl:with-param name="photo" select="photo/filename" />
+		        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+		        <xsl:with-param name="width" select="400" />
+		        <xsl:with-param name="height" select="400" />
+		        <xsl:with-param name="responsive" select="0" />
+		        <xsl:with-param name="circle" select="1" />
+		      </xsl:call-template>
+					<div class="info">
+						<h5>
+							<xsl:value-of select="$name" disable-output-escaping="yes" />
+						</h5>
+						<div>
+							<xsl:if test="string-length($email) and anonymize = 'No'">
+								<span class="email"><xsl:value-of select="$email" /></span>
+							</xsl:if>
+							<xsl:if test="string-length($phone)">
 								<span class="phone"><xsl:value-of select="$phone" /></span>
-							</div>
+							</xsl:if>
 						</div>
-					</a>
-				</li>
-			</xsl:for-each>
-			<a href="/about/staff/" class="more">
-				<span class="icon">g</span>
-				<xsl:text>Meet our staff</xsl:text>
-			</a>
-		</ul>
-	</div>
+					</div>
+				</a>
+			</div><!-- .member -->
+		</xsl:for-each>
+	</div><!-- .members-roles -->
 
 </xsl:template>
 

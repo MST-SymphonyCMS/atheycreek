@@ -132,7 +132,6 @@
 
 					<xsl:call-template name="page-live"/>
 
-
 				</div><!-- .main-content -->
 
 				<xsl:call-template name="footer"/>
@@ -149,26 +148,15 @@
 
 	<xsl:param name="xpath" />
 
-	<div class="container">
-
-		<div class="row">
-			<div class="col-md-12">
-				<xsl:call-template name="component">
-					<xsl:with-param name="xpath" select="$xpath/column-full-width" />
-				</xsl:call-template>
-			</div>
-		</div> <!-- .row -->
-
-		<div class="row">
-			<xsl:call-template name="component">
-				<xsl:with-param name="xpath" select="$xpath/column-center" />
-			</xsl:call-template>
-			<xsl:call-template name="component">
-				<xsl:with-param name="xpath" select="$xpath/column-right" />
-			</xsl:call-template>
-		</div> <!-- .row -->
-
-	</div> <!-- .container -->
+	<xsl:call-template name="component">
+		<xsl:with-param name="xpath" select="$xpath/column-full-width" />
+	</xsl:call-template>
+	<xsl:call-template name="component">
+		<xsl:with-param name="xpath" select="$xpath/column-center" />
+	</xsl:call-template>
+	<xsl:call-template name="component">
+		<xsl:with-param name="xpath" select="$xpath/column-right" />
+	</xsl:call-template>
 
 </xsl:template>
 

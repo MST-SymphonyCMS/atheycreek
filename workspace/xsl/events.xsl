@@ -738,18 +738,138 @@
 	<xsl:param name="position" />
 	<xsl:param name="entries" />
 
-	<h4>Upcoming Events</h4>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h4>Upcoming Events</h4>
+				<div class="events events-full-width events-landing">
+					<xsl:for-each select="$entries">
+						<div class="event col-md-6">
+							<a>
+								<xsl:call-template name="url-events" />
+								<xsl:call-template name="image-master">
+								  <xsl:with-param name="photo" select="images/item/image/filename" />
+								  <xsl:with-param name="width" select="1800" />
+								</xsl:call-template>
+								<h5>
+									<xsl:value-of select="name"/>
+									<span>
+										<xsl:attribute name="class">
+											<xsl:choose>
+												<xsl:when test="tags/item/@id = '25'">
+													<xsl:text>label men</xsl:text>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '26'">
+													<xsl:text>label women</xsl:text>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '31'">
+													<xsl:text>label college</xsl:text>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '30'">
+													<xsl:text>label highschool</xsl:text>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '29'">
+													<xsl:text>label jrhigh</xsl:text>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '28'">
+													<xsl:text>label gradeschool</xsl:text>
+												</xsl:when>
+												<xsl:when test="tags/item/@id = '27'">
+													<xsl:text>label children</xsl:text>
+												</xsl:when>
+												<xsl:otherwise>
+													<xsl:text>label allchurch</xsl:text>
+												</xsl:otherwise>
+											</xsl:choose>
+										</xsl:attribute>
+										<xsl:choose>
+											<xsl:when test="tags/item/@id = '25'">
+												<span>Men</span>
+											</xsl:when>
+											<xsl:when test="tags/item/@id = '26'">
+												<span>Women</span>
+											</xsl:when>
+											<xsl:when test="tags/item/@id = '31'">
+												<span>1824</span>
+											</xsl:when>
+											<xsl:when test="tags/item/@id = '30'">
+												<span>High School</span>
+											</xsl:when>
+											<xsl:when test="tags/item/@id = '29'">
+												<span>Jr. High</span>
+											</xsl:when>
+											<xsl:when test="tags/item/@id = '28'">
+												<span>Grade School</span>
+											</xsl:when>
+											<xsl:when test="tags/item/@id = '27'">
+												<span>Children's</span>
+											</xsl:when>
+											<xsl:otherwise>
+												<span>All Church</span>
+											</xsl:otherwise>
+										</xsl:choose>
+									</span>
+								</h5>
+								<p class="date">
+									<xsl:call-template name="format-date">
+										<xsl:with-param name="date" select="date/date/start/@iso" />
+										<xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
+									</xsl:call-template>
+								</p>
+								<p class="description">
+									<xsl:variable name="stripped">
+										<xsl:call-template name="remove-html">
+											<xsl:with-param name="text" select="description" />
+										</xsl:call-template>
+									</xsl:variable>
+									<xsl:call-template name="truncate">
+										<xsl:with-param name="node" select="$stripped" />
+										<xsl:with-param name="length" select="236" />
+									</xsl:call-template>
+								</p>
+								<p class="more">
+									<span class="more-link">More</span>
+								</p>
+							</a>
+						</div>
+					</xsl:for-each>
+				</div>
 
-	<div class="events events-full-width events-landing">
-		<xsl:for-each select="$entries">
-			<div class="event col-md-6">
-				<a>
-					<xsl:call-template name="url-events" />
-					<xsl:call-template name="image-master">
-					  <xsl:with-param name="photo" select="images/item/image/filename" />
-					  <xsl:with-param name="width" select="1800" />
-					</xsl:call-template>
-					<h5>
+				<h4>Bible Studies</h4>
+
+				<div class="events-recurring events-recurring-full-width events-recurring-landing">
+					<xsl:for-each select="/data/events-recurring-all-entries-filtered/entry [type/item/type/@handle = 'church-wide']">
+						<div class="event-recurring col-md-6">
+							<a>
+								<xsl:call-template name="url-events-recurring" />
+								<h5><xsl:value-of select="name"/></h5>
+								<p class="frequency"><xsl:value-of select="frequency"/></p>
+							</a>
+						</div>
+					</xsl:for-each>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</xsl:template>
+
+
+<!-- Template for the /events/#ID/detail Events detail pages -->
+<xsl:template match="/data/events-entry-by-id/entry" mode="detail">
+	<xsl:param name="position" />
+	<xsl:param name="entries" />
+
+	<div class="events events-full-width events-detail">
+		<xsl:call-template name="image-master">
+		  <xsl:with-param name="photo" select="images/item/image/filename" />
+		  <xsl:with-param name="width" select="1800" />
+		  <xsl:with-param name="height" select="600" />
+		</xsl:call-template>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<h3 class="title">
 						<xsl:value-of select="name"/>
 						<span>
 							<xsl:attribute name="class">
@@ -807,46 +927,54 @@
 								</xsl:otherwise>
 							</xsl:choose>
 						</span>
-					</h5>
+					</h3>
 					<p class="date">
-						<xsl:call-template name="format-date">
-							<xsl:with-param name="date" select="date/date/start/@iso" />
-							<xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
-						</xsl:call-template>
-					</p>
-					<p class="description">
-						<xsl:variable name="stripped">
-							<xsl:call-template name="remove-html">
-								<xsl:with-param name="text" select="description" />
+						<xsl:for-each select="date/date">
+							<xsl:call-template name="timespan-format">
+								<xsl:with-param name="date" select="." />
 							</xsl:call-template>
-						</xsl:variable>
-						<xsl:call-template name="truncate">
-							<xsl:with-param name="node" select="$stripped" />
-							<xsl:with-param name="length" select="236" />
+							<xsl:choose>
+								<xsl:when test="position() = last">
+								</xsl:when>
+								<xsl:otherwise>
+									<br/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:for-each>
+					</p>
+					<div class="description">
+						<xsl:value-of select="description" disable-output-escaping="yes" />
+					</div>
+				</div><!-- .col-md-8 -->
+				<div class="col-md-4">
+					<xsl:call-template name="component-locations">
+						<xsl:with-param name="component" select="'locations'" />
+						<xsl:with-param name="position" select="'column-right'" />
+						<xsl:with-param name="entries" select="locations/item" />
+					</xsl:call-template>
+					<xsl:if test="string-length(/data/members-by-id/entry)">
+						<xsl:call-template name="members-roles-events-column-right">
+							<xsl:with-param name="component" select="'members-roles'" />
+							<xsl:with-param name="entries" select="/data/members-by-id/entry" />
 						</xsl:call-template>
-					</p>
-					<p class="more">
-						<span class="more-link">More</span>
-					</p>
-				</a>
+					</xsl:if>
+					<xsl:call-template name="component-downloads">
+						<xsl:with-param name="component" select="'downloads'" />
+						<xsl:with-param name="position" select="'column-right'" />
+						<xsl:with-param name="entries" select="downloads/item" />
+					</xsl:call-template>
+				</div>
 			</div>
-		</xsl:for-each>
+		</div>
 	</div>
 
-	<h4>Bible Studies</h4>
+</xsl:template>
 
-	<div class="events-recurring events-recurring-full-width events-recurring-landing">
-		<xsl:for-each select="/data/events-recurring-all-entries-filtered/entry [type/item/type/@handle = 'church-wide']">
-			<div class="event-recurring col-md-6">
-				<a>
-					<xsl:call-template name="url-events-recurring" />
-					<h5><xsl:value-of select="name"/></h5>
-					<p class="frequency"><xsl:value-of select="frequency"/></p>
-				</a>
-			</div>
-		</xsl:for-each>
-	</div>
 
+<xsl:template match="/data/events-entry-by-id/entry/description/h3">
+	<xsl:element name="h4">
+	  <xsl:apply-templates select="* | @* | text()"/>
+	 </xsl:element>
 </xsl:template>
 
 

@@ -29,7 +29,7 @@
 				</div>
 			</xsl:when>
 			<xsl:when test="name($xpath) = 'column-center'">
-				<div id="main-content" class="span8 column-center">
+				<div id="main-content" class="column-center">
 					<xsl:call-template name="component-populate">
 						<xsl:with-param name="xpath" select="$xpath" />
 					</xsl:call-template>
@@ -60,9 +60,11 @@
 		</xsl:if>
 		<xsl:if test=". = 'events'">
 			<xsl:choose>
-				<!-- Single ID -->
+				<!-- Single Event pages -->
 				<xsl:when test="count(/data/events-entry-by-id/entry)">
-					<h1>Test</h1>
+					<xsl:apply-templates select="/data/events-entry-by-id/entry" mode="detail">
+						<xsl:with-param name="position" select="name($xpath)" />
+					</xsl:apply-templates>
 					<!-- <xsl:call-template name="component-events">
 						<xsl:with-param name="component" select="." />
 						<xsl:with-param name="position" select="name($xpath)" />

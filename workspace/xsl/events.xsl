@@ -860,6 +860,32 @@
 	<xsl:param name="position" />
 	<xsl:param name="entries" />
 
+	<xsl:call-template name="events-detail">
+		<xsl:with-param name="position" select="$position" />
+		<xsl:with-param name="entries" select="$entries" />
+	</xsl:call-template>
+</xsl:template>
+
+
+<!-- Template for the /events/#ID/detail Events detail pages -->
+<xsl:template match="/data/events-recurring-entry-by-id/entry" mode="detail">
+	<xsl:param name="position" />
+	<xsl:param name="entries" />
+	<xsl:param name="recurring" />
+
+	<xsl:call-template name="events-detail">
+		<xsl:with-param name="position" select="$position" />
+		<xsl:with-param name="entries" select="$entries" />
+		<xsl:with-param name="recurring" select="$recurring" />
+	</xsl:call-template>
+</xsl:template>
+
+
+<xsl:template name="events-detail">
+	<xsl:param name="position" />
+	<xsl:param name="entries" />
+	<xsl:param name="recurring" />
+
 	<div class="events events-full-width events-detail">
 		<xsl:call-template name="image-master">
 		  <xsl:with-param name="photo" select="images/item/image/filename" />
@@ -929,18 +955,25 @@
 						</span>
 					</h3>
 					<p class="date">
-						<xsl:for-each select="date/date">
-							<xsl:call-template name="timespan-format">
-								<xsl:with-param name="date" select="." />
-							</xsl:call-template>
-							<xsl:choose>
-								<xsl:when test="position() = last">
-								</xsl:when>
-								<xsl:otherwise>
-									<br/>
-								</xsl:otherwise>
-							</xsl:choose>
-						</xsl:for-each>
+						<xsl:choose>
+							<xsl:when test="$recurring">
+								<xsl:value-of select="frequency" disable-output-escaping="yes" />
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:for-each select="date/date">
+									<xsl:call-template name="timespan-format">
+										<xsl:with-param name="date" select="." />
+									</xsl:call-template>
+									<xsl:choose>
+										<xsl:when test="position() = last">
+										</xsl:when>
+										<xsl:otherwise>
+											<br/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:for-each>
+							</xsl:otherwise>
+						</xsl:choose>
 					</p>
 					<div class="description">
 						<xsl:value-of select="description" disable-output-escaping="yes" />

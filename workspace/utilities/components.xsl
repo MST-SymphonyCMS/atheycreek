@@ -75,13 +75,17 @@
 				</xsl:when>
 				<!-- Single Events Recurring pages -->
 				<xsl:when test="count(/data/events-recurring-entry-by-id/entry)">
-					<xsl:call-template name="component-events">
+					<xsl:apply-templates select="/data/events-recurring-entry-by-id/entry" mode="detail">
+						<xsl:with-param name="position" select="name($xpath)" />
+						<xsl:with-param name="recurring" select="'yes'" />
+					</xsl:apply-templates>
+<!-- 					<xsl:call-template name="component-events">
 						<xsl:with-param name="component" select="." />
 						<xsl:with-param name="position" select="name($xpath)" />
 						<xsl:with-param name="entries" select="/data/events-recurring-entry-by-id/entry" />
 						<xsl:with-param name="recurring" select="'yes'" />
 						<xsl:with-param name="mode" select="'single'" />
-					</xsl:call-template>
+					</xsl:call-template> -->
 				</xsl:when>
 				<!-- Tagged entries -->
 				<xsl:otherwise>

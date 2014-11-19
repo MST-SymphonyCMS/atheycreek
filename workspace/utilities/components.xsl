@@ -60,31 +60,21 @@
 		</xsl:if>
 		<xsl:if test=". = 'events'">
 			<xsl:choose>
-				<!-- Single Event pages -->
-				<xsl:when test="count(/data/events-entry-by-id/entry)">
-					<xsl:apply-templates select="/data/events-entry-by-id/entry" mode="detail">
-						<xsl:with-param name="position" select="name($xpath)" />
-					</xsl:apply-templates>
-					<!-- <xsl:call-template name="component-events">
-						<xsl:with-param name="component" select="." />
-						<xsl:with-param name="position" select="name($xpath)" />
-						<xsl:with-param name="entries" select="/data/events-entry-by-id/entry" />
-						<xsl:with-param name="mode" select="'single'" />
-					</xsl:call-template> -->
-				</xsl:when>
-				<xsl:when test="$pt1 = 'events'">
-					<!-- This is the /events landing page -->
+				<!-- This is the /events landing page -->
+				<xsl:when test="$pt1 = 'events' and not($pt2)">
 					<xsl:call-template name="events-landing">
 						<xsl:with-param name="position" select="name($xpath)" />
 						<xsl:with-param name="entries" select="/data/events-all-entries-filtered/entry" />
 					</xsl:call-template>
-					<!-- <xsl:call-template name="component-events">
-						<xsl:with-param name="component" select="." />
+				</xsl:when>
+				<!-- Single Events pages -->
+				<xsl:when test="count(/data/events-entry-by-id/entry)">
+					<xsl:apply-templates select="/data/events-entry-by-id/entry" mode="detail">
 						<xsl:with-param name="position" select="name($xpath)" />
-						<xsl:with-param name="entries" select="/data/events-all-entries-filtered/entry" />
-						<xsl:with-param name="mode" select="'list'" />
-					</xsl:call-template> -->
-					<!-- These are single entry recurring events -->
+					</xsl:apply-templates>
+				</xsl:when>
+				<!-- Single Events Recurring pages -->
+				<xsl:when test="count(/data/events-recurring-entry-by-id/entry)">
 					<xsl:call-template name="component-events">
 						<xsl:with-param name="component" select="." />
 						<xsl:with-param name="position" select="name($xpath)" />

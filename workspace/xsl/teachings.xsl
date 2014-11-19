@@ -239,7 +239,7 @@
                       <xsl:call-template name="image-master">
                         <xsl:with-param name="photo" select="poster/item/image/filename" />
                         <xsl:with-param name="width" select="600" />
-                        <xsl:with-param name="height" select="0" />
+                        <xsl:with-param name="height" select="338" />
                       </xsl:call-template>
                     </a>
                   </div>
@@ -260,7 +260,7 @@
                         <xsl:call-template name="image-master">
                           <xsl:with-param name="photo" select="poster/item/image/filename" />
                           <xsl:with-param name="width" select="600" />
-                          <xsl:with-param name="height" select="0" />
+                          <xsl:with-param name="height" select="338" />
                         </xsl:call-template>
                       </a>
                     </div>
@@ -452,7 +452,7 @@
                 <xsl:call-template name="image-master">
                   <xsl:with-param name="photo" select="poster/item/image/filename" />
                   <xsl:with-param name="width" select="600" />
-                  <xsl:with-param name="height" select="0" />
+                  <xsl:with-param name="height" select="338" />
                 </xsl:call-template>
               </a>
               <div class="info">
@@ -476,7 +476,7 @@
                 <xsl:call-template name="image-master">
                   <xsl:with-param name="photo" select="poster/item/image/filename" />
                   <xsl:with-param name="width" select="600" />
-                  <xsl:with-param name="height" select="0" />
+                  <xsl:with-param name="height" select="338" />
                 </xsl:call-template>
               </a>
               <div class="info">
@@ -566,7 +566,7 @@
                 <xsl:call-template name="image-master">
                   <xsl:with-param name="photo" select="poster/item/image/filename" />
                   <xsl:with-param name="width" select="600" />
-                  <xsl:with-param name="height" select="0" />
+                  <xsl:with-param name="height" select="338" />
                 </xsl:call-template>
               </a>
             </div>
@@ -581,7 +581,7 @@
                 <xsl:call-template name="image-master">
                   <xsl:with-param name="photo" select="poster/item/image/filename" />
                   <xsl:with-param name="width" select="600" />
-                  <xsl:with-param name="height" select="0" />
+                  <xsl:with-param name="height" select="338" />
                 </xsl:call-template>
               </a>
             </div>

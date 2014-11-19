@@ -841,7 +841,7 @@
 					<xsl:for-each select="/data/events-recurring-all-entries-filtered/entry [type/item/type/@handle = 'church-wide']">
 						<div class="event-recurring col-md-6">
 							<a>
-								<xsl:call-template name="url-events-recurring" />
+								<xsl:call-template name="url-events" />
 								<h5><xsl:value-of select="name"/></h5>
 								<p class="frequency"><xsl:value-of select="frequency"/></p>
 							</a>

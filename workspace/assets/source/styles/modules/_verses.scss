@@ -1,0 +1,46 @@
+
+// ================================================
+// VERSES
+// - everything related to Verses
+// ================================================
+
+
+// Main
+// ------------------------------------------------
+
+.verse {
+  width: 85%;
+  margin: 0 auto;
+  padding: 1rem 0;
+  text-align: center;
+  border: none;
+
+  @media (min-width: $screen-sm-min) {
+    width: 75%;
+    padding: 3.5rem 0;
+  }
+
+  @media (min-width: $screen-md-min) {
+    width: 45%;
+    padding: 3.5rem 0 2rem 0;
+  }
+}
+
+.verse p {
+  margin-bottom: .5rem;
+  color: lighten($gray-darker, 25%);
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.verse cite {
+  margin-top: 0;
+  padding: 0;
+  color: lighten($gray-darker, 45%);
+  font-family: $headings-font-family;
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+}

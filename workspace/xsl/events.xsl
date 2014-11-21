@@ -824,7 +824,7 @@
 									</xsl:variable>
 									<xsl:call-template name="truncate">
 										<xsl:with-param name="node" select="$stripped" />
-										<xsl:with-param name="length" select="236" />
+										<xsl:with-param name="length" select="215" />
 									</xsl:call-template>
 								</p>
 								<p class="more">
@@ -890,7 +890,7 @@
 		<xsl:call-template name="image-master">
 		  <xsl:with-param name="photo" select="images/item/image/filename" />
 		  <xsl:with-param name="width" select="1800" />
-		  <xsl:with-param name="height" select="600" />
+		  <xsl:with-param name="height" select="900" />
 		</xsl:call-template>
 		<div class="container">
 			<div class="row">

@@ -1,0 +1,35 @@
+
+// ================================================
+// TEXT
+// - everything related to Text
+// ================================================
+
+
+// Full Width
+// ------------------------------------------------
+
+.text {
+
+}
+
+.text-full-width {
+
+  h1 {
+    margin: 0 auto;
+    padding: 5rem 0;
+    font-weight: 900;
+    letter-spacing: .3rem;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+
+    @media (min-width: $screen-sm-min) {
+      width: 85%;
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: 50%;
+    }
+  }
+}
+

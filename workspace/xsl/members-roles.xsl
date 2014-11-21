@@ -119,7 +119,7 @@
 </xsl:template>
 
 
-<xsl:template name="members-roles-column-right">
+<!-- <xsl:template name="members-roles-column-right">
 
 	<xsl:param name="component" />
 	<xsl:param name="entries" />
@@ -182,17 +182,51 @@
 		</ul>
 	</div>
 
-</xsl:template>
+</xsl:template> -->
 
 
-<xsl:template name="members-roles-events-column-right">
-
+<xsl:template name="members-roles-column-right">
 	<xsl:param name="component" />
 	<xsl:param name="entries" />
 
 	<div class="members-roles members-roles-sidebar">
-
 		<h4>Our Staff</h4>
+
+		<xsl:for-each select="$entries">
+			<xsl:variable name="name">
+				<xsl:value-of select="member/item/first-name" disable-output-escaping="yes" />
+				<xsl:text> </xsl:text>
+				<xsl:value-of select="member/item/last-name" disable-output-escaping="yes" />
+			</xsl:variable>
+			<xsl:variable name="email">
+				<xsl:call-template name="members-roles-email-anonymize" />
+			</xsl:variable>
+			<xsl:variable name="phone">
+				<xsl:call-template name="members-roles-phone-number-anonymize" />
+			</xsl:variable>
+			<xsl:variable name="photo">
+				<xsl:value-of select="member/item/photo/filename"/>
+			</xsl:variable>
+
+			<xsl:call-template name="members-roles-sidebar-entry">
+				<xsl:with-param name="entries" select="$entries" />
+				<xsl:with-param name="name" select="$name" />
+				<xsl:with-param name="email" select="$email" />
+				<xsl:with-param name="phone" select="$phone" />
+				<xsl:with-param name="photo" select="$photo" />
+			</xsl:call-template>
+		</xsl:for-each>
+	</div><!-- .members-roles -->
+</xsl:template>
+
+
+<xsl:template name="members-roles-events-column-right">
+	<xsl:param name="component" />
+	<xsl:param name="entries" />
+
+	<div class="members-roles members-roles-sidebar">
+		<h4>Our Staff</h4>
+
 		<xsl:for-each select="$entries">
 			<xsl:variable name="name">
 				<xsl:value-of select="display" disable-output-escaping="yes" />
@@ -203,48 +237,70 @@
 			<xsl:variable name="phone">
 				<xsl:call-template name="members-roles-phone-number-events-anonymize" />
 			</xsl:variable>
-			<xsl:if test="position() != 1">
-				<hr/>
-			</xsl:if>
-			<div class="member">
-				<a title="Email {$name}">
-					<xsl:attribute name="href">
-						<xsl:choose>
-							<xsl:when test="anonymize = 'No' and string-length(email)">
-								<xsl:text disable-output-escaping="yes">mailto:</xsl:text>
-								<xsl:value-of select="$email" />
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:text>javascript:void(0)</xsl:text>
-							</xsl:otherwise>
-						</xsl:choose>
-					</xsl:attribute>
+			<xsl:variable name="photo">
+				<xsl:value-of select="photo/filename"/>
+			</xsl:variable>
 
-					<xsl:call-template name="image-master">
-		        <xsl:with-param name="photo" select="photo/filename" />
-		        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
-		        <xsl:with-param name="width" select="400" />
-		        <xsl:with-param name="height" select="400" />
-		        <xsl:with-param name="responsive" select="0" />
-		        <xsl:with-param name="circle" select="1" />
-		      </xsl:call-template>
-					<div class="info">
-						<h5>
-							<xsl:value-of select="$name" disable-output-escaping="yes" />
-						</h5>
-						<div>
-							<xsl:if test="string-length($email) and anonymize = 'No'">
-								<span class="email"><xsl:value-of select="$email" /></span>
-							</xsl:if>
-							<xsl:if test="string-length($phone)">
-								<span class="phone"><xsl:value-of select="$phone" /></span>
-							</xsl:if>
-						</div>
-					</div>
-				</a>
-			</div><!-- .member -->
+			<xsl:call-template name="members-roles-sidebar-entry">
+				<xsl:with-param name="entries" select="$entries" />
+				<xsl:with-param name="name" select="$name" />
+				<xsl:with-param name="email" select="$email" />
+				<xsl:with-param name="phone" select="$phone" />
+				<xsl:with-param name="photo" select="$photo" />
+			</xsl:call-template>
 		</xsl:for-each>
 	</div><!-- .members-roles -->
+</xsl:template>
+
+
+<xsl:template name="members-roles-sidebar-entry">
+	<xsl:param name="component" />
+	<xsl:param name="entries" />
+	<xsl:param name="name" />
+	<xsl:param name="email" />
+	<xsl:param name="phone" />
+	<xsl:param name="photo" />
+
+	<xsl:if test="position() != 1">
+		<hr/>
+	</xsl:if>
+	<div class="member">
+		<a title="Email {$name}">
+			<xsl:attribute name="href">
+				<xsl:choose>
+					<xsl:when test="anonymize = 'No' and string-length(email)">
+						<xsl:text disable-output-escaping="yes">mailto:</xsl:text>
+						<xsl:value-of select="$email" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>javascript:void(0)</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+
+			<xsl:call-template name="image-master">
+        <xsl:with-param name="photo" select="$photo" />
+        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+        <xsl:with-param name="width" select="400" />
+        <xsl:with-param name="height" select="400" />
+        <xsl:with-param name="responsive" select="0" />
+        <xsl:with-param name="circle" select="1" />
+      </xsl:call-template>
+			<div class="info">
+				<h5>
+					<xsl:value-of select="$name" disable-output-escaping="yes" />
+				</h5>
+				<div>
+					<xsl:if test="string-length($email) and anonymize = 'No'">
+						<span class="email"><xsl:value-of select="$email" /></span>
+					</xsl:if>
+					<xsl:if test="string-length($phone)">
+						<span class="phone"><xsl:value-of select="$phone" /></span>
+					</xsl:if>
+				</div>
+			</div>
+		</a>
+	</div><!-- .member -->
 
 </xsl:template>
 

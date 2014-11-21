@@ -101,36 +101,40 @@
 						<xsl:call-template name="teachings-home"/>
 					</xsl:if>
 
-					<xsl:choose>
-						<xsl:when test="$pt1 = 'toolkit' and $cookie-username">
-							<xsl:call-template name="toolkit" />
-						</xsl:when>
-						<xsl:when test="$pt1 = 'search'">
-							<xsl:call-template name="component-search">
-								<xsl:with-param name="position" select="column-full-width" />
-								<xsl:with-param name="entries" select="data/search/entry" />
-							</xsl:call-template>
-						</xsl:when>
-						<xsl:when test="not(/data/tags-entries-by-tag/entry)">
-							<xsl:call-template name="error"/>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:choose>
-								<xsl:when test="count(/data/layouts-ds-tags-entries-by-tag/entry)">
-									<xsl:call-template name="call-components">
-										<xsl:with-param name="xpath" select="/data/layouts-ds-tags-entries-by-tag/entry" />
-									</xsl:call-template>
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:call-template name="call-components">
-										<xsl:with-param name="xpath" select="/data/layouts-default/entry" />
-									</xsl:call-template>
-								</xsl:otherwise>
-							</xsl:choose>
-						</xsl:otherwise>
-					</xsl:choose>
 
-					<xsl:call-template name="page-live"/>
+          <div class="container">
+            <div class="row">
+              <xsl:choose>
+                <xsl:when test="$pt1 = 'toolkit' and $cookie-username">
+                  <xsl:call-template name="toolkit" />
+                </xsl:when>
+                <xsl:when test="$pt1 = 'search'">
+                  <xsl:call-template name="component-search">
+                    <xsl:with-param name="position" select="column-full-width" />
+                    <xsl:with-param name="entries" select="data/search/entry" />
+                  </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="not(/data/tags-entries-by-tag/entry)">
+                  <xsl:call-template name="error"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:choose>
+                    <xsl:when test="count(/data/layouts-ds-tags-entries-by-tag/entry)">
+                      <xsl:call-template name="call-components">
+                        <xsl:with-param name="xpath" select="/data/layouts-ds-tags-entries-by-tag/entry" />
+                      </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:call-template name="call-components">
+                        <xsl:with-param name="xpath" select="/data/layouts-default/entry" />
+                      </xsl:call-template>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:otherwise>
+              </xsl:choose>
+					    <xsl:call-template name="page-live"/>
+            </div>
+          </div>
 
 				</div><!-- .main-content -->
 

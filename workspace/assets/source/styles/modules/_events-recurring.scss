@@ -22,7 +22,13 @@
   }
 
   h5 {
+    letter-spacing: .3 rem;
     margin-bottom: .5rem;
+  }
+
+  p {
+    font-style: italic;
+    color: lighten($gray-darker, 40%);
   }
 
 }

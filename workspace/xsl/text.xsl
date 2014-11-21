@@ -10,13 +10,21 @@
 
 	<xsl:if test="count($entries)">
 		<div>
-			<xsl:call-template name="class-position">
-				<xsl:with-param name="component" select="$component" />
-			</xsl:call-template>
-
+			<xsl:attribute name="class">
+			  <xsl:choose>
+			    <xsl:when test="$position = 'column-center'">
+			      <xsl:text>text text-column-center</xsl:text>
+			    </xsl:when>
+			    <xsl:when test="$position = 'column-right'">
+			      <xsl:text>text text-column-right</xsl:text>
+			    </xsl:when>
+			    <xsl:otherwise>
+			      <xsl:text>text text-full-width</xsl:text>
+			    </xsl:otherwise>
+			  </xsl:choose>
+			</xsl:attribute>
 			<xsl:for-each select="$entries">
-				<div>
-					<xsl:call-template name="class-rows" />
+        <div class="text-entry">
 					<xsl:value-of select="normalize-space(content)" disable-output-escaping="yes" />
 				</div>
 			</xsl:for-each>

@@ -24,6 +24,10 @@
 // Navbar
 // ------------------------------------------------
 
+.navbar {
+  background: url('../images/seamless_paper_texture.png') repeat;
+}
+
 // Hide navbar on desktop and up
 @media (min-width: $screen-md-min) {
   .navbar {
@@ -38,8 +42,9 @@
 }
 
 .navbar-brand {
-  position: relative;
-  top: .25rem;
+  font-family: $headings-font-family;
+  color: $brand-secondary;
+  text-transform: uppercase;
 }
 
 // Some fixes for Navbar display with responsive setup
@@ -54,14 +59,11 @@
 
 .navbar-toggle {
   margin-right: 0;
-}
+  border: none;
 
-
-// Header
-// ------------------------------------------------
-
-.header {
-  background: $gray-darker;
+  .icon-bar {
+    background: $brand-secondary;
+  }
 }
 
 
@@ -75,7 +77,7 @@
   // Show the Masthead on desktop and up
   @media (min-width: $screen-md-min) {
     display: block;
-    padding: 2rem 0;
+    padding: 4rem 0;
   }
 }
 
@@ -113,19 +115,28 @@
   }
 }
 
+
+.masthead .navigation > li > a {
+  color: $brand-secondary;
+  padding: 1rem 0;
+
+  &:hover {
+    color: $brand-primary;
+  }
+}
+
 .masthead .navigation > li.logo {
   position: relative;
   top: 0;
   font-size: 10rem;
   line-height: 1rem;
-}
 
-.masthead .navigation > li > a {
-  color: white;
-  padding: 1rem 0;
+  a {
+    color: darken($brand-secondary, 25%);
 
-  &:hover {
-    color: $brand-primary;
+    &:hover {
+      color: $brand-primary;
+    }
   }
 }
 
@@ -179,7 +190,7 @@
 // Right Drawer
 
 .snap-drawers {
-  background: #212121;
+  background: darken($brand-secondary, 10%);
   position: absolute;
   top: 0;
   right: 0;
@@ -323,7 +334,7 @@
 // Main Content
 
 .snap-content {
-  background: #fff;
+  background: url('../images/seamless_paper_texture.png') repeat;
   position: absolute;
   top: 0;
   right: 0;

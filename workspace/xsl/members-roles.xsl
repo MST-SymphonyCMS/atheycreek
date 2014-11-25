@@ -199,7 +199,8 @@
 				<xsl:value-of select="member/item/last-name" disable-output-escaping="yes" />
 			</xsl:variable>
 			<xsl:variable name="email">
-				<xsl:call-template name="members-roles-email-anonymize" />
+				<xsl:value-of select="member/item/email"/>
+<!-- 				<xsl:call-template name="members-roles-email-anonymize" /> -->
 			</xsl:variable>
 			<xsl:variable name="phone">
 				<xsl:call-template name="members-roles-phone-number-anonymize" />

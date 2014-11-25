@@ -64,7 +64,7 @@ var paths = {
     source_path + '/scripts/main.js'
   ],
   images: [
-    source_path + '/images/**/*'
+    source_path + '/images/*.*'
   ],
   audio: [
     source_path + '/media/audio/**/*'
@@ -181,7 +181,6 @@ gulp.task('images', function() {
     .pipe(plumber({
       errorHandler: onError
     }))
-    .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(gulp.dest(build_path + '/images'))
 });
 
@@ -269,7 +268,7 @@ gulp.task('deploy', function() {
 gulp.task('watch', function() {
   gulp.watch(source_path + '/styles/**/*.scss', ['styles']);
   gulp.watch(source_path + '/scripts/**/*.js', ['scripts']);
-  gulp.watch(source_path + '/images/**/*', ['images']);
+  gulp.watch(source_path + '/images/*.*', ['images']);
   var server = livereload();
 
   gulp.watch([build_path + '/**', template_path + '/**/*.xsl', utility_path + '/**/*.xsl']).on('change', function(file) {

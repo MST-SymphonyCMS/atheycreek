@@ -10,8 +10,14 @@
         <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='footer-new']/content)" disable-output-escaping="yes" />
       </div>
     </div>
-    <div class="baseline">
+  </footer>
 
+</xsl:template>
+
+<xsl:template name="copyright">
+
+  <div class="baseline">
+    <div class="container">
       <p class="copyright">
         <xsl:text>© 2006–</xsl:text>
         <xsl:value-of select="$this-year" />
@@ -21,9 +27,8 @@
         <a href="http://fiftyfootshadows.net" target="_blank">John Carey</a>
         <xsl:text>.</xsl:text>
       </p>
-
     </div>
-  </footer>
+  </div>
 
 </xsl:template>
 

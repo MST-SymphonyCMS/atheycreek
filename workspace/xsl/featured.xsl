@@ -108,6 +108,9 @@
       </xsl:for-each>
     </div>
 
+  </div><!-- .teachings-current -->
+
+  <div class="featured-content">
     <div class="row">
       <div class="col-md-12">
         <h4>Featured Items</h4>
@@ -145,8 +148,7 @@
         </div><!-- #home-carousel -->
       </div><!-- .col-md-12 -->
     </div><!-- .row -->
-
-  </div><!-- .teachings-current -->
+  </div><!-- -->
 
 </xsl:template>
 

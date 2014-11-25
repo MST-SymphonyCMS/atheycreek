@@ -1,7 +1,7 @@
 
 // ================================================
-// FOOTER
-// - everything related to the Footer
+// FOOTER & BASELINE
+// - everything related to the Footer & Baseline
 // ================================================
 
 
@@ -9,8 +9,13 @@
 // ------------------------------------------------
 
 .footer {
-  background: lighten($gray-darker, 55%);
+  margin-top: 4rem;
   padding-top: 4rem;
+  background: $brand-secondary;
+
+  @media (min-width: $screen-md-min) {
+    border-radius: 0  0 .5rem .5rem;
+  }
 }
 
 .footer a {
@@ -33,22 +38,37 @@
 }
 
 .footer h5 {
+  color: darken($brand-secondary, 25%);
   font-size: 1.75rem;
-  font-weight: normal;
   text-transform: uppercase;
 }
 
 .footer p,
 .footer address {
-  color: lighten($gray-darker, 25%);
+  color: lighten($brand-secondary, 25%);
 }
 
-.footer .baseline {
-  padding: 1rem 0;
-  font-size: 1.6rem;
-  background: lighten($gray-darker, 50%);
+
+// Baseline
+// ------------------------------------------------
+
+.baseline {
+  padding: 2rem 0;
+  color: $brand-secondary;
+  font-family: $headings-font-family;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
-.footer .baseline .copyright {
-  margin: 2rem 0 2rem 0;
+.baseline a {
+  color: $brand-secondary;
+  border-bottom: 2px solid lighten($brand-secondary, 20%);
+
+  &:hover {
+    border-bottom-color: lighten($brand-secondary, 10%);
+  }
+}
+
+.baseline .copyright {
+  margin: 2rem 0 6rem 0;
 }

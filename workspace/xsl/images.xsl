@@ -47,6 +47,7 @@
 			<xsl:call-template name="image-master">
         <xsl:with-param name="photo" select="image/filename" />
         <xsl:with-param name="width" select="1800" />
+        <xsl:with-param name="class" select="'image-banner'" />
       </xsl:call-template>
 		</xsl:for-each>
 	</div>

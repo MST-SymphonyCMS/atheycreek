@@ -891,7 +891,7 @@
       <xsl:with-param name="photo" select="images/item/image/filename" />
       <xsl:with-param name="width" select="1800" />
       <xsl:with-param name="height" select="900" />
-      <xsl:with-param name="class" select="'image-events'" />
+      <xsl:with-param name="class" select="'image-banner'" />
     </xsl:call-template>
     <div class="container">
       <div class="row">

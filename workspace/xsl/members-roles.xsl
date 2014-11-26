@@ -3,13 +3,11 @@
 
 
 <xsl:template name="component-members-roles">
-
   <xsl:param name="component" />
   <xsl:param name="position" />
   <xsl:param name="entries" />
 
   <xsl:if test="count($entries)">
-
     <xsl:choose>
       <xsl:when test="$position = 'column-full-width'">
         <xsl:call-template name="members-roles-column-full-width">
@@ -26,14 +24,11 @@
         </xsl:call-template>
       </xsl:when>
     </xsl:choose>
-
   </xsl:if>
-
 </xsl:template>
 
 
 <xsl:template name="members-roles-column-full-width">
-
   <xsl:param name="component" />
   <xsl:param name="entries" />
 
@@ -113,76 +108,8 @@
         </xsl:for-each>
       </div>
     </xsl:for-each>
-
   </div>
-
 </xsl:template>
-
-
-<!-- <xsl:template name="members-roles-column-right">
-
-  <xsl:param name="component" />
-  <xsl:param name="entries" />
-
-  <div>
-    <xsl:call-template name="class-position">
-      <xsl:with-param name="component" select="$component" />
-    </xsl:call-template>
-
-    <h4>Our Staff</h4>
-
-    <ul class="contacts nav nav-tabs nav-stacked">
-      <xsl:for-each select="$entries">
-        <xsl:variable name="name">
-          <xsl:value-of select="member/item/first-name" disable-output-escaping="yes" />
-          <xsl:text> </xsl:text>
-          <xsl:value-of select="member/item/last-name" disable-output-escaping="yes" />
-        </xsl:variable>
-        <xsl:variable name="email">
-          <xsl:call-template name="members-roles-email-anonymize" />
-        </xsl:variable>
-        <xsl:variable name="phone">
-          <xsl:call-template name="members-roles-phone-number-anonymize" />
-        </xsl:variable>
-        <li>
-          <xsl:call-template name="class-rows" />
-          <a title="Email {$name}" class="mailto">
-            <xsl:if test="member/item/anonymize = 'No' or string-length(member/item/email)">
-              <xsl:attribute name="href">
-                <xsl:text disable-output-escaping="yes">mailto:</xsl:text>
-                <xsl:value-of select="$email" />
-              </xsl:attribute>
-            </xsl:if>
-            <div class="pull-left">
-              <xsl:call-template name="image-master">
-                <xsl:with-param name="photo" select="photo/filename" />
-                <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
-                <xsl:with-param name="width" select="144" />
-                <xsl:with-param name="height" select="144" />
-                <xsl:with-param name="responsive" select="0" />
-                <xsl:with-param name="circle" select="1" />
-              </xsl:call-template>
-            </div>
-            <div class="info">
-              <h4>
-                <xsl:value-of select="$name" disable-output-escaping="yes" />
-              </h4>
-              <div>
-                <span class="email"><xsl:value-of select="$email" /></span><br />
-                <span class="phone"><xsl:value-of select="$phone" /></span>
-              </div>
-            </div>
-          </a>
-        </li>
-      </xsl:for-each>
-      <a href="/about/staff/" class="more">
-        <span class="icon">g</span>
-        <xsl:text>Meet our staff</xsl:text>
-      </a>
-    </ul>
-  </div>
-
-</xsl:template> -->
 
 
 <xsl:template name="members-roles-column-right">
@@ -316,7 +243,6 @@
 
 
 <xsl:template name="members-roles-email-anonymize">
-
   <xsl:choose>
     <xsl:when test="member/item/anonymize = 'Yes' or not(string-length(member/item/email))">
       <xsl:text>&#140;</xsl:text>
@@ -325,12 +251,10 @@
       <xsl:value-of select="member/item/email" />
     </xsl:otherwise>
   </xsl:choose>
-
 </xsl:template>
 
 
 <xsl:template name="members-roles-phone-number-anonymize">
-
   <xsl:choose>
     <xsl:when test="member/item/anonymize = 'Yes' or not(string-length(member/item/phone-number))">
       <xsl:value-of select="$main-phone" disable-output-escaping="yes" />
@@ -339,12 +263,10 @@
       <xsl:value-of select="member/item/phone-number" />
     </xsl:otherwise>
   </xsl:choose>
-
 </xsl:template>
 
 
 <xsl:template name="members-roles-email-events-anonymize">
-
   <xsl:choose>
     <xsl:when test="anonymize = 'Yes' or not(string-length(email))">
       <xsl:text>&#140;</xsl:text>
@@ -353,12 +275,10 @@
       <xsl:value-of select="email" />
     </xsl:otherwise>
   </xsl:choose>
-
 </xsl:template>
 
 
 <xsl:template name="members-roles-phone-number-events-anonymize">
-
   <xsl:choose>
     <xsl:when test="anonymize = 'Yes' or not(string-length(phone-number))">
       <xsl:value-of select="$main-phone" disable-output-escaping="yes" />
@@ -367,7 +287,6 @@
       <xsl:value-of select="phone-number" />
     </xsl:otherwise>
   </xsl:choose>
-
 </xsl:template>
 
 

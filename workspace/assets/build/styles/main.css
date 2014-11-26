@@ -4731,7 +4731,7 @@ a:hover {
   margin: 0 auto; }
 
 .main-content {
-  padding: 4rem 0 0 0;
+  padding: 0 0 0 0;
   background: #ffffff;
   -webkit-box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
           box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05); }
@@ -5067,9 +5067,6 @@ a:hover {
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0); }
 
-.feature .teachings-current h4 {
-  margin-top: 0; }
-
 .feature a {
   display: block;
   margin-bottom: 1.5rem; }
@@ -5210,6 +5207,9 @@ a:hover {
 .events-recurring.events-recurring-full-width.events-recurring-landing p {
   font-style: italic;
   color: #9c9ea0; }
+
+.image-banner {
+  border-radius: 0.5rem 0.5rem 0 0; }
 
 .verse {
   width: 85%;

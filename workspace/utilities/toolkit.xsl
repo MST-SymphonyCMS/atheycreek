@@ -73,11 +73,16 @@ Image Master
 	<xsl:param name="scale" select="5" />
 	<xsl:param name="responsive" select="1" />
 	<xsl:param name="circle" select="0" />
+	<xsl:param name="class" />
 	<xsl:param name="alt" />
 
 	<img>
-		<xsl:if test="$responsive = 1 or $circle = 1">
+		<xsl:if test="string-length($class) or $responsive = 1 or $circle = 1">
 			<xsl:attribute name="class">
+				<xsl:if test="string-length($class)">
+					<xsl:value-of select="$class"/>
+					<xsl:text> </xsl:text>
+				</xsl:if>
 				<xsl:if test="$responsive = 1">
 					<xsl:text>img-responsive</xsl:text>
 					<xsl:if test="$circle = 1">

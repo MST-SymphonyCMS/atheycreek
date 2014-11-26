@@ -103,8 +103,6 @@
             </xsl:if>
 
 
-            <div class="container">
-              <div class="row">
                 <xsl:choose>
                   <xsl:when test="$pt1 = 'toolkit' and $cookie-username">
                     <xsl:call-template name="toolkit" />
@@ -134,8 +132,7 @@
                   </xsl:otherwise>
                 </xsl:choose>
                 <xsl:call-template name="page-live"/>
-              </div>
-            </div>
+
             <xsl:call-template name="footer"/>
           </div><!-- .main-content -->
         </div>
@@ -157,12 +154,17 @@
 	<xsl:call-template name="component">
 		<xsl:with-param name="xpath" select="$xpath/column-full-width" />
 	</xsl:call-template>
-	<xsl:call-template name="component">
-		<xsl:with-param name="xpath" select="$xpath/column-center" />
-	</xsl:call-template>
-	<xsl:call-template name="component">
-		<xsl:with-param name="xpath" select="$xpath/column-right" />
-	</xsl:call-template>
+  <div class="container">
+    <div class="row">
+      <xsl:call-template name="component">
+        <xsl:with-param name="xpath" select="$xpath/column-center" />
+      </xsl:call-template>
+      <xsl:call-template name="component">
+        <xsl:with-param name="xpath" select="$xpath/column-right" />
+      </xsl:call-template>
+    </div>
+  </div>
+
 
 </xsl:template>
 

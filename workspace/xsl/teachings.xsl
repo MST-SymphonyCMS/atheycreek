@@ -766,7 +766,16 @@
               </xsl:if>
               <span class="teacher">
                 <em>by </em>
-                <xsl:value-of select="speaker/item" disable-output-escaping="yes" />
+                <xsl:choose>
+                  <xsl:when test="$pt2 = 'tag' or $pt2 = 'year'">
+                    <xsl:value-of select="speaker/item/first-name" disable-output-escaping="yes" />
+                    <xsl:text disable-output-escaping="yes"> </xsl:text>
+                    <xsl:value-of select="speaker/item/last-name" disable-output-escaping="yes" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="speaker/item" disable-output-escaping="yes" />
+                  </xsl:otherwise>
+                </xsl:choose>
               </span>
               <span class="verse">
                 <span class="icon">u</span>

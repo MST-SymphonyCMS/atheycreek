@@ -5,10 +5,26 @@
 // ================================================
 
 
+// Full Width
+// ------------------------------------------------
+
+.members-roles-full-width {
+  .member {
+    margin-bottom: 6rem;
+    text-align: center;
+  }
+
+  img {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+
 // Sidebar
 // ------------------------------------------------
 
-.members-roles.members-roles-sidebar {
+.members-roles-sidebar {
   padding: 3rem 0 .5rem 0;
   background: lighten($gray-darker, 75%);
 

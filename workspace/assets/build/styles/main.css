@@ -5295,30 +5295,37 @@ a:hover {
     .teachings-series.teachings-series-home .series a {
       margin-bottom: 0; } }
 
-.members-roles.members-roles-sidebar {
+.members-roles-full-width .member {
+  margin-bottom: 6rem;
+  text-align: center; }
+.members-roles-full-width img {
+  width: 250px;
+  height: 250px; }
+
+.members-roles-sidebar {
   padding: 3rem 0 0.5rem 0;
   background: #f7f7f7; }
-  .members-roles.members-roles-sidebar .member {
+  .members-roles-sidebar .member {
     margin-bottom: 30px;
     padding: 1.5rem; }
-  .members-roles.members-roles-sidebar h4 {
+  .members-roles-sidebar h4 {
     margin: 0;
     padding-bottom: 1.5rem; }
-  .members-roles.members-roles-sidebar a {
+  .members-roles-sidebar a {
     display: block;
     color: #a9abac;
     text-align: center; }
-    .members-roles.members-roles-sidebar a:hover {
+    .members-roles-sidebar a:hover {
       opacity: 0.5;
       filter: alpha(opacity=50); }
-  .members-roles.members-roles-sidebar img {
+  .members-roles-sidebar img {
     width: 20rem;
     height: 20rem; }
-  .members-roles.members-roles-sidebar .info {
+  .members-roles-sidebar .info {
     margin-top: 3rem; }
-  .members-roles.members-roles-sidebar h5 {
+  .members-roles-sidebar h5 {
     margin-bottom: 0.5rem; }
-  .members-roles.members-roles-sidebar .phone {
+  .members-roles-sidebar .phone {
     display: block;
     margin-top: -0.2rem; }
 

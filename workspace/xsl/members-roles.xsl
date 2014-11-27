@@ -33,82 +33,61 @@
   <xsl:param name="component" />
   <xsl:param name="entries" />
 
-  <div>
-    <xsl:call-template name="class-position">
-      <xsl:with-param name="component" select="$component" />
-    </xsl:call-template>
+  <div class="members-roles members-roles-full-width">
     <xsl:if test="$pt1 = 'staff'">
-      <h3 class="header">Our Staff</h3>
+      <h3>Our Staff</h3>
     </xsl:if>
 
-    <xsl:variable name="items-per-row" select="3" />
-    <xsl:for-each select="$entries[position() mod $items-per-row = 1]">
-      <div class="row">
-        <xsl:for-each select=". | following-sibling::*[not(position() >= $items-per-row)]">
-          <xsl:variable name="name">
-            <xsl:value-of select="member/item/first-name" disable-output-escaping="yes" />
-            <xsl:text> </xsl:text>
-            <xsl:value-of select="member/item/last-name" disable-output-escaping="yes" />
-          </xsl:variable>
-          <xsl:variable name="email">
-            <xsl:call-template name="members-roles-email-anonymize" />
-          </xsl:variable>
-          <xsl:variable name="phone">
-            <xsl:call-template name="members-roles-phone-number-anonymize" />
-          </xsl:variable>
-          <div id="{member/item/first-name/@handle}-{member/item/last-name/@handle}">
-            <xsl:choose>
-              <xsl:when test="count($entries) = 1">
-                <xsl:call-template name="class-rows">
-                  <xsl:with-param name="class" select="'span4 offset4'" />
-                </xsl:call-template>
-              </xsl:when>
-              <xsl:when test="count($entries) = 2">
-                <xsl:call-template name="class-rows">
-                  <xsl:with-param name="class" select="'span6'" />
-                </xsl:call-template>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:call-template name="class-rows">
-                  <xsl:with-param name="class" select="'span4'" />
-                </xsl:call-template>
-              </xsl:otherwise>
-            </xsl:choose>
-            <xsl:call-template name="image-master">
-              <xsl:with-param name="photo" select="member/item/photo/filename" />
-              <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
-              <xsl:with-param name="width" select="360" />
-              <xsl:with-param name="height" select="360" />
-              <xsl:with-param name="responsive" select="0" />
-              <xsl:with-param name="circle" select="1" />
-            </xsl:call-template>
-            <h4>
-              <xsl:value-of select="role/item/role" disable-output-escaping="yes" />
-            </h4>
-            <h3>
-              <xsl:value-of select="$name" disable-output-escaping="yes" />
-            </h3>
-            <div class="content">
-              <div class="contact-info">
-                <span class="phone">
-                  <xsl:value-of select="$phone" />
-                </span>
-                <span class="email">
-                  <a title="Email {$name}">
-                    <xsl:attribute name="href">
-                      <xsl:text disable-output-escaping="yes">mailto:</xsl:text>
-                      <xsl:value-of select="$email" />
-                    </xsl:attribute>
-                    <xsl:value-of select="$email" />
-                  </a>
-                </span>
+    <div class="container">
+      <xsl:variable name="items-per-row" select="2" />
+      <xsl:for-each select="$entries[position() mod $items-per-row = 1]">
+        <div class="row">
+          <xsl:for-each select=". | following-sibling::*[not(position() >= $items-per-row)]">
+            <xsl:variable name="name">
+              <xsl:value-of select="member/item/first-name" disable-output-escaping="yes" />
+              <xsl:text> </xsl:text>
+              <xsl:value-of select="member/item/last-name" disable-output-escaping="yes" />
+            </xsl:variable>
+            <xsl:variable name="email">
+              <xsl:call-template name="members-roles-email-anonymize" />
+            </xsl:variable>
+            <xsl:variable name="phone">
+              <xsl:call-template name="members-roles-phone-number-anonymize" />
+            </xsl:variable>
+            <div id="{member/item/first-name/@handle}-{member/item/last-name/@handle}">
+              <xsl:choose>
+                <xsl:when test="count($entries) = 1">
+                  <xsl:attribute name="class">member col-md-6 col-md-offset-3</xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:attribute name="class">member col-md-6</xsl:attribute>
+                </xsl:otherwise>
+              </xsl:choose>
+              <xsl:call-template name="image-master">
+                <xsl:with-param name="photo" select="member/item/photo/filename" />
+                <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+                <xsl:with-param name="width" select="500" />
+                <xsl:with-param name="height" select="500" />
+                <xsl:with-param name="responsive" select="0" />
+                <xsl:with-param name="circle" select="1" />
+              </xsl:call-template>
+              <h5>
+                <xsl:value-of select="role/item/role" disable-output-escaping="yes" />
+              </h5>
+              <h3>
+                <xsl:value-of select="$name" disable-output-escaping="yes" />
+              </h3>
+              <div class="content">
+                <div class="contact-info">
+
+                </div>
               </div>
               <xsl:value-of select="member/item/about" disable-output-escaping="yes" />
             </div>
-          </div>
-        </xsl:for-each>
-      </div>
-    </xsl:for-each>
+          </xsl:for-each>
+        </div>
+      </xsl:for-each>
+    </div>
   </div>
 </xsl:template>
 

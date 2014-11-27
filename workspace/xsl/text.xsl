@@ -19,14 +19,20 @@
 			      <xsl:text>text text-column-right</xsl:text>
 			    </xsl:when>
 			    <xsl:otherwise>
-			      <xsl:text>text text-full-width</xsl:text>
+			      <xsl:text>text text-full-width container</xsl:text>
 			    </xsl:otherwise>
 			  </xsl:choose>
 			</xsl:attribute>
-			<xsl:for-each select="$entries">
-        <div class="text-entry">
-					<xsl:value-of select="normalize-space(content)" disable-output-escaping="yes" />
-				</div>
+      <xsl:for-each select="$entries">
+        <div>
+          <xsl:if test="$position = 'column-full-width'">
+            <xsl:attribute name="class">row</xsl:attribute>
+          </xsl:if>
+
+          <div class="text-entry">
+					  <xsl:value-of select="normalize-space(content)" disable-output-escaping="yes" />
+			  	</div>
+        </div>
 			</xsl:for-each>
 		</div>
 	</xsl:if>

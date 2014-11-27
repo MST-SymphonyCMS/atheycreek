@@ -18,6 +18,7 @@
       <xsl:when test="$position = 'column-center'">
       </xsl:when>
       <xsl:when test="$position = 'column-right'">
+        <h4>Our Staff</h4>
         <xsl:call-template name="members-roles-column-right">
           <xsl:with-param name="component" select="$component" />
           <xsl:with-param name="entries" select="$entries" />
@@ -117,7 +118,6 @@
   <xsl:param name="entries" />
 
   <div class="members-roles members-roles-sidebar">
-    <h4>Our Staff</h4>
 
     <xsl:for-each select="$entries">
       <xsl:variable name="name">
@@ -157,7 +157,6 @@
 
   <div class="members-roles members-roles-sidebar">
     <h4>Our Staff</h4>
-
     <xsl:for-each select="$entries">
       <xsl:variable name="name">
         <xsl:value-of select="display" disable-output-escaping="yes" />
@@ -172,7 +171,7 @@
         <xsl:value-of select="photo/filename"/>
       </xsl:variable>
       <xsl:variable name="anonymize">
-        <xsl:value-of select="member/item/anonymize"/>
+        <xsl:value-of select="anonymize"/>
       </xsl:variable>
 
       <xsl:call-template name="members-roles-sidebar-entry">
@@ -196,11 +195,11 @@
   <xsl:param name="phone" />
   <xsl:param name="photo" />
   <xsl:param name="anonymize" />
+  <xsl:param name="events" />
 
   <xsl:if test="position() != 1">
     <hr/>
   </xsl:if>
-  <xsl:for-each select="$entries">
     <div class="member">
       <a title="Email {$name}">
         <xsl:attribute name="href">
@@ -238,7 +237,6 @@
         </div>
       </a>
     </div><!-- .member -->
-  </xsl:for-each>
 </xsl:template>
 
 

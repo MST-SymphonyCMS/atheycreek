@@ -10,7 +10,6 @@
 
 .footer {
   margin-top: 4rem;
-  padding-top: 4rem;
   background: $brand-secondary;
 
   @media (min-width: $screen-md-min) {
@@ -46,6 +45,41 @@
 .footer p,
 .footer address {
   color: lighten($brand-secondary, 25%);
+}
+
+
+// Search
+// ------------------------------------------------
+
+.footer .search {
+  margin-bottom: 4rem;
+  padding: 2rem 0;
+  text-align: center;
+  background: darken($brand-secondary, 2%);
+
+  input {
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  form {
+    display: inline;
+    padding: .5rem;
+    border-bottom: 2px solid darken($brand-secondary, 7%);
+  }
+
+  a {
+    display: inline-block;
+    padding: 0 0 0 .5rem;
+    border: none;
+    text-decoration: none;
+  }
+
+  input {
+    text-align: center;
+    padding-right: 1rem;
+  }
 }
 
 

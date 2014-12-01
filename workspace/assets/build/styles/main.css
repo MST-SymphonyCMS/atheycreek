@@ -5116,7 +5116,7 @@ a:hover {
   font-style: italic;
   text-transform: none; }
 .events.events-full-width.events-home h3 {
-  width: 55%;
+  width: 60%;
   margin: 0 auto;
   padding: 1rem 0 0 0;
   font-family: 'calluna-sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -5353,7 +5353,6 @@ a:hover {
 
 .footer {
   margin-top: 4rem;
-  padding-top: 4rem;
   background: #969696; }
   @media (min-width: 992px) {
     .footer {
@@ -5378,6 +5377,28 @@ a:hover {
 
 .footer p, .footer address {
   color: #d6d6d6; }
+
+.footer .search {
+  margin-bottom: 4rem;
+  padding: 2rem 0;
+  text-align: center;
+  background: #919191; }
+  .footer .search input {
+    background: none;
+    border: none;
+    outline: none; }
+  .footer .search form {
+    display: inline;
+    padding: 0.5rem;
+    border-bottom: 2px solid #848484; }
+  .footer .search a {
+    display: inline-block;
+    padding: 0 0 0 0.5rem;
+    border: none;
+    text-decoration: none; }
+  .footer .search input {
+    text-align: center;
+    padding-right: 1rem; }
 
 .baseline {
   padding: 2rem 0;

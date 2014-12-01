@@ -5,11 +5,21 @@
 <xsl:template name="footer">
 
   <footer class="footer">
+    <div class="search">
+      <form action="get">
+        <xsl:call-template name="form-search-action" />
+        <a>
+          <xsl:call-template name="url-search-home" />
+          <span class="glyphicon glyphicon-search"></span>
+        </a>
+        <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
+      </form>
+    </div><!-- .search -->
     <div class="container">
       <div class="row">
         <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='footer-new']/content)" disable-output-escaping="yes" />
-      </div>
-    </div>
+      </div><!-- .row -->
+    </div><!-- .container -->
   </footer>
 
 </xsl:template>

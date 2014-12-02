@@ -33,3 +33,10 @@
   }
 
 }
+
+.events-recurring-column-right {
+  .event-recurring a {
+    padding: 2rem 0;
+    background: lighten($gray-darker, 75%);
+  }
+}

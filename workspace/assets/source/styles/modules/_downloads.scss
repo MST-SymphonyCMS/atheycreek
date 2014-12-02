@@ -1,0 +1,35 @@
+
+// ================================================
+// DOWNLOADS
+// - everything related to Downloads
+// ================================================
+
+
+// Sidebar
+// ------------------------------------------------
+
+.downloads-column-right {
+
+  .download a {
+    display: block;
+    margin-bottom: 3rem;
+    padding: 3rem;
+    color: lighten($gray-darker, 25%);
+    font-family: $headings-font-family;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    background: lighten($gray-darker, 75%);
+  }
+
+  .glyphicon {
+    margin-bottom: 1.5rem;
+    color: lighten($gray-darker, 60%);
+    font-size: 2.5rem;
+  }
+
+  .title {
+    line-height: 1.2;
+  }
+
+}

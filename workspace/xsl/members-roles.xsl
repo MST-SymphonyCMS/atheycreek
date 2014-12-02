@@ -96,7 +96,7 @@
   <xsl:param name="component" />
   <xsl:param name="entries" />
 
-  <div class="members-roles members-roles-sidebar">
+  <div class="members-roles members-roles-column-right">
 
     <xsl:for-each select="$entries">
       <xsl:variable name="name">
@@ -134,7 +134,7 @@
   <xsl:param name="component" />
   <xsl:param name="entries" />
 
-  <div class="members-roles members-roles-sidebar">
+  <div class="members-roles members-roles-column-right">
     <h4>Our Staff</h4>
     <xsl:for-each select="$entries">
       <xsl:variable name="name">

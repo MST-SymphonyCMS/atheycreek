@@ -5,10 +5,50 @@
 // ================================================
 
 
+// Groups
+// ------------------------------------------------
+
+.locations-groups-full-width {
+
+  .list-group {
+    padding-top: 6rem;
+  }
+
+  .list-group-item a {
+    display: block;
+    font-family: $headings-font-family;
+  }
+
+  .list-group-item a .label {
+    text-transform: uppercase;
+  }
+
+  .list-group-item.active a {
+    color: white;
+  }
+
+  address {
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    font-size: 1.6rem;
+    text-align: left;
+  }
+
+  .description hr {
+    margin: 3rem 0 2.5rem 0;
+    width: 25%;
+    border-top-width: 2px;
+  }
+
+}
+
+
 // Sidebar
 // ------------------------------------------------
 
-.locations.locations-sidebar {
+.locations-column-right {
   margin-bottom: 3rem;
   color: lighten($gray-darker, 25%);
 
@@ -37,5 +77,4 @@
     color: white;
     background: lighten($gray-darker, 40%);
   }
-
 }

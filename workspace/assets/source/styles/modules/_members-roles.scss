@@ -24,7 +24,7 @@
 // Sidebar
 // ------------------------------------------------
 
-.members-roles-sidebar {
+.members-roles-column-right {
   padding: 3rem 0 .5rem 0;
   background: lighten($gray-darker, 75%);
 
@@ -43,7 +43,6 @@
     color: lighten($gray-darker, 45%);
     text-align: center;
 
-
     &:hover {
       @include opacity(.5);
     }
@@ -60,6 +59,7 @@
 
   h5 {
     margin-bottom: .5rem;
+    color: lighten($gray-darker, 25%);
   }
 
   .phone {

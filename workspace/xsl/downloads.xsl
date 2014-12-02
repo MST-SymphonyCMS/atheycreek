@@ -29,32 +29,28 @@
 	<xsl:param name="component" />
 	<xsl:param name="entries" />
 
-	<div>
-
-		<xsl:call-template name="class-position">
-			<xsl:with-param name="component" select="$component" />
-		</xsl:call-template>
-
-		<h3>Downloads</h3>
-		<ul class="documents nav nav-tabs nav-stacked">
-			<xsl:for-each select="$entries">
-				<li class="entry">
-					<xsl:call-template name="class-rows" />
-					<a target="_blank">
-						<xsl:call-template name="url-downloads" />
-						<span class="icon">F</span>
+	<div class="downloads downloads-column-right">
+		<h4>Downloads</h4>
+		<xsl:for-each select="$entries">
+			<div class="download">
+				<a target="_blank">
+					<xsl:call-template name="url-downloads" />
+					<div>
+						<xsl:attribute name="class">
+							<xsl:text>glyphicon </xsl:text>
+							<xsl:choose>
+								<xsl:when test="string-length(link)">glyphicon-link</xsl:when>
+								<xsl:otherwise>glyphicon-file</xsl:otherwise>
+							</xsl:choose>
+						</xsl:attribute>
+					</div>
+					<div class="title">
 						<xsl:text>&#160;&#160;</xsl:text>
-						<span class="title">
-							<xsl:value-of select="name" />
-						</span>
-					</a>
-					<xsl:call-template name="edit-entry">
-						<xsl:with-param name="component" select="$component"/>
-					</xsl:call-template>
-				</li>
-			</xsl:for-each>
-		</ul>
-
+						<xsl:value-of select="name" />
+					</div>
+				</a>
+			</div>
+		</xsl:for-each>
 	</div>
 
 </xsl:template>

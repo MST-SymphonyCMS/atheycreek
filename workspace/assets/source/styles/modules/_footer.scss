@@ -54,14 +54,9 @@
 .footer .search {
   margin-bottom: 4rem;
   padding: 2rem 0;
+  color: lighten($brand-secondary, 25%);
   text-align: center;
   background: darken($brand-secondary, 2%);
-
-  input {
-    background: none;
-    border: none;
-    outline: none;
-  }
 
   form {
     display: inline;
@@ -72,13 +67,20 @@
   a {
     display: inline-block;
     padding: 0 0 0 .5rem;
-    border: none;
+    color: darken($brand-secondary, 25%);
     text-decoration: none;
+    border: none;
   }
 
   input {
-    text-align: center;
     padding-right: 1rem;
+    color: lighten($brand-secondary, 25%);
+    text-align: center;
+    background: none;
+    border: none;
+    outline: none;
+
+    @include placeholder(lighten($brand-secondary, 25%));
   }
 }
 

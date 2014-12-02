@@ -94,7 +94,8 @@
 // Landing
 // ------------------------------------------------
 
-.events.events-full-width.events-landing {
+.events-full-width,
+.events-column-right {
 
   .event {
     margin-bottom: 3rem;
@@ -110,7 +111,7 @@
   }
 
   h5 {
-    margin: 2rem 0 .5rem 0;
+    margin: 2rem 0 0 0;
   }
 
   h5 > .label {

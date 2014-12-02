@@ -4912,6 +4912,7 @@ a:hover {
 
 .masthead .navigation .dropdown-menu {
   padding: 0;
+  border: none;
   border-radius: 0; }
 
 .masthead .navigation .dropdown-menu > li > a {
@@ -5022,11 +5023,8 @@ a:hover {
     padding: 0;
     color: white; }
     .snap-drawer-right ul li a:hover {
-      color: #3aa2dd;
-      background: #212121; }
-      .snap-drawer-right ul li a:hover .count {
-        color: white;
-        background: rgba(58, 162, 221, 0.75); }
+      background: none;
+      color: #3d3d3d; }
   .snap-drawer-right ul li.register, .snap-drawer-right ul li.social {
     display: block; }
     @media (min-width: 768px) {
@@ -5139,29 +5137,29 @@ a:hover {
   text-transform: uppercase;
   border: 2px solid #969696; }
 
-.events.events-full-width.events-landing .event {
+.events-full-width .event, .events-column-right .event {
   margin-bottom: 3rem;
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out; }
-  .events.events-full-width.events-landing .event:hover {
+  .events-full-width .event:hover, .events-column-right .event:hover {
     opacity: 0.5;
     filter: alpha(opacity=50); }
-.events.events-full-width.events-landing a {
+.events-full-width a, .events-column-right a {
   color: #505253; }
-.events.events-full-width.events-landing h5 {
-  margin: 2rem 0 0.5rem 0; }
-.events.events-full-width.events-landing h5 > .label {
+.events-full-width h5, .events-column-right h5 {
+  margin: 2rem 0 0 0; }
+.events-full-width h5 > .label, .events-column-right h5 > .label {
   position: relative;
   top: -0.2rem;
   margin-left: 1rem;
   padding-top: 0.1rem;
   padding-bottom: 0.1rem; }
-.events.events-full-width.events-landing .date {
+.events-full-width .date, .events-column-right .date {
   font-style: italic;
   color: #9c9ea0; }
-.events.events-full-width.events-landing .more {
+.events-full-width .more, .events-column-right .more {
   margin-top: 2rem; }
-.events.events-full-width.events-landing .more-link {
+.events-full-width .more-link, .events-column-right .more-link {
   padding: 0.5rem 4rem;
   font-family: 'calluna-sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
@@ -5191,20 +5189,20 @@ a:hover {
 .events.events-full-width.events-detail .description p, .events.events-full-width.events-detail .description em, .events.events-full-width.events-detail .description strong, .events.events-full-width.events-detail .description span, .events.events-full-width.events-detail .description address, .events.events-full-width.events-detail .description ul, .events.events-full-width.events-detail .description ol, .events.events-full-width.events-detail .description li {
   color: #76787a; }
 
-.events-recurring.events-recurring-full-width.events-recurring-landing .event-recurring a {
+.events-recurring-full-width .event-recurring a, .events-recurring-column-right .event-recurring a {
   display: block;
   margin-bottom: 3rem;
   padding: 5rem 0;
   color: #76787a;
   text-align: center;
   background: #dddede; }
-  .events-recurring.events-recurring-full-width.events-recurring-landing .event-recurring a:hover {
+  .events-recurring-full-width .event-recurring a:hover, .events-recurring-column-right .event-recurring a:hover {
     opacity: 0.5;
     filter: alpha(opacity=50); }
-.events-recurring.events-recurring-full-width.events-recurring-landing h5 {
+.events-recurring-full-width h5, .events-recurring-column-right h5 {
   letter-spacing: 0.3 rem;
   margin-bottom: 0.5rem; }
-.events-recurring.events-recurring-full-width.events-recurring-landing p {
+.events-recurring-full-width p, .events-recurring-column-right p {
   font-style: italic;
   color: #9c9ea0; }
 

@@ -688,46 +688,52 @@
   <xsl:param name="recurring" />
 
   <div>
-    <xsl:call-template name="class-position">
-      <xsl:with-param name="component" select="$component" />
-    </xsl:call-template>
+    <xsl:attribute name="class">
+      <xsl:text>events </xsl:text>
+      <xsl:choose>
+        <xsl:when test="$recurring = 'yes'">
+          <xsl:text>events-recurring-column-right</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>events-column-right</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
 
     <xsl:choose>
       <xsl:when test="$recurring = 'yes'">
-        <h3>Bible Studies</h3>
+        <h4>Bible Studies</h4>
       </xsl:when>
       <xsl:otherwise>
-        <h3>Upcoming Events</h3>
+        <h4>Events</h4>
       </xsl:otherwise>
     </xsl:choose>
 
-    <ul class="entries">
-      <xsl:choose>
-        <xsl:when test="$recurring = 'yes'">
-          <xsl:for-each select="$entries[ position() &lt; 4 ]">
-            <xsl:call-template name="events-entry-column-right">
-              <xsl:with-param name="component" select="$component" />
-              <xsl:with-param name="recurring" select="'yes'" />
-            </xsl:call-template>
-          </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:for-each select="$entries">
-            <xsl:call-template name="events-entry-column-right">
-              <xsl:with-param name="component" select="$component" />
-              <xsl:with-param name="recurring" select="'no'" />
-            </xsl:call-template>
-          </xsl:for-each>
-        </xsl:otherwise>
-      </xsl:choose>
-      <xsl:if test="$recurring = 'no'">
-        <a class="more">
-          <xsl:call-template name="url-events-home" />
-          <span class="icon">l</span>
-          <span>See more events</span>
-        </a>
-      </xsl:if>
-    </ul> <!-- .entries -->
+    <xsl:choose>
+      <xsl:when test="$recurring = 'yes'">
+        <xsl:for-each select="$entries[ position() &lt; 4 ]">
+          <xsl:call-template name="events-recurring-entry-column-right">
+            <xsl:with-param name="component" select="$component" />
+            <xsl:with-param name="recurring" select="'yes'" />
+          </xsl:call-template>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:for-each select="$entries">
+          <xsl:call-template name="events-entry-column-right">
+            <xsl:with-param name="component" select="$component" />
+            <xsl:with-param name="recurring" select="'no'" />
+          </xsl:call-template>
+        </xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:if test="$recurring = 'no'">
+      <a class="more">
+        <xsl:call-template name="url-events-home" />
+        <span class="icon">l</span>
+        <span>See more events</span>
+      </a>
+    </xsl:if>
 
   </div>
 </xsl:template>
@@ -1005,64 +1011,56 @@
 </xsl:template>
 
 
-<xsl:template match="/data/events-entry-by-id/entry/description/h3">
-  <xsl:element name="h4">
-    <xsl:apply-templates select="* | @* | text()"/>
-   </xsl:element>
+<xsl:template name="events-recurring-entry-column-right">
+  <xsl:param name="component" />
+  <xsl:param name="recurring" />
+
+  <div class="event-recurring">
+    <a>
+      <xsl:call-template name="url-events" />
+      <h5><xsl:value-of select="name"/></h5>
+      <p class="frequency"><xsl:value-of select="frequency"/></p>
+    </a>
+  </div>
 </xsl:template>
 
 
 <xsl:template name="events-entry-column-right">
-
   <xsl:param name="component" />
   <xsl:param name="recurring" />
 
-  <li class="clearfix">
-    <xsl:call-template name="class-rows" />
+  <div class="event">
     <a>
       <xsl:call-template name="url-events" />
-      <xsl:choose>
-        <xsl:when test="$recurring != 'yes'">
-          <div class="date">
-            <div class="month">
-              <xsl:call-template name="format-date">
-                <xsl:with-param name="date" select="date/date/start/@iso" />
-                <xsl:with-param name="format" select="'%m-;'" />
-              </xsl:call-template>
-            </div>
-            <div class="day">
-              <xsl:call-template name="format-date">
-                <xsl:with-param name="date" select="date/date/start/@iso" />
-                <xsl:with-param name="format" select="'%d;'" />
-              </xsl:call-template>
-            </div>
-          </div>
-          <table class="info">
-            <tr>
-              <td>
-                <xsl:value-of select="name" disable-output-escaping="yes" />
-              </td>
-            </tr>
-          </table>
-        </xsl:when>
-        <xsl:otherwise>
-           <div class="title">
-            <xsl:value-of select="name" disable-output-escaping="yes" />
-          </div>
-          <div class="frequency">
-            <xsl:value-of select="frequency" disable-output-escaping="yes" />
-          </div>
-          <div class="location">
-            <xsl:call-template name="location-name" />
-          </div>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="image-master">
+        <xsl:with-param name="photo" select="images/item/image/filename" />
+        <xsl:with-param name="width" select="1800" />
+      </xsl:call-template>
+      <h5>
+        <xsl:value-of select="name"/>
+      </h5>
+      <p class="date">
+        <xsl:call-template name="format-date">
+          <xsl:with-param name="date" select="date/date/start/@iso" />
+          <xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
+        </xsl:call-template>
+      </p>
+<!--       <p class="description">
+        <xsl:variable name="stripped">
+          <xsl:call-template name="remove-html">
+            <xsl:with-param name="text" select="description" />
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:call-template name="truncate">
+          <xsl:with-param name="node" select="$stripped" />
+          <xsl:with-param name="length" select="215" />
+        </xsl:call-template>
+      </p> -->
+<!--       <p class="more">
+        <span class="more-link">More</span>
+      </p> -->
     </a>
-    <xsl:call-template name="edit-entry">
-      <xsl:with-param name="component" select="$component"/>
-    </xsl:call-template>
-  </li>
-
+  </div>
 </xsl:template>
 
 

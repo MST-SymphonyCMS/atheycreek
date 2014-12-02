@@ -144,6 +144,7 @@
 
 .masthead .navigation .dropdown-menu {
   padding: 0;
+  border: none;
   border-radius: 0;
 }
 
@@ -283,13 +284,8 @@
     color: white;
 
     &:hover {
-      color: $brand-primary;
-      background: #212121;
-
-      .count {
-        color: white;
-        background: transparentize($brand-primary, 0.25);
-      }
+      background: none;
+      color: darken($brand-secondary, 35%);
     }
   }
 

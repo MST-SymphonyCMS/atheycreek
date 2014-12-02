@@ -1045,20 +1045,6 @@
           <xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
         </xsl:call-template>
       </p>
-<!--       <p class="description">
-        <xsl:variable name="stripped">
-          <xsl:call-template name="remove-html">
-            <xsl:with-param name="text" select="description" />
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:call-template name="truncate">
-          <xsl:with-param name="node" select="$stripped" />
-          <xsl:with-param name="length" select="215" />
-        </xsl:call-template>
-      </p> -->
-<!--       <p class="more">
-        <span class="more-link">More</span>
-      </p> -->
     </a>
   </div>
 </xsl:template>

@@ -9,14 +9,41 @@
 // ------------------------------------------------
 
 .members-roles-full-width {
+  margin-top: 6rem;
+
   .member {
-    margin-bottom: 6rem;
     text-align: center;
   }
 
   img {
     width: 250px;
     height: 250px;
+  }
+
+  h5 {
+    margin: 3rem 0 1rem 0;
+    color: lighten($brand-secondary, 20%);
+    font-family: $font-family-condensed;
+    font-size: 2rem;
+    font-weight: normal;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .description {
+    text-align: left;
+  }
+
+  .more-link {
+    display: block;
+    margin: -1.5rem 0 1.5rem 0;
+    text-align: center;
+  }
+
+  .contact-info {
+    margin-bottom: 6rem;
   }
 }
 
@@ -60,6 +87,11 @@
   h5 {
     margin-bottom: .5rem;
     color: lighten($gray-darker, 25%);
+    font-size: 1.6rem;
+  }
+
+  .email {
+    font-style: italic;
   }
 
   .phone {

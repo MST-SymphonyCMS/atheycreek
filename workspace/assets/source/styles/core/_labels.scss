@@ -6,6 +6,7 @@
 
 
 .label {
+  border-radius: 0;
 
   &.men         { background: $color-men; }
   &.women       { background: $color-women; }

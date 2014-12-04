@@ -66,8 +66,8 @@ var paths = {
   images: [
     source_path + '/images/*.*'
   ],
-  audio: [
-    source_path + '/media/audio/**/*'
+  fonts: [
+    source_path + '/media/fonts/**/*.*'
   ],
   sprites: [
     source_path + '/media/sprite/*.png'
@@ -186,6 +186,20 @@ gulp.task('images', function() {
 
 
 // ------------------------------------------------
+// + FONTS
+// + - moves any font assets to the build folder
+// ------------------------------------------------
+
+gulp.task('fonts', function() {
+  return gulp.src(paths.fonts)
+    .pipe(plumber({
+      errorHandler: onError
+    }))
+    .pipe(gulp.dest(build_path + '/fonts'))
+});
+
+
+// ------------------------------------------------
 // + CLEAN
 // + - Cleans out the build folder
 // ------------------------------------------------
@@ -246,7 +260,7 @@ gulp.task('sprites', function () {
 // ------------------------------------------------
 
 gulp.task('default', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images', 'watch');
+  gulp.start('styles', 'scripts', 'images', 'fonts', 'watch');
 });
 
 

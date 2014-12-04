@@ -51,9 +51,10 @@
   }
 
   h5 {
-    padding: 0 0 1rem 0;
+    margin-bottom: 2rem;
+    padding: 0;
     font-family: $font-family-base;
-    font-weight: 500;
+    font-weight: 400;
     font-style: italic;
     text-transform: none;
   }
@@ -61,14 +62,16 @@
   h3 {
     width: 60%;
     margin: 0 auto;
-    padding: 1rem 0 0 0;
-    font-family: $headings-font-family;
+    padding: 2rem 0 1rem 0;
+    font-family: $font-family-condensed;
+    font-size: 3.5rem;
+    font-weight: normal;
     line-height: 1.2;
     text-transform: uppercase;
 
     span {
       display: block;
-      min-height: 90px;
+      min-height: 8.4rem;
     }
   }
 
@@ -76,15 +79,14 @@
     background: none;
     border-top: 3px solid lighten($gray-darker, 55%);
     width: 10%;
-    margin: 1rem auto;
+    margin: 1rem auto 2rem auto;
   }
 
   .view {
     display: inline-block;
     padding: .5rem 3.5rem;
     color: $brand-secondary;
-    font-family: $headings-font-family;
-    font-weight: 700;
+    font-family: $font-family-condensed;
     text-transform: uppercase;
     border: 2px solid $brand-secondary;
   }
@@ -111,32 +113,23 @@
   }
 
   h5 {
+    font-size: 1.75rem;
+    font-weight: normal;
     margin: 2rem 0 0 0;
   }
 
   h5 > .label {
-    position: relative;
-    top: -.2rem;
     margin-left: 1rem;
     padding-top: .1rem;
     padding-bottom: .1rem;
+    font-family: $font-family-condensed;
+    font-size: 1.75rem;
+    font-weight: bold;
   }
 
   .date {
     font-style: italic;
     color: lighten($gray-darker, 40%);
-  }
-
-  .more {
-    margin-top: 2rem;
-  }
-
-  .more-link {
-    padding: .5rem 4rem;
-    font-family: $headings-font-family;
-    text-transform: uppercase;
-    color: white;
-    background: lighten($gray-darker, 40%);
   }
 
 }
@@ -157,11 +150,12 @@
   }
 
   .title > .label {
-    position: relative;
-    top: -.2rem;
     margin-left: 1rem;
     padding-top: .1rem;
     padding-bottom: .1rem;
+    font-family: $font-family-condensed;
+    font-size: 2.6rem;
+    font-weight: bold;
   }
 
   .date {

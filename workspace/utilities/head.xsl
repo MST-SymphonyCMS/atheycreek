@@ -59,8 +59,7 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <script type="text/javascript" src="//use.typekit.net/xht8sty.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7076432/620626/css/fonts.css" />
 
   </head>
 

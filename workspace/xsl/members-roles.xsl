@@ -48,11 +48,11 @@
               <xsl:text> </xsl:text>
               <xsl:value-of select="member/item/last-name" disable-output-escaping="yes" />
             </xsl:variable>
-            <xsl:variable name="email">
-              <xsl:call-template name="members-roles-email-anonymize" />
-            </xsl:variable>
             <xsl:variable name="phone">
               <xsl:call-template name="members-roles-phone-number-anonymize" />
+            </xsl:variable>
+            <xsl:variable name="email">
+              <xsl:call-template name="members-roles-email-anonymize" />
             </xsl:variable>
             <div id="{member/item/first-name/@handle}-{member/item/last-name/@handle}">
               <xsl:choose>
@@ -77,12 +77,67 @@
               <h3>
                 <xsl:value-of select="$name" disable-output-escaping="yes" />
               </h3>
-              <div class="content">
-                <div class="contact-info">
-
+              <div class="description">
+                <xsl:value-of select="member/item/about" disable-output-escaping="yes" />
+              </div>
+              <div class="contact-info hidden-md hidden-lg">
+                <div class="more">
+                  <div class="more-link">
+                    <div class="phone">
+                      <xsl:value-of select="$phone" />
+                    </div>
+                    <xsl:if test="string-length($email) &gt; 1">
+                      <a title="Email {$name}">
+                        <xsl:attribute name="href">
+                          <xsl:text disable-output-escaping="yes">mailto:</xsl:text>
+                          <xsl:value-of select="$email" />
+                        </xsl:attribute>
+                        <xsl:value-of select="$email" />
+                      </a>
+                    </xsl:if>
+                  </div>
                 </div>
               </div>
-              <xsl:value-of select="member/item/about" disable-output-escaping="yes" />
+            </div>
+          </xsl:for-each>
+        </div>
+        <div class="row contact-info visible-md-block visible-lg-block">
+          <xsl:for-each select=". | following-sibling::*[not(position() >= $items-per-row)]">
+            <div id="{member/item/first-name/@handle}-{member/item/last-name/@handle}-details">
+              <xsl:choose>
+                <xsl:when test="count($entries) = 1">
+                  <xsl:attribute name="class">col-md-6 col-md-offset-3</xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:attribute name="class">col-md-6</xsl:attribute>
+                </xsl:otherwise>
+              </xsl:choose>
+              <xsl:variable name="name">
+                <xsl:value-of select="member/item/first-name" disable-output-escaping="yes" />
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="member/item/last-name" disable-output-escaping="yes" />
+              </xsl:variable>
+              <xsl:variable name="phone">
+                <xsl:call-template name="members-roles-phone-number-anonymize" />
+              </xsl:variable>
+              <xsl:variable name="email">
+                <xsl:call-template name="members-roles-email-anonymize" />
+              </xsl:variable>
+              <div class="more">
+                <div class="more-link">
+                  <xsl:value-of select="$phone" />
+                  <xsl:if test="string-length($email) &gt; 1">
+                    <xsl:text>&#160;&#160;•&#160;&#160;</xsl:text>
+                    <a title="Email {$name}">
+                      <xsl:attribute name="href">
+                        <xsl:text disable-output-escaping="yes">mailto:</xsl:text>
+                        <xsl:value-of select="$email" />
+                      </xsl:attribute>
+                      <xsl:value-of select="$email" />
+                    </a>
+                  </xsl:if>
+                </div>
+              </div>
             </div>
           </xsl:for-each>
         </div>
@@ -246,7 +301,7 @@
 <xsl:template name="members-roles-email-events-anonymize">
   <xsl:choose>
     <xsl:when test="anonymize = 'Yes' or not(string-length(email))">
-      <xsl:text>&#140;</xsl:text>
+      <xsl:text></xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="email" />

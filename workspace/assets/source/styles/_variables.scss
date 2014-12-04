@@ -8,13 +8,7 @@
 // Bootstrap Overrides
 // ------------------------------------------------
 
-// Global Colors
-$gray-darker: #373839;
-$brand-primary: #3aa2dd;
-$brand-secondary: #969696;
-$text-color: $gray-darker;
-$white: #ffffff;
-$black: #111111;
+
 
 // Ministry Colors
 $color-men: #3d3a3a;
@@ -26,18 +20,29 @@ $color-gradeschool: #fed666;
 $color-children: $color-gradeschool;
 $color-allchurch: #ff5656;
 
+// Global Colors
+$gray-darker: #373839;
+$brand-primary: #3d4e6a;
+$brand-secondary: #969696;
+$brand-accent: $color-allchurch;
+$text-color: $gray-darker;
+$white: #ffffff;
+$black: #111111;
+
 // Links
 $link-hover-decoration: none;
 
 // Typography
 $icon-font-path: '../../build/fonts/';
-$font-family-sans-serif: 'calluna-sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-family-serif: 'calluna', Georgia, Times, serif;
-$headings-font-family: $font-family-sans-serif;
+$font-family-sans-serif: 'Trade Gothic';
+$font-family-serif: 'Mercury Text G4 A', 'Mercury Text G4 B';
+$font-family-condensed: 'Trade Gothic Condensed';
+$font-family-extended: 'Trade Gothic Extended';
+$headings-font-family: $font-family-extended;
 $font-family-base: $font-family-serif;
 $headings-font-weight: 700;
 $font-size-base: 20px;
-$heading-size-base: $font-size-base;
+$heading-size-base: $font-size-base - 4;
 
 $font-size-h1:            floor(($heading-size-base * 2.75)) !default;
 $font-size-h2:            floor(($heading-size-base * 2.05)) !default;

@@ -1,7 +1,9 @@
 {
-  "name": "atheycreek-site",
-  "version": "2.0.0",
+  "name": "atheycreek",
+  "version": "3.0.0",
   "devDependencies": {
+    "css-sprite": "^0.7.0-beta3",
+    "fontcustom": "0.0.3",
     "gulp": "^3.8.7",
     "gulp-autoprefixer": "0.0.8",
     "gulp-cache": "^0.2.0",
@@ -18,9 +20,7 @@
     "gulp-sass": "^0.7.2",
     "gulp-shell": "^0.2.8",
     "gulp-uglify": "^0.3.1",
-    "gulp-uncss": "^0.4.5",
-    "fontcustom": "0.0.3",
-    "css-sprite": "^0.7.0-beta3"
+    "gulp-uncss": "^0.4.5"
   },
   "repository": {
     "type": "git",

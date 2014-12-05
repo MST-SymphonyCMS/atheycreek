@@ -13,49 +13,23 @@
 
   <xsl:if test="count($entries)">
     <xsl:choose>
-      <!-- Are we on the Events page or not? -->
-      <xsl:when test="$pt1 = 'events'">
-        <xsl:choose>
-          <!-- Do we want to show the list view? -->
-          <xsl:when test="$mode = 'list'">
-            <xsl:call-template name="events-list">
-              <xsl:with-param name="component" select="$component" />
-              <xsl:with-param name="entries" select="$entries" />
-            </xsl:call-template>
-          </xsl:when>
-          <!-- If not, show a full, single-page -->
-          <xsl:otherwise>
-            <xsl:call-template name="events-single">
-              <xsl:with-param name="component" select="$component" />
-              <xsl:with-param name="entries" select="$entries" />
-              <xsl:with-param name="recurring" select="$recurring" />
-            </xsl:call-template>
-          </xsl:otherwise>
-        </xsl:choose>
+      <!-- Test for Full Width column display -->
+      <xsl:when test="$position = 'column-full-width'">
+
       </xsl:when>
-      <!-- Catch-all for all other event displays -->
-      <xsl:otherwise>
-        <xsl:choose>
-          <!-- Test for Full Width column display -->
-          <xsl:when test="$position = 'column-full-width'">
+      <!-- Test for Center column display -->
+      <xsl:when test="$position = 'column-center'">
 
-          </xsl:when>
-          <!-- Test for Center column display -->
-          <xsl:when test="$position = 'column-center'">
-
-          </xsl:when>
-          <!-- Test for Right column display -->
-          <xsl:when test="$position = 'column-right'">
-            <xsl:call-template name="events-column-right">
-              <xsl:with-param name="component" select="$component" />
-              <xsl:with-param name="entries" select="$entries" />
-              <xsl:with-param name="recurring" select="$recurring" />
-            </xsl:call-template>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:otherwise>
+      </xsl:when>
+      <!-- Test for Right column display -->
+      <xsl:when test="$position = 'column-right'">
+        <xsl:call-template name="events-column-right">
+          <xsl:with-param name="component" select="$component" />
+          <xsl:with-param name="entries" select="$entries" />
+          <xsl:with-param name="recurring" select="$recurring" />
+        </xsl:call-template>
+      </xsl:when>
     </xsl:choose>
-
   </xsl:if>
 
 </xsl:template>

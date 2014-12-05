@@ -5,6 +5,7 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourcelocations_groups extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'locations-groups';
+		public $dsParamConditionalizer = '(if any of ((if value of ({$pt1}) is (home-groups)), (if value of ({$current-page}) is (json))) is (yes))';
     public $dsParamORDER = 'asc';
     public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '20';
@@ -71,7 +72,7 @@ class datasourcelocations_groups extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.2',
-            'release-date' => '2014-12-04T23:42:25+00:00'
+            'release-date' => '2014-12-05T21:21:08+00:00'
         );
     }
 

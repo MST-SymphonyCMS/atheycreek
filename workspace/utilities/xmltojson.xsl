@@ -9,11 +9,13 @@
   encoding="UTF-8"
   indent="yes" />
 
+
   <xsl:template name="json">
     <xsl:text>{</xsl:text>
     <xsl:apply-templates select="." mode="detect" />
     <xsl:text>}</xsl:text>
   </xsl:template>
+
 
   <xsl:template match="*" mode="detect">
     <xsl:choose>
@@ -41,6 +43,7 @@
     </xsl:choose>
   </xsl:template>
 
+
   <xsl:template match="*" mode="obj-content">
     <xsl:text>{</xsl:text>
       <xsl:apply-templates select="@*" mode="attr" />
@@ -56,10 +59,12 @@
     <xsl:if test="position() != last()">, </xsl:if>
   </xsl:template>
 
+
   <xsl:template match="@*" mode="attr">
     <xsl:text>"</xsl:text><xsl:value-of select="name()"/>" : "<xsl:value-of select="."/><xsl:text>"</xsl:text>
     <xsl:if test="position() != last()">,</xsl:if>
   </xsl:template>
+
 
   <xsl:template match="node/@TEXT | text()" name="removeBreaks">
     <xsl:param name="pText" select="normalize-space(.)"/>

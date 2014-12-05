@@ -15,9 +15,9 @@
 
 
 <xsl:template match="/">
-  <xsl:call-template name="json">
-    <xsl:with-param name="xml" select="//data/node()[name() = $url-request]"/>
-  </xsl:call-template>
+  <xsl:for-each select="//data/node()[name() = $url-request]">
+    <xsl:call-template name="json"/>
+  </xsl:for-each>
 </xsl:template>
 
 

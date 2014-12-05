@@ -1,116 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:exsl="http://exslt.org/common"
-	extension-element-prefixes="exsl">
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:import href="toolkit.xsl" />
+<xsl:output method="xml"
+  doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
+  doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+  omit-xml-declaration="yes"
+  encoding="UTF-8"
+  indent="yes" />
 
-<xsl:variable name="array" />
+  <xsl:template name="json">
+    <xsl:text>{</xsl:text>
+    <xsl:apply-templates select="." mode="detect" />
+    <xsl:text>}</xsl:text>
+  </xsl:template>
 
-<xsl:strip-space elements="* | @*" />
+  <xsl:template match="*" mode="detect">
+    <xsl:choose>
+      <xsl:when test="name(preceding-sibling::*[1]) = name(current()) and name(following-sibling::*[1]) != name(current())">
+        <xsl:apply-templates select="." mode="obj-content" />
+        <xsl:text>]</xsl:text>
+        <xsl:if test="count(following-sibling::*[name() != name(current())]) &gt; 0">, </xsl:if>
+      </xsl:when>
+      <xsl:when test="name(preceding-sibling::*[1]) = name(current())">
+        <xsl:apply-templates select="." mode="obj-content" />
+        <xsl:if test="name(following-sibling::*) = name(current())">, </xsl:if>
+      </xsl:when>
+      <xsl:when test="following-sibling::*[1][name() = name(current())]">
+        <xsl:text>"</xsl:text><xsl:value-of select="name()"/><xsl:text>" : [</xsl:text>
+        <xsl:apply-templates select="." mode="obj-content" /><xsl:text>, </xsl:text>
+      </xsl:when>
+      <xsl:when test="count(./child::*) > 0 or count(@*) > 0">
+        <xsl:text>"</xsl:text><xsl:value-of select="name()"/>" : <xsl:apply-templates select="." mode="obj-content" />
+        <xsl:if test="position() != last()">, </xsl:if>
+      </xsl:when>
+      <xsl:when test="count(./child::*) = 0">
+        <xsl:text>"</xsl:text><xsl:value-of select="name()"/>" : "<xsl:apply-templates select="."/><xsl:text>"</xsl:text>
+        <xsl:if test="count(following-sibling::*) != 0">, </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
 
+  <xsl:template match="*" mode="obj-content">
+    <xsl:text>{</xsl:text>
+      <xsl:apply-templates select="@*" mode="attr" />
+      <xsl:if test="count(@*) != 0 and (count(child::*) != 0 or text())">, </xsl:if>
+      <xsl:apply-templates select="./*" mode="detect" />
+      <xsl:if test="count(child::*) = 0 and text() and not(@*)">
+        <xsl:text>"</xsl:text><xsl:value-of select="name()"/>" : "<xsl:value-of select="text()"/><xsl:text>"</xsl:text>
+      </xsl:if>
+      <xsl:if test="count(child::*) = 0 and text() and @*">
+        <xsl:text>"text" : "</xsl:text><xsl:value-of select="text()"/><xsl:text>"</xsl:text>
+      </xsl:if>
+    <xsl:text>}</xsl:text>
+    <xsl:if test="position() != last()">, </xsl:if>
+  </xsl:template>
 
-<xsl:template name="json">
+  <xsl:template match="@*" mode="attr">
+    <xsl:text>"</xsl:text><xsl:value-of select="name()"/>" : "<xsl:value-of select="."/><xsl:text>"</xsl:text>
+    <xsl:if test="position() != last()">,</xsl:if>
+  </xsl:template>
 
-	<xsl:param name="xml" />
-
-	<xsl:text>{</xsl:text>
-	<xsl:apply-templates select="exsl:node-set($xml)" mode="json" />
-	<xsl:text>}</xsl:text>
-
-</xsl:template>
-
-
-<xsl:template match="*" mode="json">
-
-	<xsl:variable name="has-siblings" select="name(.) = name(preceding-sibling::*) or name(.) = name(following-sibling::*)" />
-	<xsl:variable name="has-children" select="child::*" />
-	<xsl:variable name="has-attributes" select="@*" />
-	<xsl:variable name="is-node" select="$has-siblings and position() = 1 or not($has-siblings) or  $has-children" />
-
-	<xsl:if test="$is-node and not($array) and not($has-siblings)">
-		<xsl:text>"</xsl:text>
-		<xsl:value-of select="name(.)" />
-		<xsl:text>": </xsl:text>
-	</xsl:if>
-
-	<xsl:if test="$has-siblings">
-		<xsl:text>"</xsl:text>
-		<xsl:value-of select="name(.)" />
-		<xsl:text>": </xsl:text>
-	</xsl:if>
-
-	<xsl:choose>
-		<xsl:when test="$has-attributes and $has-children">
-			<xsl:text>{ "_attributes" : {</xsl:text>
-			<xsl:apply-templates select="@*" mode="json" />
-			<xsl:text>}, </xsl:text>
-			<xsl:apply-templates select="* | text()" mode="json" />
-			<xsl:text> }</xsl:text>
-		</xsl:when>
-		<xsl:when test="$has-attributes">
-			<xsl:text>{ "_attributes" : {</xsl:text>
-			<xsl:apply-templates select="@*" mode="json" />
-			<xsl:text>}, "_value" : </xsl:text>
-			<xsl:apply-templates select="* | text()" mode="json" />
-			<xsl:if test=". = ''">
-				<xsl:text>null</xsl:text>
-			</xsl:if>
-			<xsl:text> }</xsl:text>
-		</xsl:when>
-		<xsl:when test="$has-children">
-			<xsl:text>{ </xsl:text>
-			<xsl:apply-templates select="* | text()" mode="json" />
-			<xsl:text> }</xsl:text>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:apply-templates select="* | text()" mode="json" />
-			<xsl:if test=". = ''">
-				<xsl:text>null</xsl:text>
-			</xsl:if>
-		</xsl:otherwise>
-	</xsl:choose>
-
-	<xsl:if test="$has-siblings and position() = last()">
-		<!-- <xsl:text>}</xsl:text> -->
-	</xsl:if>
-
-	<xsl:if test="position() != last()">
-		<xsl:text>,</xsl:text>
-	</xsl:if>
-
-</xsl:template>
-
-
-<xsl:template match="text()" mode="json">
-	<xsl:variable name="is-string" select="string(number(.)) = 'NaN' and . != 'true' and . != 'false'" />
-	<xsl:text>"</xsl:text>
-	<xsl:call-template name="string-replace"><!-- Escape Quotes -->
-		<xsl:with-param name="haystack" select="." />
-		<xsl:with-param name="search" select="'&#34;'" />
-		<xsl:with-param name="replace" select="'&#92;&#34;'" />
-	</xsl:call-template>
-	<xsl:text>"</xsl:text>
-</xsl:template>
-
-
-<xsl:template match="@*" mode="json">
-	<xsl:text>"</xsl:text>
-	<xsl:value-of select="name()" />
-	<xsl:text>" : </xsl:text>
-	<xsl:variable name="is-string" select="string(number(.)) = 'NaN' and . != 'true' and . != 'false'" />
-	<xsl:if test="not(. = '')">"</xsl:if>
-	<xsl:call-template name="string-replace">
-		<xsl:with-param name="haystack" select="." />
-		<xsl:with-param name="search" select="'&#34;'" />
-		<xsl:with-param name="replace" select="'&#92;&#34;'" />
-	</xsl:call-template>
-	<xsl:if test="not(. = '')">"</xsl:if>
-	<xsl:if test=". = ''">null</xsl:if>
-	<xsl:if test="position() != last()">,</xsl:if>
-</xsl:template>
+  <xsl:template match="node/@TEXT | text()" name="removeBreaks">
+    <xsl:param name="pText" select="normalize-space(.)"/>
+    <xsl:choose>
+      <xsl:when test="not(contains($pText, '&#xA;'))"><xsl:copy-of select="$pText"/></xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat(substring-before($pText, '&#xD;&#xA;'), ' ')"/>
+        <xsl:call-template name="removeBreaks">
+          <xsl:with-param name="pText" select="substring-after($pText, '&#xD;&#xA;')"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
 
 </xsl:stylesheet>

@@ -14,6 +14,7 @@ class datasourceteachings_latest extends SectionDatasource
     public $dsParamREDIRECTONFORBIDDEN = 'no';
     public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamSORT = 'date';
+    public $dsParamHTMLENCODE = 'no';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
     public $dsParamFILTERS = array(
@@ -44,8 +45,8 @@ class datasourceteachings_latest extends SectionDatasource
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
-            'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-08-26T14:50:10+00:00'
+            'version' => 'Symphony 2.5.2',
+            'release-date' => '2014-12-05T17:16:08+00:00'
         );
     }
 

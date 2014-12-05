@@ -300,7 +300,11 @@ Options +FollowSymlinks -Indexes
   RewriteCond %{REQUEST_FILENAME} favicon.ico [NC]
   RewriteRule .* - [S=14]
 
-  ### IMAGE RULES
+	### START API RULES
+	RewriteRule ^symphony\/api(\/(.*\/?))?$ extensions/rest_api/handler.php?url=$1&%{QUERY_STRING}	[NC,L]
+	### END API RULES
+
+	### IMAGE RULES
   RewriteRule ^image\/(.+\.(jpg|gif|jpeg|png|bmp))$ extensions/jit_image_manipulation/lib/image.php?param=$1 [L,NC]
 
   ### CHECK FOR TRAILING SLASH - Will ignore files

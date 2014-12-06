@@ -1,0 +1,51 @@
+
+// ================================================
+// MAIN
+// - this bad boy does it all
+// ================================================
+
+
+// Bootstrap
+// ------------------------------------------------
+
+@import
+  "variables",
+  "bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+
+// Global Setup
+// ------------------------------------------------
+
+@import
+  "mixins",
+  "animated",
+  "globals",
+  "webfonts";
+
+
+// Core
+// ------------------------------------------------
+
+@import
+  "core/icons",
+  "core/labels";
+
+
+// Modules
+// ------------------------------------------------
+
+@import
+  "modules/alerts",
+  "modules/navigation",
+  "modules/links",
+  "modules/featured",
+  "modules/events",
+  "modules/events-recurring",
+  "modules/images",
+  "modules/verses",
+  "modules/text",
+  "modules/teachings",
+  "modules/members-roles",
+  "modules/downloads",
+  "modules/locations",
+  "modules/footer";

@@ -5,12 +5,13 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourceteachings_series_entries_all extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'teachings-series-entries-all';
-		public $dsParamConditionalizer = '(if value of ({$pt1}) is (teachings))';
     public $dsParamORDER = 'asc';
     public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '20';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamSORT = 'order';
     public $dsParamHTMLENCODE = 'yes';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'yes';
@@ -26,11 +27,11 @@ class datasourceteachings_series_entries_all extends SectionDatasource
         'special',
         'featured'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'poster' => array(
             'section_id' => '8',
-            'field_id' => '59',
+            'field_id' => '313',
             'elements' => array(
                 'image'
             )
@@ -50,9 +51,9 @@ class datasourceteachings_series_entries_all extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-11T17:43:37+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.2',
+            'release-date' => '2014-12-06T00:15:31+00:00'
         );
     }
 

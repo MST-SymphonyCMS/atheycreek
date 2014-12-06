@@ -150,6 +150,35 @@
   letter-spacing: .25rem;
 }
 
+// Double dropdowns
+
+// Hide by default
+.masthead .navigation .dropdown-menu > li.dropdown .dropdown-menu {
+  display: none;
+  left: 11rem;
+  top: -.2rem;
+  min-width: 240px;
+  @include content-columns(2);
+}
+
+.masthead .navigation .dropdown-menu > li.dropdown .dropdown-menu li:hover a {
+  background: none;
+}
+
+.masthead .navigation .dropdown-menu > li.dropdown .dropdown-menu li a {
+  padding: .5rem 1rem;
+  font-family: $font-family-condensed;
+  font-size: 1.5rem;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+
+.masthead .navigation .dropdown-menu > li.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
+
 // Special animations just for the Homepage
 
 .layout-home .masthead .navigation > li {

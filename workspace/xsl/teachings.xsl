@@ -11,61 +11,60 @@
   <xsl:if test="count($entries)">
 
     <xsl:choose>
-      <xsl:when test="not(number($pt3)) and not(number($pt4)) and $pt4">
-        <div class="title-wrapper">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <h2>
-                  <xsl:choose>
-                    <xsl:when test="$pt4 = 'psalm'">
-                      <xsl:text>Psalms</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:value-of select="$pt4" />
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </h2>
-              </div>
+      <!-- This tests for books of the Bible, but it not being used currently -->
+      <xsl:when test="not(number($pt2)) and not(number($pt3)) and $pt3">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>
+                <xsl:choose>
+                  <xsl:when test="$pt3 = 'psalm'">
+                    <xsl:text>Psalms</xsl:text>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="$pt4" />
+                  </xsl:otherwise>
+                </xsl:choose>
+              </h4>
             </div>
           </div>
-        </div>
+        </div><!-- .container -->
       </xsl:when>
+      <!-- I don't know what this tests for -->
       <xsl:when test="not(number($pt3)) and number($pt3) and $pt4">
         <div class="title-wrapper">
           <div class="container">
             <div class="row">
               <div class="col-md-12">
-                <h2>
+                <h4 class="teaching-section-title">
                   <xsl:text>Series: </xsl:text>
-                  <em>
+                  <span class="subtitle">
                     <xsl:call-template name="string-replace-all">
                       <xsl:with-param name="text" select="$pt5" />
                       <xsl:with-param name="replace" select="'-'" />
                       <xsl:with-param name="by" select="' '" />
                     </xsl:call-template>
-                  </em>
-                </h2>
+                  </span>
+                </h4>
               </div>
             </div>
           </div>
         </div>
       </xsl:when>
+      <!-- This tests for teaching tags and renders a section title -->
       <xsl:when test="$pt2 = 'tag'">
-        <div class="title-wrapper">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <h2>
-                  <xsl:text>Tag: </xsl:text>
-                  <em>
-                    <xsl:value-of select="/data/teachings-entry-by-tag-filtered/entry/tags/item[@id=$pt3]/tag/@handle" disable-output-escaping="yes" />
-                  </em>
-                </h2>
-              </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="teaching-section-title">
+                <xsl:text>Tag: </xsl:text>
+                <span class="subtitle">
+                  <xsl:value-of select="/data/teachings-entry-by-tag-filtered/entry/tags/item[@id=$pt3]/tag/@handle" disable-output-escaping="yes" />
+                </span>
+              </h4>
             </div>
           </div>
-        </div>
+        </div><!-- .container -->
       </xsl:when>
     </xsl:choose>
 
@@ -907,6 +906,22 @@
     <a href="{$root}/teachings/year/{$howMany}/"><xsl:value-of select="$howMany" /></a>
     <xsl:if test="$howMany &lt; $this-year">, </xsl:if>
     <xsl:call-template name="years-counter">
+    <xsl:with-param name="howMany" select="$howMany + 1" />
+    </xsl:call-template>
+  </xsl:if>
+
+</xsl:template>
+
+
+<xsl:template name="years-counter-nav">
+
+  <xsl:param name="howMany">1997</xsl:param>
+
+  <xsl:if test="$howMany &lt; $this-year + 1">
+    <li>
+      <a href="{$root}/teachings/year/{$howMany}/"><xsl:value-of select="$howMany" /></a>
+    </li>
+    <xsl:call-template name="years-counter-nav">
     <xsl:with-param name="howMany" select="$howMany + 1" />
     </xsl:call-template>
   </xsl:if>

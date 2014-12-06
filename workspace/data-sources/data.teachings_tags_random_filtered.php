@@ -5,12 +5,13 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourceteachings_tags_random_filtered extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'teachings-tags-random-filtered';
-		public $dsParamConditionalizer = '(if value of ({$pt1}) is (teachings))';
     public $dsParamORDER = 'random';
     public $dsParamPAGINATERESULTS = 'yes';
-    public $dsParamLIMIT = '30';
+    public $dsParamLIMIT = '20';
     public $dsParamSTARTPAGE = '1';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamSORT = 'system:id';
     public $dsParamHTMLENCODE = 'yes';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
@@ -37,9 +38,9 @@ class datasourceteachings_tags_random_filtered extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-11T18:14:31+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.2',
+            'release-date' => '2014-12-05T23:35:54+00:00'
         );
     }
 

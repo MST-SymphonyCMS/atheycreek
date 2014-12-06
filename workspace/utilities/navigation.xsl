@@ -20,32 +20,26 @@
 
 </xsl:template>
 
+
 <xsl:template name="side-menu">
 
   <div class="snap-drawers">
     <div class="snap-drawer snap-drawer-right">
       <div class="brand">
         <a href="{$root}"><span class="icon icon-logo"></span></a>
-      </div>
+      </div><!-- .brand -->
       <ul class="menu">
         <xsl:for-each select="/data/tags-all-entries/entry[not(parent/item) and not(hide-nav = 'Yes')]">
           <xsl:call-template name="subnav-entry" />
         </xsl:for-each>
-<!--         <li class="social">
-          <div id="facebook-side" class="facebook-side" data-url="http://2015.thegospelcoalition.org/" data-text="The Gospel Coalition 2015 National Conference" data-title="Like"></div>
-        </li>
-        <li class="social">
-          <div id="twitter-side" class="twitter-side" data-url="http://2015.thegospelcoalition.org/" data-text="The Gospel Coalition 2015 National Conference" data-title="Tweet"></div>
-        </li> -->
-      </ul>
-    </div>
-  </div>
+      </ul><!-- .menu -->
+    </div><!-- .snap-drawer-right -->
+  </div><!-- .snap-drawers -->
 
 </xsl:template>
 
 
 <xsl:template name="masthead">
-
   <div class="masthead">
     <div class="container">
       <div class="row">
@@ -103,6 +97,59 @@
     <xsl:if test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id">
       <ul class="dropdown-menu">
         <xsl:for-each select="/data/tags-all-entries/entry[parent/item/@id = $realID]">
+          <xsl:if test="$realID = 21">
+            <li class="dropdown">
+              <a href="{$root}/teachings/series/">By Series</a>
+              <ul class="dropdown-menu">
+                <xsl:for-each select="/data/teachings-series-entries-all/entry[not(special) or special = 'No' and position() &lt; 20]">
+                  <li>
+                    <a>
+                      <xsl:call-template name="url-teachings-series" />
+                      <xsl:value-of select="title" disable-output-escaping="yes" />
+                    </a>
+                  </li>
+                </xsl:for-each>
+                <li>
+                  <a href="{$root}/teachings/series/">View All→</a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="{$root}/teachings/series/#special">By Special</a>
+              <ul class="dropdown-menu">
+                <xsl:for-each select="/data/teachings-series-entries-all/entry[special = 'Yes']">
+                  <li>
+                    <a>
+                      <xsl:call-template name="url-teachings-series" />
+                      <xsl:value-of select="title" disable-output-escaping="yes" />
+                    </a>
+                  </li>
+                </xsl:for-each>
+                <li>
+                  <a href="{$root}/teachings/series/#special">View All→</a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="javascript:void(0)">By Year</a>
+              <ul class="dropdown-menu">
+                <xsl:call-template name="years-counter-nav" />
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="javascript:void(0)">By Tags</a>
+              <ul class="dropdown-menu">
+                <xsl:for-each select="/data/teachings-tags-random-filtered/entry">
+                  <li>
+                    <a>
+                      <xsl:call-template name="url-teachings-tags" />
+                      <xsl:value-of select="tag" disable-output-escaping="yes" />
+                    </a>
+                  </li>
+                </xsl:for-each>
+              </ul>
+            </li>
+          </xsl:if>
           <li>
             <a>
               <xsl:call-template name="url-tags" />

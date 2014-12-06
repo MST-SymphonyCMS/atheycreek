@@ -1,0 +1,15 @@
+font_name: icons
+autowidth: false
+no_hash: true
+force: true
+debug: false
+quiet: false
+templates:
+  - _icons.scss
+  - fontcustom-preview.html
+input: workspace/assets/source/media/icons
+output:
+  css: workspace/assets/source/styles/core
+  fonts: workspace/assets/build/fonts
+  preview: workspace/assets/build/fonts
+

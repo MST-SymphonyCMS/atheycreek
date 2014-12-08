@@ -45,9 +45,9 @@
 
 }
 
+
 // Home: Teachings Series
 // ------------------------------------------------
-
 
 .teachings-series.teachings-series-home {
 
@@ -60,4 +60,166 @@
     }
   }
 
+}
+
+
+// Teachings: Detail
+// ------------------------------------------------
+
+.teachings-full-width.teachings-detail {
+  border-radius: .5rem .5rem 0 0;
+
+  .teaching,
+  .teaching-viewer,
+  .inner {
+    border-radius: .5rem .5rem 0 0;
+  }
+
+  .teachings-detail h3 {
+    border-radius: .5rem .5rem 0 0;
+  }
+}
+
+.teachings-detail {
+
+  .title {
+    display: none;
+  }
+
+  .nav {
+    padding-left: 0;
+  }
+
+  @media (min-width: $screen-md) {
+    .main,
+    .speaker {
+      width: 50%;
+      float: left;
+    }
+  }
+
+  .main h4 {
+    margin-top: 4.5rem;
+    margin-bottom: .5rem;
+
+    .label {
+      position: relative;
+      top: -.2rem;
+    }
+  }
+
+  .main .meta {
+    text-align: center;
+    font-style: italic;
+    color: $brand-secondary;
+  }
+
+  .main .divider {
+    margin: 2rem 0;
+    color: lighten($brand-secondary, 25%);
+    font-family: $font-family-extended;
+    font-weight: bold;
+    letter-spacing: 3.5rem;
+    text-align: center;
+  }
+
+  .main .description {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .tag-list {
+    padding-left: 0;
+    display: inline;
+    list-style: none;
+    line-height: 1.2;
+  }
+
+  .tag-list > li {
+    display: inline;
+    text-transform: uppercase;
+  }
+
+  .tag-list-heading {
+    font-family: $font-family-extended;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  .tag-list-item {
+    list-style-type: none;
+    font-family: $font-family-condensed;
+    font-weight: normal;
+    line-height: 1.2;
+  }
+
+  .tag-list-item a {
+    margin-left: 1rem;
+    padding: 1rem;
+    color: $brand-primary;
+    background: lighten($brand-primary, 55%);
+
+    &:hover {
+      color: $white;
+      background: $brand-primary;
+    }
+  }
+
+  .speaker .description {
+    width: 75%;
+    margin: 0 auto;
+    font-family: $font-family-sans-serif;
+    font-size: 1.8rem;
+    text-align: left;
+  }
+
+}
+
+.teaching-viewer {
+  color: $white;
+  background-size: cover;
+
+  .inner {
+    background: transparentize(darken($brand-secondary, 40%), .05);
+  }
+
+  h3 {
+    margin: 0;
+    padding: 3rem 0 0 0;
+    text-align: center;
+  }
+
+  .teaching-media {
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  audio {
+    width: 100%;
+  }
+
+  .nav-pills {
+    display: inline-block;
+    font-family: $font-family-condensed;
+    font-weight: normal;
+
+    & > li {
+      display: inline;
+      float: none;
+    }
+
+    & > li > a {
+      display: inline;
+      color: $white;
+
+      &:hover {
+        color: darken($brand-secondary, 30%);
+        background: transparentize($white, .25);
+      }
+    }
+
+    & > li.active a {
+      background: $white;
+      color: darken($brand-secondary, 30%);
+    }
+  }
 }

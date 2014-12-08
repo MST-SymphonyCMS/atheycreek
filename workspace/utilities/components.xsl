@@ -139,13 +139,19 @@
     </xsl:if>
     <xsl:if test=". = 'teachings'">
       <xsl:choose>
+        <!-- This is a Teachings Detail page -->
         <xsl:when test="number($pt2)">
-          <xsl:call-template name="component-teachings">
-            <xsl:with-param name="component" select="." />
+          <xsl:call-template name="teachings-detail">
             <xsl:with-param name="position" select="name($xpath)" />
             <xsl:with-param name="entries" select="/data/teachings-entry-by-id/entry" />
           </xsl:call-template>
+<!--           <xsl:call-template name="component-teachings">
+            <xsl:with-param name="component" select="." />
+            <xsl:with-param name="position" select="name($xpath)" />
+            <xsl:with-param name="entries" select="/data/teachings-entry-by-id/entry" />
+          </xsl:call-template> -->
         </xsl:when>
+        <!-- This section outputs book entries -->
         <xsl:when test="$pt1 = 'teachings' and $pt2 = 'book'">
           <xsl:call-template name="component-teachings">
             <xsl:with-param name="component" select="." />
@@ -153,6 +159,7 @@
             <xsl:with-param name="entries" select="/data/teachings-entry-by-book-filtered/entry" />
           </xsl:call-template>
         </xsl:when>
+        <!-- This outputs a teaching series page -->
         <xsl:when test="$pt1 = 'series'">
           <xsl:call-template name="component-teachings">
             <xsl:with-param name="component" select="." />
@@ -184,12 +191,17 @@
             <xsl:with-param name="entries" select="/data/teachings-entries-by-year-filtered/entry" />
           </xsl:call-template>
         </xsl:when>
+        <!-- This calls the Teachings Landing page -->
         <xsl:when test="$pt1 = 'teachings'">
-          <xsl:call-template name="component-teachings">
-            <xsl:with-param name="component" select="." />
+          <xsl:call-template name="teachings-landing">
             <xsl:with-param name="position" select="name($xpath)" />
             <xsl:with-param name="entries" select="." />
           </xsl:call-template>
+<!--           <xsl:call-template name="component-teachings">
+            <xsl:with-param name="component" select="." />
+            <xsl:with-param name="position" select="name($xpath)" />
+            <xsl:with-param name="entries" select="." />
+          </xsl:call-template> -->
         </xsl:when>
       </xsl:choose>
     </xsl:if>

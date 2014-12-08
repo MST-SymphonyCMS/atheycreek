@@ -4732,7 +4732,7 @@ a:hover {
   margin: 0 auto; }
 
 .main-content {
-  padding: 0 0 0 0;
+  padding: 0;
   background: #ffffff;
   -webkit-box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
           box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05); }
@@ -4748,6 +4748,8 @@ a:hover {
     text-align: center; }
   .main-content ol, .main-content ul {
     padding-left: 2rem; }
+  .main-content .column-full-width {
+    padding-bottom: 4rem; }
 
 @font-face {
   font-family: "Trade Gothic";
@@ -5388,6 +5390,104 @@ a:hover {
     .teachings-series.teachings-series-home .series a {
       margin-bottom: 0; } }
 
+.teachings-full-width.teachings-detail {
+  border-radius: 0.5rem 0.5rem 0 0; }
+  .teachings-full-width.teachings-detail .teaching, .teachings-full-width.teachings-detail .teaching-viewer, .teachings-full-width.teachings-detail .inner {
+    border-radius: 0.5rem 0.5rem 0 0; }
+  .teachings-full-width.teachings-detail .teachings-detail h3 {
+    border-radius: 0.5rem 0.5rem 0 0; }
+
+.teachings-detail .title {
+  display: none; }
+.teachings-detail .nav {
+  padding-left: 0; }
+@media (min-width: 992px) {
+  .teachings-detail .main, .teachings-detail .speaker {
+    width: 50%;
+    float: left; } }
+.teachings-detail .main h4 {
+  margin-top: 4.5rem;
+  margin-bottom: 0.5rem; }
+  .teachings-detail .main h4 .label {
+    position: relative;
+    top: -0.2rem; }
+.teachings-detail .main .meta {
+  text-align: center;
+  font-style: italic;
+  color: #969696; }
+.teachings-detail .main .divider {
+  margin: 2rem 0;
+  color: #d6d6d6;
+  font-family: 'Trade Gothic Extended';
+  font-weight: bold;
+  letter-spacing: 3.5rem;
+  text-align: center; }
+.teachings-detail .main .description {
+  width: 75%;
+  margin: 0 auto; }
+.teachings-detail .tag-list {
+  padding-left: 0;
+  display: inline;
+  list-style: none;
+  line-height: 1.2; }
+.teachings-detail .tag-list > li {
+  display: inline;
+  text-transform: uppercase; }
+.teachings-detail .tag-list-heading {
+  font-family: 'Trade Gothic Extended';
+  font-size: 1.8rem;
+  font-weight: bold; }
+.teachings-detail .tag-list-item {
+  list-style-type: none;
+  font-family: 'Trade Gothic Condensed';
+  font-weight: normal;
+  line-height: 1.2; }
+.teachings-detail .tag-list-item a {
+  margin-left: 1rem;
+  padding: 1rem;
+  color: #3d4e6a;
+  background: #d7dee8; }
+  .teachings-detail .tag-list-item a:hover {
+    color: #ffffff;
+    background: #3d4e6a; }
+.teachings-detail .speaker .description {
+  width: 75%;
+  margin: 0 auto;
+  font-family: 'Trade Gothic';
+  font-size: 1.8rem;
+  text-align: left; }
+
+.teaching-viewer {
+  color: #ffffff;
+  background-size: cover; }
+  .teaching-viewer .inner {
+    background: rgba(48, 48, 48, 0.95); }
+  .teaching-viewer h3 {
+    margin: 0;
+    padding: 3rem 0 0 0;
+    text-align: center; }
+  .teaching-viewer .teaching-media {
+    padding: 6rem 0;
+    text-align: center; }
+  .teaching-viewer audio {
+    width: 100%; }
+  .teaching-viewer .nav-pills {
+    display: inline-block;
+    font-family: 'Trade Gothic Condensed';
+    font-weight: normal; }
+    .teaching-viewer .nav-pills > li {
+      display: inline;
+      float: none; }
+    .teaching-viewer .nav-pills > li > a {
+      display: inline;
+      color: #ffffff; }
+      .teaching-viewer .nav-pills > li > a:hover {
+        color: #4a4a4a;
+        background: rgba(255, 255, 255, 0.75); }
+    .teaching-viewer .nav-pills > li.active a {
+      background: #ffffff;
+      color: #4a4a4a; }
+
 .members-roles-full-width {
   margin-top: 6rem; }
   .members-roles-full-width .member {
@@ -5417,7 +5517,8 @@ a:hover {
   background: #f7f7f7; }
   .members-roles-column-right .member {
     margin-bottom: 30px;
-    padding: 1.5rem; }
+    padding: 1.5rem;
+    text-align: center; }
   .members-roles-column-right h4 {
     margin: 0;
     padding-bottom: 1.5rem; }
@@ -5501,7 +5602,6 @@ a:hover {
     text-align: center; }
 
 .footer {
-  margin-top: 4rem;
   background: #969696; }
   @media (min-width: 992px) {
     .footer {

@@ -134,99 +134,10 @@
           <xsl:otherwise>
             <xsl:for-each select="/data/featured-teachings/entry">
               <div class="latest">
-                <div class="col-md-8 teaching-main">
-                  <h3>Latest Teaching</h3>
-                  <ul class="nav nav-tabs" id="teachingTab">
-                    <xsl:choose>
-                      <xsl:when test="string-length(video-id) or video-podcast = 'Yes'">
-                        <li class="active"><a href="#video" data-toggle="tab">Video</a></li>
-                        <li><a href="#audio" data-toggle="tab">Audio</a></li>
-                      </xsl:when>
-                      <xsl:otherwise>
-                        <li class="active"><a href="#audio" data-toggle="tab">Audio</a></li>
-                      </xsl:otherwise>
-                    </xsl:choose>
-                  </ul>
-                  <xsl:if test="$cookie-username">
-                    <div class="edit-wrapper">
-                      <xsl:call-template name="edit-entry">
-                        <xsl:with-param name="component" select="'teachings'"/>
-                      </xsl:call-template>
-                    </div>
-                  </xsl:if>
-
-                  <div class="tab-content">
-                    <xsl:choose>
-                      <xsl:when test="string-length(video-id)">
-                        <div class="tab-pane fade active in" id="video">
-                          <iframe src="http://player.vimeo.com/video/{video-id}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" width="500" height="281" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"></iframe>
-                        </div>
-                        <div class="tab-pane fade in" id="audio">
-                          <div class="audio-poster">
-                            <xsl:call-template name="image-master">
-                              <xsl:with-param name="photo" select="poster/item/image/filename" />
-                              <xsl:with-param name="width" select="1920" />
-                              <xsl:with-param name="height" select="1080" />
-                            </xsl:call-template>
-                          </div>
-                          <xsl:call-template name="teaching-actions" />
-                        </div>
-                      </xsl:when>
-                      <xsl:otherwise>
-                        <div class="tab-pane fade active in" id="audio">
-                          <div class="audio-poster">
-                            <xsl:call-template name="image-master">
-                              <xsl:with-param name="photo" select="poster/item/image/filename" />
-                              <xsl:with-param name="width" select="1920" />
-                              <xsl:with-param name="height" select="1080" />
-                            </xsl:call-template>
-                          </div>
-                          <xsl:call-template name="teaching-actions" />
-                        </div>
-                      </xsl:otherwise>
-                    </xsl:choose>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <h2>
-                    <a>
-                      <xsl:call-template name="url-teachings" />
-                      <xsl:value-of select="title" disable-output-escaping="yes" />
-                    </a>
-                  </h2>
-                  <div class="meta">
-                    <div class="verse">
-                      <xsl:value-of select="book/item" />
-                      <xsl:text> </xsl:text>
-                      <xsl:value-of select="chapter" />
-                    </div>
-                    <div class="teacher">
-                      <em>by </em>
-                      <xsl:value-of select="speaker/item/first-name" disable-output-escaping="yes" />
-                      <xsl:text disable-output-escaping="yes"> </xsl:text>
-                      <xsl:value-of select="speaker/item/last-name" disable-output-escaping="yes" />
-                    </div>
-                    <div class="date">
-                      <xsl:call-template name="date-teaching">
-                        <xsl:with-param name="date" select="date/date/start/@iso" />
-                      </xsl:call-template>
-                    </div>
-                  </div>
-                  <div class="description">
-                    <xsl:call-template name="truncate">
-                        <xsl:with-param name="node" select="description" />
-                        <xsl:with-param name="length" select="230" />
-                    </xsl:call-template>
-                  </div>
-                  <xsl:if test="tags/item">
-                    <xsl:call-template name="teaching-tag-list">
-                      <xsl:with-param name="tags" select="tags/item" />
-                    </xsl:call-template>
-                  </xsl:if>
-                </div>
+                <h4>Latest Teaching</h4>
               </div>
             </xsl:for-each>
-            <div class="col-md-8">
+            <div class="col-md-12">
               <xsl:variable name="items-per-row" select="2" />
               <div class="component-series">
                 <h3>Teaching Series</h3>
@@ -322,11 +233,6 @@
                 <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='radio']/content)" disable-output-escaping="yes" />
             </div>
           </xsl:otherwise>
-        </xsl:choose>
-        <xsl:choose>
-          <xsl:when test="$position = 'column-full-width' and not(number($pt2))">
-            <xsl:call-template name="teachings-sidebar"/>
-          </xsl:when>
         </xsl:choose>
       </div>
     </div>
@@ -821,8 +727,203 @@
 </xsl:template>
 
 
-<xsl:template name="teaching-actions">
+<!-- The template for a Teachings Landing page -->
+<xsl:template name="teachings-landing">
+  <xsl:param name="position" />
+  <xsl:param name="entries" />
 
+  <div class="teachings teachings-landing">
+    <div class="container">
+      <h4>Latest Teaching</h4>
+    </div>
+    <xsl:call-template name="teaching-viewer">
+      <xsl:with-param name="entry" select="/data/featured-teachings/entry" />
+    </xsl:call-template>
+    <xsl:call-template name="teachings-home"/>
+  </div>
+
+</xsl:template>
+
+
+
+<!-- The template for a Teachings Detail page -->
+<xsl:template name="teachings-detail">
+  <xsl:param name="position" />
+  <xsl:param name="entries" />
+
+  <div class="teachings teachings-full-width teachings-detail">
+    <xsl:for-each select="$entries">
+      <div class="teaching">
+        <xsl:call-template name="teaching-viewer">
+          <xsl:with-param name="entry" select="$entries" />
+        </xsl:call-template>
+
+        <div class="main">
+          <h4>
+            <xsl:value-of select="title" disable-output-escaping="yes" />
+            <xsl:if test="string-length(filename)">
+              <xsl:text> </xsl:text>
+              <span class="label label-default">
+                <xsl:value-of select="filename" />
+              </span>
+            </xsl:if>
+          </h4>
+          <div class="meta">
+            <span class="date">
+              <xsl:call-template name="format-date">
+                <xsl:with-param name="date" select="date/date/start/@iso" />
+                <xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
+              </xsl:call-template>
+            </span>
+            <xsl:text> • </xsl:text>
+            <span class="book">
+              <xsl:value-of select="book/item" />
+              <xsl:text> </xsl:text>
+              <xsl:value-of select="chapter" />
+            </span>
+          </div>
+          <div class="divider">⨉⨉⨉</div>
+          <div class="description">
+            <xsl:value-of select="description" disable-output-escaping="yes"/>
+            <hr/>
+            <div class="tags">
+              <xsl:call-template name="teaching-tag-list">
+                <xsl:with-param name="tags" select="tags/item" />
+              </xsl:call-template>
+            </div>
+          </div>
+
+        </div><!-- .main -->
+        <div class="speaker">
+          <div class="members-roles members-roles-column-right">
+            <div class="member">
+              <h4>
+                <xsl:value-of select="speaker/item/first-name"/>
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="speaker/item/last-name"/>
+              </h4>
+              <xsl:call-template name="image-master">
+                <xsl:with-param name="photo" select="speaker/item/photo/filename" />
+                <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+                <xsl:with-param name="width" select="400" />
+                <xsl:with-param name="height" select="400" />
+                <xsl:with-param name="responsive" select="0" />
+                <xsl:with-param name="circle" select="1" />
+              </xsl:call-template>
+              <div class="info">
+                <div class="description">
+                  <xsl:value-of select="speaker/item/about" disable-output-escaping="yes" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- .speaker -->
+      </div><!-- .teaching -->
+    </xsl:for-each>
+  </div>
+</xsl:template>
+
+
+<xsl:template name="teaching-viewer">
+  <xsl:param name="entry" select="." />
+
+  <xsl:for-each select="$entry">
+    <div class="teaching-viewer">
+      <xsl:attribute name="style">
+        <xsl:text>background-image: url('</xsl:text>
+        <xsl:value-of select="poster/item/image/@url"/>
+        <xsl:text>');</xsl:text>
+      </xsl:attribute>
+      <div class="inner">
+        <h3>
+          <ul class="nav nav-pills">
+            <xsl:choose>
+              <xsl:when test="string-length(video-id) or video-podcast = 'Yes'">
+                <li class="active"><a href="#video" role="tab" data-toggle="tab">Video</a></li>
+                <li><a href="#audio" role="tab" data-toggle="tab">Audio</a></li>
+              </xsl:when>
+              <xsl:otherwise>
+                <li class="active"><a href="#audio" role="tab" data-toggle="tab">Audio</a></li>
+              </xsl:otherwise>
+            </xsl:choose>
+          </ul>
+        </h3>
+        <div class="teaching-media">
+          <div class="container">
+            <div class="row">
+              <div class="tab-content col-md-8 col-md-offset-2">
+                <xsl:choose>
+                  <xsl:when test="string-length(video-id)">
+                    <div class="tab-pane fade in active" id="video">
+                      <iframe src="http://player.vimeo.com/video/{video-id}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" width="788" height="443" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"></iframe>
+                    </div>
+                    <div class="tab-pane fade in" id="audio">
+                      <div class="audio-poster">
+                        <xsl:call-template name="image-master">
+                          <xsl:with-param name="photo" select="poster/item/image/filename" />
+                          <xsl:with-param name="width" select="1920" />
+                          <xsl:with-param name="height" select="1080" />
+                        </xsl:call-template>
+                      </div>
+                      <xsl:call-template name="teaching-actions" />
+                    </div>
+                  </xsl:when>
+                  <xsl:when test="string-length(video-id) &lt; 1 and video-podcast = 'Yes'">
+                    <div class="tab-pane fade in active" id="video">
+                      <video id="{@id}" width="788" height="433" preload="auto" controls="true">
+                        <xsl:attribute name="src">
+                          <xsl:text>http://66.147.244.244/~atheycre/teachings/video/</xsl:text>
+                          <xsl:value-of select="filename"/>
+                          <xsl:text>_540.mp4</xsl:text>
+                        </xsl:attribute>
+                        <xsl:attribute name="poster">
+                          <xsl:value-of select="$root"/>
+                          <xsl:text>/image/2/1920/1080/5/1/atheycreek.s3.amazonaws.com/</xsl:text>
+                          <xsl:value-of select="poster/item/image/filename"/>
+                        </xsl:attribute>
+                      </video>
+                    </div>
+                    <div class="tab-pane fade in" id="audio">
+                      <div class="audio-poster">
+                        <xsl:call-template name="image-master">
+                          <xsl:with-param name="photo" select="poster/item/image/filename" />
+                          <xsl:with-param name="width" select="1920" />
+                          <xsl:with-param name="height" select="1080" />
+                        </xsl:call-template>
+                      </div>
+                      <xsl:call-template name="teaching-actions" />
+                    </div>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <div class="tab-pane fade active in" id="audio">
+                      <div class="audio-poster">
+                        <xsl:call-template name="image-master">
+                          <xsl:with-param name="photo" select="poster/item/image/filename" />
+                          <xsl:with-param name="width" select="1920" />
+                          <xsl:with-param name="height" select="1080" />
+                        </xsl:call-template>
+                      </div>
+                      <xsl:call-template name="teaching-actions" />
+                    </div>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </div><!-- .tab-content -->
+            </div>
+          </div>
+          <div class="title more">
+            <a class="more-link">
+              <xsl:call-template name="url-teachings"/>
+              <xsl:text>More →</xsl:text>
+            </a>
+          </div>
+        </div><!-- .teaching-select -->
+      </div><!-- .inner -->
+    </div><!-- .teaching-viewer -->
+  </xsl:for-each>
+</xsl:template>
+
+
+<xsl:template name="teaching-actions">
   <xsl:param name="entry" select="." />
 
   <xsl:variable name="audio-url">
@@ -831,38 +932,26 @@
     <xsl:text>.mp3</xsl:text>
   </xsl:variable>
 
-  <div class="teaching-actions">
-
-    <div class="audio-container">
-      <audio src="{$audio-url}" preload="auto" controls="true"></audio>
-    </div>
-
-    <a href="{$audio-url}" class="link link-small downloadPopover pull-left" target="_blank">
-      <span class="icon">d</span>
-      <span class="text hidden-phone">Download</span>
-    </a>
-
+  <div class="teaching-audio">
+    <audio src="{$audio-url}" preload="auto" controls="true"></audio>
   </div>
-
 </xsl:template>
 
 
 <xsl:template name="teaching-tag-list">
-
   <xsl:param name="tags" />
 
-  <div class="tags" style="text-transform: uppercase;">
-    <span class="icon">z</span>
+  <ul class="tag-list">
+    <li class="tag-list-heading">Tags</li>
     <xsl:for-each select="tags/item">
-      <a>
-        <xsl:call-template name="url-teachings-tags" />
-        <xsl:value-of select="." disable-output-escaping="yes" />
-      </a>
-      <xsl:if test="position() &lt; last()">,</xsl:if>
-      <xsl:text> </xsl:text>
+      <li class="tag-list-item">
+        <a>
+          <xsl:call-template name="url-teachings-tags" />
+          <xsl:value-of select="." disable-output-escaping="yes" />
+        </a>
+      </li>
     </xsl:for-each>
-  </div>
-
+  </ul>
 </xsl:template>
 
 

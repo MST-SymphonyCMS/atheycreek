@@ -54,7 +54,7 @@ a:hover {
 }
 
 .main-content {
-  padding: 0 0 0 0;
+  padding: 0;
   background: $white;
   box-shadow: 0 0 2rem rgba(0,0,0,.05);
 
@@ -84,5 +84,10 @@ a:hover {
   ol,
   ul {
     padding-left: 2rem;
+  }
+
+  // Make full width columns have some padding
+  .column-full-width {
+    padding-bottom: 4rem;
   }
 }

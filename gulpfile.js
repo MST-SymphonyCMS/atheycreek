@@ -112,10 +112,11 @@ gulp.task('styles', function() {
 });
 
 gulp.task('styles_min', function() {
-  return gulp.src(build_path + '/styles/main.min.css')
+  return gulp.src(build_path + '/styles/main.css')
     .pipe(plumber({
       errorHandler: onError
     }))
+    .pipe(rename({ suffix: '.min' }))
     .pipe(minifyCSS())
     .pipe(gulp.dest(build_path + '/styles'))
 });
@@ -229,7 +230,7 @@ gulp.task('sprites', function () {
 // ------------------------------------------------
 
 gulp.task('default', ['clean'], function() {
-  gulp.start('styles', 'styles_min', 'scripts', 'images', 'fonts', 'watch');
+  gulp.start('styles', 'scripts', 'images', 'fonts', 'watch');
 });
 
 
@@ -249,7 +250,7 @@ gulp.task('deploy', function() {
 // ------------------------------------------------
 
 gulp.task('watch', function() {
-  gulp.watch(source_path + '/styles/**/*.scss', ['styles', 'styles_min']);
+  gulp.watch(source_path + '/styles/**/*.scss', ['styles']);
   gulp.watch(source_path + '/scripts/**/*.js', ['scripts']);
   gulp.watch(source_path + '/images/*.*', ['images']);
   var server = livereload();

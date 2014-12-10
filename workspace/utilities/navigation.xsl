@@ -86,7 +86,7 @@
           <xsl:text>active</xsl:text>
         </xsl:attribute>
       </xsl:when>
-      <xsl:when test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id">
+      <xsl:when test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id or /data/tags-all-entries/entry/@id = 21">
         <xsl:attribute name="class">dropdown</xsl:attribute>
       </xsl:when>
     </xsl:choose>

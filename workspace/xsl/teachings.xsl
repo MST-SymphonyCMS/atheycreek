@@ -756,7 +756,7 @@
       <div class="container">
         <div class="row">
           <h4>Official Podcasts</h4>
-          <div class="col-md-6">
+          <div class="podcast col-md-6">
             <div class="podcast-image">
               <xsl:call-template name="image-master">
                 <xsl:with-param name="photo" select="'podcast-audio-54876aecc97f9.jpg'" />
@@ -767,8 +767,22 @@
             <div class="podcast-description">
               <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-audio-description']/content)" disable-output-escaping="yes" />
             </div>
+            <div class="podcast-links more">
+              <a class="more-link">
+                <xsl:attribute name="href">
+                  <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-audio']/content)" disable-output-escaping="yes" />
+                </xsl:attribute>
+                <xsl:text>iTUNES</xsl:text>
+              </a>
+              <a class="more-link">
+                <xsl:attribute name="href">
+                  <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-audio-subscribe']/content)" disable-output-escaping="yes" />
+                </xsl:attribute>
+                <xsl:text>Instant Subscribe</xsl:text>
+              </a>
+            </div>
           </div>
-          <div class="col-md-6">
+          <div class="podcast col-md-6">
             <div class="podcast-image">
               <xsl:call-template name="image-master">
                 <xsl:with-param name="photo" select="'podcast-video-54876b6186866.jpg'" />
@@ -778,6 +792,20 @@
             </div>
             <div class="podcast-description">
               <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-video-description']/content)" disable-output-escaping="yes" />
+            </div>
+            <div class="podcast-links more">
+              <a class="more-link">
+                <xsl:attribute name="href">
+                  <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-video']/content)" disable-output-escaping="yes" />
+                </xsl:attribute>
+                <xsl:text>iTUNES</xsl:text>
+              </a>
+              <a class="more-link">
+                <xsl:attribute name="href">
+                  <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-video-subscribe']/content)" disable-output-escaping="yes" />
+                </xsl:attribute>
+                <xsl:text>Instant Subscribe</xsl:text>
+              </a>
             </div>
           </div>
         </div>

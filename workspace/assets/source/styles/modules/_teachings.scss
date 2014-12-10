@@ -108,6 +108,9 @@
 // ------------------------------------------------
 
 .teachings-podcast {
+  .podcast {
+    margin-bottom: 6rem;
+  }
   .podcast-image {
     text-align: center;
 
@@ -118,6 +121,20 @@
   .podcast-description {
     margin-top: 3rem;
     font-family: $font-family-sans-serif;
+  }
+  .podcast-links {
+    text-align: center;
+  }
+  .podcast-links .more-link {
+    margin: 0 .5rem;
+
+    &:hover {
+      color: $white;
+      @include opacity(.5);
+    }
+  }
+  .podcast-links .more-link:first-child {
+    text-transform: none;
   }
 }
 

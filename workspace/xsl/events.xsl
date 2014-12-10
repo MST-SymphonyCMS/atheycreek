@@ -718,12 +718,15 @@
   <xsl:param name="position" />
   <xsl:param name="entries" />
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
+  <div class="events events-full-width events-landing">
+    <div class="container">
+      <div class="row">
         <h4>Upcoming Events</h4>
-        <div class="events events-full-width events-landing">
-          <xsl:for-each select="$entries">
+      </div><!-- .row -->
+      <xsl:variable name="items-per-row" select="2" />
+      <xsl:for-each select="$entries[position() mod $items-per-row = 1]">
+        <div class="row">
+          <xsl:for-each select=". | following-sibling::*[not(position() >= $items-per-row)]">
             <div class="event col-md-6">
               <a>
                 <xsl:call-template name="url-events" />
@@ -811,26 +814,28 @@
                   <span class="more-link">More</span>
                 </p>
               </a>
+            </div><!-- .event -->
+          </xsl:for-each>
+        </div><!-- .row -->
+      </xsl:for-each>
+      <div class="row">
+        <h4>Bible Studies</h4>
+        <div class="events-recurring events-recurring-full-width events-recurring-landing">
+          <xsl:for-each select="/data/events-recurring-all-entries-filtered/entry [type/item/type/@handle = 'church-wide']">
+            <div class="event-recurring col-md-6">
+              <a>
+                <xsl:call-template name="url-events" />
+                <h5><xsl:value-of select="name"/></h5>
+                <p class="frequency"><xsl:value-of select="frequency"/></p>
+              </a>
             </div>
           </xsl:for-each>
         </div>
-      </div>
-    </div><!-- .row -->
-    <div class="row">
-      <h4>Bible Studies</h4>
-      <div class="events-recurring events-recurring-full-width events-recurring-landing">
-        <xsl:for-each select="/data/events-recurring-all-entries-filtered/entry [type/item/type/@handle = 'church-wide']">
-          <div class="event-recurring col-md-6">
-            <a>
-              <xsl:call-template name="url-events" />
-              <h5><xsl:value-of select="name"/></h5>
-              <p class="frequency"><xsl:value-of select="frequency"/></p>
-            </a>
-          </div>
-        </xsl:for-each>
-      </div>
-    </div><!-- .row -->
+      </div><!-- .row -->
+    </div><!-- .container -->
   </div>
+
+
 
 </xsl:template>
 

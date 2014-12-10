@@ -833,9 +833,7 @@
         </div>
       </div><!-- .row -->
     </div><!-- .container -->
-  </div>
-
-
+  </div><!-- .events-landing -->
 
 </xsl:template>
 

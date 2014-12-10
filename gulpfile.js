@@ -249,7 +249,7 @@ gulp.task('deploy', function() {
 // ------------------------------------------------
 
 gulp.task('watch', function() {
-  gulp.watch(source_path + '/styles/**/*.scss', ['styles']);
+  gulp.watch(source_path + '/styles/**/*.scss', ['styles', 'styles_min']);
   gulp.watch(source_path + '/scripts/**/*.js', ['scripts']);
   gulp.watch(source_path + '/images/*.*', ['images']);
   var server = livereload();

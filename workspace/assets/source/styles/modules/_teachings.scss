@@ -108,7 +108,17 @@
 // ------------------------------------------------
 
 .teachings-podcast {
+  .podcast-image {
+    text-align: center;
 
+    img {
+      display: inline;
+    }
+  }
+  .podcast-description {
+    margin-top: 3rem;
+    font-family: $font-family-sans-serif;
+  }
 }
 
 

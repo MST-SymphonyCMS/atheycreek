@@ -5438,6 +5438,14 @@ a:hover {
     .teachings-search input::-webkit-input-placeholder {
       color: #d6d6d6; }
 
+.teachings-podcast .podcast-image {
+  text-align: center; }
+  .teachings-podcast .podcast-image img {
+    display: inline; }
+.teachings-podcast .podcast-description {
+  margin-top: 3rem;
+  font-family: 'Trade Gothic'; }
+
 .teachings-full-width.teachings-detail {
   border-radius: 0.5rem 0.5rem 0 0; }
   .teachings-full-width.teachings-detail .teaching, .teachings-full-width.teachings-detail .teaching-viewer, .teachings-full-width.teachings-detail .inner {

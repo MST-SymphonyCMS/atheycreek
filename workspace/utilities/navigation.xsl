@@ -80,7 +80,7 @@
     <xsl:choose>
       <xsl:when test="/data/tags-entries-by-tag/entry/@id = @id or $active-parent = @id or /data/tags-all-entries/entry[ @id = $active-parent ]/parent/item/@id = @id">
         <xsl:attribute name="class">
-          <xsl:if test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id">
+          <xsl:if test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id or /data/tags-all-entries/entry/@id = 21">
             <xsl:text>dropdown </xsl:text>
           </xsl:if>
           <xsl:text>active</xsl:text>
@@ -94,62 +94,65 @@
       <xsl:call-template name="url-tags" />
       <xsl:value-of select="title" />
     </a>
-    <xsl:if test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id">
+    <xsl:if test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id or /data/tags-all-entries/entry/@id = 21">
       <ul class="dropdown-menu">
+        <xsl:if test="$realID = 21">
+          <li class="dropdown">
+            <a href="{$root}/teachings/series/">By Series</a>
+            <ul class="dropdown-menu">
+              <xsl:for-each select="/data/teachings-series-entries-all/entry[not(special) or special = 'No' and position() &lt; 20]">
+                <li>
+                  <a>
+                    <xsl:call-template name="url-teachings-series" />
+                    <xsl:value-of select="title" disable-output-escaping="yes" />
+                  </a>
+                </li>
+              </xsl:for-each>
+              <li>
+                <a href="{$root}/teachings/series/">View All→</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="{$root}/teachings/series/#special">By Special</a>
+            <ul class="dropdown-menu">
+              <xsl:for-each select="/data/teachings-series-entries-all/entry[special = 'Yes']">
+                <li>
+                  <a>
+                    <xsl:call-template name="url-teachings-series" />
+                    <xsl:value-of select="title" disable-output-escaping="yes" />
+                  </a>
+                </li>
+              </xsl:for-each>
+              <li>
+                <a href="{$root}/teachings/series/#special">View All→</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="javascript:void(0)">By Year</a>
+            <ul class="dropdown-menu">
+              <xsl:call-template name="years-counter-nav" />
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="javascript:void(0)">By Tags</a>
+            <ul class="dropdown-menu">
+              <xsl:for-each select="/data/teachings-tags-random-filtered/entry">
+                <li>
+                  <a>
+                    <xsl:call-template name="url-teachings-tags" />
+                    <xsl:value-of select="tag" disable-output-escaping="yes" />
+                  </a>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </li>
+          <li>
+            <a href="{$root}/teachings/#podcasts">Podcasts</a>
+          </li>
+        </xsl:if>
         <xsl:for-each select="/data/tags-all-entries/entry[parent/item/@id = $realID]">
-          <xsl:if test="$realID = 21">
-            <li class="dropdown">
-              <a href="{$root}/teachings/series/">By Series</a>
-              <ul class="dropdown-menu">
-                <xsl:for-each select="/data/teachings-series-entries-all/entry[not(special) or special = 'No' and position() &lt; 20]">
-                  <li>
-                    <a>
-                      <xsl:call-template name="url-teachings-series" />
-                      <xsl:value-of select="title" disable-output-escaping="yes" />
-                    </a>
-                  </li>
-                </xsl:for-each>
-                <li>
-                  <a href="{$root}/teachings/series/">View All→</a>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="{$root}/teachings/series/#special">By Special</a>
-              <ul class="dropdown-menu">
-                <xsl:for-each select="/data/teachings-series-entries-all/entry[special = 'Yes']">
-                  <li>
-                    <a>
-                      <xsl:call-template name="url-teachings-series" />
-                      <xsl:value-of select="title" disable-output-escaping="yes" />
-                    </a>
-                  </li>
-                </xsl:for-each>
-                <li>
-                  <a href="{$root}/teachings/series/#special">View All→</a>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="javascript:void(0)">By Year</a>
-              <ul class="dropdown-menu">
-                <xsl:call-template name="years-counter-nav" />
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="javascript:void(0)">By Tags</a>
-              <ul class="dropdown-menu">
-                <xsl:for-each select="/data/teachings-tags-random-filtered/entry">
-                  <li>
-                    <a>
-                      <xsl:call-template name="url-teachings-tags" />
-                      <xsl:value-of select="tag" disable-output-escaping="yes" />
-                    </a>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </li>
-          </xsl:if>
           <li>
             <a>
               <xsl:call-template name="url-tags" />

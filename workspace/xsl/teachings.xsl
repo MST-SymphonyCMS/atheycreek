@@ -752,16 +752,34 @@
       </form>
     </div>
     <xsl:call-template name="teachings-home"/>
-    <div class="teachings-podcast" id="podcast">
-      <h4>Official Podcasts</h4>
-      <div class="col-md-6">
-        <div class="podcast-image">
-          podcast-audio-54876aecc97f9.jpg
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="podcast-image">
-          podcast-video-54876b6186866.jpg
+    <div class="teachings-podcast" id="podcasts">
+      <div class="container">
+        <div class="row">
+          <h4>Official Podcasts</h4>
+          <div class="col-md-6">
+            <div class="podcast-image">
+              <xsl:call-template name="image-master">
+                <xsl:with-param name="photo" select="'podcast-audio-54876aecc97f9.jpg'" />
+                <xsl:with-param name="width" select="300" />
+                <xsl:with-param name="height" select="300" />
+              </xsl:call-template>
+            </div>
+            <div class="podcast-description">
+              <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-audio-description']/content)" disable-output-escaping="yes" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="podcast-image">
+              <xsl:call-template name="image-master">
+                <xsl:with-param name="photo" select="'podcast-video-54876b6186866.jpg'" />
+                <xsl:with-param name="width" select="300" />
+                <xsl:with-param name="height" select="300" />
+              </xsl:call-template>
+            </div>
+            <div class="podcast-description">
+              <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-video-description']/content)" disable-output-escaping="yes" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

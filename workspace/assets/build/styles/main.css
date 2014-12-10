@@ -5390,6 +5390,39 @@ a:hover {
     .teachings-series.teachings-series-home .series a {
       margin-bottom: 0; } }
 
+.teachings-search {
+  text-align: center; }
+  .teachings-search form {
+    display: block;
+    width: 100%;
+    margin: 4rem auto;
+    padding: 1rem;
+    border-bottom: 2px solid #d6d6d6; }
+    @media (min-width: 992px) {
+      .teachings-search form {
+        width: 50%; } }
+  .teachings-search a {
+    display: inline-block;
+    padding: 0 0 0 0.5rem;
+    color: #565656;
+    text-decoration: none;
+    border: none; }
+  .teachings-search input {
+    padding-right: 1rem;
+    color: #a3a3a3;
+    text-align: center;
+    background: none;
+    border: none;
+    outline: none;
+    width: 95%; }
+    .teachings-search input::-moz-placeholder {
+      color: #d6d6d6;
+      opacity: 1; }
+    .teachings-search input:-ms-input-placeholder {
+      color: #d6d6d6; }
+    .teachings-search input::-webkit-input-placeholder {
+      color: #d6d6d6; }
+
 .teachings-full-width.teachings-detail {
   border-radius: 0.5rem 0.5rem 0 0; }
   .teachings-full-width.teachings-detail .teaching, .teachings-full-width.teachings-detail .teaching-viewer, .teachings-full-width.teachings-detail .inner {
@@ -5462,9 +5495,9 @@ a:hover {
   background-size: cover; }
   .teaching-viewer .inner {
     background: rgba(48, 48, 48, 0.95); }
-  .teaching-viewer h3 {
+  .teaching-viewer .teaching-nav {
     margin: 0;
-    padding: 3rem 0 0 0;
+    padding: 0.5rem 0 0 0;
     text-align: center; }
   .teaching-viewer .teaching-media {
     padding: 6rem 0;
@@ -5472,9 +5505,12 @@ a:hover {
   .teaching-viewer audio {
     width: 100%; }
   .teaching-viewer .nav-pills {
+    padding-left: 0;
     display: inline-block;
     font-family: 'Trade Gothic Condensed';
-    font-weight: normal; }
+    font-size: 2rem;
+    font-weight: normal;
+    text-transform: uppercase; }
     .teaching-viewer .nav-pills > li {
       display: inline;
       float: none; }

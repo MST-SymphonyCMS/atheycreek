@@ -42,8 +42,8 @@
 						</xsl:if>
 					</h2>
 				</div>
-			</div>
-		</div>
+			</div><!-- .row -->
+		</div><!-- .container -->
 	</div>
 
 	<div>

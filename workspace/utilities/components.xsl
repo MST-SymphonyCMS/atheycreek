@@ -145,38 +145,16 @@
             <xsl:with-param name="position" select="name($xpath)" />
             <xsl:with-param name="entries" select="/data/teachings-entry-by-id/entry" />
           </xsl:call-template>
-<!--           <xsl:call-template name="component-teachings">
-            <xsl:with-param name="component" select="." />
-            <xsl:with-param name="position" select="name($xpath)" />
-            <xsl:with-param name="entries" select="/data/teachings-entry-by-id/entry" />
-          </xsl:call-template> -->
         </xsl:when>
-        <!-- This section outputs book entries -->
-        <xsl:when test="$pt1 = 'teachings' and $pt2 = 'book'">
-          <xsl:call-template name="component-teachings">
-            <xsl:with-param name="component" select="." />
-            <xsl:with-param name="position" select="name($xpath)" />
-            <xsl:with-param name="entries" select="/data/teachings-entry-by-book-filtered/entry" />
-          </xsl:call-template>
-        </xsl:when>
-        <!-- This outputs a teaching series page -->
-        <xsl:when test="$pt1 = 'series'">
-          <xsl:call-template name="component-teachings">
-            <xsl:with-param name="component" select="." />
-            <xsl:with-param name="position" select="name($xpath)" />
-            <xsl:with-param name="entries" select="/data/teachings-series-entries-filtered/entry/teachings/item" />
-          </xsl:call-template>
-        </xsl:when>
+        <!-- This outputs the Teachings Series landing page -->
         <xsl:when test="$pt1 = 'teachings' and $pt2 = 'series' and not($pt3)">
           <xsl:call-template name="teachings-series-landing" />
         </xsl:when>
+        <!-- This outputs a Teachings by Series list page -->
         <xsl:when test="$pt1 = 'teachings' and $pt2 = 'series'">
-          <xsl:call-template name="component-teachings">
-            <xsl:with-param name="component" select="." />
-            <xsl:with-param name="position" select="name($xpath)" />
-            <xsl:with-param name="entries" select="/data/teachings-entries-by-series-filtered/entry/teachings/item" />
-          </xsl:call-template>
+./
         </xsl:when>
+        <!-- This outputs a Teachings by Tags list page -->
         <xsl:when test="$pt1 = 'teachings' and $pt2 = 'tag'">
           <xsl:call-template name="component-teachings">
             <xsl:with-param name="component" select="." />
@@ -184,6 +162,7 @@
             <xsl:with-param name="entries" select="/data/teachings-entry-by-tag-filtered/entry" />
           </xsl:call-template>
         </xsl:when>
+        <!-- This outputs a Teachings by Year list page -->
         <xsl:when test="$pt1 = 'teachings' and $pt2 = 'year'">
           <xsl:call-template name="component-teachings">
             <xsl:with-param name="component" select="." />
@@ -197,11 +176,6 @@
             <xsl:with-param name="position" select="name($xpath)" />
             <xsl:with-param name="entries" select="." />
           </xsl:call-template>
-<!--           <xsl:call-template name="component-teachings">
-            <xsl:with-param name="component" select="." />
-            <xsl:with-param name="position" select="name($xpath)" />
-            <xsl:with-param name="entries" select="." />
-          </xsl:call-template> -->
         </xsl:when>
       </xsl:choose>
     </xsl:if>

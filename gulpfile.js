@@ -59,8 +59,6 @@ var paths = {
     bower_path + '/bootstrap-sass-official/assets/javascripts/bootstrap.js',
     bower_path + '/fastclick/lib/fastclick.js',
     bower_path + '/snapjs/snap.js',
-    bower_path + '/unslider/src/unslider.js',
-    bower_path + '/sharrre/*sharrre.js',
     source_path + '/scripts/main.js'
   ],
   images: [
@@ -114,39 +112,10 @@ gulp.task('styles', function() {
 });
 
 gulp.task('styles_min', function() {
-  return gulp.src(build_path + '/styles/main.css')
+  return gulp.src(build_path + '/styles/main.min.css')
     .pipe(plumber({
       errorHandler: onError
     }))
-    .pipe(uncss({
-      html: [
-        './workspace/utilities/alerts.xsl',
-        './workspace/utilities/components.xsl',
-        './workspace/utilities/error.xsl',
-        './workspace/utilities/footer.xsl',
-        './workspace/utilities/master.xsl',
-        './workspace/utilities/navigation.xsl',
-        './workspace/utilities/pages.xsl',
-        './workspace/utilities/pagination.xsl',
-        './workspace/utilities/toolkit.xsl',
-        './workspace/xsl/alerts.xsl',
-        './workspace/xsl/blog.xsl',
-        './workspace/xsl/downloads.xsl',
-        './workspace/xsl/events.xsl',
-        './workspace/xsl/featured.xsl',
-        './workspace/xsl/images.xsl',
-        './workspace/xsl/locations.xsl',
-        './workspace/xsl/members-roles.xsl',
-        './workspace/xsl/search.xsl',
-        './workspace/xsl/spacer.xsl',
-        './workspace/xsl/teachings.xsl',
-        './workspace/xsl/text.xsl',
-        './workspace/xsl/verses.xsl',
-        './workspace/xsl/videos.xsl',
-        './workspace/pages/maintenance.xsl'
-      ]
-    }))
-    .pipe(rename({ suffix: '.min' }))
     .pipe(minifyCSS())
     .pipe(gulp.dest(build_path + '/styles'))
 });
@@ -260,7 +229,7 @@ gulp.task('sprites', function () {
 // ------------------------------------------------
 
 gulp.task('default', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images', 'fonts', 'watch');
+  gulp.start('styles', 'styles_min', 'scripts', 'images', 'fonts', 'watch');
 });
 
 

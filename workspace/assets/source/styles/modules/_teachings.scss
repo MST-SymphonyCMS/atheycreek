@@ -63,6 +63,55 @@
 }
 
 
+// Landing: Teachings Search
+// ------------------------------------------------
+
+.teachings-search {
+  text-align: center;
+
+  form {
+    display: block;
+    width: 100%;
+    margin: 4rem auto;
+    padding: 1rem;
+    border-bottom: 2px solid lighten($brand-secondary, 25%);
+
+    @media (min-width: $screen-md) {
+      width: 50%;
+    }
+  }
+
+  a {
+    display: inline-block;
+    padding: 0 0 0 .5rem;
+    color: darken($brand-secondary, 25%);
+    text-decoration: none;
+    border: none;
+  }
+
+  input {
+    padding-right: 1rem;
+    color: lighten($brand-secondary, 5%);
+    text-align: center;
+    background: none;
+    border: none;
+    outline: none;
+    width: 95%;
+
+    @include placeholder(lighten($brand-secondary, 25%));
+  }
+
+}
+
+
+// Landing: Teachings Podcast
+// ------------------------------------------------
+
+.teachings-podcast {
+
+}
+
+
 // Teachings: Detail
 // ------------------------------------------------
 
@@ -81,7 +130,6 @@
 }
 
 .teachings-detail {
-
   .title {
     display: none;
   }
@@ -182,9 +230,9 @@
     background: transparentize(darken($brand-secondary, 40%), .05);
   }
 
-  h3 {
+  .teaching-nav {
     margin: 0;
-    padding: 3rem 0 0 0;
+    padding: .5rem 0 0 0;
     text-align: center;
   }
 
@@ -198,9 +246,12 @@
   }
 
   .nav-pills {
+    padding-left: 0;
     display: inline-block;
     font-family: $font-family-condensed;
+    font-size: 2rem;
     font-weight: normal;
+    text-transform: uppercase;
 
     & > li {
       display: inline;

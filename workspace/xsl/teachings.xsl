@@ -739,11 +739,45 @@
     <xsl:call-template name="teaching-viewer">
       <xsl:with-param name="entry" select="/data/featured-teachings/entry" />
     </xsl:call-template>
+    <div class="teachings-search">
+      <h4>Teachings Search</h4>
+      <form method="get">
+        <xsl:call-template name="form-search-action"/>
+        <a>
+          <xsl:call-template name="url-search-home" />
+          <span class="glyphicon glyphicon-search"></span>
+        </a>
+        <input type="hidden" name="sections" value="teachings,teachings-tags,teachings-series" />
+        <input class="keywords" name="keywords" onclick="this.select()" placeholder="Search for Teachings, Tags, or Series" autocomplete="off" />
+      </form>
+    </div>
     <xsl:call-template name="teachings-home"/>
-  </div>
-
+    <div class="teachings-podcast" id="podcast">
+      <h4>Official Podcasts</h4>
+      <div class="col-md-6">
+        <div class="podcast-image">
+          podcast-audio-54876aecc97f9.jpg
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="podcast-image">
+          podcast-video-54876b6186866.jpg
+        </div>
+      </div>
+    </div>
+  </div><!-- .teachings-landing -->
 </xsl:template>
 
+
+<!-- The template for a Teachings List page -->
+<xsl:template name="teachings-list">
+  <xsl:param name="position" />
+  <xsl:param name="entries" />
+
+  <div class="teachings teachings-list">
+
+  </div>
+</xsl:template><!-- .teachings-list -->
 
 
 <!-- The template for a Teachings Detail page -->
@@ -835,11 +869,13 @@
         <xsl:text>');</xsl:text>
       </xsl:attribute>
       <div class="inner">
-        <h3>
+        <div class="teaching-nav">
           <ul class="nav nav-pills">
             <xsl:choose>
               <xsl:when test="string-length(video-id) or video-podcast = 'Yes'">
-                <li class="active"><a href="#video" role="tab" data-toggle="tab">Video</a></li>
+                <li class="active">
+                  <a href="#video" role="tab" data-toggle="tab">Video</a>
+                </li>
                 <li><a href="#audio" role="tab" data-toggle="tab">Audio</a></li>
               </xsl:when>
               <xsl:otherwise>
@@ -847,7 +883,7 @@
               </xsl:otherwise>
             </xsl:choose>
           </ul>
-        </h3>
+        </div>
         <div class="teaching-media">
           <div class="container">
             <div class="row">
@@ -855,7 +891,9 @@
                 <xsl:choose>
                   <xsl:when test="string-length(video-id)">
                     <div class="tab-pane fade in active" id="video">
-                      <iframe src="http://player.vimeo.com/video/{video-id}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" width="788" height="443" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"></iframe>
+                      <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="http://player.vimeo.com/video/{video-id}?title=0&amp;byline=0&amp;portrait=0&amp;color=d83629" width="788" height="443" frameborder="0" webkitAllowFullScreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowFullScreen="allowFullScreen"></iframe>
+                      </div>
                     </div>
                     <div class="tab-pane fade in" id="audio">
                       <div class="audio-poster">
@@ -870,18 +908,20 @@
                   </xsl:when>
                   <xsl:when test="string-length(video-id) &lt; 1 and video-podcast = 'Yes'">
                     <div class="tab-pane fade in active" id="video">
-                      <video id="{@id}" width="788" height="433" preload="auto" controls="true">
-                        <xsl:attribute name="src">
-                          <xsl:text>http://66.147.244.244/~atheycre/teachings/video/</xsl:text>
-                          <xsl:value-of select="filename"/>
-                          <xsl:text>_540.mp4</xsl:text>
-                        </xsl:attribute>
-                        <xsl:attribute name="poster">
-                          <xsl:value-of select="$root"/>
-                          <xsl:text>/image/2/1920/1080/5/1/atheycreek.s3.amazonaws.com/</xsl:text>
-                          <xsl:value-of select="poster/item/image/filename"/>
-                        </xsl:attribute>
-                      </video>
+                      <div class="embed-responsive embed-responsive-16by9">
+                        <video id="{@id}" width="788" height="433" preload="auto" controls="true">
+                          <xsl:attribute name="src">
+                            <xsl:text>http://66.147.244.244/~atheycre/teachings/video/</xsl:text>
+                            <xsl:value-of select="filename"/>
+                            <xsl:text>_540.mp4</xsl:text>
+                          </xsl:attribute>
+                          <xsl:attribute name="poster">
+                            <xsl:value-of select="$root"/>
+                            <xsl:text>/image/2/1920/1080/5/1/atheycreek.s3.amazonaws.com/</xsl:text>
+                            <xsl:value-of select="poster/item/image/filename"/>
+                          </xsl:attribute>
+                        </video>
+                      </div>
                     </div>
                     <div class="tab-pane fade in" id="audio">
                       <div class="audio-poster">

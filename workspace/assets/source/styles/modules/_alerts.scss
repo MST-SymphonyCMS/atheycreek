@@ -11,10 +11,15 @@
 .alert {
   margin-bottom: 0;
   border: none;
+  font-family: $font-family-sans-serif;
+  font-size: 1.8rem;
+
+  span {
+    margin-right: 1.5rem;
+  }
 
   a {
     display: inline-block;
-    margin-left: 1.5rem;
     padding: .15rem .75rem;
     font-family: $headings-font-family;
     font-size: 1.5rem;
@@ -25,20 +30,24 @@
     }
   }
 
-  &.alert-success a {
-    background: $alert-success-text;
-    color: $alert-success-bg;
-  }
-  &.alert-info a {
-    background: $alert-info-text;
-    color: $alert-info-bg;
-  }
+  &.alert-success a,
+  &.alert-info a,
   &.alert-warning a {
-    background: $alert-warning-text;
-    color: $alert-warning-bg;
+    background: $brand-primary-text;
+    color: $brand-primary;
   }
   &.alert-danger a {
-    background: $alert-danger-text;
-    color: $alert-danger-bg;
+    background: $brand-primary-text;
+    color: $brand-accent;
   }
+}
+
+
+.alert-success,
+.alert-info,
+.alert-warning {
+  @include alert-variant($brand-primary, $brand-primary, $brand-primary-text);
+}
+.alert-danger {
+  @include alert-variant($brand-accent, $brand-accent, $brand-primary-text);
 }

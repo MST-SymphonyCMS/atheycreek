@@ -4859,10 +4859,13 @@ a:hover {
 
 .alert {
   margin-bottom: 0;
-  border: none; }
+  border: none;
+  font-family: 'Trade Gothic';
+  font-size: 1.8rem; }
+  .alert span {
+    margin-right: 1.5rem; }
   .alert a {
     display: inline-block;
-    margin-left: 1.5rem;
     padding: 0.15rem 0.75rem;
     font-family: 'Trade Gothic Extended';
     font-size: 1.5rem;
@@ -4870,18 +4873,30 @@ a:hover {
     .alert a:hover {
       opacity: 0.5;
       filter: alpha(opacity=50); }
-  .alert.alert-success a {
-    background: #3c763d;
-    color: #dff0d8; }
-  .alert.alert-info a {
-    background: #31708f;
-    color: #d9edf7; }
-  .alert.alert-warning a {
-    background: #8a6d3b;
-    color: #fcf8e3; }
+  .alert.alert-success a, .alert.alert-info a, .alert.alert-warning a {
+    background: #f4f4ea;
+    color: #3d4e6a; }
   .alert.alert-danger a {
-    background: #a94442;
-    color: #f2dede; }
+    background: #f4f4ea;
+    color: #ff5656; }
+
+.alert-success, .alert-info, .alert-warning {
+  background-color: #3d4e6a;
+  border-color: #3d4e6a;
+  color: #f4f4ea; }
+  .alert-success hr, .alert-info hr, .alert-warning hr {
+    border-top-color: #34425a; }
+  .alert-success .alert-link, .alert-info .alert-link, .alert-warning .alert-link {
+    color: #e2e2c9; }
+
+.alert-danger {
+  background-color: #ff5656;
+  border-color: #ff5656;
+  color: #f4f4ea; }
+  .alert-danger hr {
+    border-top-color: #ff3d3d; }
+  .alert-danger .alert-link {
+    color: #e2e2c9; }
 
 .icon-logo:before {
   content: '\f103'; }

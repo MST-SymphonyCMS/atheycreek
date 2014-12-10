@@ -22,24 +22,19 @@
 
         <xsl:attribute name="class">
           <xsl:choose>
-            <xsl:when test="type = 'warning'">
-              <xsl:text>alert alert-warning</xsl:text>
-            </xsl:when>
-            <xsl:when test="type = 'success'">
-              <xsl:text>alert alert-success</xsl:text>
-            </xsl:when>
-            <xsl:when test="type = 'info'">
-              <xsl:text>alert alert-info</xsl:text>
+            <xsl:when test="urgent = 'Yes'">
+              <xsl:text>alert alert-danger</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:text>alert alert-danger</xsl:text>
+              <xsl:text>alert alert-success</xsl:text>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
 
         <div class="container">
-
-          <xsl:value-of select="normalize-space(content)" disable-output-escaping="yes" />
+          <span>
+            <xsl:value-of select="normalize-space(content)" disable-output-escaping="yes" />
+          </span>
           <xsl:if test="url">
             <a>
               <xsl:attribute name="href">
@@ -72,24 +67,19 @@
 
         <xsl:attribute name="class">
           <xsl:choose>
-            <xsl:when test="type = 'warning'">
-              <xsl:text>alert alert-warning</xsl:text>
-            </xsl:when>
-            <xsl:when test="type = 'success'">
-              <xsl:text>alert alert-success</xsl:text>
-            </xsl:when>
-            <xsl:when test="type = 'info'">
-              <xsl:text>alert alert-info</xsl:text>
+            <xsl:when test="urgent = 'Yes'">
+              <xsl:text>alert alert-danger</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:text>alert alert-danger</xsl:text>
+              <xsl:text>alert alert-success</xsl:text>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
 
         <div class="container">
-
-          <xsl:value-of select="normalize-space(content)" disable-output-escaping="yes" />
+          <span>
+            <xsl:value-of select="normalize-space(content)" disable-output-escaping="yes" />
+          </span>
           <xsl:if test="url">
             <a>
               <xsl:attribute name="href">

@@ -23,11 +23,12 @@ class datasourcealerts_global extends SectionDatasource
     );
 
     public $dsParamINCLUDEDELEMENTS = array(
+        'expiration',
         'url',
         'content: unformatted',
-        'expiration',
         'can-be-closed',
-        'type'
+        'type',
+        'urgent'
     );
 
     public function __construct($env = null, $process_params = true)
@@ -45,7 +46,7 @@ class datasourcealerts_global extends SectionDatasource
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.2',
-            'release-date' => '2014-11-14T00:35:46+00:00'
+            'release-date' => '2014-12-10T18:29:20+00:00'
         );
     }
 

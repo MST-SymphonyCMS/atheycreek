@@ -5458,6 +5458,40 @@ a:hover {
 .teachings-podcast .podcast-links .more-link:first-child {
   text-transform: none; }
 
+@media (min-width: 992px) {
+  .teachings-list {
+    border-radius: 0.5rem 0.5rem 0 0; }
+    .teachings-list .teachings-list-poster, .teachings-list .teachings-list-poster img {
+      border-radius: 0.5rem 0.5rem 0 0; } }
+.teachings-list .teachings-list-description {
+  font-family: 'Trade Gothic';
+  text-align: center; }
+  @media (min-width: 992px) {
+    .teachings-list .teachings-list-description {
+      width: 65%;
+      margin: 0 auto; } }
+.teachings-list .teachings-table .teaching {
+  text-align: center; }
+.teachings-list .teachings-table .teaching a {
+  display: block;
+  margin-bottom: 3rem;
+  padding: 2rem 1rem;
+  background: #f4f4f4; }
+  .teachings-list .teachings-table .teaching a:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50); }
+.teachings-list .teachings-table h5 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-family: 'Trade Gothic Condensed';
+  font-size: 2rem; }
+  .teachings-list .teachings-table h5 .label {
+    padding: 0.2em 0.6em;
+    position: relative;
+    top: -0.2rem; }
+.teachings-list .teachings-table .meta {
+  font-size: 1.6rem; }
+
 .teachings-full-width.teachings-detail {
   border-radius: 0.5rem 0.5rem 0 0; }
   .teachings-full-width.teachings-detail .teaching, .teachings-full-width.teachings-detail .teaching-viewer, .teachings-full-width.teachings-detail .inner {

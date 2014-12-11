@@ -407,6 +407,7 @@
 </xsl:template>
 
 
+<!-- The template for Teachings on the homepage -->
 <xsl:template name="teachings-home">
 
   <div class="teachings teachings-full-width teachings-home">
@@ -821,9 +822,90 @@
   <xsl:param name="entries" />
 
   <div class="teachings teachings-list">
+    <xsl:if test="$pt2 = 'series'">
+      <div class="teachings-list-poster">
+        <xsl:call-template name="image-master">
+          <xsl:with-param name="photo" select="/data/teachings-series-entries-all/entry[@id = $pt3]/poster/item/image/filename" />
+          <xsl:with-param name="width" select="1920" />
+          <xsl:with-param name="height" select="1080" />
+        </xsl:call-template>
+      </div>
+    </xsl:if>
+    <div class="container">
+      <h4 class="teachings-list-title">
+        <xsl:choose>
+          <!-- Testing for Teachings by Series -->
+          <xsl:when test="number($pt3) and $pt4">
+            <xsl:text>Series: </xsl:text>
+            <span class="subtitle">
+              <xsl:call-template name="string-replace-all">
+                <xsl:with-param name="text" select="$pt4" />
+                <xsl:with-param name="replace" select="'-'" />
+                <xsl:with-param name="by" select="' '" />
+              </xsl:call-template>
+            </span>
+          </xsl:when>
+          <!-- Testing for Teachings by Tags -->
+          <xsl:when test="$pt2 = 'tag'">
+            <xsl:text>Tag: </xsl:text>
+            <span class="subtitle">
+              <xsl:value-of select="/data/teachings-entry-by-tag-filtered/entry/tags/item[@id=$pt3]/tag/@handle" disable-output-escaping="yes" />
+            </span>
+          </xsl:when>
+          <!-- Testing for Teachings by Year -->
+          <xsl:when test="$pt2 = 'year'">
+            <xsl:text>Year: </xsl:text>
+            <span class="subtitle">
+              <xsl:value-of select="$pt3" disable-output-escaping="yes" />
+            </span>
+          </xsl:when>
+        </xsl:choose>
+      </h4>
 
-  </div>
-</xsl:template><!-- .teachings-list -->
+      <xsl:if test="/data/teachings-series-entries-all/entry[@id = $pt3]/description != ''">
+        <p class="teachings-list-description">
+          <xsl:value-of select="/data/teachings-series-entries-all/entry[@id = $pt3]/description" disable-output-escaping="yes" />
+        </p>
+      </xsl:if>
+
+      <hr/>
+
+      <div class="teachings-table row">
+        <xsl:for-each select="$entries">
+          <div class="teaching col-md-6">
+            <a>
+              <xsl:call-template name="url-teachings"/>
+              <h5>
+                <xsl:value-of select="title" disable-output-escaping="yes" />
+                <xsl:if test="string-length(filename) &gt; 0">
+                  <xsl:text>&#160;&#160;</xsl:text>
+                  <span class="label label-default">
+                    <xsl:value-of select="filename" />
+                  </span>
+                </xsl:if>
+              </h5>
+              <div class="meta">
+                <span class="date">
+                  <xsl:call-template name="format-date">
+                    <xsl:with-param name="date" select="date/date/start/@iso" />
+                    <xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
+                  </xsl:call-template>
+                </span>
+                <xsl:text> • </xsl:text>
+                <span class="book">
+                  <xsl:value-of select="book/item" />
+                  <xsl:text> </xsl:text>
+                  <xsl:value-of select="chapter" />
+                </span>
+              </div>
+            </a>
+          </div><!-- .teaching -->
+        </xsl:for-each>
+      </div><!-- .teachings-table -->
+    </div><!-- .container -->
+  </div><!-- .teachings-list -->
+
+</xsl:template>
 
 
 <!-- The template for a Teachings Detail page -->

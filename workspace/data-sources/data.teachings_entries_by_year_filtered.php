@@ -7,10 +7,12 @@ class datasourceteachings_entries_by_year_filtered extends SectionDatasource
     public $dsParamROOTELEMENT = 'teachings-entries-by-year-filtered';
 		public $dsParamConditionalizer = '(if all of ((if value of ({$pt1}) is (teachings)), (if value of ({$pt2}) is (year))) is (yes))';
     public $dsParamORDER = 'asc';
-    public $dsParamPAGINATERESULTS = 'yes';
+    public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '{$pt5:10}';
     public $dsParamSTARTPAGE = '{$pt4:1}';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamREQUIREDPARAM = '$pt3';
     public $dsParamSORT = 'date';
     public $dsParamHTMLENCODE = 'yes';
@@ -26,7 +28,6 @@ class datasourceteachings_entries_by_year_filtered extends SectionDatasource
         'title: unformatted',
         'slug',
         'filename',
-        'current-id',
         'book',
         'chapter',
         'description: unformatted',
@@ -34,23 +35,21 @@ class datasourceteachings_entries_by_year_filtered extends SectionDatasource
         'date',
         'tags'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
-        'speaker' => array(
-            'section_id' => '1',
-            'field_id' => '318',
-            'elements' => array(
-                'first-name',
-                'last-name',
-                'first-name',
-                'last-name'
-            )
-        ),
         'tags' => array(
             'section_id' => '15',
             'field_id' => '127',
             'elements' => array(
                 'tag: unformatted'
+            )
+        ),
+        'speaker' => array(
+            'section_id' => '1',
+            'field_id' => '318',
+            'elements' => array(
+                'first-name',
+                'last-name'
             )
         )
     );
@@ -68,9 +67,9 @@ class datasourceteachings_entries_by_year_filtered extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-05T21:33:31+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.2',
+            'release-date' => '2014-12-11T00:12:21+00:00'
         );
     }
 

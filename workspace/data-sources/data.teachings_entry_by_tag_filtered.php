@@ -7,10 +7,12 @@ class datasourceteachings_entry_by_tag_filtered extends SectionDatasource
     public $dsParamROOTELEMENT = 'teachings-entry-by-tag-filtered';
 		public $dsParamConditionalizer = '(if all of ((if value of ({$pt1}) is (teachings)), (if value of ({$pt2}) is (tag))) is (yes))';
     public $dsParamORDER = 'desc';
-    public $dsParamPAGINATERESULTS = 'yes';
+    public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '{$pt5:10}';
     public $dsParamSTARTPAGE = '{$pt4:1}';
     public $dsParamREDIRECTONEMPTY = 'no';
+    public $dsParamREDIRECTONFORBIDDEN = 'no';
+    public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamREQUIREDPARAM = '$pt3';
     public $dsParamSORT = 'system:id';
     public $dsParamHTMLENCODE = 'yes';
@@ -26,7 +28,6 @@ class datasourceteachings_entry_by_tag_filtered extends SectionDatasource
         'title: unformatted',
         'slug',
         'filename',
-        'current-id',
         'book',
         'chapter',
         'description: unformatted',
@@ -34,7 +35,7 @@ class datasourceteachings_entry_by_tag_filtered extends SectionDatasource
         'date',
         'tags'
     );
-
+    
     public $dsParamINCLUDEDASSOCIATIONS = array(
         'tags' => array(
             'section_id' => '15',
@@ -66,9 +67,9 @@ class datasourceteachings_entry_by_tag_filtered extends SectionDatasource
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
-                'email' => 'jonathan@simko.io'),
-            'version' => 'Symphony 2.5.0beta2',
-            'release-date' => '2014-08-11T17:33:02+00:00'
+                'email' => 'jdsimcoe@gmail.com'),
+            'version' => 'Symphony 2.5.2',
+            'release-date' => '2014-12-11T00:12:33+00:00'
         );
     }
 

@@ -139,6 +139,67 @@
 }
 
 
+// Teachings: List
+// ------------------------------------------------
+
+.teachings-list {
+  @media (min-width: $screen-md) {
+    border-radius: .5rem .5rem 0 0;
+
+    .teachings-list-poster,
+    .teachings-list-poster img {
+      border-radius: .5rem .5rem 0 0;
+    }
+  }
+
+  .teachings-list-description {
+    font-family: $font-family-sans-serif;
+    text-align: center;
+
+    @media (min-width: $screen-md) {
+      width: 65%;
+      margin: 0 auto;
+    }
+  }
+
+  .teachings-table {
+
+    .teaching {
+      text-align: center;
+    }
+
+    .teaching a {
+      display: block;
+      margin-bottom: 3rem;
+      padding: 2rem 1rem;
+      background: lighten($brand-secondary, 37%);
+
+      &:hover {
+        @include opacity(.5);
+      }
+    }
+
+    h5 {
+      margin-top: 0;
+      margin-bottom: .5rem;
+      font-family: $font-family-condensed;
+      font-size: 2rem;
+
+      .label {
+        padding: 0.2em 0.6em;
+        position: relative;
+        top: -.2rem;
+      }
+    }
+
+    .meta {
+      font-size: 1.6rem;
+    }
+
+  }
+}
+
+
 // Teachings: Detail
 // ------------------------------------------------
 

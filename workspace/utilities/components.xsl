@@ -152,20 +152,21 @@
         </xsl:when>
         <!-- This outputs a Teachings by Series list page -->
         <xsl:when test="$pt1 = 'teachings' and $pt2 = 'series'">
-./
+          <xsl:call-template name="teachings-list">
+            <xsl:with-param name="position" select="name($xpath)" />
+            <xsl:with-param name="entries" select="/data/teachings-entries-by-series-filtered/entry/teachings/item" />
+          </xsl:call-template>
         </xsl:when>
         <!-- This outputs a Teachings by Tags list page -->
         <xsl:when test="$pt1 = 'teachings' and $pt2 = 'tag'">
-          <xsl:call-template name="component-teachings">
-            <xsl:with-param name="component" select="." />
+          <xsl:call-template name="teachings-list">
             <xsl:with-param name="position" select="name($xpath)" />
             <xsl:with-param name="entries" select="/data/teachings-entry-by-tag-filtered/entry" />
           </xsl:call-template>
         </xsl:when>
         <!-- This outputs a Teachings by Year list page -->
         <xsl:when test="$pt1 = 'teachings' and $pt2 = 'year'">
-          <xsl:call-template name="component-teachings">
-            <xsl:with-param name="component" select="." />
+          <xsl:call-template name="teachings-list">
             <xsl:with-param name="position" select="name($xpath)" />
             <xsl:with-param name="entries" select="/data/teachings-entries-by-year-filtered/entry" />
           </xsl:call-template>

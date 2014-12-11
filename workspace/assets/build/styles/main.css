@@ -5095,6 +5095,8 @@ a:hover {
     border: none;
     -webkit-box-shadow: none;
             box-shadow: none; }
+    .snap-drawer > ul > .dropdown .dropdown-menu.hide-mobile {
+      display: none; }
 
 .snap-drawer-right {
   right: 0;
@@ -5116,6 +5118,8 @@ a:hover {
     font-size: 13px;
     font-weight: bold;
     text-transform: uppercase; }
+    .snap-drawer-right ul li.hide-mobile {
+      display: none; }
   .snap-drawer-right ul li a {
     position: relative;
     display: block;

@@ -99,7 +99,7 @@
         <xsl:if test="$realID = 21">
           <li class="dropdown">
             <a href="{$root}/teachings/series/">By Series</a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu hide-mobile">
               <xsl:for-each select="/data/teachings-series-entries-all/entry[not(special) or special = 'No' and position() &lt; 20]">
                 <li>
                   <a>
@@ -115,7 +115,7 @@
           </li>
           <li class="dropdown">
             <a href="{$root}/teachings/series/#special">By Special</a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu hide-mobile">
               <xsl:for-each select="/data/teachings-series-entries-all/entry[special = 'Yes']">
                 <li>
                   <a>
@@ -129,13 +129,13 @@
               </li>
             </ul>
           </li>
-          <li class="dropdown">
+          <li class="dropdown hide-mobile">
             <a href="javascript:void(0)">By Year</a>
             <ul class="dropdown-menu">
               <xsl:call-template name="years-counter-nav" />
             </ul>
           </li>
-          <li class="dropdown">
+          <li class="dropdown hide-mobile">
             <a href="javascript:void(0)">By Tags</a>
             <ul class="dropdown-menu">
               <xsl:for-each select="/data/teachings-tags-random-filtered/entry">

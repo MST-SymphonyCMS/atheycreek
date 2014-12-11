@@ -65,7 +65,7 @@
               </xsl:choose>
               <xsl:call-template name="image-master">
                 <xsl:with-param name="photo" select="member/item/photo/filename" />
-                <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+                <xsl:with-param name="default" select="'anonymous-4fef5a675fd64-5459168309152.jpg'" />
                 <xsl:with-param name="width" select="500" />
                 <xsl:with-param name="height" select="500" />
                 <xsl:with-param name="responsive" select="0" />
@@ -250,7 +250,7 @@
 
         <xsl:call-template name="image-master">
           <xsl:with-param name="photo" select="$photo" />
-          <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+          <xsl:with-param name="default" select="'anonymous-4fef5a675fd64-5459168309152.jpg'" />
           <xsl:with-param name="width" select="400" />
           <xsl:with-param name="height" select="400" />
           <xsl:with-param name="responsive" select="0" />

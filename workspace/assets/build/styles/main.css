@@ -5459,6 +5459,14 @@ a:hover {
 .teachings-search {
   text-align: center; }
 
+.teachings-series-landing .series {
+  margin-bottom: 3rem; }
+.teachings-series-landing .series h5 {
+  font-family: 'Trade Gothic Condensed';
+  font-size: 2.4rem;
+  font-weight: normal;
+  text-align: center; }
+
 .teachings-podcast .podcast {
   margin-bottom: 6rem; }
 .teachings-podcast .podcast-image {

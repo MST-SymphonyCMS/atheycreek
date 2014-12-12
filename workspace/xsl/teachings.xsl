@@ -4,74 +4,66 @@
 
 <xsl:template name="teachings-series-landing">
 
-  <div class="title-wrapper">
+  <div class="teachings teachings-series-landing">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <h2 style="text-align: center !important;">
-            <xsl:text>Teaching Series</xsl:text>
-          </h2>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="component component-teachings">
+        <h4>Teaching Series</h4>
+      </div><!-- .row -->
+    </div><!-- .container -->
     <div class="container">
-      <div class="component-series">
-        <div class="row">
-          <xsl:for-each select="/data/teachings-series-entries-all/entry[not(special) or special = 'No']">
-            <div class="col-md-4 series">
-              <a>
-                <xsl:call-template name="url-teachings-series" />
-                <xsl:call-template name="image-master">
-                  <xsl:with-param name="photo" select="poster/item/image/filename" />
-                  <xsl:with-param name="width" select="600" />
-                  <xsl:with-param name="height" select="338" />
-                </xsl:call-template>
-              </a>
-              <div class="info">
+      <div class="row">
+        <xsl:for-each select="/data/teachings-series-entries-all/entry[not(special) or special = 'No']">
+          <div class="col-md-6 series">
+            <a>
+              <xsl:call-template name="url-teachings-series" />
+              <xsl:call-template name="image-master">
+                <xsl:with-param name="photo" select="poster/item/image/filename" />
+                <xsl:with-param name="width" select="600" />
+                <xsl:with-param name="height" select="338" />
+              </xsl:call-template>
+            </a>
+            <div class="meta">
+              <h5 class="center">
                 <a>
                   <xsl:call-template name="url-teachings-series" />
-                  <h4 class="center">
-                    <xsl:value-of select="title" disable-output-escaping="yes" />
-                  </h4>
+                  <xsl:value-of select="title" disable-output-escaping="yes" />
                 </a>
-              </div>
+              </h5>
             </div>
-          </xsl:for-each>
-        </div>
-        <div class="row">
-          <br/>
-          <h2 id="special" class="center">Special Series</h2>
-          <xsl:for-each select="/data/teachings-series-entries-all/entry[special = 'Yes']">
-            <div class="col-md-4 series">
-              <a>
-                <xsl:call-template name="url-teachings-series" />
-                <xsl:call-template name="image-master">
-                  <xsl:with-param name="photo" select="poster/item/image/filename" />
-                  <xsl:with-param name="width" select="600" />
-                  <xsl:with-param name="height" select="338" />
-                </xsl:call-template>
-              </a>
-              <div class="info">
+          </div>
+        </xsl:for-each>
+      </div><!-- .row -->
+      <div class="row">
+        <br/>
+        <h4>Special Series</h4>
+        <xsl:for-each select="/data/teachings-series-entries-all/entry[special = 'Yes']">
+          <div class="col-md-6 series">
+            <a>
+              <xsl:call-template name="url-teachings-series" />
+              <xsl:call-template name="image-master">
+                <xsl:with-param name="photo" select="poster/item/image/filename" />
+                <xsl:with-param name="width" select="600" />
+                <xsl:with-param name="height" select="338" />
+              </xsl:call-template>
+            </a>
+            <div class="info">
+              <h5>
                 <a>
                   <xsl:call-template name="url-teachings-series" />
-                  <h4 class="center">
-                    <xsl:value-of select="title" disable-output-escaping="yes" />
-                    <xsl:if test="featured = 'Yes'">
-                      <xsl:text>&#160;</xsl:text>
-                      <span class="label accent">Featured</span>
-                      <xsl:text>&#160;</xsl:text>
-                    </xsl:if>
-                  </h4>
+                  <xsl:value-of select="title" disable-output-escaping="yes" />
+                  <xsl:if test="featured = 'Yes'">
+                    <xsl:text>&#160;</xsl:text>
+                    <span class="label accent">Featured</span>
+                    <xsl:text>&#160;</xsl:text>
+                  </xsl:if>
                 </a>
-              </div>
+              </h5>
             </div>
-          </xsl:for-each>
-        </div>
-      </div>
-    </div>
-  </div>
+          </div>
+        </xsl:for-each>
+      </div><!-- .row -->
+    </div><!-- .container -->
+  </div><!-- .teachings-series-landing -->
 
 </xsl:template>
 

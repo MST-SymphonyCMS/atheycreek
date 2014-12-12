@@ -1,0 +1,29 @@
+
+// ================================================
+// PAGINATION
+// - everything related to Pagination
+// ================================================
+
+
+// Main
+// ------------------------------------------------
+
+.pagination {
+  font-family: $font-family-sans-serif;
+  text-transform: uppercase;
+
+  > li {
+    &:first-child {
+      > a,
+      > span {
+        @include border-left-radius(0);
+      }
+    }
+    &:last-child {
+      > a,
+      > span {
+        @include border-right-radius(0);
+      }
+    }
+  }
+}

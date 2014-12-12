@@ -14,6 +14,7 @@ class datasourceteachings_entries_search extends SectionDatasource
     public $dsParamREDIRECTONFORBIDDEN = 'no';
     public $dsParamREDIRECTONREQUIRED = 'no';
     public $dsParamSORT = 'system:id';
+    public $dsParamHTMLENCODE = 'no';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
     public $dsParamFILTERS = array(
@@ -26,7 +27,8 @@ class datasourceteachings_entries_search extends SectionDatasource
         'title: unformatted',
         'book',
         'chapter',
-        'description: unformatted'
+        'description: unformatted',
+        'date'
     );
 
     public function __construct($env = null, $process_params = true)
@@ -43,8 +45,8 @@ class datasourceteachings_entries_search extends SectionDatasource
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
-            'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-09-02T14:31:19+00:00'
+            'version' => 'Symphony 2.5.2',
+            'release-date' => '2014-12-12T00:40:50+00:00'
         );
     }
 

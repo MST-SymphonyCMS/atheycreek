@@ -63,44 +63,11 @@
 }
 
 
-// Landing: Teachings Search
+// Search: Teachings
 // ------------------------------------------------
 
 .teachings-search {
   text-align: center;
-
-  form {
-    display: block;
-    width: 100%;
-    margin: 4rem auto;
-    padding: 1rem;
-    border-bottom: 2px solid lighten($brand-secondary, 25%);
-
-    @media (min-width: $screen-md) {
-      width: 50%;
-    }
-  }
-
-  a {
-    display: inline-block;
-    padding: 0 0 0 .5rem;
-    color: darken($brand-secondary, 25%);
-    text-decoration: none;
-    border: none;
-  }
-
-  input {
-    padding-right: 1rem;
-    color: lighten($brand-secondary, 5%);
-    text-align: center;
-    background: none;
-    border: none;
-    outline: none;
-    width: 95%;
-
-    @include placeholder(lighten($brand-secondary, 25%));
-  }
-
 }
 
 
@@ -262,42 +229,6 @@
   .main .description {
     width: 75%;
     margin: 0 auto;
-  }
-
-  .tag-list {
-    padding-left: 0;
-    display: inline;
-    list-style: none;
-    line-height: 1.2;
-  }
-
-  .tag-list > li {
-    display: inline;
-    text-transform: uppercase;
-  }
-
-  .tag-list-heading {
-    font-family: $font-family-extended;
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-  .tag-list-item {
-    list-style-type: none;
-    font-family: $font-family-condensed;
-    font-weight: normal;
-    line-height: 1.2;
-  }
-
-  .tag-list-item a {
-    margin-left: 1rem;
-    padding: 1rem;
-    color: $brand-primary;
-    background: lighten($brand-primary, 55%);
-
-    &:hover {
-      color: $white;
-      background: $brand-primary;
-    }
   }
 
   .speaker .description {

@@ -411,7 +411,7 @@
     </xsl:call-template>
     <div class="teachings-search">
       <h4>Teachings Search</h4>
-      <form method="get">
+      <form class="search-form" method="get">
         <xsl:call-template name="form-search-action"/>
         <a>
           <xsl:call-template name="url-search-home" />

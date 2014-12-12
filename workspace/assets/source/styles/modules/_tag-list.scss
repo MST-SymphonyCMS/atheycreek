@@ -1,0 +1,47 @@
+
+// ================================================
+// TAG LIST
+// - everything related to Tag Lists
+// ================================================
+
+
+// Main
+// ------------------------------------------------
+
+.tag-list {
+  padding-left: 0;
+  display: inline;
+  list-style: none;
+  line-height: 1.2;
+}
+
+.tag-list > li {
+  display: inline;
+  text-transform: uppercase;
+}
+
+.tag-list-heading {
+  font-family: $font-family-extended;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.tag-list-item {
+  list-style-type: none;
+  font-family: $font-family-condensed;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+.tag-list-item a {
+  margin-left: 1rem;
+  padding: 1rem;
+  color: $brand-primary;
+  background: lighten($brand-primary, 55%);
+
+  &.active,
+  &:hover {
+    color: $white;
+    background: $brand-primary;
+  }
+}

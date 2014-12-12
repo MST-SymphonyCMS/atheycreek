@@ -19,6 +19,11 @@
   color: $white;
   background: $brand-primary;
 
+  &:hover {
+    @include opacity(.5);
+    color: $white;
+  }
+
   a {
     color: $white;
   }

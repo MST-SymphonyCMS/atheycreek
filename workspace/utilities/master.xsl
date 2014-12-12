@@ -93,6 +93,20 @@
           <div class="main-content">
 
             <xsl:if test="not($pt1) or $pt1 = 'home'">
+              <div class="search-full-width">
+                <form class="search-form" action="get">
+                  <xsl:call-template name="form-search-action" />
+                  <a>
+                    <xsl:call-template name="url-search-home" />
+                    <span class="glyphicon glyphicon-search"></span>
+                  </a>
+                  <xsl:if test="$url-sections">
+                    <input type="hidden" name="sections" value="{$url-sections}" />
+                  </xsl:if>
+                  <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
+                </form>
+                <hr/>
+              </div>
               <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='tagline']/content)" disable-output-escaping="yes" />
               <xsl:call-template name="featured-home"/>
               <xsl:call-template name="events-home">
@@ -101,38 +115,35 @@
               </xsl:call-template>
               <xsl:call-template name="teachings-home"/>
             </xsl:if>
-
-
+            <xsl:choose>
+              <xsl:when test="$pt1 = 'toolkit' and $cookie-username">
+                <xsl:call-template name="toolkit" />
+              </xsl:when>
+              <xsl:when test="$pt1 = 'search'">
+                <xsl:call-template name="component-search">
+                  <xsl:with-param name="position" select="column-full-width" />
+                  <xsl:with-param name="entries" select="data/search/entry" />
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:when test="not(/data/tags-entries-by-tag/entry)">
+                <xsl:call-template name="error"/>
+              </xsl:when>
+              <xsl:otherwise>
                 <xsl:choose>
-                  <xsl:when test="$pt1 = 'toolkit' and $cookie-username">
-                    <xsl:call-template name="toolkit" />
-                  </xsl:when>
-                  <xsl:when test="$pt1 = 'search'">
-                    <xsl:call-template name="component-search">
-                      <xsl:with-param name="position" select="column-full-width" />
-                      <xsl:with-param name="entries" select="data/search/entry" />
+                  <xsl:when test="count(/data/layouts-ds-tags-entries-by-tag/entry)">
+                    <xsl:call-template name="call-components">
+                      <xsl:with-param name="xpath" select="/data/layouts-ds-tags-entries-by-tag/entry" />
                     </xsl:call-template>
                   </xsl:when>
-                  <xsl:when test="not(/data/tags-entries-by-tag/entry)">
-                    <xsl:call-template name="error"/>
-                  </xsl:when>
                   <xsl:otherwise>
-                    <xsl:choose>
-                      <xsl:when test="count(/data/layouts-ds-tags-entries-by-tag/entry)">
-                        <xsl:call-template name="call-components">
-                          <xsl:with-param name="xpath" select="/data/layouts-ds-tags-entries-by-tag/entry" />
-                        </xsl:call-template>
-                      </xsl:when>
-                      <xsl:otherwise>
-                        <xsl:call-template name="call-components">
-                          <xsl:with-param name="xpath" select="/data/layouts-default/entry" />
-                        </xsl:call-template>
-                      </xsl:otherwise>
-                    </xsl:choose>
+                    <xsl:call-template name="call-components">
+                      <xsl:with-param name="xpath" select="/data/layouts-default/entry" />
+                    </xsl:call-template>
                   </xsl:otherwise>
                 </xsl:choose>
-                <xsl:call-template name="page-live"/>
-
+              </xsl:otherwise>
+            </xsl:choose>
+            <xsl:call-template name="page-live"/>
             <xsl:call-template name="footer"/>
           </div><!-- .main-content -->
         </div>

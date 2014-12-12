@@ -109,9 +109,9 @@
 		</xsl:variable>
 
 		<!-- Pagination -->
-		<div class="{$class-pagination}">
+		<div>
 
-			<ul>
+			<ul class="{$class-pagination}">
 
 				<!-- Previous link -->
 				<xsl:if test="$show-navigation = true()">

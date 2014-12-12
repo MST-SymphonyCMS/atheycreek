@@ -2,9 +2,10 @@
 
 require_once TOOLKIT . '/class.datasource.php';
 
-class datasourcetext_entries_by_tag extends SectionDatasource
+class datasourcetext_all_entries extends SectionDatasource
 {
-    public $dsParamROOTELEMENT = 'text-entries-by-tag';
+    public $dsParamROOTELEMENT = 'text-all-entries';
+		public $dsParamConditionalizer = '(if value of ({$pt1}) is (search))';
     public $dsParamORDER = 'desc';
     public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '20';
@@ -12,35 +13,45 @@ class datasourcetext_entries_by_tag extends SectionDatasource
     public $dsParamREDIRECTONEMPTY = 'no';
     public $dsParamREDIRECTONFORBIDDEN = 'no';
     public $dsParamREDIRECTONREQUIRED = 'no';
-    public $dsParamREQUIREDPARAM = '$pt1:home';
     public $dsParamSORT = 'system:id';
-    public $dsParamHTMLENCODE = 'yes';
+    public $dsParamHTMLENCODE = 'no';
     public $dsParamASSOCIATEDENTRYCOUNTS = 'no';
 
     public $dsParamFILTERS = array(
-        '148' => '{$ds-tags-filtered.system-id:43}',
+        '209' => 'no',
     );
 
     public $dsParamINCLUDEDELEMENTS = array(
-        'content: formatted'
+        'content: unformatted',
+        'tags'
+    );
+    
+    public $dsParamINCLUDEDASSOCIATIONS = array(
+        'tags' => array(
+            'section_id' => '3',
+            'field_id' => '337',
+            'elements' => array(
+                'title'
+            )
+        )
     );
 
     public function __construct($env = null, $process_params = true)
     {
         parent::__construct($env, $process_params);
-        $this->_dependencies = array('$ds-tags-filtered.system-id');
+        $this->_dependencies = array();
     }
 
     public function about()
     {
         return array(
-            'name' => 'Text: Entries by tag',
+            'name' => 'Text: All Entries',
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
             'version' => 'Symphony 2.5.2',
-            'release-date' => '2014-12-12T16:11:53+00:00'
+            'release-date' => '2014-12-12T07:42:21+00:00'
         );
     }
 

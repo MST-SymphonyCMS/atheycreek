@@ -394,30 +394,25 @@
 												</a>
 											</div>
 										</xsl:when>
-										<xsl:when test="@section = 'tags'">
+										<xsl:when test="@section = 'text'">
 											<div>
 												<xsl:call-template name="search-entry-class" />
-												<xsl:call-template name="edit-entry">
-													<xsl:with-param name="component" select="$search-component"/>
-												</xsl:call-template>
 												<a>
-													<xsl:call-template name="url-tags-by-text">
-														<xsl:with-param name="tag" select="$id"/>
-													</xsl:call-template>
-													<h3>
-															<xsl:value-of select="//data/tags-all-entries/entry[@id = $id]/tag" disable-output-escaping="yes" />
-															<xsl:if test="//data/tags-all-entries/entry[@id = $id]/parent/item">
-																<xsl:text> (</xsl:text>
-																<xsl:value-of select="//data/tags-all-entries/entry[@id = $id]/parent/item/tag"/>
-																<xsl:text>) </xsl:text>
-															</xsl:if>
-															<span class="label page">Page</span>
-													</h3>
+													<xsl:attribute name="href">
+														<xsl:value-of select="$root"/>
+														<xsl:value-of select="//data/tags-all-entries/entry[@id = //data/text-all-entries/entry[@id = $id]/tags/item/@id]/path"/>
+														<xsl:text>/</xsl:text>
+													</xsl:attribute>
+													<h5>
+														<xsl:value-of select="$id"/>
+														<xsl:value-of select="//data/tags-all-entries/entry[@id = //data/text-all-entries/entry[@id = $id]/tags/item/@id]/title" disable-output-escaping="yes" />
+														<span class="label label-default">Page</span>
+													</h5>
 													<div class="description">
 														<xsl:call-template name="truncate">
 															<xsl:with-param name="node">
 																<xsl:call-template name="remove-html">
-																	<xsl:with-param name="text" select="//data/text-search/entry[tags/item/@id = $id]/content" />
+																	<xsl:with-param name="text" select="//data/text-all-entries/entry[@id = $id]/content" />
 																</xsl:call-template>
 															</xsl:with-param>
 														</xsl:call-template>

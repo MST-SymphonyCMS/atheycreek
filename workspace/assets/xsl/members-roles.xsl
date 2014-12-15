@@ -80,7 +80,7 @@
 						</xsl:choose>
 						<xsl:call-template name="image-master">
 			        <xsl:with-param name="photo" select="member/item/photo/filename" />
-			        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+			        <xsl:with-param name="default" select="'anonymous-4fef5a675fd64-5459168309152.jpg'" />
 			        <xsl:with-param name="width" select="360" />
 			        <xsl:with-param name="height" select="360" />
 			        <xsl:with-param name="responsive" select="0" />
@@ -156,7 +156,7 @@
 						<div class="pull-left">
 							<xsl:call-template name="image-master">
 				        <xsl:with-param name="photo" select="member/item/photo/filename" />
-				        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+				        <xsl:with-param name="default" select="'anonymous-4fef5a675fd64-5459168309152.jpg'" />
 				        <xsl:with-param name="width" select="144" />
 				        <xsl:with-param name="height" select="144" />
 				        <xsl:with-param name="responsive" select="0" />
@@ -221,7 +221,7 @@
 						<div class="pull-left">
 							<xsl:call-template name="image-master">
 				        <xsl:with-param name="photo" select="photo/filename" />
-				        <xsl:with-param name="default" select="anonymous-4fef5a675fd64-5459168309152.jpg" />
+				        <xsl:with-param name="default" select="'anonymous-4fef5a675fd64-5459168309152.jpg'" />
 				        <xsl:with-param name="width" select="144" />
 				        <xsl:with-param name="height" select="144" />
 				        <xsl:with-param name="responsive" select="0" />

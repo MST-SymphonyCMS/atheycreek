@@ -4898,26 +4898,27 @@ a:hover {
   .alert-danger .alert-link {
     color: #e2e2c9; }
 
-.tag-list {
+.main-content .tag-list {
   padding-left: 0;
   display: inline;
   list-style: none;
   line-height: 1.2; }
 
-.tag-list > li {
-  display: inline;
-  text-transform: uppercase; }
-
 .tag-list-heading {
+  display: inline-block;
+  padding-left: 0;
   font-family: 'Trade Gothic Extended';
   font-size: 1.8rem;
-  font-weight: bold; }
+  font-weight: bold;
+  text-transform: uppercase; }
 
 .tag-list-item {
+  display: inline-block;
   list-style-type: none;
   font-family: 'Trade Gothic Condensed';
   font-weight: normal;
-  line-height: 1.2; }
+  line-height: 2.75;
+  text-transform: uppercase; }
 
 .tag-list-item a {
   margin-left: 1rem;
@@ -5225,8 +5226,72 @@ a:hover {
   .more-link a {
     color: #ffffff; }
 
-.teachings-current h4 {
-  margin-top: 2rem; }
+.teachings-current {
+  clear: both; }
+  .teachings-current a:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50); }
+  @media (min-width: 768px) {
+    .teachings-current .column {
+      margin-bottom: 4rem;
+      width: 50%;
+      float: left; } }
+  .teachings-current .column h5 {
+    margin: 0;
+    padding: 0; }
+  .teachings-current .content {
+    display: none;
+    position: relative;
+    color: #ffffff; }
+    @media (min-width: 768px) {
+      .teachings-current .content {
+        display: block; } }
+  .teachings-current .content .inner {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    text-align: center;
+    background: rgba(48, 48, 48, 0.95); }
+    @media (min-width: 768px) {
+      .teachings-current .content .inner {
+        padding: 1.5rem; } }
+    @media (min-width: 992px) {
+      .teachings-current .content .inner {
+        padding: 3rem 1.5rem; } }
+  .teachings-current .content .divider {
+    margin: 0;
+    color: #d6d6d6;
+    font-family: 'Trade Gothic Extended';
+    font-weight: bold;
+    letter-spacing: 3.5rem;
+    text-align: center; }
+    @media (min-width: 768px) {
+      .teachings-current .content .divider {
+        margin: 0.5rem 0; } }
+    @media (min-width: 992px) {
+      .teachings-current .content .divider {
+        margin: 2rem 0; } }
+  .teachings-current .content .description {
+    line-height: 1.4;
+    font-size: 1.2rem; }
+    @media (min-width: 768px) {
+      .teachings-current .content .description {
+        font-size: 1.4rem; } }
+    @media (min-width: 992px) {
+      .teachings-current .content .description {
+        font-size: 1.8rem; } }
+  .teachings-current .content .more {
+    margin-top: 0; }
+    @media (min-width: 992px) {
+      .teachings-current .content .more {
+        margin-top: 2rem; } }
+  .teachings-current h4 {
+    margin-top: 2rem; }
+
+.featured-content {
+  clear: both; }
 
 .feature a {
   display: block;
@@ -5456,8 +5521,12 @@ a:hover {
     .teachings-series.teachings-series-home .series a {
       margin-bottom: 0; } }
 
-.teachings-search {
-  text-align: center; }
+.teachings-search .search-form {
+  width: 100%; }
+
+.teachings-search.search-full-width .search-form {
+  padding: 1rem 0 2.5rem 0;
+  background: #f7f7f7; }
 
 .teachings-series-landing .series {
   margin-bottom: 3rem; }
@@ -5484,8 +5553,6 @@ a:hover {
     color: #ffffff;
     opacity: 0.5;
     filter: alpha(opacity=50); }
-.teachings-podcast .podcast-links .more-link:first-child {
-  text-transform: none; }
 
 @media (min-width: 992px) {
   .teachings-list {
@@ -5530,6 +5597,8 @@ a:hover {
 
 .teachings-detail .title {
   display: none; }
+.teachings-detail .tags {
+  margin-bottom: 3rem; }
 .teachings-detail .nav {
   padding-left: 0; }
 @media (min-width: 992px) {
@@ -5719,23 +5788,13 @@ a:hover {
   @media (min-width: 992px) {
     .search-form {
       width: 50%; } }
-  .search-form a {
-    display: inline-block;
-    padding: 0 0 0 0.5rem;
-    color: #565656;
-    text-decoration: none;
-    border: none; }
   .search-form input {
-    padding-right: 1rem;
     color: #a3a3a3;
     text-align: center;
     background: none;
     border: none;
     outline: none;
-    width: 90%; }
-    @media (min-width: 992px) {
-      .search-form input {
-        width: 95%; } }
+    width: 100%; }
     .search-form input::-moz-placeholder {
       color: #d6d6d6;
       opacity: 1; }
@@ -5749,22 +5808,17 @@ a:hover {
   border: none;
   font-family: 'Trade Gothic Extended'; }
   .search-full-width .search-form input {
-    padding: 1rem 1rem 0 0;
+    padding: 1rem 0 0 0;
     text-transform: uppercase; }
     @media (min-width: 992px) {
       .search-full-width .search-form input {
-        padding: 2rem 2rem 0 0; } }
+        padding: 2rem 0 0 0; } }
 .search-full-width hr {
   margin-top: 0; }
-.search-full-width .tag-list {
-  padding-left: 0;
-  text-align: center;
-  display: block; }
-.search-full-width .tag-list-item {
-  display: inline-block;
-  line-height: 3; }
-.search-full-width .search-facets h4 {
-  margin-top: 1rem; }
+.search-full-width .search-facets {
+  padding-bottom: 3rem; }
+  .search-full-width .search-facets h4 {
+    margin-top: 1rem; }
 .search-full-width .search-results {
   padding-bottom: 4rem; }
   .search-full-width .search-results h4 {

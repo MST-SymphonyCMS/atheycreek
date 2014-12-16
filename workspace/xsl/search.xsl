@@ -11,17 +11,12 @@
 	<div class="search search-full-width">
 		<form class="search-form" action="get">
 		  <xsl:call-template name="form-search-action" />
-		  <a>
-		    <xsl:call-template name="url-search-home" />
-		    <span class="glyphicon glyphicon-search"></span>
-		  </a>
 		  <xsl:if test="$url-sections">
 		  	<input type="hidden" name="sections" value="{$url-sections}" />
 		  </xsl:if>
 		  <input name="keywords" type="text" class="search-query" placeholder="Search" autocomplete="off" onclick="this.select()" />
 		</form>
 		<hr/>
-		<!--<p>Type and hit enter. You can search our entire site. Try <span onclick="$('.search input.keywords').val('Jesus');">Jesus</span>, <span onclick="$('.search input.keywords').val('Baptism');">Baptism</span> or <span onclick="$('.search input.keywords').val('Wilsonville');">Wilsonville</span>&#160;..</p> -->
 		<xsl:if test="$url-keywords">
 			<div class="search-facets">
 				<div class="container">
@@ -30,7 +25,7 @@
 						<ul class="tag-list">
 							<li class="tag-list-item">
 								<a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings%2Cteachings-series%2Cteachings-tags%2Ctext%2Cevents-recurring%2Cevents%2Cdownloads%2Clocations">
-									<xsl:if test="$url-sections = '' or string-length($url-sections) &gt; 20">
+									<xsl:if test="$url-sections = '' or $url-sections = 'teachings,teachings-series,teachings-tags,text,events-recurring,events,downloads,locations'">
 										<xsl:attribute name="class">active</xsl:attribute>
 										<span class="glyphicon glyphicon-ok"></span>
 										<xsl:text>&#160;</xsl:text>
@@ -80,7 +75,7 @@
 							</li>
 							<li class="tag-list-item">
 								<a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings">
-									<xsl:if test="$url-sections = 'teachings'">
+									<xsl:if test="$url-sections = 'teachings' or $url-sections = 'teachings,teachings-tags,teachings-series'">
 										<xsl:attribute name="class">active</xsl:attribute>
 										<span class="glyphicon glyphicon-ok"></span>
 										<xsl:text>&#160;</xsl:text>
@@ -90,7 +85,7 @@
 							</li>
 							<li class="tag-list-item">
 								<a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings-series">
-									<xsl:if test="$url-sections = 'teachings-series'">
+									<xsl:if test="$url-sections = 'teachings-series' or $url-sections = 'teachings,teachings-tags,teachings-series'">
 										<xsl:attribute name="class">active</xsl:attribute>
 										<span class="glyphicon glyphicon-ok"></span>
 										<xsl:text>&#160;</xsl:text>
@@ -100,7 +95,7 @@
 							</li>
 							<li class="tag-list-item">
 								<a href="{$root}/search/?keywords={$url-keywords}&amp;sections=teachings-tags">
-									<xsl:if test="$url-sections = 'teachings-tags'">
+									<xsl:if test="$url-sections = 'teachings-tags' or $url-sections = 'teachings,teachings-tags,teachings-series'">
 										<xsl:attribute name="class">active</xsl:attribute>
 										<span class="glyphicon glyphicon-ok"></span>
 										<xsl:text>&#160;</xsl:text>

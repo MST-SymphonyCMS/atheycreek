@@ -8,29 +8,30 @@
 // Main
 // ------------------------------------------------
 
-.tag-list {
+
+.main-content .tag-list {
   padding-left: 0;
   display: inline;
   list-style: none;
   line-height: 1.2;
 }
 
-.tag-list > li {
-  display: inline;
-  text-transform: uppercase;
-}
-
 .tag-list-heading {
+  display: inline-block;
+  padding-left: 0;
   font-family: $font-family-extended;
   font-size: 1.8rem;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 .tag-list-item {
+  display: inline-block;
   list-style-type: none;
   font-family: $font-family-condensed;
   font-weight: normal;
-  line-height: 1.2;
+  line-height: 2.75;
+  text-transform: uppercase;
 }
 
 .tag-list-item a {

@@ -96,10 +96,6 @@
               <div class="search-full-width">
                 <form class="search-form" action="get">
                   <xsl:call-template name="form-search-action" />
-                  <a>
-                    <xsl:call-template name="url-search-home" />
-                    <span class="glyphicon glyphicon-search"></span>
-                  </a>
                   <xsl:if test="$url-sections">
                     <input type="hidden" name="sections" value="{$url-sections}" />
                   </xsl:if>

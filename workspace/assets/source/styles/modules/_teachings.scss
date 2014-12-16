@@ -66,8 +66,13 @@
 // Search: Teachings
 // ------------------------------------------------
 
-.teachings-search {
-  text-align: center;
+.teachings-search .search-form {
+  width: 100%;
+}
+
+.teachings-search.search-full-width .search-form {
+  padding: 1rem 0 2.5rem 0;
+  background: lighten($gray-darker, 75%);
 }
 
 
@@ -117,9 +122,6 @@
       color: $white;
       @include opacity(.5);
     }
-  }
-  .podcast-links .more-link:first-child {
-    text-transform: none;
   }
 }
 
@@ -205,6 +207,10 @@
 .teachings-detail {
   .title {
     display: none;
+  }
+
+  .tags {
+    margin-bottom: 3rem;
   }
 
   .nav {

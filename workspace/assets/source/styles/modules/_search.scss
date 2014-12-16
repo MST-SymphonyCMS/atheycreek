@@ -19,26 +19,13 @@
     width: 50%;
   }
 
-  a {
-    display: inline-block;
-    padding: 0 0 0 .5rem;
-    color: darken($brand-secondary, 25%);
-    text-decoration: none;
-    border: none;
-  }
-
   input {
-    padding-right: 1rem;
     color: lighten($brand-secondary, 5%);
     text-align: center;
     background: none;
     border: none;
     outline: none;
-    width: 90%;
-
-    @media (min-width: $screen-md) {
-      width: 95%;
-    }
+    width: 100%;
 
     @include placeholder(lighten($brand-secondary, 25%));
   }
@@ -56,11 +43,11 @@
     font-family: $font-family-extended;
 
     input {
-      padding: 1rem 1rem 0 0;
+      padding: 1rem 0 0 0;
       text-transform: uppercase;
 
       @media (min-width: $screen-md) {
-        padding: 2rem 2rem 0 0;
+        padding: 2rem 0 0 0;
       }
     }
   }
@@ -69,17 +56,8 @@
     margin-top: 0;
   }
 
-  .tag-list {
-    padding-left: 0;
-    text-align: center;
-    display: block;
-  }
-  .tag-list-item {
-    display: inline-block;
-    line-height: 3;
-  }
-
   .search-facets {
+    padding-bottom: 3rem;
 
     h4 {
       margin-top: 1rem ;

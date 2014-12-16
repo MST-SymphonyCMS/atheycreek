@@ -110,6 +110,7 @@
                 <xsl:with-param name="entries" select="/data/events-latest/entry" />
               </xsl:call-template>
               <xsl:call-template name="teachings-home"/>
+              <xsl:call-template name="teachings-podcast"/>
             </xsl:if>
             <xsl:choose>
               <xsl:when test="$pt1 = 'toolkit' and $cookie-username">

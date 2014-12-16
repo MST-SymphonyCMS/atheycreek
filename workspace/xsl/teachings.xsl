@@ -186,65 +186,7 @@
       </form>
     </div>
     <xsl:call-template name="teachings-home"/>
-    <div class="teachings-podcast" id="podcasts">
-      <div class="container">
-        <div class="row">
-          <h4>Official Podcasts</h4>
-          <div class="podcast col-md-6">
-            <div class="podcast-image">
-              <xsl:call-template name="image-master">
-                <xsl:with-param name="photo" select="'podcast-audio-54876aecc97f9.jpg'" />
-                <xsl:with-param name="width" select="300" />
-                <xsl:with-param name="height" select="300" />
-              </xsl:call-template>
-            </div>
-            <div class="podcast-description">
-              <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-audio-description']/content)" disable-output-escaping="yes" />
-            </div>
-            <div class="podcast-links more">
-              <a class="more-link">
-                <xsl:attribute name="href">
-                  <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-audio']/content)" disable-output-escaping="yes" />
-                </xsl:attribute>
-                <xsl:text>iTunes</xsl:text>
-              </a>
-              <a class="more-link">
-                <xsl:attribute name="href">
-                  <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-audio-subscribe']/content)" disable-output-escaping="yes" />
-                </xsl:attribute>
-                <xsl:text>Instant Subscribe</xsl:text>
-              </a>
-            </div>
-          </div>
-          <div class="podcast col-md-6">
-            <div class="podcast-image">
-              <xsl:call-template name="image-master">
-                <xsl:with-param name="photo" select="'podcast-video-54876b6186866.jpg'" />
-                <xsl:with-param name="width" select="300" />
-                <xsl:with-param name="height" select="300" />
-              </xsl:call-template>
-            </div>
-            <div class="podcast-description">
-              <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-video-description']/content)" disable-output-escaping="yes" />
-            </div>
-            <div class="podcast-links more">
-              <a class="more-link">
-                <xsl:attribute name="href">
-                  <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-video']/content)" disable-output-escaping="yes" />
-                </xsl:attribute>
-                <xsl:text>iTunes</xsl:text>
-              </a>
-              <a class="more-link">
-                <xsl:attribute name="href">
-                  <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-video-subscribe']/content)" disable-output-escaping="yes" />
-                </xsl:attribute>
-                <xsl:text>Instant Subscribe</xsl:text>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <xsl:call-template name="teachings-podcast"/>
   </div><!-- .teachings-landing -->
 </xsl:template>
 
@@ -521,6 +463,70 @@
       </div><!-- .inner -->
     </div><!-- .teaching-viewer -->
   </xsl:for-each>
+</xsl:template>
+
+
+<!-- This template houses the Podcast links -->
+<xsl:template name="teachings-podcast">
+  <div class="teachings-podcast" id="podcasts">
+    <div class="container">
+      <div class="row">
+        <h4>Official Podcasts</h4>
+        <div class="podcast col-md-6">
+          <div class="podcast-image">
+            <xsl:call-template name="image-master">
+              <xsl:with-param name="photo" select="'podcast-audio-54876aecc97f9.jpg'" />
+              <xsl:with-param name="width" select="300" />
+              <xsl:with-param name="height" select="300" />
+            </xsl:call-template>
+          </div>
+          <div class="podcast-description">
+            <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-audio-description']/content)" disable-output-escaping="yes" />
+          </div>
+          <div class="podcast-links more">
+            <a class="more-link">
+              <xsl:attribute name="href">
+                <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-audio']/content)" disable-output-escaping="yes" />
+              </xsl:attribute>
+              <xsl:text>iTunes</xsl:text>
+            </a>
+            <a class="more-link">
+              <xsl:attribute name="href">
+                <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-audio-subscribe']/content)" disable-output-escaping="yes" />
+              </xsl:attribute>
+              <xsl:text>Instant Subscribe</xsl:text>
+            </a>
+          </div>
+        </div>
+        <div class="podcast col-md-6">
+          <div class="podcast-image">
+            <xsl:call-template name="image-master">
+              <xsl:with-param name="photo" select="'podcast-video-54876b6186866.jpg'" />
+              <xsl:with-param name="width" select="300" />
+              <xsl:with-param name="height" select="300" />
+            </xsl:call-template>
+          </div>
+          <div class="podcast-description">
+            <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-video-description']/content)" disable-output-escaping="yes" />
+          </div>
+          <div class="podcast-links more">
+            <a class="more-link">
+              <xsl:attribute name="href">
+                <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-video']/content)" disable-output-escaping="yes" />
+              </xsl:attribute>
+              <xsl:text>iTunes</xsl:text>
+            </a>
+            <a class="more-link">
+              <xsl:attribute name="href">
+                <xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='podcast-video-subscribe']/content)" disable-output-escaping="yes" />
+              </xsl:attribute>
+              <xsl:text>Instant Subscribe</xsl:text>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- .teachings-podcast -->
 </xsl:template>
 
 

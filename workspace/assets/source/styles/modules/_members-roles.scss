@@ -9,9 +9,9 @@
 // ------------------------------------------------
 
 .members-roles-full-width {
-  margin-top: 6rem;
 
   .member {
+    margin-bottom: 3rem;
     text-align: center;
   }
 
@@ -20,7 +20,7 @@
     height: 250px;
   }
 
-  h5 {
+  .title {
     margin: 3rem 0 1rem 0;
     color: lighten($brand-secondary, 20%);
     font-family: $font-family-condensed;
@@ -28,11 +28,21 @@
     font-weight: normal;
   }
 
-  h3 {
+  .name {
     margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .contact-details {
+    color: lighten($brand-secondary, 20%);
+
+    .glyphicon {
+      margin: 0 .5rem;
+    }
   }
 
   .description {
+    font-family: $font-family-sans-serif;
     text-align: left;
   }
 

@@ -12896,4 +12896,12 @@ $(function() {
     $('.locations-groups .list-group > li > a:first').tab('show');
   }
 
+
+  // ------------------------------------------------
+  // + Popovers
+  // + - activates Bootstrap popovers on the site
+  // ------------------------------------------------
+
+  $('.members-roles-full-width .phone, .members-roles-full-width .email').popover();
+
 });

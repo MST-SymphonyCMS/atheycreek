@@ -4855,6 +4855,10 @@ a:hover {
   .label.allchurch {
     background: #ff5656; }
 
+.popover-title {
+  margin-bottom: 0;
+  font-family: 'Trade Gothic'; }
+
 .alert {
   margin-bottom: 0;
   border: none;
@@ -5679,29 +5683,34 @@ a:hover {
       background: #ffffff;
       color: #4a4a4a; }
 
-.members-roles-full-width {
-  margin-top: 6rem; }
-  .members-roles-full-width .member {
-    text-align: center; }
-  .members-roles-full-width img {
-    width: 250px;
-    height: 250px; }
-  .members-roles-full-width h5 {
-    margin: 3rem 0 1rem 0;
-    color: #c9c9c9;
-    font-family: 'Trade Gothic Condensed';
-    font-size: 2rem;
-    font-weight: normal; }
-  .members-roles-full-width h3 {
-    margin-top: 0; }
-  .members-roles-full-width .description {
-    text-align: left; }
-  .members-roles-full-width .more-link {
-    display: block;
-    margin: -1.5rem 0 1.5rem 0;
-    text-align: center; }
-  .members-roles-full-width .contact-info {
-    margin-bottom: 6rem; }
+.members-roles-full-width .member {
+  margin-bottom: 3rem;
+  text-align: center; }
+.members-roles-full-width img {
+  width: 250px;
+  height: 250px; }
+.members-roles-full-width .title {
+  margin: 3rem 0 1rem 0;
+  color: #c9c9c9;
+  font-family: 'Trade Gothic Condensed';
+  font-size: 2rem;
+  font-weight: normal; }
+.members-roles-full-width .name {
+  margin-top: 0;
+  margin-bottom: 1rem; }
+.members-roles-full-width .contact-details {
+  color: #c9c9c9; }
+  .members-roles-full-width .contact-details .glyphicon {
+    margin: 0 0.5rem; }
+.members-roles-full-width .description {
+  font-family: 'Trade Gothic';
+  text-align: left; }
+.members-roles-full-width .more-link {
+  display: block;
+  margin: -1.5rem 0 1.5rem 0;
+  text-align: center; }
+.members-roles-full-width .contact-info {
+  margin-bottom: 6rem; }
 
 .members-roles-column-right {
   padding: 3rem 0 0.5rem 0;

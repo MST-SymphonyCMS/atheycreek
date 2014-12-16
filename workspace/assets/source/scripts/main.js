@@ -13,20 +13,68 @@ $(function() {
   // + - handles the slide menu
   // ------------------------------------------------
 
-  var snapper = new Snap({
-    element: document.getElementById('content'),
-    disable: 'left',
-    maxPosition: 288,
-    minPosition: -288
-  });
+  // if (document.body.clientWidth < 768) {
+  //   var snapper = new Snap({
+  //     element: document.getElementById('content'),
+  //     disable: 'left',
+  //     maxPosition: 288,
+  //     minPosition: -288
+  //   });
 
-  $('.menu-activate').click(function() {
-    if( snapper.state().state == "right" ){
-      snapper.close();
-    } else {
-      snapper.open('right');
+  //   $('.menu-activate').click(function() {
+  //     if( snapper.state().state == "right" ){
+  //       snapper.close();
+  //     } else {
+  //       snapper.open('right');
+  //     }
+  //   });
+  // } else {
+  //   snapper.disable();
+  // }
+
+  var resizeMethod = function(){
+    if (document.body.clientWidth < 992) {
+      console.log('enter mobile');
+      var snapper = new Snap({
+        element: document.getElementById('content'),
+        disable: 'left',
+        maxPosition: 288,
+        minPosition: -288
+      });
+
+      $('.menu-activate').click(function() {
+        if( snapper.state().state == "right" ){
+          snapper.close();
+        } else {
+          snapper.open('right');
+        }
+      });
     }
-  });
+    if (document.body.clientWidth > 992) {
+      console.log('enter desktop');
+    }
+  };
+
+  //Attach event for resizing
+  window.addEventListener("resize", resizeMethod, true);
+
+  // if (document.width < 768) {
+  //   var snapper = new Snap({
+  //     element: document.getElementById('content'),
+  //     disable: 'left',
+  //     maxPosition: 288,
+  //     minPosition: -288
+  //   });
+
+  //   $('.menu-activate').click(function() {
+  //     if( snapper.state().state == "right" ){
+  //       snapper.close();
+  //     } else {
+  //       snapper.open('right');
+  //     }
+  //   });
+  // };
+
 
 
   // ------------------------------------------------

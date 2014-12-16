@@ -4841,7 +4841,7 @@ a:hover {
   .label.men {
     background: #3d3a3a; }
   .label.women {
-    background: #Df90f0; }
+    background: #df90f0; }
   .label.college {
     background: #06e3b2; }
   .label.highschool {
@@ -5102,6 +5102,9 @@ a:hover {
   left: 0;
   width: auto;
   height: auto; }
+  @media (min-width: 992px) {
+    .snap-drawers {
+      display: none; } }
 
 .snap-drawer {
   position: absolute;
@@ -5133,7 +5136,7 @@ a:hover {
     float: none;
     position: static;
     margin-top: 0;
-    padding-left: 2rem;
+    padding-left: 1.5rem;
     background: none;
     border: none;
     -webkit-box-shadow: none;
@@ -5163,6 +5166,9 @@ a:hover {
     text-transform: uppercase; }
     .snap-drawer-right ul li.hide-mobile {
       display: none; }
+  .snap-drawer-right ul li .dropdown-menu li {
+    font-family: 'Trade Gothic Condensed';
+    font-size: 1.6rem; }
   .snap-drawer-right ul li a {
     position: relative;
     display: block;
@@ -5170,8 +5176,7 @@ a:hover {
     padding: 0;
     color: white; }
     .snap-drawer-right ul li a:hover {
-      background: none;
-      color: #3d3d3d; }
+      background: none; }
   .snap-drawer-right ul li.register, .snap-drawer-right ul li.social {
     display: block; }
     @media (min-width: 768px) {
@@ -5258,7 +5263,7 @@ a:hover {
     background: rgba(48, 48, 48, 0.95); }
     @media (min-width: 768px) {
       .teachings-current .content .inner {
-        padding: 1.5rem; } }
+        padding: 2rem; } }
     @media (min-width: 992px) {
       .teachings-current .content .inner {
         padding: 3rem 1.5rem; } }
@@ -5277,10 +5282,10 @@ a:hover {
     text-align: center; }
     @media (min-width: 768px) {
       .teachings-current .content .divider {
-        display: block;
-        margin: 0.5rem 0; } }
+        display: none; } }
     @media (min-width: 992px) {
       .teachings-current .content .divider {
+        display: block;
         margin: 1.75rem 0; } }
     @media (min-width: 1200px) {
       .teachings-current .content .divider {
@@ -5332,7 +5337,7 @@ a:hover {
 .events.events-full-width.events-home .men {
   border-color: #3d3a3a; }
 .events.events-full-width.events-home .women {
-  border-color: #Df90f0; }
+  border-color: #df90f0; }
 .events.events-full-width.events-home .college {
   border-color: #06e3b2; }
 .events.events-full-width.events-home .highschool {

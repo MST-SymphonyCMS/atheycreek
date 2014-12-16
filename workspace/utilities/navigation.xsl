@@ -46,7 +46,7 @@
         <div class="col-sm-12">
           <ul class="navigation">
             <xsl:for-each select="/data/tags-all-entries/entry[not(parent/item) and not(hide-nav = 'Yes')]">
-              <xsl:if test="position() &lt; 4">
+              <xsl:if test="position() &lt; 5">
                 <xsl:call-template name="subnav-entry" />
               </xsl:if>
             </xsl:for-each>
@@ -56,7 +56,7 @@
               </a>
             </li>
             <xsl:for-each select="/data/tags-all-entries/entry[not(parent/item) and not(hide-nav = 'Yes')]">
-              <xsl:if test="position() &gt; 3">
+              <xsl:if test="position() &gt; 4">
                 <xsl:call-template name="subnav-entry" />
               </xsl:if>
             </xsl:for-each>

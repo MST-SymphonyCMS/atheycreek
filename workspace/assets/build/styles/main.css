@@ -5260,8 +5260,14 @@ a:hover {
     @media (min-width: 992px) {
       .teachings-current .content .inner {
         padding: 3rem 1.5rem; } }
+    @media (min-width: 1200px) {
+      .teachings-current .content .inner {
+        padding: 4rem 3rem; } }
+  .teachings-current .content .meta {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic; }
   .teachings-current .content .divider {
-    margin: 0;
+    display: none;
     color: #d6d6d6;
     font-family: 'Trade Gothic Extended';
     font-weight: bold;
@@ -5269,10 +5275,14 @@ a:hover {
     text-align: center; }
     @media (min-width: 768px) {
       .teachings-current .content .divider {
+        display: block;
         margin: 0.5rem 0; } }
     @media (min-width: 992px) {
       .teachings-current .content .divider {
-        margin: 2rem 0; } }
+        margin: 1.75rem 0; } }
+    @media (min-width: 1200px) {
+      .teachings-current .content .divider {
+        margin: 3rem 0; } }
   .teachings-current .content .description {
     line-height: 1.4;
     font-size: 1.2rem; }

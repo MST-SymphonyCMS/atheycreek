@@ -922,7 +922,7 @@ h2, .h2 {
   font-size: 32px; }
 
 h3, .h3 {
-  font-size: 26px; }
+  font-size: 24px; }
 
 h4, .h4 {
   font-size: 21px; }
@@ -4739,8 +4739,6 @@ a:hover {
   @media (min-width: 1200px) {
     .main-content {
       border-radius: 0.5rem; } }
-  .main-content h2, .main-content h3, .main-content h4 {
-    letter-spacing: 0.1rem; }
   .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
     text-transform: uppercase; }
   .main-content h4 {
@@ -5482,25 +5480,30 @@ a:hover {
   text-transform: uppercase; }
 
 .text h2 {
-  font-family: 'Trade Gothic Condensed'; }
+  font-family: 'Trade Gothic Extended';
+  font-size: 2.8rem;
+  letter-spacing: 0;
+  line-height: 1.4; }
+.text h4 {
+  margin: 1.6rem 0;
+  text-align: left; }
 
 .text-column-center {
   margin-top: 5.5rem; }
 
 .text-full-width h1 {
+  width: 90%;
   margin: 0 auto;
   padding: 5rem 0;
-  font-weight: 900;
-  letter-spacing: 0.3rem;
+  font-family: 'Trade Gothic Condensed';
+  font-size: 5.4rem;
+  font-weight: 400;
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase; }
   @media (min-width: 768px) {
     .text-full-width h1 {
-      width: 85%; } }
-  @media (min-width: 992px) {
-    .text-full-width h1 {
-      width: 50%; } }
+      width: 65%; } }
 
 .teachings.teachings-home .teaching {
   margin-bottom: 6rem;

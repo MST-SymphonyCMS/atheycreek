@@ -47,7 +47,7 @@ $heading-size-base: $font-size-base - 4;
 
 $font-size-h1:            floor(($heading-size-base * 2.75)) !default;
 $font-size-h2:            floor(($heading-size-base * 2.05)) !default;
-$font-size-h3:            ceil(($heading-size-base * 1.6)) !default;
+$font-size-h3:            ceil(($heading-size-base * 1.5)) !default;
 $font-size-h4:            ceil(($heading-size-base * 1.3)) !default;
 $font-size-h5:            ceil(($heading-size-base * 1.1)) !default;
 $font-size-h6:            ceil(($heading-size-base * 0.75)) !default;

@@ -4918,6 +4918,44 @@ a:hover {
   .more-link a {
     color: #ffffff; }
 
+.navigation-tiles {
+  margin-bottom: 0.2rem; }
+  .navigation-tiles:before, .navigation-tiles:after {
+    content: " ";
+    display: table; }
+  .navigation-tiles:after {
+    clear: both; }
+  .navigation-tiles .title {
+    margin-top: 0;
+    padding-top: 4rem; }
+  .navigation-tiles .tile-list {
+    padding-left: 0;
+    list-style: none;
+    border: 2px solid #ffffff; }
+  .navigation-tiles .tile-list-item {
+    display: block;
+    list-style-type: none;
+    font-family: 'Trade Gothic Extended';
+    text-align: center;
+    border: 2px solid #ffffff; }
+    @media (min-width: 768px) {
+      .navigation-tiles .tile-list-item {
+        width: 50%;
+        float: left; } }
+  .navigation-tiles .tile-list-item a {
+    display: block;
+    width: 100%;
+    padding: 3rem 0;
+    background: #f4f4f4; }
+    .navigation-tiles .tile-list-item a:hover {
+      background: #ededed; }
+  .navigation-tiles .tile-list-item hr {
+    width: 10%;
+    margin: 2rem auto;
+    background: none;
+    border: none;
+    border-top: 2px solid #e3e3e3; }
+
 .alert {
   margin-bottom: 0;
   border: none;

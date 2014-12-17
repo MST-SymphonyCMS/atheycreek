@@ -166,18 +166,20 @@
     <xsl:variable name="realID">
       <xsl:value-of select="@id"/>
     </xsl:variable>
-    <h4><xsl:value-of select="title"/></h4>
-    <ul class="navigation-tiles">
-      <xsl:for-each select="/data/tags-all-entries/entry[parent/item/@id = $realID]">
-        <li class="tile">
-          <a href="{$root}{path}">
-            <hr/>
-            <xsl:value-of select="title"/>
-            <hr/>
-          </a>
-        </li>
-      </xsl:for-each>
-    </ul>
+    <div class="navigation-tiles">
+      <h4 class="title"><xsl:value-of select="title"/></h4>
+      <ul class="tile-list">
+        <xsl:for-each select="/data/tags-all-entries/entry[parent/item/@id = $realID]">
+          <li class="tile-list-item">
+            <a href="{$root}{path}">
+              <hr/>
+              <xsl:value-of select="title"/>
+              <hr/>
+            </a>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </div>
   </xsl:for-each>
 </xsl:template>
 

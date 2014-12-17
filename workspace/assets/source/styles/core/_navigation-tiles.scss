@@ -1,0 +1,58 @@
+
+// ================================================
+// NAVIGATION TILES
+// - everything related to Navigation Tiles
+// ================================================
+
+
+// Main
+// ------------------------------------------------
+
+
+.navigation-tiles {
+  @include clearfix;
+  margin-bottom: .2rem;
+
+  .title {
+    margin-top: 0;
+    padding-top: 4rem;
+  }
+
+  .tile-list {
+    padding-left: 0;
+    list-style: none;
+    border: 2px solid $white;
+  }
+
+  .tile-list-item {
+    display: block;
+    list-style-type: none;
+    font-family: $font-family-extended;
+    text-align: center;
+    border: 2px solid $white;
+
+    @media (min-width: $screen-sm) {
+      width: 50%;
+      float: left;
+    }
+  }
+
+  .tile-list-item a {
+    display: block;
+    width: 100%;
+    padding: 3rem 0;
+    background: lighten($brand-secondary, 37%);
+
+    &:hover {
+      background: lighten($brand-secondary, 34%);
+    }
+  }
+
+  .tile-list-item hr {
+    width: 10%;
+    margin: 2rem auto;
+    background: none;
+    border: none;
+    border-top: 2px solid lighten($brand-secondary, 30%);
+  }
+}

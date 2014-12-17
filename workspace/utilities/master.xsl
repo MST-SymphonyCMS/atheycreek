@@ -127,9 +127,19 @@
               </xsl:when>
               <xsl:otherwise>
                 <xsl:choose>
-                  <xsl:when test="count(/data/layouts-ds-tags-entries-by-tag/entry)">
+                  <xsl:when test="string-length(/data/layouts-ds-tags-entries-by-tag/entry)">
                     <xsl:call-template name="call-components">
                       <xsl:with-param name="xpath" select="/data/layouts-ds-tags-entries-by-tag/entry" />
+                    </xsl:call-template>
+                    <xsl:if test="data/tags-all-entries/entry[path = $current-path]/overview = 'Yes'">
+                      <xsl:call-template name="navigation-tiles">
+                        <xsl:with-param name="entry" select="/data/tags-all-entries/entry[path = $current-path]" />
+                      </xsl:call-template>
+                    </xsl:if>
+                  </xsl:when>
+                  <xsl:when test="data/tags-all-entries/entry[path = $current-path]/overview = 'Yes'">
+                    <xsl:call-template name="navigation-tiles">
+                      <xsl:with-param name="entry" select="/data/tags-all-entries/entry[path = $current-path]" />
                     </xsl:call-template>
                   </xsl:when>
                   <xsl:otherwise>
@@ -138,11 +148,6 @@
                     </xsl:call-template>
                   </xsl:otherwise>
                 </xsl:choose>
-                <xsl:if test="/data/tags-all-entries/entry[path = $current-path]/overview = 'Yes'">
-                  <xsl:call-template name="navigation-tiles">
-                    <xsl:with-param name="entry" select="/data/tags-all-entries/entry[path = $current-path]" />
-                  </xsl:call-template>
-                </xsl:if>
               </xsl:otherwise>
             </xsl:choose>
             <xsl:call-template name="page-live"/>

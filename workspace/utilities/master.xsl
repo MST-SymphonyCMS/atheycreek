@@ -132,6 +132,11 @@
 								</xsl:call-template>
 							</xsl:otherwise>
 						</xsl:choose>
+						<xsl:if test="/data/tags-all-entries/entry[path = $current-path]/overview = 'Yes'">
+              <xsl:call-template name="navigation-tiles">
+                <xsl:with-param name="entry" select="/data/tags-all-entries/entry[path = $current-path]" />
+              </xsl:call-template>
+            </xsl:if>
 					</xsl:otherwise>
 				</xsl:choose>
 

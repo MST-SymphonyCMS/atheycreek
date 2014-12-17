@@ -26,7 +26,11 @@
 }
 
 .footer .col-md-4 {
-  padding: 3rem 0 4rem 0;
+  padding-bottom: 1rem;
+
+  @media (min-width: $screen-md) {
+    padding: 3rem 0 4rem 0;
+  }
 }
 
 .footer h5,

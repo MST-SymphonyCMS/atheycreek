@@ -9,6 +9,8 @@
 // Main
 // ------------------------------------------------
 
-.image-banner {
-  border-radius: .5rem .5rem 0 0;
+@media (min-width: $screen-lg) {
+  .image-banner {
+    border-radius: .5rem .5rem 0 0;
+  }
 }

@@ -48,7 +48,6 @@ a:hover {
 // Main Content Area
 // ------------------------------------------------
 
-
 .outer-wrap {
   max-width: 1250px;
   margin: 0 auto;
@@ -80,17 +79,4 @@ a:hover {
   ul {
     padding-left: 2rem;
   }
-
-  // Make full width columns have some padding
-  .column-full-width {
-    padding-bottom: 4rem;
-  }
-}
-
-
-// Hiding the Tag Box
-// ------------------------------------------------
-
-.nav-box {
-  display: none !important;
 }

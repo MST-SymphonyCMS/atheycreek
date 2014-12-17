@@ -28,6 +28,7 @@ class datasourcetags_all_entries extends SectionDatasource
         'title',
         'slug',
         'parent',
+        'overview',
         'hide-nav'
     );
     

@@ -28,7 +28,8 @@ class datasourcetags_all_entries extends SectionDatasource
         'title',
         'slug',
         'parent',
-        'hide-nav'
+        'hide-nav',
+        'overview'
     );
     
     public $dsParamINCLUDEDASSOCIATIONS = array(
@@ -57,8 +58,8 @@ class datasourcetags_all_entries extends SectionDatasource
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
-            'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-09-01T21:44:14+00:00'
+            'version' => 'Symphony 2.5.2',
+            'release-date' => '2014-12-17T17:38:41+00:00'
         );
     }
 

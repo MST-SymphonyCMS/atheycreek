@@ -78,15 +78,12 @@
   // Show the Masthead on desktop and up
   @media (min-width: $screen-md-min) {
     display: block;
-    position: relative;
-    left: .5rem;
     padding: 4rem 0;
   }
 }
 
 .masthead .navigation {
   margin: 0;
-  padding-left: 0;
   list-style: none;
   font-family: $font-family-condensed;
   text-transform: uppercase;
@@ -99,6 +96,10 @@
   margin: 0 1.75rem;
   font-size: 1.7rem;
   letter-spacing: .2rem;
+
+  &:first-child {
+    margin-left: -2rem;
+  }
 }
 
 .masthead .navigation > li.dropdown {

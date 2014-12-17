@@ -29,7 +29,10 @@
 @import
   "core/icons",
   "core/labels",
-  "core/popovers";
+  "core/popovers",
+  "core/tag-list",
+  "core/pagination",
+  "core/links";
 
 
 // Modules
@@ -37,10 +40,7 @@
 
 @import
   "modules/alerts",
-  "modules/tag-list",
-  "modules/pagination",
   "modules/navigation",
-  "modules/links",
   "modules/featured",
   "modules/events",
   "modules/events-recurring",

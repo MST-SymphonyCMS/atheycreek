@@ -41,27 +41,23 @@
 
 <xsl:template name="masthead">
   <div class="masthead">
-    <div class="row">
-      <div class="col-sm-12">
-        <ul class="navigation">
-          <xsl:for-each select="/data/tags-all-entries/entry[not(parent/item) and not(hide-nav = 'Yes')]">
-            <xsl:if test="position() &lt; 5">
-              <xsl:call-template name="subnav-entry" />
-            </xsl:if>
-          </xsl:for-each>
-          <li class="logo">
-            <a href="{$root}" id="branding" class="logo standard">
-              <span class="icon icon-logo"></span>
-            </a>
-          </li>
-          <xsl:for-each select="/data/tags-all-entries/entry[not(parent/item) and not(hide-nav = 'Yes')]">
-            <xsl:if test="position() &gt; 4">
-              <xsl:call-template name="subnav-entry" />
-            </xsl:if>
-          </xsl:for-each>
-        </ul>
-      </div>
-    </div><!-- .row -->
+    <ul class="navigation">
+      <xsl:for-each select="/data/tags-all-entries/entry[not(parent/item) and not(hide-nav = 'Yes')]">
+        <xsl:if test="position() &lt; 5">
+          <xsl:call-template name="subnav-entry" />
+        </xsl:if>
+      </xsl:for-each>
+      <li class="logo">
+        <a href="{$root}" id="branding" class="logo standard">
+          <span class="icon icon-logo"></span>
+        </a>
+      </li>
+      <xsl:for-each select="/data/tags-all-entries/entry[not(parent/item) and not(hide-nav = 'Yes')]">
+        <xsl:if test="position() &gt; 4">
+          <xsl:call-template name="subnav-entry" />
+        </xsl:if>
+      </xsl:for-each>
+    </ul>
   </div><!-- .masthead -->
 
 </xsl:template>
@@ -161,6 +157,28 @@
       </ul>
     </xsl:if>
   </li>
+</xsl:template>
+
+
+<xsl:template name="navigation-tiles">
+  <xsl:param name="entry" />
+  <xsl:for-each select="$entry">
+    <xsl:variable name="realID">
+      <xsl:value-of select="@id"/>
+    </xsl:variable>
+    <h4><xsl:value-of select="title"/></h4>
+    <ul class="navigation-tiles">
+      <xsl:for-each select="/data/tags-all-entries/entry[parent/item/@id = $realID]">
+        <li class="tile">
+          <a href="{$root}{path}">
+            <hr/>
+            <xsl:value-of select="title"/>
+            <hr/>
+          </a>
+        </li>
+      </xsl:for-each>
+    </ul>
+  </xsl:for-each>
 </xsl:template>
 
 

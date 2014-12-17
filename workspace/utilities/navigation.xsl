@@ -260,15 +260,6 @@
 
 <xsl:template name="subnav-entry">
 
-<!--   <xsl:choose>
-    <xsl:when test="not($pt1) or $pt1 = 'home'">
-      <xsl:variable name="active-parent" select="/data/tags-all-entries/entry[ @id = $ds-tags-filtered.system-id ]/parent/item/@id" />
-    </xsl:when>
-    <xsl:otherwise>
-
-    </xsl:otherwise>
-  </xsl:choose> -->
-
   <xsl:variable name="active-parent" select="/data/tags-all-entries/entry[ @id = /data/tags-entries-by-tag/entry/@id ]/parent/item/@id" />
 
   <xsl:variable name="realID" select="@id" />
@@ -341,7 +332,7 @@
     <xsl:variable name="realID">
       <xsl:value-of select="@id"/>
     </xsl:variable>
-    <h4><xsl:value-of select="title"/></h4>
+    <h2 class="center"><xsl:value-of select="title"/></h2>
     <div class="nav-box">
       <div class="row">
         <xsl:for-each select="/data/tags-all-entries/entry[parent/item/@id = $realID]">

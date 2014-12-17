@@ -319,7 +319,6 @@
               <xsl:value-of select="chapter" />
             </span>
           </div>
-          <div class="divider">XXX</div>
           <div class="description">
             <xsl:value-of select="description" disable-output-escaping="yes"/>
             <hr/>

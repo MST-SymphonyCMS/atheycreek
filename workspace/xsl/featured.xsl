@@ -118,11 +118,10 @@
                 <xsl:value-of select="chapter" />
               </span>
             </div>
-            <div class="divider">xxx</div>
             <p class="description">
               <xsl:call-template name="truncate">
                 <xsl:with-param name="node" select="description" />
-                <xsl:with-param name="length" select="170" />
+                <xsl:with-param name="length" select="180" />
               </xsl:call-template>
             </p>
             <div class="more">

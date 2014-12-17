@@ -241,26 +241,22 @@
     color: $brand-secondary;
   }
 
-  .main .divider {
-    margin: 2rem 0;
-    color: lighten($brand-secondary, 25%);
-    font-family: $font-family-extended;
-    font-weight: bold;
-    letter-spacing: 3.5rem;
-    text-align: center;
-  }
 
   .main .description {
     width: 75%;
-    margin: 0 auto;
+    margin: 2rem auto 0 auto;
   }
 
-  .speaker .description {
+  .description {
     width: 75%;
     margin: 0 auto;
     font-family: $font-family-sans-serif;
     font-size: 1.8rem;
     text-align: left;
+  }
+
+  .description hr {
+    margin: 3rem 0 2.5rem 0;
   }
 
 }

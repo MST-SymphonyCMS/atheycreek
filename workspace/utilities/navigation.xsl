@@ -335,4 +335,26 @@
 </xsl:template>
 
 
+<xsl:template name="navigation-tiles">
+  <xsl:param name="entry" />
+  <xsl:for-each select="$entry">
+    <xsl:variable name="realID">
+      <xsl:value-of select="@id"/>
+    </xsl:variable>
+    <h4><xsl:value-of select="title"/></h4>
+    <div class="nav-box">
+      <div class="row">
+        <xsl:for-each select="/data/tags-all-entries/entry[parent/item/@id = $realID]">
+          <div class="span6 box">
+            <a href="{$root}{path}">
+              <span><xsl:value-of select="title"/></span>
+            </a>
+          </li>
+        </xsl:for-each>
+      </div>
+    </div>
+  </xsl:for-each>
+</xsl:template>
+
+
 </xsl:stylesheet>

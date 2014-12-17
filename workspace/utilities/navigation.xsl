@@ -349,7 +349,7 @@
             <a href="{$root}{path}">
               <span><xsl:value-of select="title"/></span>
             </a>
-          </li>
+          </div>
         </xsl:for-each>
       </div>
     </div>

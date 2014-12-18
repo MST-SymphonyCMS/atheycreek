@@ -76,6 +76,31 @@
 }
 
 
+// Landing: Teachings Books
+// ------------------------------------------------
+
+.teachings-books-landing {
+  padding-bottom: 4rem;
+
+  h4 {
+    margin-bottom: 1rem;
+  }
+
+  h5 {
+    margin-top: 1rem;
+  }
+
+  .container + p {
+    font-family: $font-family-sans-serif;
+    text-align: center;
+  }
+
+  .tag-list {
+    padding-bottom: 4rem;
+  }
+}
+
+
 // Landing: Teachings Series
 // ------------------------------------------------
 
@@ -219,6 +244,10 @@
     padding-left: 0;
   }
 
+  .main {
+    padding-bottom: 3rem;
+  }
+
   @media (min-width: $screen-md) {
     .main,
     .speaker {
@@ -237,14 +266,13 @@
     }
   }
 
-  .main .meta {
+  .meta {
     text-align: center;
     font-style: italic;
     color: $brand-secondary;
   }
 
-
-  .main .description {
+  .description {
     width: 75%;
     margin: 2rem auto 0 auto;
   }
@@ -259,6 +287,18 @@
 
   .description hr {
     margin: 3rem 0 2.5rem 0;
+  }
+
+  .book-icon {
+    display: none;
+
+    @media (min-width: $screen-md) {
+      display: block;
+      margin-top: 15rem;
+      color: lighten($brand-secondary, 35%);
+      font-size: 10rem;
+      text-align: center;
+    }
   }
 
 }

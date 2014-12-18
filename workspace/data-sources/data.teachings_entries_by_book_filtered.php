@@ -2,12 +2,12 @@
 
 require_once TOOLKIT . '/class.datasource.php';
 
-class datasourceteachings_entry_by_book_filtered extends SectionDatasource
+class datasourceteachings_entries_by_book_filtered extends SectionDatasource
 {
-    public $dsParamROOTELEMENT = 'teachings-entry-by-book-filtered';
-		public $dsParamConditionalizer = '(if all of ((if value of ({$pt1}) is (teachings)), (if value of ({$pt2}) is (book))) is (yes))';
+    public $dsParamROOTELEMENT = 'teachings-entries-by-book-filtered';
+		public $dsParamConditionalizer = '(if all of ((if value of ({$pt1}) is (teachings)), (if value of ({$pt2}) is (books))) is (yes))';
     public $dsParamORDER = 'desc';
-    public $dsParamPAGINATERESULTS = 'yes';
+    public $dsParamPAGINATERESULTS = 'no';
     public $dsParamLIMIT = '{$pt5:10}';
     public $dsParamSTARTPAGE = '{$pt4:1}';
     public $dsParamREDIRECTONEMPTY = 'no';
@@ -20,11 +20,13 @@ class datasourceteachings_entry_by_book_filtered extends SectionDatasource
 
     public $dsParamFILTERS = array(
         '111' => '{$pt3}',
+        '125' => '105',
         '216' => 'no',
     );
 
     public $dsParamINCLUDEDELEMENTS = array(
         'system:pagination',
+        'title: unformatted',
         'slug',
         'filename',
         'book',
@@ -32,7 +34,6 @@ class datasourceteachings_entry_by_book_filtered extends SectionDatasource
         'speaker',
         'date',
         'poster',
-        'video2',
         'day'
     );
     
@@ -63,13 +64,13 @@ class datasourceteachings_entry_by_book_filtered extends SectionDatasource
     public function about()
     {
         return array(
-            'name' => 'Teachings: Entry by book (filtered)',
+            'name' => 'Teachings: Entries by book (filtered)',
             'author' => array(
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
-            'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-08-26T14:34:55+00:00'
+            'version' => 'Symphony 2.5.2',
+            'release-date' => '2014-12-18T22:03:06+00:00'
         );
     }
 

@@ -5586,6 +5586,18 @@ a:hover {
   padding: 1rem 0 2.5rem 0;
   background: #f7f7f7; }
 
+.teachings-books-landing {
+  padding-bottom: 4rem; }
+  .teachings-books-landing h4 {
+    margin-bottom: 1rem; }
+  .teachings-books-landing h5 {
+    margin-top: 1rem; }
+  .teachings-books-landing .container + p {
+    font-family: 'Trade Gothic';
+    text-align: center; }
+  .teachings-books-landing .tag-list {
+    padding-bottom: 4rem; }
+
 .teachings-series-landing .series {
   margin-bottom: 3rem; }
 .teachings-series-landing .series h5 {
@@ -5660,6 +5672,8 @@ a:hover {
   margin-bottom: 3rem; }
 .teachings-detail .nav {
   padding-left: 0; }
+.teachings-detail .main {
+  padding-bottom: 3rem; }
 @media (min-width: 992px) {
   .teachings-detail .main, .teachings-detail .speaker {
     width: 50%;
@@ -5670,11 +5684,11 @@ a:hover {
   .teachings-detail .main h4 .label {
     position: relative;
     top: -0.2rem; }
-.teachings-detail .main .meta {
+.teachings-detail .meta {
   text-align: center;
   font-style: italic;
   color: #969696; }
-.teachings-detail .main .description {
+.teachings-detail .description {
   width: 75%;
   margin: 2rem auto 0 auto; }
 .teachings-detail .description {
@@ -5685,6 +5699,15 @@ a:hover {
   text-align: left; }
 .teachings-detail .description hr {
   margin: 3rem 0 2.5rem 0; }
+.teachings-detail .book-icon {
+  display: none; }
+  @media (min-width: 992px) {
+    .teachings-detail .book-icon {
+      display: block;
+      margin-top: 15rem;
+      color: #efefef;
+      font-size: 10rem;
+      text-align: center; } }
 
 .teaching-viewer {
   color: #ffffff;

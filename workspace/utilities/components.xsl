@@ -147,6 +147,17 @@
           </xsl:call-template>
         </xsl:when>
         <!-- This outputs the Teachings Series landing page -->
+        <xsl:when test="$pt1 = 'teachings' and $pt2 = 'books' and not($pt3)">
+          <xsl:call-template name="teachings-books-landing" />
+        </xsl:when>
+        <!-- This outputs a Teachings by Book list page -->
+        <xsl:when test="$pt1 = 'teachings' and $pt2 = 'books'">
+          <xsl:call-template name="teachings-list">
+            <xsl:with-param name="position" select="name($xpath)" />
+            <xsl:with-param name="entries" select="/data/teachings-entries-by-book-filtered/entry" />
+          </xsl:call-template>
+        </xsl:when>
+        <!-- This outputs the Teachings Series landing page -->
         <xsl:when test="$pt1 = 'teachings' and $pt2 = 'series' and not($pt3)">
           <xsl:call-template name="teachings-series-landing" />
         </xsl:when>

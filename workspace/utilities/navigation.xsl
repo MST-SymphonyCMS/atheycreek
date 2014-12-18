@@ -129,18 +129,8 @@
               <xsl:call-template name="years-counter-nav" />
             </ul>
           </li>
-          <li class="dropdown hide-mobile">
-            <a href="javascript:void(0)">By Tags</a>
-            <ul class="dropdown-menu">
-              <xsl:for-each select="/data/teachings-tags-random-filtered/entry">
-                <li>
-                  <a>
-                    <xsl:call-template name="url-teachings-tags" />
-                    <xsl:value-of select="tag" disable-output-escaping="yes" />
-                  </a>
-                </li>
-              </xsl:for-each>
-            </ul>
+          <li class="hide-mobile">
+            <a href="{$root}/teachings/books/">By Books (All)</a>
           </li>
           <li>
             <a href="{$root}/teachings/#podcasts">Podcasts</a>

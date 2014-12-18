@@ -2,6 +2,53 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 
+<xsl:template name="teachings-books-landing">
+
+  <div class="teachings teachings-books-landing">
+    <div class="container">
+      <div class="row">
+        <h4>Teachings by Books of the Bible</h4>
+      </div><!-- .row -->
+    </div><!-- .container -->
+    <p>This pages houses every single teaching we have done, ordered by book of the Bible.</p>
+    <hr/>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h5>Old Testament</h5>
+        </div>
+        <ul class="tag-list">
+          <xsl:for-each select="//bible-book[position() &lt; 40]">
+            <li class="tag-list-item">
+              <a href="{$root}/teachings/books/{name/@handle}">
+                <xsl:value-of select="name"/>
+              </a>
+            </li>
+          </xsl:for-each>
+        </ul>
+      </div><!-- .row -->
+    </div><!-- .container -->
+    <hr/>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h5>New Testament</h5>
+        </div>
+        <ul class="tag-list">
+          <xsl:for-each select="//bible-book[position() &gt; 39]">
+            <li class="tag-list-item">
+              <a href="{$root}/teachings/books/{name/@handle}">
+                <xsl:value-of select="name"/>
+              </a>
+            </li>
+          </xsl:for-each>
+        </ul>
+      </div><!-- .row -->
+    </div><!-- .container -->
+  </div><!-- .teachings-books-landing -->
+
+</xsl:template>
+
 <xsl:template name="teachings-series-landing">
 
   <div class="teachings teachings-series-landing">
@@ -196,7 +243,7 @@
   <xsl:param name="position" />
   <xsl:param name="entries" />
 
-  <div class="teachings teachings-list">
+  <div class="teachings teachings-list hide-desktop">
     <xsl:if test="$pt2 = 'series'">
       <div class="teachings-list-poster">
         <xsl:call-template name="image-master">
@@ -225,6 +272,13 @@
             <xsl:text>Tag: </xsl:text>
             <span class="subtitle">
               <xsl:value-of select="/data/teachings-entry-by-tag-filtered/entry/tags/item[@id=$pt3]/tag/@handle" disable-output-escaping="yes" />
+            </span>
+          </xsl:when>
+          <!-- Testing for Teachings by Books -->
+          <xsl:when test="$pt2 = 'books'">
+            <xsl:text>Book: </xsl:text>
+            <span class="subtitle">
+              <xsl:value-of select="$pt3" disable-output-escaping="yes" />
             </span>
           </xsl:when>
           <!-- Testing for Teachings by Year -->
@@ -321,14 +375,20 @@
           </div>
           <div class="description">
             <xsl:value-of select="description" disable-output-escaping="yes"/>
-            <hr/>
-            <div class="tags">
-              <xsl:call-template name="teaching-tag-list">
-                <xsl:with-param name="tags" select="tags/item" />
-              </xsl:call-template>
-            </div>
-          </div>
-
+            <xsl:if test="string-length(tags/item)">
+              <hr/>
+              <div class="tags">
+                <xsl:call-template name="teaching-tag-list">
+                  <xsl:with-param name="tags" select="tags/item" />
+                </xsl:call-template>
+              </div>
+            </xsl:if>
+          </div><!-- .description -->
+          <xsl:if test="string-length(description) = 0 and string-length(tags/item) = 0">
+            <h3 class="book-icon">
+              <span class="glyphicon glyphicon-book"></span>
+            </h3>
+          </xsl:if>
         </div><!-- .main -->
         <div class="speaker">
           <div class="members-roles members-roles-column-right">

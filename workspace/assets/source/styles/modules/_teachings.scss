@@ -10,6 +10,10 @@
 
 .teachings.teachings-home {
 
+  h4 {
+    margin-top: 4rem;
+  }
+
   .teaching {
     @include animate-simple(all);
 

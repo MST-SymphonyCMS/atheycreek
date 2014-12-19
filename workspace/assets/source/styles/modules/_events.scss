@@ -103,8 +103,12 @@
 .events-full-width,
 .events-column-right {
 
+  h4 {
+    margin-top: 6rem;
+  }
+
   .event {
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
     @include animate-simple(all);
 
     &:hover {
@@ -185,7 +189,9 @@
     h4,
     h5,
     h6 {
+      margin: 3.2rem 0 1.6rem 0;
       font-size: 2.1rem;
+      text-align: left;
     }
 
     p,

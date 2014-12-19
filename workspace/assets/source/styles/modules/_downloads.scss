@@ -9,13 +9,16 @@
 // ------------------------------------------------
 
 .downloads-column-right {
+  margin-bottom: 6rem;
 
   .download a {
     display: block;
     margin-bottom: 3rem;
     padding: 3rem;
     color: lighten($gray-darker, 25%);
-    font-family: $font-family-condensed;
+    font-family: $font-family-sans-serif;
+    font-weight: normal;
+    font-size: 2rem;
     text-align: center;
     text-transform: uppercase;
     background: lighten($gray-darker, 75%);

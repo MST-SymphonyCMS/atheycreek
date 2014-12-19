@@ -4741,7 +4741,7 @@ a:hover {
   .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
     text-transform: uppercase; }
   .main-content h4 {
-    margin: 6rem 0 3rem 0;
+    margin: 1rem 0 3rem 0;
     text-align: center; }
   .main-content ol, .main-content ul {
     padding-left: 2rem; }
@@ -5343,10 +5343,12 @@ a:hover {
       .teachings-current .content .more {
         margin-top: 2rem; } }
   .teachings-current h4 {
-    margin-top: 2rem; }
+    margin-top: 6rem; }
 
 .featured-content {
   clear: both; }
+  .featured-content h4 {
+    padding-top: 2rem; }
 
 .feature a {
   display: block;
@@ -5355,6 +5357,8 @@ a:hover {
     .feature a {
       margin-bottom: 0; } }
 
+.events.events-full-width.events-home h4 {
+  margin-top: 6rem; }
 .events.events-full-width.events-home .event-row {
   padding-left: 15px;
   padding-right: 15px; }
@@ -5423,7 +5427,7 @@ a:hover {
   border: 2px solid #969696; }
 
 .events-full-width .event, .events-column-right .event {
-  margin-bottom: 3rem;
+  margin-bottom: 6rem;
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out; }
   .events-full-width .event:hover, .events-column-right .event:hover {
@@ -5449,9 +5453,11 @@ a:hover {
 
 .events-full-width.events-detail > img {
   width: 100%; }
+.events-full-width.events-detail .container {
+  margin-top: 3rem; }
 .events-full-width.events-detail .title {
+  margin-top: 0.5rem;
   margin-bottom: 0;
-  padding-top: 3rem;
   line-height: 1.4; }
 .events-full-width.events-detail .title > .label {
   margin-left: 1rem;
@@ -5493,6 +5499,9 @@ a:hover {
   font-weight: normal;
   color: #9c9ea0; }
 
+.events-recurring-column-right {
+  margin-bottom: 6rem; }
+
 .events-recurring-column-right .event-recurring a {
   padding: 2rem 0;
   background: #f7f7f7; }
@@ -5502,7 +5511,7 @@ a:hover {
     border-radius: 0.5rem 0.5rem 0 0; } }
 
 .verse {
-  padding: 3rem 0 1rem 0;
+  padding: 3rem 0 0 0;
   text-align: center;
   border: none; }
 
@@ -5541,7 +5550,7 @@ a:hover {
     .text h2:first-child {
       margin-top: 0; }
   .text h4 {
-    margin: 1.6rem 0;
+    margin: 3.2rem 0 1.6rem 0;
     text-align: left; }
 
 .text-full-width h1 {
@@ -5562,12 +5571,11 @@ a:hover {
   margin-top: 1rem; }
 
 .teachings.teachings-home .teaching {
-  margin-bottom: 6rem;
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out; }
   @media (min-width: 992px) {
     .teachings.teachings-home .teaching {
-      margin-bottom: 3rem; } }
+      margin-bottom: 0; } }
   .teachings.teachings-home .teaching:hover {
     opacity: 0.5;
     filter: alpha(opacity=50); }
@@ -5583,6 +5591,8 @@ a:hover {
   .teachings.teachings-home .description {
     width: 90%; } }
 
+.teachings-series.teachings-series-home h4 {
+  margin-top: 6rem; }
 .teachings-series.teachings-series-home .series a {
   display: block;
   margin-bottom: 1.5rem; }
@@ -5596,6 +5606,9 @@ a:hover {
 .teachings-search.search-full-width .search-form {
   padding: 1rem 0 2.5rem 0;
   background: #f7f7f7; }
+
+.teachings-landing h4 {
+  margin-top: 5rem; }
 
 .teachings-books-landing {
   padding-bottom: 4rem; }
@@ -5617,8 +5630,10 @@ a:hover {
   font-weight: normal;
   text-align: center; }
 
+.teachings-podcast h4 {
+  margin-top: 6rem; }
 .teachings-podcast .podcast {
-  margin-bottom: 6rem; }
+  margin-bottom: 8rem; }
 .teachings-podcast .podcast-image {
   text-align: center; }
   .teachings-podcast .podcast-image img {
@@ -5641,6 +5656,8 @@ a:hover {
     border-radius: 0.5rem 0.5rem 0 0; }
     .teachings-list .teachings-list-poster, .teachings-list .teachings-list-poster img {
       border-radius: 0.5rem 0.5rem 0 0; } }
+.teachings-list .teachings-list-title {
+  margin-top: 6rem; }
 .teachings-list .teachings-list-description {
   font-family: 'Trade Gothic';
   text-align: center; }
@@ -5742,6 +5759,8 @@ a:hover {
       color: #efefef;
       font-size: 10rem;
       text-align: center; } }
+.teachings-detail .members-roles-column-right {
+  margin-bottom: 0; }
 
 .teaching-viewer {
   color: #ffffff;
@@ -5807,6 +5826,7 @@ a:hover {
   margin-bottom: 6rem; }
 
 .members-roles-column-right {
+  margin-bottom: 6rem;
   padding: 3rem 0 0.5rem 0;
   background: #f7f7f7; }
   .members-roles-column-right .member {
@@ -5838,21 +5858,25 @@ a:hover {
     display: block;
     margin-top: -0.2rem; }
 
-.downloads-column-right .download a {
-  display: block;
-  margin-bottom: 3rem;
-  padding: 3rem;
-  color: #76787a;
-  font-family: 'Trade Gothic Condensed';
-  text-align: center;
-  text-transform: uppercase;
-  background: #f7f7f7; }
-.downloads-column-right .glyphicon {
-  margin-bottom: 1.5rem;
-  color: #b3bbc7;
-  font-size: 2.5rem; }
-.downloads-column-right .title {
-  line-height: 1.2; }
+.downloads-column-right {
+  margin-bottom: 6rem; }
+  .downloads-column-right .download a {
+    display: block;
+    margin-bottom: 3rem;
+    padding: 3rem;
+    color: #76787a;
+    font-family: 'Trade Gothic';
+    font-weight: normal;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    background: #f7f7f7; }
+  .downloads-column-right .glyphicon {
+    margin-bottom: 1.5rem;
+    color: #b3bbc7;
+    font-size: 2.5rem; }
+  .downloads-column-right .title {
+    line-height: 1.2; }
 
 .locations-groups-full-width .list-group {
   padding-top: 6rem; }

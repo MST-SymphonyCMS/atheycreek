@@ -10,6 +10,10 @@
 
 .events.events-full-width.events-home {
 
+  h4 {
+    margin-top: 6rem;
+  }
+
   .event-row {
     padding-left: 15px;
     padding-right: 15px;
@@ -100,7 +104,7 @@
 .events-column-right {
 
   .event {
-    margin-bottom: 3rem;
+    margin-bottom: 6rem;
     @include animate-simple(all);
 
     &:hover {
@@ -145,9 +149,13 @@
     width: 100%;
   }
 
+  .container {
+    margin-top: 3rem;
+  }
+
   .title {
+    margin-top: .5rem;
     margin-bottom: 0;
-    padding-top: 3rem;
     line-height: 1.4;
   }
 

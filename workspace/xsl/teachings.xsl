@@ -4,7 +4,7 @@
 
 <xsl:template name="teachings-books-landing">
 
-  <div class="teachings teachings-books-landing">
+  <div class="teachings teachings-landing teachings-books-landing">
     <div class="container">
       <div class="row">
         <h4>Teachings by Book of the Bible</h4>
@@ -52,7 +52,7 @@
 
 <xsl:template name="teachings-tags-landing">
 
-  <div class="teachings teachings-books-landing">
+  <div class="teachings teachings-landing teachings-books-landing">
     <div class="container">
       <div class="row">
         <h4>Teachings by Tags</h4>
@@ -80,7 +80,7 @@
 
 <xsl:template name="teachings-series-landing">
 
-  <div class="teachings teachings-series-landing">
+  <div class="teachings teachings-landing teachings-series-landing">
     <div class="container">
       <div class="row">
         <h4>Teaching Series</h4>
@@ -111,7 +111,7 @@
       </div><!-- .row -->
       <div class="row">
         <br/>
-        <h4>Special Series</h4>
+        <h4 id="special">Special Series</h4>
         <xsl:for-each select="/data/teachings-series-entries-all/entry[special = 'Yes']">
           <div class="col-md-6 series">
             <a>

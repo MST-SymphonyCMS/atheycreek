@@ -48,7 +48,7 @@
     <link rel="dns-prefetch" href="//cloud.typography.com" />
 
     <link rel="shortcut icon" href="{$workspace}/assets/build/images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon-precomposed" href="{$workspace}/assets/img/apple-touch-icon-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="{$workspace}/assets/build/images/apple-touch-icon-precomposed.png" />
 
     <xsl:choose>
       <xsl:when test="contains($root, '.dev')">

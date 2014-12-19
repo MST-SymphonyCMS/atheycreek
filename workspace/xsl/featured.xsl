@@ -121,7 +121,7 @@
             <p class="description">
               <xsl:call-template name="truncate">
                 <xsl:with-param name="node" select="description" />
-                <xsl:with-param name="length" select="180" />
+                <xsl:with-param name="length" select="170" />
               </xsl:call-template>
             </p>
             <div class="more">
@@ -136,7 +136,6 @@
 
   <div class="featured-content">
     <h4>Featured Items</h4>
-
     <div id="home-carousel" class="carousel slide">
       <div class="carousel-inner">
         <xsl:for-each select="exsl:node-set($entries)/entry">

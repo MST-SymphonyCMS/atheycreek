@@ -9,36 +9,34 @@
 // ------------------------------------------------
 
 .verse {
-  width: 85%;
-  margin: 0 auto;
-  padding: 1rem 0;
+  padding: 3rem 0 1rem 0;
   text-align: center;
   border: none;
+}
+
+.verse p {
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 0;
+  color: $brand-primary;
+  font-size: 2.4rem;
+  line-height: 1.4;
 
   @media (min-width: $screen-sm-min) {
     width: 75%;
-    padding: 3.5rem 0;
   }
 
   @media (min-width: $screen-md-min) {
     width: 40%;
-    padding: 3.5rem 0 2rem 0;
   }
-}
-
-.verse p {
-  margin-bottom: 0;
-  color: lighten($gray-darker, 25%);
-  font-size: 2rem;
-  font-style: italic;
 }
 
 .verse cite {
   margin-top: 0;
   padding: 0;
-  color: lighten($gray-darker, 45%);
+  color: lighten($brand-primary, 40%);
   font-family: $headings-font-family;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: bold;
   letter-spacing: .1rem;

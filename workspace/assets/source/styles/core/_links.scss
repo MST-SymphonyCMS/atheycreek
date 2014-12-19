@@ -13,11 +13,19 @@
 }
 
 .more-link {
+  display: block;
+  margin-bottom: 1.5rem;
   padding: .5rem 4rem;
-  font-family: $font-family-condensed;
-  text-transform: uppercase;
   color: $white;
+  font-family: $font-family-condensed;
+  text-align: center;
+  text-transform: uppercase;
   background: $brand-primary;
+
+  @media (min-width: $screen-md) {
+    margin-bottom: 0;
+    display: inline;
+  }
 
   &:hover {
     @include opacity(.5);

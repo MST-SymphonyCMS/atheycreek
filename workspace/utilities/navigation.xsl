@@ -129,10 +129,10 @@
               <xsl:call-template name="years-counter-nav" />
             </ul>
           </li>
-          <li class="hide-mobile">
+          <li>
             <a href="{$root}/teachings/book/">By Books (All)</a>
           </li>
-          <li class="hide-mobile">
+          <li>
             <a href="{$root}/teachings/tag/">By Tags (All)</a>
           </li>
           <li>

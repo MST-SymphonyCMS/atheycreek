@@ -4901,11 +4901,18 @@ a:hover {
   margin-top: 2rem; }
 
 .more-link {
+  display: block;
+  margin-bottom: 1.5rem;
   padding: 0.5rem 4rem;
-  font-family: 'Trade Gothic Condensed';
-  text-transform: uppercase;
   color: #ffffff;
+  font-family: 'Trade Gothic Condensed';
+  text-align: center;
+  text-transform: uppercase;
   background: #606d81; }
+  @media (min-width: 992px) {
+    .more-link {
+      margin-bottom: 0;
+      display: inline; } }
   .more-link:hover {
     opacity: 0.5;
     filter: alpha(opacity=50);
@@ -5425,9 +5432,10 @@ a:hover {
 .events-full-width a, .events-column-right a {
   color: #505253; }
 .events-full-width h5, .events-column-right h5 {
+  margin: 2rem 0 0 0;
   font-size: 1.75rem;
   font-weight: normal;
-  margin: 2rem 0 0 0; }
+  line-height: 1.2; }
 .events-full-width h5 > .label, .events-column-right h5 > .label {
   margin-left: 1rem;
   padding-top: 0.1rem;
@@ -5475,10 +5483,14 @@ a:hover {
     opacity: 0.5;
     filter: alpha(opacity=50); }
 .events-recurring-full-width h5, .events-recurring-column-right h5 {
-  letter-spacing: 0.3 rem;
+  font-family: 'Trade Gothic';
+  font-weight: normal;
+  font-size: 2rem;
   margin-bottom: 0.5rem; }
 .events-recurring-full-width p, .events-recurring-column-right p {
+  font-size: 1.6rem;
   font-style: italic;
+  font-weight: normal;
   color: #9c9ea0; }
 
 .events-recurring-column-right .event-recurring a {
@@ -5490,32 +5502,30 @@ a:hover {
     border-radius: 0.5rem 0.5rem 0 0; } }
 
 .verse {
-  width: 85%;
-  margin: 0 auto;
-  padding: 1rem 0;
+  padding: 3rem 0 1rem 0;
   text-align: center;
   border: none; }
-  @media (min-width: 768px) {
-    .verse {
-      width: 75%;
-      padding: 3.5rem 0; } }
-  @media (min-width: 992px) {
-    .verse {
-      width: 40%;
-      padding: 3.5rem 0 2rem 0; } }
 
 .verse p {
+  width: 85%;
+  margin: 0 auto;
   margin-bottom: 0;
-  color: #76787a;
-  font-size: 2rem;
-  font-style: italic; }
+  color: #606d81;
+  font-size: 2.4rem;
+  line-height: 1.4; }
+  @media (min-width: 768px) {
+    .verse p {
+      width: 75%; } }
+  @media (min-width: 992px) {
+    .verse p {
+      width: 40%; } }
 
 .verse cite {
   margin-top: 0;
   padding: 0;
-  color: #a9abac;
+  color: #d1d5dc;
   font-family: 'Trade Gothic Extended';
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: bold;
   letter-spacing: 0.1rem;
@@ -5619,7 +5629,8 @@ a:hover {
 .teachings-podcast .podcast-links {
   text-align: center; }
 .teachings-podcast .podcast-links .more-link {
-  margin: 0 0.5rem; }
+  margin-left: 0.5rem;
+  margin-right: 0.5rem; }
   .teachings-podcast .podcast-links .more-link:hover {
     color: #ffffff;
     opacity: 0.5;
@@ -5705,7 +5716,8 @@ a:hover {
     float: left; } }
 .teachings-detail .main h4 {
   margin-top: 4.5rem;
-  margin-bottom: 0.5rem; }
+  margin-bottom: 0.5rem;
+  line-height: 1.4; }
   .teachings-detail .main h4 .label {
     position: relative;
     top: -0.2rem; }
@@ -5715,10 +5727,7 @@ a:hover {
   color: #969696; }
 .teachings-detail .description {
   width: 75%;
-  margin: 2rem auto 0 auto; }
-.teachings-detail .description {
-  width: 75%;
-  margin: 0 auto;
+  margin: 2rem auto 0 auto;
   font-family: 'Trade Gothic';
   font-size: 1.8rem;
   text-align: left; }
@@ -5801,7 +5810,7 @@ a:hover {
   padding: 3rem 0 0.5rem 0;
   background: #f7f7f7; }
   .members-roles-column-right .member {
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
     padding: 1.5rem;
     text-align: center; }
   .members-roles-column-right h4 {

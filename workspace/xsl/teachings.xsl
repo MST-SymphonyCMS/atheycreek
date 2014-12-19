@@ -243,7 +243,7 @@
   <xsl:param name="position" />
   <xsl:param name="entries" />
 
-  <div class="teachings teachings-list hide-desktop">
+  <div class="teachings teachings-list">
     <xsl:if test="$pt2 = 'series'">
       <div class="teachings-list-poster">
         <xsl:call-template name="image-master">
@@ -297,41 +297,123 @@
         </p>
       </xsl:if>
 
-      <hr/>
-
-      <div class="teachings-table row">
+      <div class="teachings-table row hidden-sm hidden-md hidden-lg">
+        <hr/>
         <xsl:for-each select="$entries">
           <div class="teaching col-md-6">
             <a>
               <xsl:call-template name="url-teachings"/>
-              <h5>
-                <xsl:value-of select="title" disable-output-escaping="yes" />
-                <xsl:if test="string-length(filename) &gt; 0">
-                  <xsl:text>&#160;&#160;</xsl:text>
-                  <span class="label label-default">
-                    <xsl:value-of select="filename" />
-                  </span>
-                </xsl:if>
-              </h5>
-              <div class="meta">
-                <span class="date">
-                  <xsl:call-template name="format-date">
-                    <xsl:with-param name="date" select="date/date/start/@iso" />
-                    <xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
-                  </xsl:call-template>
-                </span>
-                <xsl:text> • </xsl:text>
-                <span class="book">
-                  <xsl:value-of select="book/item" />
-                  <xsl:text> </xsl:text>
-                  <xsl:value-of select="chapter" />
-                </span>
+              <h6 class="date">
+                <xsl:call-template name="format-date">
+                  <xsl:with-param name="date" select="date/date/start/@iso" />
+                  <xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
+                </xsl:call-template>
+              </h6>
+              <div class="main">
+                <h5>
+                  <xsl:value-of select="title" disable-output-escaping="yes" />
+                  <xsl:if test="string-length(filename) &gt; 0">
+                    <xsl:text>&#160;&#160;</xsl:text>
+                    <span class="label label-default">
+                      <xsl:value-of select="filename" />
+                    </span>
+                  </xsl:if>
+                </h5>
+                <div class="meta">
+                  <span class="book">
+                    <xsl:value-of select="book/item" />
+                    <xsl:text>&#160;</xsl:text>
+                    <xsl:value-of select="chapter" />
+                  </span><!-- .book -->
+                  <xsl:text> • </xsl:text>
+                  <span class="speaker">
+                    <xsl:value-of select="speaker/item/first-name" />
+                    <xsl:text>&#160;</xsl:text>
+                    <xsl:value-of select="speaker/item/last-name" />
+                  </span><!-- .speaker -->
+                </div><!-- .meta -->
               </div>
             </a>
           </div><!-- .teaching -->
         </xsl:for-each>
       </div><!-- .teachings-table -->
     </div><!-- .container -->
+    <div class="teachings-table-desktop hidden-xs">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th class="center">#</th>
+              <th>Date</th>
+              <th>Title</th>
+              <th>Speaker</th>
+              <th class="center">Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            <xsl:for-each select="$entries">
+              <tr class="teaching">
+                <td class="center">
+                  <a>
+                    <xsl:call-template name="url-teachings"/>
+                    <span class="label label-default">
+                      <xsl:value-of select="filename" />
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a>
+                    <xsl:call-template name="url-teachings"/>
+                    <span class="date">
+                      <xsl:call-template name="format-date">
+                        <xsl:with-param name="date" select="date/date/start/@iso" />
+                        <xsl:with-param name="format" select="'%m+; %d;%ds;, %y+;'" />
+                      </xsl:call-template>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a>
+                    <xsl:call-template name="url-teachings"/>
+                    <strong>
+                      <xsl:value-of select="title" disable-output-escaping="yes" />
+                      <span class="book">
+                        <xsl:text>&#160;</xsl:text>
+                        <xsl:text>(</xsl:text>
+                        <xsl:value-of select="book/item" />
+                        <xsl:text>&#160;</xsl:text>
+                        <xsl:value-of select="chapter" />
+                        <xsl:text>)</xsl:text>
+                      </span>
+                    </strong>
+                  </a>
+                </td>
+                <td>
+                  <a>
+                    <xsl:call-template name="url-teachings"/>
+                    <span class="speaker">
+                      <xsl:value-of select="speaker/item/first-name"/>
+                      <xsl:text>&#160;</xsl:text>
+                      <xsl:value-of select="speaker/item/last-name"/>
+                    </span>
+                  </a>
+                </td>
+                <td class="center">
+                  <xsl:variable name="audio-url">
+                    <xsl:text disable-output-escaping="yes">http://66.147.244.244/~atheycre/teachings/</xsl:text>
+                    <xsl:value-of select="translate(filename,$en-uppercase-letters,$en-lowercase-letters)"/>
+                    <xsl:text>.mp3</xsl:text>
+                  </xsl:variable>
+                  <a class="label label-default" href="{$audio-url}" target="_blank">
+                    <span class="text">Download</span>
+                  </a>
+                </td>
+              </tr><!-- .teaching -->
+            </xsl:for-each>
+          </tbody>
+        </table><!-- .table -->
+      </div><!-- .table-responsive -->
+    </div><!-- .teachings-table-desktop -->
   </div><!-- .teachings-list -->
 
 </xsl:template>

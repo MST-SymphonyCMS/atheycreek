@@ -37,7 +37,7 @@
     <meta name="msapplication-starturl" content="{$root}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{$root}" />
-    <meta property="og:image" content="{$workspace}/assets/img/apple-touch-icon.png" />
+    <meta property="og:image" content="{$workspace}/assets/build/images/apple-touch-icon-precomposed.png" />
     <meta property="og:title" content="{$page-title}" />
     <meta property="og:description" content="{$main-meta-description}" />
 
@@ -45,10 +45,10 @@
 
     <link rel="dns-prefetch" href="{$root}" />
     <link rel="dns-prefetch" href="//www.google-analytics.com"/>
-    <link rel="dns-prefetch" href="//use.typekit.com" />
+    <link rel="dns-prefetch" href="//cloud.typography.com" />
 
-    <link rel="shortcut icon" href="{$workspace}/assets/img/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon-precomposed" href="{$workspace}/assets/img/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="{$workspace}/assets/build/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" href="{$workspace}/assets/img/apple-touch-icon-precomposed.png" />
 
     <xsl:choose>
       <xsl:when test="contains($root, '.dev')">

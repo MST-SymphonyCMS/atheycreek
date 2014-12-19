@@ -4955,14 +4955,15 @@ a:hover {
   margin-bottom: 0;
   border: none;
   font-family: 'Trade Gothic';
-  font-size: 1.8rem; }
+  font-size: 1.6rem; }
   .alert span {
     margin-right: 1.5rem; }
   .alert a {
     display: inline-block;
     padding: 0.15rem 0.75rem;
-    font-family: 'Trade Gothic Extended';
+    font-family: 'Trade Gothic Condensed';
     font-size: 1.5rem;
+    font-weight: bold;
     text-transform: uppercase; }
     .alert a:hover {
       opacity: 0.5;
@@ -5641,11 +5642,16 @@ a:hover {
 .teachings-list .teachings-table .teaching a {
   display: block;
   margin-bottom: 3rem;
-  padding: 2rem 1rem;
   background: #f4f4f4; }
   .teachings-list .teachings-table .teaching a:hover {
     opacity: 0.5;
     filter: alpha(opacity=50); }
+.teachings-list .teachings-table h6 {
+  padding: 1rem;
+  background: #606d81;
+  color: #f4f4ea; }
+.teachings-list .teachings-table .main {
+  padding: 1rem 0 2rem 0; }
 .teachings-list .teachings-table h5 {
   margin-top: 0;
   margin-bottom: 0.5rem;
@@ -5657,6 +5663,25 @@ a:hover {
     top: -0.2rem; }
 .teachings-list .teachings-table .meta {
   font-size: 1.6rem; }
+.teachings-list .teachings-table-desktop {
+  margin-top: 3rem; }
+  .teachings-list .teachings-table-desktop thead {
+    background: #606d81; }
+  .teachings-list .teachings-table-desktop thead > tr > th {
+    color: #f4f4ea;
+    font-family: 'Trade Gothic';
+    font-size: 2rem;
+    text-transform: uppercase;
+    border-bottom-color: #606d81; }
+  .teachings-list .teachings-table-desktop tbody > tr > td {
+    font-family: 'Trade Gothic';
+    border-top-color: #dfe2e7; }
+  .teachings-list .teachings-table-desktop .label {
+    padding-top: 0.4rem; }
+  .teachings-list .teachings-table-desktop .date, .teachings-list .teachings-table-desktop .speaker {
+    font-size: 1.8rem; }
+  .teachings-list .teachings-table-desktop .center {
+    text-align: center; }
 
 @media (min-width: 1200px) {
   .teachings-full-width.teachings-detail {

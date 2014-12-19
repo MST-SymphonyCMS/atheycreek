@@ -147,11 +147,11 @@
           </xsl:call-template>
         </xsl:when>
         <!-- This outputs the Teachings Series landing page -->
-        <xsl:when test="$pt1 = 'teachings' and $pt2 = 'books' and not($pt3)">
+        <xsl:when test="$pt1 = 'teachings' and $pt2 = 'book' and not($pt3)">
           <xsl:call-template name="teachings-books-landing" />
         </xsl:when>
         <!-- This outputs a Teachings by Book list page -->
-        <xsl:when test="$pt1 = 'teachings' and $pt2 = 'books'">
+        <xsl:when test="$pt1 = 'teachings' and $pt2 = 'book'">
           <xsl:call-template name="teachings-list">
             <xsl:with-param name="position" select="name($xpath)" />
             <xsl:with-param name="entries" select="/data/teachings-entries-by-book-filtered/entry" />
@@ -167,6 +167,10 @@
             <xsl:with-param name="position" select="name($xpath)" />
             <xsl:with-param name="entries" select="/data/teachings-entries-by-series-filtered/entry/teachings/item" />
           </xsl:call-template>
+        </xsl:when>
+        <!-- This outputs the Teachings Tags landing page -->
+        <xsl:when test="$pt1 = 'teachings' and $pt2 = 'tag' and not($pt3)">
+          <xsl:call-template name="teachings-tags-landing" />
         </xsl:when>
         <!-- This outputs a Teachings by Tags list page -->
         <xsl:when test="$pt1 = 'teachings' and $pt2 = 'tag'">

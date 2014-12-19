@@ -130,7 +130,10 @@
             </ul>
           </li>
           <li class="hide-mobile">
-            <a href="{$root}/teachings/books/">By Books (All)</a>
+            <a href="{$root}/teachings/book/">By Books (All)</a>
+          </li>
+          <li class="hide-mobile">
+            <a href="{$root}/teachings/tag/">By Tags (All)</a>
           </li>
           <li>
             <a href="{$root}/teachings/#podcasts">Podcasts</a>

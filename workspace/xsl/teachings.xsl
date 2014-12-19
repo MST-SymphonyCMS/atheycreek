@@ -7,7 +7,7 @@
   <div class="teachings teachings-books-landing">
     <div class="container">
       <div class="row">
-        <h4>Teachings by Books of the Bible</h4>
+        <h4>Teachings by Book of the Bible</h4>
       </div><!-- .row -->
     </div><!-- .container -->
     <p>This pages houses every single teaching we have done, ordered by book of the Bible.</p>
@@ -20,7 +20,7 @@
         <ul class="tag-list">
           <xsl:for-each select="//bible-book[position() &lt; 40]">
             <li class="tag-list-item">
-              <a href="{$root}/teachings/books/{name/@handle}">
+              <a href="{$root}/teachings/book/{name/@handle}">
                 <xsl:value-of select="name"/>
               </a>
             </li>
@@ -37,7 +37,7 @@
         <ul class="tag-list">
           <xsl:for-each select="//bible-book[position() &gt; 39]">
             <li class="tag-list-item">
-              <a href="{$root}/teachings/books/{name/@handle}">
+              <a href="{$root}/teachings/book/{name/@handle}">
                 <xsl:value-of select="name"/>
               </a>
             </li>
@@ -48,6 +48,35 @@
   </div><!-- .teachings-books-landing -->
 
 </xsl:template>
+
+
+<xsl:template name="teachings-tags-landing">
+
+  <div class="teachings teachings-books-landing">
+    <div class="container">
+      <div class="row">
+        <h4>Teachings by Tags</h4>
+      </div><!-- .row -->
+    </div><!-- .container -->
+    <p>This pages houses every single teaching tag, ordered alphabetically.</p>
+    <hr/>
+    <div class="container">
+      <div class="row">
+        <ul class="tag-list">
+          <xsl:for-each select="//data/teachings-tags-all/entry">
+            <li class="tag-list-item">
+              <a href="{$root}/teachings/tag/{tag/@handle}">
+                <xsl:value-of select="tag"/>
+              </a>
+            </li>
+          </xsl:for-each>
+        </ul>
+      </div><!-- .row -->
+    </div><!-- .container -->
+  </div><!-- .teachings-books-landing -->
+
+</xsl:template>
+
 
 <xsl:template name="teachings-series-landing">
 
@@ -271,11 +300,11 @@
           <xsl:when test="$pt2 = 'tag'">
             <xsl:text>Tag: </xsl:text>
             <span class="subtitle">
-              <xsl:value-of select="/data/teachings-entry-by-tag-filtered/entry/tags/item[@id=$pt3]/tag/@handle" disable-output-escaping="yes" />
+              <xsl:value-of select="$pt3" disable-output-escaping="yes" />
             </span>
           </xsl:when>
-          <!-- Testing for Teachings by Books -->
-          <xsl:when test="$pt2 = 'books'">
+          <!-- Testing for Teachings by Book -->
+          <xsl:when test="$pt2 = 'book'">
             <xsl:text>Book: </xsl:text>
             <span class="subtitle">
               <xsl:value-of select="$pt3" disable-output-escaping="yes" />

@@ -12887,6 +12887,7 @@ $(function() {
   if (document.body.clientWidth < 992) {
     snapper.enable();
   } else {
+    snapper.close();
     snapper.disable();
   }
 
@@ -12894,6 +12895,7 @@ $(function() {
     if (document.body.clientWidth < 992) {
       snapper.enable();
     } else {
+      snapper.close();
       snapper.disable();
     }
   };

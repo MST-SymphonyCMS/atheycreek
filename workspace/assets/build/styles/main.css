@@ -5933,9 +5933,6 @@ a:hover {
   margin: 4rem auto;
   padding: 1rem;
   border-bottom: 2px solid #d6d6d6; }
-  @media (min-width: 992px) {
-    .search-form {
-      width: 50%; } }
   .search-form input {
     color: #a3a3a3;
     text-align: center;
@@ -5956,8 +5953,12 @@ a:hover {
   border: none;
   font-family: 'Trade Gothic Extended'; }
   .search-full-width .search-form input {
-    padding: 1rem 0 0 0;
-    text-transform: uppercase; }
+    width: 100%;
+    padding: 1rem 0 0 0; }
+    .search-full-width .search-form input::-webkit-input-placeholder {
+      text-transform: uppercase; }
+    .search-full-width .search-form input::-moz-placeholder, .search-full-width .search-form input:-ms-input-placeholder, .search-full-width .search-form input:-moz-placeholder {
+      text-transform: uppercase; }
     @media (min-width: 992px) {
       .search-full-width .search-form input {
         padding: 2rem 0 0 0; } }

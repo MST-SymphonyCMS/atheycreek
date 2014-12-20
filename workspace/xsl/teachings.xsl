@@ -645,7 +645,7 @@
         <div class="podcast col-md-6">
           <div class="podcast-image">
             <xsl:call-template name="image-master">
-              <xsl:with-param name="photo" select="'podcast-audio-54876aecc97f9.jpg'" />
+              <xsl:with-param name="photo" select="'podcast-audio-5494c2ac3960b.jpg'" />
               <xsl:with-param name="width" select="300" />
               <xsl:with-param name="height" select="300" />
             </xsl:call-template>
@@ -671,7 +671,7 @@
         <div class="podcast col-md-6">
           <div class="podcast-image">
             <xsl:call-template name="image-master">
-              <xsl:with-param name="photo" select="'podcast-video-54876b6186866.jpg'" />
+              <xsl:with-param name="photo" select="'podcast-video-5494c29349e86.jpg'" />
               <xsl:with-param name="width" select="300" />
               <xsl:with-param name="height" select="300" />
             </xsl:call-template>

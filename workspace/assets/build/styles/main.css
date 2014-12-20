@@ -5971,7 +5971,13 @@ a:hover {
 .search-full-width .search-results {
   padding-bottom: 4rem; }
   .search-full-width .search-results h4 {
-    margin-top: 1rem; }
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.4; }
+  .search-full-width .search-results .empty-suggestion {
+    margin-top: 0;
+    font-family: 'Trade Gothic';
+    text-align: center; }
   .search-full-width .search-results .entry {
     margin-bottom: 3rem; }
   .search-full-width .search-results .entry h5 {

@@ -66,7 +66,7 @@
     padding-bottom: 3rem;
 
     h4 {
-      margin-top: 1rem ;
+      margin-top: 1rem;
     }
   }
 
@@ -75,6 +75,14 @@
 
     h4 {
       margin-top: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .empty-suggestion {
+      margin-top: 0;
+      font-family: $font-family-sans-serif;
+      text-align: center;
     }
 
     .entry {

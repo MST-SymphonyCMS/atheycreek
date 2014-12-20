@@ -149,6 +149,7 @@
 									<xsl:text>”</xsl:text>
 								</em>
 							</h4>
+							<p class="empty-suggestion">Your search did not yield any results. Try wrapping quotes around your search. (e.g. “Jesus Christ”)</p>
 							<div>
 								<xsl:attribute name="class">
 									<xsl:choose>

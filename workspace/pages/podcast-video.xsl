@@ -89,8 +89,8 @@
               <xsl:choose>
                 <xsl:when test="poster/item != ''">
                   <xsl:value-of select="$root"/>
-                  <xsl:text>/image/2/1920/1080/5/0/uploads/images/</xsl:text>
-                  <xsl:value-of select="poster/item/image/file/filename"/>
+                  <xsl:text>/image/2/1920/1080/5/1/atheycreek.s3.amazonaws.com/</xsl:text>
+                  <xsl:value-of select="poster/item/image/filename"/>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:value-of select="$root" />

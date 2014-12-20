@@ -144,7 +144,10 @@
 								<em>
 									<xsl:text>“</xsl:text>
 									<strong>
-										<xsl:value-of select="$url-keywords" disable-output-escaping="yes" />
+										<xsl:call-template name="truncate">
+										  <xsl:with-param name="node" select="$url-keywords" />
+										  <xsl:with-param name="length" select="25" />
+										</xsl:call-template>
 									</strong>
 									<xsl:text>”</xsl:text>
 								</em>

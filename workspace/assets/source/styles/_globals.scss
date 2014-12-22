@@ -53,6 +53,11 @@ a:hover {
   margin: 0 auto;
 }
 
+#main-content,
+#side-content {
+  padding-top: 3rem;
+}
+
 .main-content {
   padding: 0;
   background: $white;

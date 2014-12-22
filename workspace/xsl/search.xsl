@@ -152,7 +152,6 @@
 									<xsl:text>”</xsl:text>
 								</em>
 							</h4>
-							<p class="empty-suggestion">Your search did not yield any results. Try wrapping quotes around your search. (e.g. “Jesus Christ”)</p>
 							<div>
 								<xsl:attribute name="class">
 									<xsl:choose>
@@ -161,11 +160,39 @@
 									</xsl:choose>
 								</xsl:attribute>
 								<xsl:if test="not(count($entries)) and $url-keywords">
-									<xsl:if test="$url-sections">
-										<div class="more">
-											<a class="more-link" href="{$root}/search/?keywords={$url-keywords}">Try Searching Everywhere</a>
-										</div>
-									</xsl:if>
+									<div class="more">
+										<xsl:if test="not(contains($current-query-string, '%27'))">
+											<p class="empty-suggestion">Your search did not yield any results. Try wrapping quotes around your search. (e.g. “Jesus Christ”)</p>
+											<a class="more-link">
+												<xsl:attribute name="href">
+													<xsl:value-of select="$root"/>
+													<xsl:text>/search/?keywords='</xsl:text>
+													<xsl:call-template name="plus">
+														<xsl:with-param name="text" select="$url-keywords" />
+													</xsl:call-template>
+													<xsl:text>'</xsl:text>
+													<xsl:if test="$url-sections">
+														<xsl:text>&amp;sections=</xsl:text>
+														<xsl:value-of select="$url-sections"/>
+													</xsl:if>
+												</xsl:attribute>
+												<xsl:text>Wrap Search with Quotes</xsl:text>
+											</a>
+										</xsl:if>
+										<xsl:if test="$url-sections">
+											<xsl:text>&#160;</xsl:text>
+											<a class="more-link" href="{$root}/search/?keywords={$url-keywords}">
+												<xsl:attribute name="href">
+													<xsl:value-of select="$root"/>
+													<xsl:text>/search/?keywords=</xsl:text>
+													<xsl:call-template name="plus">
+														<xsl:with-param name="text" select="$url-keywords" />
+													</xsl:call-template>
+												</xsl:attribute>
+												<xsl:text>Or Try Searching Everywhere</xsl:text>
+											</a>
+										</xsl:if>
+									</div>
 									<div class="search-empty">
 										<span class="glyphicon glyphicon-search"></span>
 									</div>

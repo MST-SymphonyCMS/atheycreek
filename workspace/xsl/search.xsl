@@ -198,7 +198,7 @@
 											<span class="glyphicon glyphicon-search"></span>
 										</div>
 									</xsl:when>
-									<xsl:when test="count($entries) &gt; 10">
+									<xsl:when test="count($entries) &gt; 10 and not(contains($current-query-string, '%27'))">
 										<div class="more accuracy">
 											<p class="empty-suggestion">
 												For greater accuracy try wrapping your search with quotes. (e.g. “Jesus Christ”)

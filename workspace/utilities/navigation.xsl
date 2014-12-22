@@ -91,6 +91,14 @@
     <xsl:if test="/data/tags-all-entries/entry[@id]/parent/item/@id = @id or /data/tags-all-entries/entry/@id = 21">
       <ul class="dropdown-menu">
         <xsl:if test="$realID = 21">
+          <xsl:for-each select="/data/featured-teachings/entry">
+            <li>
+              <a>
+                <xsl:call-template name="url-teachings" />
+                <xsl:text>Latest</xsl:text>
+              </a>
+            </li>
+          </xsl:for-each>
           <li class="dropdown">
             <a href="{$root}/teachings/series/">By Series</a>
             <ul class="dropdown-menu hide-mobile">

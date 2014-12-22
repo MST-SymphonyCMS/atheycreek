@@ -5,7 +5,6 @@ require_once TOOLKIT . '/class.datasource.php';
 class datasourcefeatured_teachings extends SectionDatasource
 {
     public $dsParamROOTELEMENT = 'featured-teachings';
-		public $dsParamConditionalizer = '(if value of ({$pt1}) is (teachings))';
     public $dsParamORDER = 'desc';
     public $dsParamPAGINATERESULTS = 'yes';
     public $dsParamLIMIT = '1';
@@ -80,8 +79,8 @@ class datasourcefeatured_teachings extends SectionDatasource
                 'name' => 'Jonathan Simcoe',
                 'website' => 'http://atheycreek.dev',
                 'email' => 'jdsimcoe@gmail.com'),
-            'version' => 'Symphony 2.5.0RC1',
-            'release-date' => '2014-08-26T15:45:11+00:00'
+            'version' => 'Symphony 2.5.2',
+            'release-date' => '2014-12-22T18:45:08+00:00'
         );
     }
 

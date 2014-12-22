@@ -34,7 +34,6 @@
 						</xsl:otherwise>
 					</xsl:choose>
 				</blockquote>
-				<hr/>
 			</xsl:for-each>
 		</div>
 	</xsl:if>

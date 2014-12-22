@@ -84,14 +84,22 @@
       }
     }
 
-    .more {
-      text-align: center;
-    }
-
     .empty-suggestion {
       margin-top: 0;
       font-family: $font-family-sans-serif;
       text-align: center;
+    }
+
+    .more {
+      text-align: center;
+
+      &.accuracy {
+        text-align: left;
+
+        .empty-suggestion {
+          text-align: left;
+        }
+      }
     }
 
     .entry {

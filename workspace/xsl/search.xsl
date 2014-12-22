@@ -159,10 +159,50 @@
 										<xsl:otherwise>col-md-12</xsl:otherwise>
 									</xsl:choose>
 								</xsl:attribute>
-								<xsl:if test="not(count($entries)) and $url-keywords">
-									<div class="more">
-										<xsl:if test="not(contains($current-query-string, '%27'))">
-											<p class="empty-suggestion">Your search did not yield any results. Try wrapping quotes around your search. (e.g. “Jesus Christ”)</p>
+								<xsl:choose>
+									<xsl:when test="not(count($entries)) and $url-keywords">
+										<div class="more">
+											<xsl:if test="not(contains($current-query-string, '%27'))">
+												<p class="empty-suggestion">Your search did not yield any results. Try wrapping quotes around your search. (e.g. “Jesus Christ”)</p>
+												<a class="more-link">
+													<xsl:attribute name="href">
+														<xsl:value-of select="$root"/>
+														<xsl:text>/search/?keywords='</xsl:text>
+														<xsl:call-template name="plus">
+															<xsl:with-param name="text" select="$url-keywords" />
+														</xsl:call-template>
+														<xsl:text>'</xsl:text>
+														<xsl:if test="$url-sections">
+															<xsl:text>&amp;sections=</xsl:text>
+															<xsl:value-of select="$url-sections"/>
+														</xsl:if>
+													</xsl:attribute>
+													<xsl:text>Wrap Search with Quotes</xsl:text>
+												</a>
+											</xsl:if>
+											<xsl:if test="$url-sections">
+												<xsl:text>&#160;</xsl:text>
+												<a class="more-link" href="{$root}/search/?keywords={$url-keywords}">
+													<xsl:attribute name="href">
+														<xsl:value-of select="$root"/>
+														<xsl:text>/search/?keywords=</xsl:text>
+														<xsl:call-template name="plus">
+															<xsl:with-param name="text" select="$url-keywords" />
+														</xsl:call-template>
+													</xsl:attribute>
+													<xsl:text>Or Try Searching Everywhere</xsl:text>
+												</a>
+											</xsl:if>
+										</div>
+										<div class="search-empty">
+											<span class="glyphicon glyphicon-search"></span>
+										</div>
+									</xsl:when>
+									<xsl:when test="count($entries) &gt; 10">
+										<div class="more accuracy">
+											<p class="empty-suggestion">
+												For greater accuracy try wrapping your search with quotes. (e.g. “Jesus Christ”)
+											</p>
 											<a class="more-link">
 												<xsl:attribute name="href">
 													<xsl:value-of select="$root"/>
@@ -178,25 +218,11 @@
 												</xsl:attribute>
 												<xsl:text>Wrap Search with Quotes</xsl:text>
 											</a>
-										</xsl:if>
-										<xsl:if test="$url-sections">
-											<xsl:text>&#160;</xsl:text>
-											<a class="more-link" href="{$root}/search/?keywords={$url-keywords}">
-												<xsl:attribute name="href">
-													<xsl:value-of select="$root"/>
-													<xsl:text>/search/?keywords=</xsl:text>
-													<xsl:call-template name="plus">
-														<xsl:with-param name="text" select="$url-keywords" />
-													</xsl:call-template>
-												</xsl:attribute>
-												<xsl:text>Or Try Searching Everywhere</xsl:text>
-											</a>
-										</xsl:if>
-									</div>
-									<div class="search-empty">
-										<span class="glyphicon glyphicon-search"></span>
-									</div>
-								</xsl:if>
+										</div>
+										<br/>
+										<hr/>
+									</xsl:when>
+								</xsl:choose>
 								<xsl:for-each select="$entries">
 									<xsl:variable name="tag">
 										<xsl:value-of select="tags/item/@id" />

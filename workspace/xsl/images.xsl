@@ -62,7 +62,7 @@
 	<xsl:param name="entries" />
 
 
-	<div id="frontCarousel" class="carousel slide">
+	<div id="home-carousel" class="carousel slide">
     <div class="carousel-inner">
 		  <xsl:for-each select="$entries">
 		    <div>
@@ -76,30 +76,20 @@
 		    			</xsl:otherwise>
 		    		</xsl:choose>
 		    	</xsl:attribute>
-		      <div class="row">
-	          <a>
-	            <xsl:attribute name="href">
-	              <xsl:value-of select="uri" />
-	            </xsl:attribute>
-        			<xsl:call-template name="image-master">
-                <xsl:with-param name="photo" select="image/filename" />
-                <xsl:with-param name="width" select="1800" />
-                <xsl:with-param name="width" select="1013" />
-              </xsl:call-template>
-	          </a>
-		      </div>
-					<div class="carousel-caption">
-						<a href="{uri}">
-							<h3>
-								<em class="verse"><xsl:value-of select="caption"/></em>
-							</h3>
-						</a>
-					</div>
-		    </div>
+    			<xsl:call-template name="image-master">
+            <xsl:with-param name="photo" select="image/filename" />
+            <xsl:with-param name="width" select="1800" />
+            <xsl:with-param name="height" select="900" />
+          </xsl:call-template>
+		    </div><!-- /item -->
 		  </xsl:for-each>
     </div>
-    <a class="left carousel-control" href="#frontCarousel" data-slide="prev">&lt;</a>
-    <a class="right carousel-control" href="#frontCarousel" data-slide="next">&gt;</a>
+    <a class="left carousel-control" href="#home-carousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#home-carousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
   </div>
 
 </xsl:template>

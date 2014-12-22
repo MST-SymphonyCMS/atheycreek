@@ -93,13 +93,15 @@
     .more {
       text-align: center;
 
-      &.accuracy {
+      &.accuracy,
+      &.accuracy .empty-suggstion {
         text-align: left;
-
-        .empty-suggestion {
-          text-align: left;
-        }
       }
+    }
+
+    .col-md-12 .more.accuracy,
+    .col-md-12 .more.accuracy .empty-suggestion {
+      text-align: center;
     }
 
     .entry {

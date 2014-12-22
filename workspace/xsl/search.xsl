@@ -162,16 +162,16 @@
 								<xsl:choose>
 									<xsl:when test="not(count($entries)) and $url-keywords">
 										<div class="more">
-											<xsl:if test="not(contains($current-query-string, '%27'))">
+											<xsl:if test="not(contains($current-query-string, '%22'))">
 												<p class="empty-suggestion">Your search did not yield any results. Try wrapping quotes around your search. (e.g. “Jesus Christ”)</p>
 												<a class="more-link">
 													<xsl:attribute name="href">
 														<xsl:value-of select="$root"/>
-														<xsl:text>/search/?keywords='</xsl:text>
+														<xsl:text>/search/?keywords="</xsl:text>
 														<xsl:call-template name="plus">
 															<xsl:with-param name="text" select="$url-keywords" />
 														</xsl:call-template>
-														<xsl:text>'</xsl:text>
+														<xsl:text>"</xsl:text>
 														<xsl:if test="$url-sections">
 															<xsl:text>&amp;sections=</xsl:text>
 															<xsl:value-of select="$url-sections"/>
@@ -198,7 +198,7 @@
 											<span class="glyphicon glyphicon-search"></span>
 										</div>
 									</xsl:when>
-									<xsl:when test="count($entries) &gt; 10 and not(contains($current-query-string, '%27'))">
+									<xsl:when test="count($entries) &gt; 10 and not(contains($current-query-string, '%22'))">
 										<div class="more accuracy">
 											<p class="empty-suggestion">
 												For greater accuracy try wrapping your search with quotes. (e.g. “Jesus Christ”)
@@ -206,11 +206,11 @@
 											<a class="more-link">
 												<xsl:attribute name="href">
 													<xsl:value-of select="$root"/>
-													<xsl:text>/search/?keywords='</xsl:text>
+													<xsl:text>/search/?keywords="</xsl:text>
 													<xsl:call-template name="plus">
 														<xsl:with-param name="text" select="$url-keywords" />
 													</xsl:call-template>
-													<xsl:text>'</xsl:text>
+													<xsl:text>"</xsl:text>
 													<xsl:if test="$url-sections">
 														<xsl:text>&amp;sections=</xsl:text>
 														<xsl:value-of select="$url-sections"/>

@@ -50,15 +50,7 @@
     <link rel="shortcut icon" href="{$workspace}/assets/build/images/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon-precomposed" href="{$workspace}/assets/build/images/apple-touch-icon-precomposed.png" />
 
-    <xsl:choose>
-      <xsl:when test="contains($root, '.dev')">
-        <link rel="stylesheet" href="{$workspace}/assets/build/styles/main.css" />
-      </xsl:when>
-      <xsl:otherwise>
-        <link rel="stylesheet" href="{$workspace}/assets/build/styles/main.min.css" />
-      </xsl:otherwise>
-    </xsl:choose>
-
+    <link rel="stylesheet" href="{$workspace}/assets/build/styles/main.min.css" />
     <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7076432/620626/css/fonts.css" />
 
   </head>

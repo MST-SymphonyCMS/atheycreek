@@ -108,14 +108,6 @@ gulp.task('styles', function() {
   return gulp.src(paths.styles)
     .pipe(sass())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(gulp.dest(build_path + '/styles'))
-});
-
-gulp.task('styles_min', function() {
-  return gulp.src(build_path + '/styles/main.css')
-    .pipe(plumber({
-      errorHandler: onError
-    }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifyCSS())
     .pipe(gulp.dest(build_path + '/styles'))
@@ -231,16 +223,6 @@ gulp.task('sprites', function () {
 
 gulp.task('default', ['clean'], function() {
   gulp.start('styles', 'scripts', 'images', 'fonts', 'watch');
-});
-
-
-// ------------------------------------------------
-// + DEPLOY
-// + - gets the CSS ready for production
-// ------------------------------------------------
-
-gulp.task('deploy', function() {
-  gulp.start('styles_min');
 });
 
 

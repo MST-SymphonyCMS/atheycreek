@@ -372,6 +372,10 @@
 
 }
 
+
+// Teachings: Viewer
+// ------------------------------------------------
+
 .teaching-viewer {
   color: $white;
   background-size: cover;
@@ -422,5 +426,18 @@
       background: $white;
       color: darken($brand-secondary, 30%);
     }
+  }
+}
+
+
+// Teachings: Live
+// ------------------------------------------------
+
+.teachings-live {
+  h5 {
+    font-family: $font-family-condensed;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 6rem;
   }
 }

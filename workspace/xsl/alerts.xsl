@@ -4,9 +4,10 @@
 <xsl:template name="alerts">
 
 	<xsl:if test="/data/live-status/entry/status = 'live' or /data/ustream/status = 'live'">
-    <div id="14097" class="alert alert-warning">
+    <div id="14097" class="alert alert-danger">
       <div class="container">
-        <p>Athey Creek is currently broadcasting live. <a href="/live/">Watch Live &#8594;</a></p>
+        <span>Athey Creek is currently broadcasting live.</span>
+        <a href="/live/">Watch Live &#8594;</a>
       </div>
     </div>
 	</xsl:if>

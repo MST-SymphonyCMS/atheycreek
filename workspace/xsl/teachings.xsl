@@ -538,7 +538,15 @@
     <div class="teaching-viewer">
       <xsl:attribute name="style">
         <xsl:text>background-image: url('</xsl:text>
-        <xsl:value-of select="poster/item/image/@url"/>
+        <xsl:choose>
+          <xsl:when test="string-length(poster/item)">
+            <xsl:value-of select="poster/item/image/@url"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>http://atheycreek.s3.amazonaws.com/teaching-flat-5499b79f2897f.jpg</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+
         <xsl:text>');</xsl:text>
       </xsl:attribute>
       <div class="inner">

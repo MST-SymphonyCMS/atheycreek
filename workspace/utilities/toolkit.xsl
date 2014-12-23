@@ -67,7 +67,7 @@ Image Master
 <xsl:template name="image-master">
 
 	<xsl:param name="photo" />
-	<xsl:param name="default" select="'accf-flat-4fc3e05b81747-545860ddc7904.jpg'" />
+	<xsl:param name="default" select="'teaching-flat-5499b79f2897f.jpg'" />
 	<xsl:param name="width" select="2400" />
 	<xsl:param name="height" select="0" />
 	<xsl:param name="scale" select="5" />

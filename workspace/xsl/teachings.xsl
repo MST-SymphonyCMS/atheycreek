@@ -213,26 +213,26 @@
                     <xsl:with-param name="height" select="451" />
                   </xsl:call-template>
                 </a>
-              </div>
+              </div><!-- /series -->
             </xsl:for-each>
-          </div>
+          </div><!-- /row -->
+          <h4>Special Series</h4>
+          <div class="row">
+            <xsl:for-each select="/data/teachings-series-special-filtered/entry[position() &lt; 3]">
+              <div class="col-md-6 series">
+                <a>
+                  <xsl:call-template name="url-teachings-series" />
+                  <xsl:call-template name="image-master">
+                    <xsl:with-param name="photo" select="poster/item/image/filename" />
+                    <xsl:with-param name="width" select="800" />
+                    <xsl:with-param name="height" select="451" />
+                  </xsl:call-template>
+                </a>
+              </div><!-- /series -->
+            </xsl:for-each>
+          </div><!-- /row -->
         </xsl:if>
-        <h4>Special Series</h4>
-        <div class="row">
-          <xsl:for-each select="/data/teachings-series-special-filtered/entry[position() &lt; 3]">
-            <div class="col-md-6 series">
-              <a>
-                <xsl:call-template name="url-teachings-series" />
-                <xsl:call-template name="image-master">
-                  <xsl:with-param name="photo" select="poster/item/image/filename" />
-                  <xsl:with-param name="width" select="800" />
-                  <xsl:with-param name="height" select="451" />
-                </xsl:call-template>
-              </a>
-            </div>
-          </xsl:for-each>
-        </div>
-      </div><!-- .row -->
+      </div><!-- /teachings-series-home -->
 
     </div><!-- .container -->
 

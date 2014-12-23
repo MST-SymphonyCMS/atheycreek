@@ -136,7 +136,7 @@
 
   <div class="featured-content">
     <h4>Featured Items</h4>
-    <div id="home-carousel" class="carousel slide">
+    <div id="home-carousel" class="carousel slide" data-ride="carousel" data-pause="none">
       <div class="carousel-inner">
         <xsl:for-each select="exsl:node-set($entries)/entry">
           <div>

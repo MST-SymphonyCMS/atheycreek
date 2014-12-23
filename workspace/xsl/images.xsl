@@ -62,7 +62,7 @@
 	<xsl:param name="entries" />
 
 
-	<div id="home-carousel" class="carousel slide">
+	<div id="home-carousel" class="carousel slide" data-ride="carousel" data-pause="none">
     <div class="carousel-inner">
 		  <xsl:for-each select="$entries">
 		    <div>

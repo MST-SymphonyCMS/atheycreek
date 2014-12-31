@@ -64,7 +64,7 @@
 		<div class="col-md-8">
 			<div class="tab-content">
 				<div id="welcome" class="tab-pane active">
-					<h4>Home Groups at Athey Creek</h4>
+					<h4 class="locations-title">Home Groups at Athey Creek</h4>
 					<hr/>
 					<xsl:value-of select="normalize-space(/data/misc-all-entries/entry[name='home-group-overview']/content)" disable-output-escaping="yes" />
 				</div>
@@ -85,7 +85,7 @@
 								<xsl:value-of select="alert"/>
 							</div>
 						</xsl:if>
-					  <h4>
+					  <h4 class="locations-title">
 					  	<xsl:value-of select="name-group"/>
 					  	<xsl:text>&#160;&#160;</xsl:text>
 							<span>

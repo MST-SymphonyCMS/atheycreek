@@ -1,0 +1,38 @@
+
+// ================================================
+// LEADERSHIP
+// - everything related to Leadership layouts
+// ================================================
+
+
+// Main
+// ------------------------------------------------
+
+.layout-leadership {
+  .text-full-width {
+    h4 {
+      clear: both;
+      text-align: center;
+    }
+    ul {
+      display: block;
+      width: 100%;
+      float: left;
+      list-style: none;
+      margin-bottom: 6rem;
+      padding-left: 0;
+    }
+    ul li {
+      display: block;
+      width: 48%;
+      float: left;
+      margin: 1%;
+      padding: 3rem;
+      font-family: $font-family-sans-serif;
+      list-style-type: none;
+      text-align: center;
+      background: lighten($brand-primary, 50%);
+      color: $brand-primary;
+    }
+  }
+}
